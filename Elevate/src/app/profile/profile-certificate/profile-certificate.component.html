@@ -1,0 +1,63 @@
+<div class="row" *ngIf="certificate">
+  <div class="col-xs-12 padding-none">
+    <div class="details exam-container">
+      <div class="row">
+        <div class="col-xs-12">
+          <legend>{{ certificate.teaser }}</legend>
+          <!-- <p>{{ certificate.created_at | date }}</p> -->
+          <p [innerHtml]="certificate.description | newlines"></p>
+        </div>
+
+        <div
+          class="col-xs-12"
+          *ngIf="
+            certificate.training &&
+            certificate.training.is_enabled &&
+            !readonly
+          "
+          [innerHtml]="trainingContent"
+        ></div>
+
+        <div
+          class="col-xs-12 start-test"
+          *ngIf="
+            certificate.is_enabled &&
+            certificate.exam &&
+            certificate.exam.is_enabled
+          "
+        >
+          <div
+            *ngIf="!passed && !readonly"
+            translate="certificates.description"
+          ></div>
+          <div
+            *ngIf="passed"
+            [translate]="'certificates.passed'"
+            [translateParams]="audit"
+          ></div>
+          <div *ngIf="!passed" translate="certificates.open"></div>
+          <mat-error *ngIf="invalidExamResult">
+            {{'profile.fields.legal-certificate.required' | translate}}
+          </mat-error>
+          <!-- <input
+            class="hide"
+            data-ng-model="certificate.passed"
+            data-validation-msg-required="{{
+              'profile.fields.legal-certificate.required' | translate
+            }}"
+            required
+          /> -->
+          <button
+            *ngIf="!readonly"
+            type="button"
+            style="margin: 20px 0"
+            mat-flat-button
+            color="accent"
+            translate="certificates.buttons.start-exam"
+            (click)="openModal()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

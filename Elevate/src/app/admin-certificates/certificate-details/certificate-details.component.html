@@ -1,0 +1,236 @@
+<div class="container-fluid details" *ngIf="certificate">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/administration/certificates']"
+        >{{ "certificates.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row start-xs">
+    <div class="col-xs">
+      <h1 class="title pull-left" translate="certificates.title.details"></h1>
+    </div>
+  </div>
+  <div class="row exam">
+    <div class="col-xs-12 header">
+      <div class="clearfix">
+        <h1 class="title pull-left">{{ certificate.name }}</h1>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <mat-checkbox
+        color="primary"
+        #is_recommended
+        [disabled]="!!certificate.is_legal"
+        [checked]="!!certificate.is_recommended"
+        (change)="
+          certificate.is_recommended = is_recommended.checked;
+          updateFlag('recommended')
+        "
+      >
+        <mat-label
+          class="input-label"
+          translate="certificates.agent.recommended.label"
+        ></mat-label>
+      </mat-checkbox>
+      <p class="hint" translate="certificates.agent.recommended.hint"></p>
+      <form
+        name="certificate.validInterval"
+        [formGroup]="intervalForm"
+        (ngSubmit)="intervalSubmit()"
+      >
+        <div class="row middle-xs">
+          <!-- <label
+            for="valid_interval"
+            class="col-xs-12 input-label"
+            translate="certificates.agent.valid-interval.label"
+          ></label> -->
+          <div class="col-xs-6 padding-none">
+            <!-- <input
+              type="text"
+              id="valid_interval"
+              class="form-control"
+              data-ng-model="certificate.data.valid_interval"
+              data-ng-pattern="certificate.dateIntervalRegexp"
+              data-pattern-name="date_interval"
+            /> -->
+            <mat-form-field class="full-width">
+              <mat-label
+                >{{ "certificates.agent.valid-interval.label" | translate }}
+              </mat-label>
+              <input matInput formControlName="interval" />
+              <mat-error *ngIf="intervalDisplayMessage.interval">{{
+                intervalDisplayMessage.interval
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6 padding-none">
+            <!-- <button
+              type="button"
+              class="btn btn-primary"
+              data-ng-click="certificate.validInterval.$valid && certificate.updateCertificate()"
+            >
+              <i class="fa fa-save"></i>
+            </button> -->
+            <button mat-icon-button type="submit" color="primary">
+              <i class="fa fa-save"></i>
+            </button>
+          </div>
+          <div class="col-xs-12 padding-none">
+            <p
+              class="hint"
+              translate="certificates.agent.valid-interval.hint"
+            ></p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <mat-checkbox
+        color="primary"
+        #is_enabled
+        [disabled]="!!certificate.is_legal"
+        [checked]="!!certificate.is_enabled"
+        (change)="
+          certificate.is_enabled = is_enabled.checked; updateFlag('certificate')
+        "
+      >
+        <mat-label
+          class="input-label"
+          translate="certificates.agent.certificate-enabled.label"
+        ></mat-label>
+      </mat-checkbox>
+      <p
+        class="hint"
+        translate="certificates.agent.certificate-enabled.hint"
+      ></p>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12" *ngIf="certificate.training">
+      <mat-checkbox
+        color="primary"
+        #is_training_enabled
+        [disabled]="!!certificate.is_legal"
+        [checked]="!!certificate.training.is_enabled"
+        (change)="
+          certificate.training.is_enabled = is_training_enabled.checked;
+          updateFlag('training')
+        "
+      >
+        <mat-label
+          class="input-label"
+          translate="certificates.agent.training-enabled.label"
+        ></mat-label>
+      </mat-checkbox>
+      <p class="hint" translate="certificates.agent.training-enabled.hint"></p>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12" *ngIf="certificate.exam">
+      <mat-checkbox
+        color="primary"
+        #is_exam_enabled
+        [disabled]="!!certificate.is_legal"
+        [checked]="!!certificate.exam.is_enabled"
+        (change)="
+          certificate.exam.is_enabled = is_exam_enabled.checked;
+          updateFlag('exam')
+        "
+      >
+        <mat-label
+          class="input-label"
+          translate="certificates.agent.exam-enabled.label"
+        ></mat-label>
+      </mat-checkbox>
+      <p class="hint" translate="certificates.agent.exam-enabled.hint"></p>
+      <form name="certificate.examPercent" [formGroup]="examForm" (ngSubmit)="updateExam()">
+        <div class="row middle-xs">
+          <!-- <label
+            for="exam-percent"
+            class="col-xs-12 input-label"
+            translate="certificates.agent.exam-percent.label"
+          ></label> -->
+          <div class="col-xs-6 exam-percent padding-none">
+            <!-- <input
+              type="text"
+              id="exam-percent"
+              class="form-control"
+              data-ng-disabled="certificate.data.is_legal"
+              data-ng-model="certificate.data.exam.minimum_percent"
+              data-required
+              data-ng-pattern="/^[1-9][0-9]?$|^100$/"
+              data-pattern-name="minimum_percent"
+            /> -->
+            <mat-form-field class="full-width">
+              <mat-label
+                >{{ "certificates.agent.exam-percent.label" | translate }}
+              </mat-label>
+              <b matPrefix>% &nbsp;</b>
+              <input matInput formControlName="minimum_percent" />
+              <mat-error *ngIf="examDisplayMessage.minimum_percent">{{
+                examDisplayMessage.minimum_percent
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6 padding-none">
+            <!-- <button
+              type="button"
+              class="btn btn-primary"
+              data-ng-disabled="certificate.data.is_legal"
+              data-ng-click="certificate.examPercent.$valid && certificate.updateExam()"
+            >
+              <i class="fa fa-save"></i>
+            </button> -->
+            <button type="submit" mat-icon-button color="primary">
+              <i class="fa fa-save"></i>
+            </button>
+          </div>
+          <div class="col-xs-12 padding-none">
+            <p
+              class="hint"
+              translate="certificates.agent.exam-percent.hint"
+            ></p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-12">
+      <h2>
+        {{ certificate.teaser }}
+      </h2>
+      <!-- <p
+        [translate]="'certificates.all.created'"
+        [translateParams]="certificate"
+      ></p> -->
+      <p>
+        {{ certificate.description }}
+      </p>
+    </div>
+    <div
+      class="col-xs-12"
+      *ngIf="certificate.training"
+      data-training="certificate.data.training.content"
+      app-training-content
+      [content]="certificate.training.content"
+    ></div>
+    <div
+      class="col-xs-12 test"
+      *ngIf="certificate.exam && certificate.exam.questions"
+    >
+      <h3 translate="certificates.agent.exam.label"></h3>
+      <div *ngFor="let question of certificate.exam.questions; let i = index">
+        <div
+          class="question-counter"
+          [translate]="'exams.summary.question'"
+          [translateParams]="{
+            index: i + 1,
+            questions: certificate.exam.questions.length
+          }"
+        ></div>
+        <div class="question">{{ question.question }}</div>
+        <div class="row answer">
+          <div class="col-md-12" *ngFor="let answer of question.answers">
+            {{ answer.answer }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

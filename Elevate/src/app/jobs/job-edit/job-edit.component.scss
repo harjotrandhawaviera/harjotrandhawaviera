@@ -1,0 +1,48 @@
+@import 'variables';
+
+.acion-title-holder {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    margin: 20px 0 10px;
+  }
+}
+.alert-info {
+  P {
+    line-height: 24px;
+    letter-spacing: 0.25px;
+  }
+}
+.team-info {
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.btn-cls {
+  display: flex;
+  justify-content: center;
+  .mat-icon-button {
+      width: 25px;
+  }
+}
+.project-container {
+  position: relative;
+
+  .add-project {
+      color: $brand-primary;
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      right: 0;
+      top: 8px;
+      padding: 5px;
+      cursor: pointer;
+  }
+}
+.radio-btn-cnt {
+  margin-bottom: 20px;
+}
+.mat-radio-button {
+  padding: 0;
+  margin-top: 10px;
+}

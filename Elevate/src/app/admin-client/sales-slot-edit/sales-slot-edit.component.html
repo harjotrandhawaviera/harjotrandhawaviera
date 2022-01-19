@@ -1,0 +1,25 @@
+<div [formGroup]="saleGroup" class="row" *ngIf="saleGroup">
+  <div class="col-md-4">
+    <mat-form-field class="full-width">
+      <mat-label>{{ 'administration.client.fields.saleslots.name.label' | translate }}</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+  </div>
+  <div class="col-md-2">
+    <mat-form-field class="full-width">
+      <mat-label>{{ 'administration.client.fields.saleslots.price.label' | translate }}</mat-label>
+      <input matInput formControlName="price">
+    </mat-form-field>
+  </div>
+  <div class="col-md-5">
+    <mat-form-field class="full-width">
+      <mat-label>{{ 'administration.client.fields.saleslots.description.label' | translate }}</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+  </div>
+  <div class="col-md-1">
+    <button type="button" mat-icon-button color="primary" (click)="removeSlot()">
+      <i class="far fa-trash"></i>
+    </button>
+  </div>
+</div>

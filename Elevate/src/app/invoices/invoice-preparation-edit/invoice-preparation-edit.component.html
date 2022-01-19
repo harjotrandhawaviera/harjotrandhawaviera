@@ -1,0 +1,168 @@
+<div class="container-fluid" *ngIf="data">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/invoices/preparation']">{{
+        "invoices.preparation.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12">
+      <h1 translate="invoices.preparation.title.details"></h1>
+    </div>
+    <div *ngIf="onBehalf && onBehalf.user" class="col-xs-12">
+      <h5
+        [translate]="'invoices.preparation.onbehalf'"
+        [translateParams]="onBehalf.user"
+      ></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>{{ data.jobShortTitle }}</h3>
+      <h4
+        [translate]="'invoices.preparation.assignment-date'"
+        [translateParams]="{ appointedAt: data.date.appointed_at | date }"
+      ></h4>
+      <div class="row">
+        <div
+          class="col-md-6"
+          data-site-info
+          app-site-info
+          [data]="data.site"
+        ></div>
+        <div class="col-md-6 prepared">
+          <div class="row" *ngFor="let keyVal of checklist | keyvalue: originalOrder">
+            <div
+              class="col-md-12"
+              *ngIf="keyVal.value && keyVal.value.available"
+            >
+              <span
+                *ngIf="incentives"
+                [translate]="'invoices.preparation.checklist.' + keyVal.key"
+                [translateParams]="{
+                  incentive: (incentives[keyVal.key] | currency)
+                }"
+              ></span>
+              <i *ngIf="keyVal.value && keyVal.value.state" class="fa fa-check pull-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="visible.questionnaire" class="row">
+    <div class="col-xs-12">
+      <h4
+        class="header"
+        translate="invoices.preparation.online-questionnaire.title"
+      ></h4>
+    </div>
+    <div class="col-xs-12">
+      <div
+        app-survey-details-button
+        [assignment]="data"
+        view="set"
+        type="questionnaire"
+        (reload)="reload()"
+      ></div>
+    </div>
+  </div>
+
+  <div *ngIf="visible && visible.feedback" class="row">
+    <div class="col-xs-12">
+      <h4 class="header" translate="invoices.preparation.feedback.title"></h4>
+    </div>
+    <div class="col-xs-12">
+      <div
+        app-survey-details-button
+        [assignment]="data"
+        view="set"
+        type="feedback"
+        [surveyInstanceApproval]="data.feedback_instance_approval"
+        (updatedSurveyInstanceApproval)="data.feedback_instance_approval = $event; onDataChanged()"
+        (reload)="reload()"
+        approvalView="readonly"
+      ></div>
+    </div>
+  </div>
+  <div *ngIf="visible.report" class="row">
+    <div *ngIf="!onBehalf" class="col-xs-12 padding-none">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4
+            class="header"
+            translate="invoices.preparation.templates.title"
+          ></h4>
+        </div>
+        <div class="col-xs-12">
+          <div
+            class="description"
+            translate="invoices.preparation.description.templates"
+          ></div>
+        </div>
+        <div class="col-xs-12">
+          <div class="row templates" *ngFor="let item of data.templates">
+            <div
+              class="col-md-11"
+              *ngIf="templateTypes.indexOf(item.type) >= 0"
+              app-document-upload
+              data-profile-document="item"
+              data-type="document"
+              data-document-type="type"
+              data-profile-view="'readonly'"
+              [readonly]="true"
+              [documents]="item ? [item] : []"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let type of types" class="{{ type }} col-xs-12 padding-none">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4
+            class="header"
+            [translate]="'invoices.preparation.' + type + '.title'"
+          ></h4>
+        </div>
+        <div
+          *ngFor="let item of data.documents[type]; let i = index"
+          class="col-xs-12"
+        >
+          <div
+            app-assignment-document
+            [data]="data.documents[type][i]"
+            [onBehalf]="onBehalf?.user?.id"
+            [type]="type"
+            [assignment]="data"
+            (changed)="reload()"
+          ></div>
+        </div>
+        <div class="col-xs-12">
+          <!-- revenues -->
+          <div
+            *ngIf="
+              type === 'report' &&
+              data.job.saleslots &&
+              data.job.saleslots.length
+            "
+          >
+            <h4
+              class="header"
+              translate="invoices.preparation.revenue.title"
+            ></h4>
+
+            <div
+              app-assignment-revenue
+              [data]="data.revenues.data[0]"
+              [job]="data.job"
+              [assignment]="data"
+              [onBehalf]="onBehalf?.freelancer"
+              (updated)="data.revenues.data[0] = $event; onDataChanged();"
+              view="set"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

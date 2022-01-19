@@ -1,0 +1,72 @@
+<div class="row" *ngIf="inFormGroup" [formGroup]="inFormGroup" style="margin-bottom: 20px;">
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width">
+      <mat-label required>{{
+        "profile.fields.reference.name.label" | translate
+      }}</mat-label>
+      <input (blur)="onReferenceFieldChange()" matInput formControlName="name" name="name" />
+      <mat-error *ngIf="displayMessage.name">{{
+        displayMessage.name
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width">
+      <mat-label required>{{
+        "profile.fields.reference.relationship.label" | translate
+      }}</mat-label>
+      <mat-select  (blur)="onReferenceFieldChange()" formControlName="relationship" name="relationship">
+        <mat-option *ngFor="let option of relationshipLK" [value]="option.value">
+          {{ "profile.fields.reference.relationship." + option.value | translate }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="displayMessage.relationship">{{
+        displayMessage.relationship
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width">
+      <mat-label>{{
+        "profile.fields.reference.email.label" | translate
+      }}</mat-label>
+      <input matInput formControlName="email" name="email"/>
+      <mat-error *ngIf="displayMessage.email">{{
+        displayMessage.email
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width">
+      <mat-label>{{
+        "profile.fields.reference.contactNo.label" | translate
+      }}</mat-label>
+      <input matInput formControlName="contact_number" name="contact_number"/>
+      <mat-error *ngIf="displayMessage.contactNo">{{
+        displayMessage.contactNo
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12">
+      <mat-checkbox
+      color="primary"
+      [checked]="isVerification"
+      (change)="onClickVerification($event)"
+    >
+      <mat-label
+        class="input-label"
+        translate="profile.fields.reference.isVerification.label"
+      ></mat-label>
+     </mat-checkbox>
+     <mat-error *ngIf="displayMessage.isVerification">{{
+        displayMessage.isVerification
+      }}</mat-error>
+  </div>
+  <div class="col-xs-12">
+    <label for="document" translate="profile.fields.reference.document.label"></label>
+  </div>
+  <div class="col-xs-12 padding-none">
+    <app-profile-document [readonly]="readonly" (documentUpdated)="onDocumentUpload($event)" formControlName="document" [buttonText]="'buttons.upload-document' | translate"></app-profile-document>
+  </div>
+
+</div>

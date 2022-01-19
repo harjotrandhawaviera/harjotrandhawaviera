@@ -1,0 +1,51 @@
+{
+  "report": {
+    "profile_report": "Bericht zum Mitarbeiterprofil",
+    "payroll_report": "Gehaltsabrechnungsbericht des Mitarbeiters",
+    "mail_report": "Mitarbeiterin Serienbriefberichtt",
+    "legal_data": "Bericht über rechtliche Daten des Mitarbeiters",
+    "new_report": "Erstellen Sie Ihren eigenen Bericht",
+    "button": {
+      "start": "Start",
+      "export": "Export",
+      "cancel": "Abbrechen"
+    },
+    "state": {
+      "active": "Aktiv",
+      "onboarding": "Onboarding",
+      "inactive": "Inaktiv",
+      "lock": "Gesperrt",
+      "pending": "Genehmigung ausstehend",
+      "not-active": "Inaktiv",
+      "disabled": "Gesperrt",
+      "unconfirmed": "Nicht bestätigt"
+    },
+    "fields": {
+      "state": "Status",
+      "city": "Stadt",
+      "age_group": "Altersgruppe",
+      "zip": "Postleitzahl",
+      "language": "Sprache",
+      "license": "Fahrerlaubnis",
+      "hasOwnCar": "Hat ein eigenes Auto",
+      "pageSize": "Anzahl der Datensätze",
+      "licenses": {
+        "1": "Jawohl",
+        "0": "Nein"
+      },
+      "ownCar": {
+        "1": "Jawohl",
+        "0": "Nein"
+      }
+    },
+    "table": {
+      "fields": {
+        "profile_report": {
+          "name": "Name",
+          "city": "Stadt",
+          "email": "Email"
+        }
+      }
+    }
+  }
+}

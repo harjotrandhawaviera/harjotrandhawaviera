@@ -1,0 +1,850 @@
+{
+  "profile": {
+    "Work_preference": {
+      "I have no wishes and am open to all offers": "Ich habe keine Wünsche und bin offen für alle Angebote",
+      "I would like to work independently": "Ich möchte am liebsten selbstständig arbeiten",
+      "I would like to be busy on a case-by-case basis": "Ich möchte am liebsten fallweise beschäftigt sein",
+      "I am looking for a permanent job": "Ich suche einen fixen Job",
+      "I want / have to stay below the marginal income limit": "Ich will/muss unter der Geringfügigkeitsgrenze bleiben",
+      "I have another job where I am permanently employed": "Ich habe einen anderen Job, bei dem ich fest angestellt bin",
+      "I have another job that I work for occasionally": "Ich habe einen anderen Job, bei dem ich gelegentlich arbeite",
+      "This is my first time working in Austria": "Ich arbeite zum ersten Mal in Österreich",
+      "Other": "Sonstiges"
+    },
+    "headline": "Mein Profil",
+    "section": {
+      "master": {
+        "title": "Persönliche Informationen",
+        "description": "Bitte gib hier deine persönlichen Daten, wie Name und Anschrift ein.",
+        "subtitle": "Persönliche Daten"
+      },
+      "contact": "Kontaktdaten",
+      "address": "Hauptadresse",
+      "second-address": "Zweiter Wohnsitz",
+      "summary": {
+        "text": "Du hast alle Angaben eingegeben. Bitte schließe jetzt die Anfrage ab, in dem du das Profil abschickst.",
+        "title": "Gratulation!"
+      },
+      "confirmation": {
+        "title": "Vielen Dank!",
+        "text": "Wir haben dein Profil erhalten und prüfen jetzt deine Angaben. Du erhältst eine E-Mail, wenn du erfolgreich in unserer Agentur aufgenommen wurdest."
+      },
+      "legal": {
+        "heading": "Rechtliche Daten",
+        "description": "Bitte gib hier deine Bankverbindung, sowie deine Daten zum Personalausweis ein.",
+        "account": "Bankverbindung",
+        "business": "Angaben zu Steuer und Gewerbe",
+        "license": "Personalausweis",
+        "personal": "Persönliche Angaben",
+        "add-more": "Mehr hinzufügen",
+        "add_identity_card": "Personalausweis hinzufügen",
+        "add_legal_docuemnt": "Rechtsdokument hinzufügen",
+        "upload_legal_document": "Rechtsdokumente hochladen",
+        "documents": {
+          "heading": {
+            "single-doc": "Anlage zum Rahmenvertrag",
+            "more-docs": "Anlagen zum Rahmenvertrag"
+          },
+          "description": {
+            "single-doc": "Bitte lade das folgende Dokument herunter.\nAnschließend lade bitte das ausgefüllte und unterschriebene Dokument hier wieder hoch.",
+            "more-docs": "Bitte lade die folgenden Dokumente herunter.\nAnschließend lade bitte die ausgefüllten und unterschriebenen Dokumente hier wieder hoch."
+          }
+        }
+      },
+      "contract_freelancer": {
+        "heading": "Als Freelancer arbeiten",
+        "selector": {
+          "label": "Ich möchte als Freelancer arbeiten.",
+          "inactive_label": "Ich möchte nicht als Freelancer arbeiten.",
+          "description": "Bitte aktiviere die Schaltfläche, wenn du über Gewerbeschein arbeiten möchtest."
+        },
+        "description": "Sie übernehmen Aufträge als Freelancer auf der Grundlage von Werkverträgen.\nHierfür ist ein Gewerbeschein und eine Steuernummer notwendig. Die Abrechnung erfolgt durch Rechnungen anhand erbrachter Leistungen.",
+        "business": "Angaben zu Steuer und Gewerbe"
+      },
+      "contract_tax_card": {
+        "heading": "Als Zeitarbeitskraft arbeiten",
+        "selector": {
+          "label": "Je souhaite travailler en tant qu'intérimaire",
+          "inactive_label": "Je ne veux pas travailler en tant qu'employé temporaire",
+          "description": "Bitte aktiviere die Schaltfläche, wenn du über deine Lohnsteuerkarte arbeiten möchtest.",
+          "message": "Mit diesem Vertragstyp ist eine Stellenbewerbung und/oder ein aktiver Auftrag verknüpft, Sie können ihn nicht ändern, wenden Sie sich bitte an den Mitarbeiter-Admin\n"
+        },
+        "description": "Du wirst für die Dauer deiner Einsatztage bei uns als Mitarbeiter eingestellt.\nAls Arbeitgeber zahlen wir Dir automatisch monatlich deinen Lohn auf Basis der geleisteten Stunden. Du benötigst keinen Gewerbeschein und musst auch keine eigene Buchhaltung/ Rechnungen mehr führen.",
+        "tax": "Angaben zu Steuer",
+        "insurance": "Soziale Informationen"
+      },
+      "terms": {
+        "heading": "Allgemeine Geschäftsbedingungen",
+        "description": "Hier findest du den Rahmenvertrag sowie weitere Dokumente, die wichtig sind.\nEinige dieser Dokumente musst du dir herunterladen und unterschrieben wieder hochladen, bei anderen Dokumenten genügt es, wenn du bestätigst, dass du sie gelesen hast."
+      }
+    },
+    "contract": {
+      "main": {
+        "headline": "Vertrag",
+        "description": "Vertragsbeschreibung"
+      },
+      "method-of-engagement": {
+        "headline": "Methode des Engagements"
+      }
+    },
+    "qualifications": {
+      "main": {
+        "headline": "Qualifizierung & Ausbildung",
+        "description": "Bitte gib hier Referenzen für deine aktuelle und vorherigen Tätigkeiten an. Außerdem kannst du hier auch deine Zeugnisse und Zertifikate hochladen."
+      },
+      "languages": {
+        "headline": "Sprachen",
+        "description": "Gib nur Sprachen an, die Du fließend sprichst."
+      },
+      "training": {
+        "headline": "Schulung & externe Zertifizierung",
+        "description": "Sollten Sie an einer für uns interessanten Schulung und/oder Berufszertifizierung teilgenommen haben, tragen Sie bitte hier die Daten ein und laden Sie die entsprechenden Zertifikate hoch"
+      },
+      "uploadResume": {
+        "headline": "Lebenslauf hochladen",
+        "description": "Bitte Lebenslauf hier hochladen."
+      },
+      "aboutme": {
+        "headline": "Über mich",
+        "description": "Über Sie / Persönliche Erklärung"
+      },
+      "references": {
+        "headline": "Referenzen",
+        "description": "Wenn Sie der Meinung sind, dass Referenzen aus früheren Jobs für uns hilfreich sein könnten, fügen Sie diese bitte hier hinzu. Dadurch wird Ihr Profil aussagekräftiger.</br> Bitte geben Sie hier die Details ein und laden Sie ggf. die entsprechenden Dokumente hoch."
+      },
+      "list": {
+        "headline": "Ausbildungen",
+        "description": "Solltest du Lehrgänge oder Schulungen besucht haben, oder Zertifikate erlangt haben, die für uns interessant sein könnten, gib die Informationen hier bitte ein und lade die entsprechenden Zeugnisse dafür hoch."
+      },
+      "education": {
+        "headline": "Ausbildungen",
+        "description": "Wenn Sie eine für uns interessante Ausbildung besucht haben, tragen Sie bitte hier den <b> <u>höchsten Bildungsabschluss </u></b> ein und laden Sie die entsprechenden Zeugnisse hoch."
+      },
+      "add-qualification": "Ausbildung hinzufügen",
+      "add-more": "Mehr hinzufügen",
+      "add-training": "Training hinzufügen",
+      "add-skill": "Fertigkeit hinzufügen",
+      "add-role": "Rolle hinzufügen",
+      "add-employment": "Beschäftigung hinzufügen",
+      "add-qualification-disabled": "Bitte vervollständige deine Angaben zu vorherigen Ausbildung, danach kannst du weitere Ausbildungen hinzufügen.",
+      "add-training-disabled": "Bitte vervollständigen Sie Ihre Angaben zur bisherigen Ausbildung, dann können Sie weitere Ausbildungen hinzufügen.",
+      "add-reference": "Referenz hinzufügen",
+      "add-reference-disabled": "Bitte vervollständige deine Angaben zu vorherigen Referenzen, danach kannst du weitere Referenzen hinzufügen.",
+      "delete": "Löschen"
+    },
+    "employment_info": {
+      "main": {
+        "headline": "Beschäftigungsinformationen",
+        "description": "Bitte geben Sie Beschäftigungsinformationen für Ihre aktuellen und früheren Jobs an. Hier können Sie auch Ihre Beschäftigungsdaten hochladen."
+      },
+      "work-history": {
+        "headline": "Beschäftigungsgeschichte",
+        "description": "Bitte geben Sie Ihre Beschäftigungsdaten an (zunächst mit der neuesten / aktuellen zuerst) und laden Sie relevante Zeugnisse hoch"
+      },
+      "skill": {
+        "headline": "Fähigkeit",
+        "description": "Bitte geben Sie Ihre Fähigkeiten an (wählen Sie alle entsprechenden Fähigkeiten aus der Dropdown-Liste aus). Bitte beachten Sie, dass es nur wenige Fähigkeiten gibt, bei denen Sie einen <br> Nachweis über den Erwerb der entsprechenden Fähigkeiten vorlegen müssen."
+      },
+      "role": {
+        "headline": "Rolle",
+        "description": "Bitte geben Sie Ihre Rollendetails an (wählen Sie <b><u>eine primäre Rolle </u></b>aus der Dropdown-Liste aus)"
+      },
+      "work_preferences": {
+        "headline": "Arbeitspräferenzen",
+        "description": "Bitte wählen Sie alles aus, was auf Sie zutrifft"
+      },
+      "delete": "Löschen"
+    },
+    "work_conditions": {
+      "1": "Ich habe keine Wünsche und bin offen für alle Angebote",
+      "2": "Ich möchte am liebsten selbstständig arbeiten",
+      "3": "Ich möchte am liebsten fallweise beschäftigt sein",
+      "4": "Ich suche einen fixen Job",
+      "5": "Ich will/muss unter der Geringfügigkeitsgrenze bleiben",
+      "6": "Ich habe einen anderen Job, bei dem ich fest angestellt bin",
+      "7": "Ich habe einen anderen Job, bei dem ich gelegentlich arbeite",
+      "8": "Ich arbeite zum ersten Mal in Österreich",
+      "9": "Sonstiges"
+    },
+    "skill_list": {
+      "1": "Alkohol Promotion",
+      "2": "Automobilindustrie",
+      "3": "Beauty Produkte",
+      "4": "Bekleidung und Fashion",
+      "5": "Datenerfassung",
+      "6": "Eventmanger",
+      "7": "Gaming",
+      "8": "Gästebetreuung",
+      "9": "Hotellerie",
+      "10": "Influecer / Social Media Promoter",
+      "11": "Kinderbetreuung",
+      "12": "LKW Fahren",
+      "13": "Laufsteg Model / Fotomodel",
+      "14": "Liefertätigkeit",
+      "15": "Marktforschung",
+      "16": "Messeaufbau",
+      "17": "Messeauftritte",
+      "18": "Mobilfunk und Tablet PCs",
+      "19": "Ordner / Sicherheitsdienst",
+      "20": "Probenverteilung",
+      "21": "Roadshows / Tours",
+      "22": "Sport und Fitness",
+      "23": "Tabak / Zigaretten Promotion",
+      "24": "Teaching / Coaching",
+      "25": "Teamleiter / Supervisor",
+      "26": "Urlaubsanimation",
+      "27": "Verkostungspromotion",
+      "28": "Vertrieb im Außendienst",
+      "29": "Vertrieb im Einzelhandel",
+      "30": "Werbemittelverteilung"
+    },
+    "create-button": "Senden & Profil anlegen",
+    "pictures-sedcard": {
+      "headline": "Fotos & Größeninformationen",
+      "good-photo": "Beispielbilder",
+      "description": "Bitte stelle sicher, dass deine Fotos eine minimale Auflösung von 150dpi haben und im Porträt-Format vorliegen. Die minimale Auflösung beträgt 600 x 400 Bildpunkte. Die maximale Dateigröße beträgt 32MB.\n\nDie Bilder für deine Sedcard kannst du nicht mehr austauschen, nachdem wir diese ausgewählt haben."
+    },
+    "overall-appearance": {
+      "headline": "Größeninformationen",
+      "description": ""
+    },
+    "fields": {
+      "second-address": "2. Adresse hinzufügen",
+      "firstname": {
+        "label": "Vorname",
+        "placeholder": ""
+      },
+      "lastname": {
+        "label": "Nachname",
+        "placeholder": ""
+      },
+      "salutation": {
+        "label": "Anrede",
+        "": "Wählen",
+        "F": "Frau",
+        "M": "Herr",
+        "-": "-"
+      },
+      "gender": {
+        "label": "Geschlecht",
+        "": "Wählen",
+        "D": "vielfältig",
+        "F": "weiblich",
+        "M": "männlich",
+        "O": "Sonstiges",
+        "null": ""
+      },
+      "title": {
+        "label": "Titel",
+        "placeholder": ""
+      },
+      "nationality": {
+        "label": "Staatsangehörigkeit"
+      },
+      "birthdate": {
+        "label": "Geburtsdatum",
+        "placeholder": "dd.MM.yyyy, z.B. 15.10.1978",
+        "": "Wählen"
+      },
+      "birthplace": {
+        "label": "Geburtsort",
+        "placeholder": ""
+      },
+      "birthcountry": {
+        "label": "Geburtsland",
+        "placeholder": ""
+      },
+      "hasDriversLicense": {
+        "label": "Führerschein",
+        "": "Wählen",
+        "true": "Ja",
+        "false": "Nein"
+      },
+      "licenseTypes": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F"
+      },
+      "profession": {
+        "label": "Aktueller beruflicher Status",
+        "placeholder": "z.B. Berufstätiger, Student, Rentner"
+      },
+      "mobile": {
+        "label": "Telefon (mobil)*",
+        "placeholder": "Telefon (mobil)*"
+      },
+      "alternativePhone": {
+        "label": "Telefon (alternativ)",
+        "placeholder": "Telefon (alternativ)"
+      },
+      "email": {
+        "label": "E-Mail-Adresse",
+        "placeholder": "E-Mail-Adresse"
+      },
+      "address": {
+        "label": "Hausnummer",
+        "placeholder": "Hausnummer"
+      },
+      "addressaddition": {
+        "label": "Adresszusatz",
+        "placeholder": "Adresszusatz"
+      },
+      "locality": {
+        "label": "Straßenname",
+        "placeholder": "Straßenname"
+      },
+      "zip": {
+        "label": "Postleitzahl",
+        "placeholder": "Postleitzahl"
+      },
+      "city": {
+        "label": "Ort",
+        "placeholder": "Ort"
+      },
+      "country": {
+        "label": "Land",
+        "placeholder": "Land"
+      },
+      "document_name": {
+        "label": "Dokumentname",
+        "placeholder": "Dokumentname"
+      },
+      "document_number": {
+        "label": "Dokumentnummer",
+        "placeholder": "Dokumentnummer"
+      },
+      "near-to-city": {
+        "label": "Nächste größere Stadt",
+        "placeholder": "Nächste größere Stadt"
+      },
+      "photos": {
+        "profile": "Porträt-Foto",
+        "body": "Ganzkörper-Foto",
+        "additional": "Weiteres Foto",
+        "sedcard": "Sedcard Foto",
+        "hints": "Hinweise zu Fotos",
+        "download": "Sedcard herunterladen"
+      },
+      "height": {
+        "label": "Größe",
+        "placeholder": "cm"
+      },
+      "chest": {
+        "label": "Brust",
+        "label-with-size": "Brust: {{chest}} ",
+        "placeholder": "cm"
+      },
+      "waist": {
+        "label": "Taille",
+        "label-with-size": "Taille: {{waist}} ",
+        "placeholder": "cm"
+      },
+      "hip": {
+        "label": "Hüfte",
+        "label-with-size": "Hüfte: {{hip}} ",
+        "placeholder": "cm"
+      },
+      "shirtsize": {
+        "label": "T-Shirt",
+        "": "Auswählen",
+        "XXS": "XXS",
+        "XS": "XS",
+        "S": "S",
+        "M": "M",
+        "L": "L",
+        "XL": "XL",
+        "XXL": "XXL"
+      },
+      "pantsize": {
+        "label": "Keuchen",
+        "": "Auswählen",
+        "XS": "XS",
+        "S": "S",
+        "M": "M",
+        "L": "L",
+        "XL": "XL",
+        "XXL": "XXL",
+        "XXXL": "XXXL"
+      },
+      "shoesize": {
+        "label": "Schuh",
+        "": "Auswählen",
+        "36": "sechs­und­dreißig",
+        "37": "sieben­und­dreißig",
+        "38": "acht­und­dreißig",
+        "39": "neun­und­dreißig",
+        "40": "vierzig",
+        "41": "ein­und­vierzig",
+        "42": "zwei­und­vierzig",
+        "43": "drei­und­vierzig",
+        "44": "vier­und­vierzig",
+        "45": "fünf­und­vierzig",
+        "46": "sechs­und­vierzig",
+        "47": "sieben­und­vierzig",
+        "48": "acht­und­vierzig",
+        "49": "neun­und­vierzig",
+        "50": "fünfzig",
+        "51": "ein­und­fünfzig",
+        "52": "zwei­und­fünfzig",
+        "53": "drei­und­fünfzig",
+        "54": "vier­und­fünfzig",
+        "55": "fünf­und­fünfzig",
+        "56": "sechs­und­fünfzig"
+      },
+      "pant": {
+        "label": "Keuchen",
+        "placeholder": ""
+      },
+      "haircolor": {
+        "label": "Haarfarbe",
+        "placeholder": ""
+      },
+      "shoe": {
+        "label": "Schuhgröße",
+        "placeholder": "",
+        "shoe-reference": "Welche Schuhgröße habe inch?"
+      },
+      "type": {
+        "label": "General type",
+        "caucasian": "Caucasian"
+      },
+      "bankaccount_holder": {
+        "label": "Kontoinhaber",
+        "placeholder": "Kontoinhaber"
+      },
+      "account_number": {
+        "label": "Kontonummer",
+        "placeholder": "Kontonummer"
+      },
+      "iban": {
+        "label": "IBAN",
+        "placeholder": "IBAN"
+      },
+      "bic": {
+        "label": "BIC",
+        "placeholder": "BIC"
+      },
+      "bankname": {
+        "label": "Kreditinstitut",
+        "placeholder": "Kreditinstitut"
+      },
+      "reference": {
+        "title": {
+          "label": "Tätigkeit",
+          "placeholder": "z.B. Kosmetikerin, Promoter"
+        },
+        "name": {
+          "label": "Name der Person"
+        },
+        "relationship": {
+          "label": "Beziehung",
+          "The person managed you directly": "Die Person hat Sie direkt verwaltetVersand",
+          "The person reported you directly": "Die Person hat dich direkt gemeldet",
+          "The person was senior to you but didn't manage directly": "Die Person war dir gegenüber ranghöchst, hat es aber nicht direkt geschafft",
+          "You were senior to the person but didn't manage directly": "Du warst älter als die Person, hast es aber nicht direkt geschafft",
+          "You worked with the person in same group": "Sie haben mit der Person in derselben Gruppe gearbeitet",
+          "The person worked with you but in different group": "Die Person hat mit dir gearbeitet, aber in einer anderen Gruppe",
+          "you were a client to the person": "du warst ein Kunde der Person",
+          "The person was your client": "Die Person war dein Kunde",
+          "The person mentored you": "Die Person hat dich betreut",
+          "You mentored the person": "Du hast die Person betreut"
+        },
+        "email": {
+          "label": "E-Mail-Adresse der Empfehlung"
+        },
+        "contactNo": {
+          "label": "Kontaktnummer der Empfehlung"
+        },
+        "current": {
+          "label": "Aktuelle Tätigkeit",
+          "placeholder": ""
+        },
+        "company": {
+          "label": "Auftraggeber (Marke)",
+          "placeholder": ""
+        },
+        "description": {
+          "label": "Beschreibung der Tätigkeit",
+          "placeholder": ""
+        },
+        "startDate": {
+          "label": "Beginn der Tätigkeit",
+          "placeholder": "dd.MM.yyyy"
+        },
+        "endDate": {
+          "label": "Ende der Tätigkeit",
+          "placeholder": "dd.MM.yyyy"
+        },
+        "document": {
+          "label": "DOKUMENTE HOCHLADEN (ZB ZERTIFIKAT) Dokumente, Fotos, Websites, Videos und Präsentationen hinzufügen"
+        },
+        "isVerification": {
+          "label": "Bitte klicken Sie das Kontrollkästchen als Ihre Zustimmung an, um die Empfehlung zur Überprüfung durch unser Team zu kontaktieren"
+        }
+      },
+      "qualification": {
+        "title": {
+          "label": "Ausbildung",
+          "placeholder": "z.B. Kosmetikerin, Promoter"
+        },
+        "description": {
+          "label": "Beschreibung der Ausbildung",
+          "placeholder": ""
+        },
+        "date": {
+          "label": "Erhalten am",
+          "placeholder": "dd.MM.yyyy"
+        },
+        "document": {
+          "label": "Dokument (z.B. Zertifikat) hochladen"
+        },
+        "school": {
+          "label": "Name der Schule / Hochschule / Universität"
+        },
+        "degree": {
+          "label": "Grad"
+        },
+        "field": {
+          "label": "Forschungsbereich"
+        },
+        "grade": {
+          "label": "Klasse / %Alter"
+        },
+        "startDate": {
+          "label": "Startdatum (Monat / Jahr)"
+        },
+        "endDate": {
+          "label": "Enddatum oder Erwartet (Monat / Jahr)"
+        }
+      },
+      "training": {
+        "name": {
+          "label": "Titel der Aus- / Weiterbildung z.B. Make-Up Artist, Verkaufstraining"
+        },
+        "organization": {
+          "label": "Ausgestellt von"
+        },
+        "issueDate": {
+          "label": "Erhalten am"
+        },
+        "description": {
+          "label": "Beschreibung der Aus- / Weiterbildung"
+        }
+      },
+      "work-history": {
+        "title": {
+          "label": "Tätigkeit"
+        },
+        "comapny-name": {
+          "label": "Name der Firma"
+        },
+        "current-company": {
+          "label": "Ist das Ihr aktuelles Unternehmen"
+        },
+        "description": {
+          "label": "Tätigkeitsbeschreibung"
+        },
+        "document": {
+          "label": "DOKUMENT HOCHLADEN (Dokumente, Fotos, Websites, Videos und Präsentationen hinzufügen)"
+        },
+        "started": {
+          "label": "Arbeitet ab"
+        },
+        "select-year": {
+          "label": "von"
+        },
+        "month": {
+          "label": "Monat"
+        },
+        "worked-till": {
+          "label": "bis"
+        }
+      },
+      "skills": {
+        "category": {
+          "label": "Fertigkeitskategorie"
+        },
+        "name": {
+          "label": "Fertigkeitsname"
+        },
+        "proof": {
+          "label": "Erforderlicher Nachweis"
+        },
+        "document": {
+          "label": "Dokument hochladen"
+        }
+      },
+      "roles": {
+        "primaryRole": {
+          "label": "Hauptrolle"
+        },
+        "secondaryRole": {
+          "label": "Sekundäre Rolle"
+        },
+        "roleLabel": {
+          "label": "Rollenbezeichnung"
+        },
+        "description": {
+          "label": "Rollenbeschreibung"
+        }
+      },
+      "languages": {
+        "add": "Sprache hinzufügen",
+        "native": {
+          "label": "Muttersprache"
+        },
+        "additional": {
+          "label": "Weitere Sprache"
+        },
+        "label": "Sprache",
+        "": "Wählen",
+        "german": "Deutsch",
+        "english": "Englisch",
+        "french": "Französisch",
+        "turkish": "Türkisch",
+        "arabic": "Arabisch",
+        "italian": "Italienisch",
+        "spanish": "Spanisch",
+        "dutch": "Niederländisch",
+        "polish": "Polnisch",
+        "czech": "Tschechisch",
+        "other": "Andere"
+      },
+      "industryExposure": {
+        "add": "Branche hinzufügen",
+        "additional": {
+          "label": "Industrie"
+        },
+        "label": "Branchenpräsenz",
+        "": "Auswählen",
+        "Advertising agencies": "Werbeagenturen",
+        "Autombiles": "Autos",
+        "Banking and Financial Services": "Bank- und Finanzdienstleistungen",
+        "E-commerce": "E-commerce",
+        "description": "Bitte geben Sie Ihre Branchenpräsenz als Teil Ihres beruflichen Engagements mit verschiedenen Kunden/globalen Marken an",
+        "Education": "Ausbildung",
+        "Event Management": "Veranstaltungsmanagement",
+        "Govt. & Public Utilites": "Regierung & öffentliche Einrichtungen",
+        "Healthcare": "Gesundheitspflege",
+        "Health & Beauty Products": "Gesundheits- und Schönheitsprodukte",
+        "Logistics": "Logistik",
+        "Media & Entertainment": "Medien & Unterhaltung",
+        "NGOs": "NGOs",
+        "Real Estate": "Immobilie",
+        "Recuritment": "Rekrutierung",
+        "Restaurants & takeways": "Restaurants & Imbissbuden",
+        "Retail": "Einzelhandel",
+        "Technology": "Technologie",
+        "Travel & Tourism": "Reise Tourismus"
+      },
+      "role": {
+        "label": "Rolle"
+      },
+      "lastAssignments": {
+        "label": "Buchung"
+      },
+      "health_insurance_types": {
+        "": "Wählen",
+        "statutory": "gesetzlich",
+        "private": "privat"
+      },
+      "legal-certificate": {
+        "required": "Das Absolvieren des Tests ist Voraussetzung, um sich vollständig anmelden zu können."
+      },
+      "tax_classes": {
+        "": "Bitte wählen",
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6"
+      }
+    },
+    "filterdescriptions": {
+      "tax_classes": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": ""
+      }
+    },
+
+    "submit": {
+      "button-next": "Speichern & weiter",
+      "button-save": "Speichern"
+    },
+    "next-step": "Weiter (ohne Speichern)",
+    "cancel": "Abbrechen",
+    "onboarding": {
+      "inreview": "Deine Angaben werden derzeit von uns geprüft.",
+      "start-data-entry": "Profil erstellen",
+      "missing-contract-type": "Um bei uns anfangen zu können, musst du dich für mindestens einen Vertragstypen entscheiden.\nDu kannst dich auch gleich für beide Vertragstypen anmelden, oder dich nachträglich für einen weiteren Vertragstyp entscheiden."
+    },
+    "pending-contract-type": "Deine Angaben wurden noch nicht freigeschaltet. Bitte aktualisiere die Daten und speichere deine Angaben erneut.\nErst nach Freischaltung der Angaben kannst du wieder für diesen Vertragstypen Angebote abgeben.",
+    "pending-contract-type-approval": "(Die Angaben wurden noch nicht geprüft oder wurden zurückgewiesen!)",
+    "disabled-info": "Dein Konto wurde gesperrt.",
+    "deactivated-info": "Dein Konto wurde deaktiviert.",
+    "languages": {
+      "native": {
+        "label": "Muttersprache"
+      },
+      "additional": {
+        "label": "Weitere Sprache"
+      }
+    },
+    "reference": {
+      "startDate": "Beginn der Tätigkeit",
+      "endDate": "Ende der Tätigkeit",
+      "title": "Tätigkeit",
+      "company": "Auftraggeber (Marke)",
+      "description": "Beschreibung der Tätigkeit",
+      "document": "Dokument"
+    },
+    "qualification": {
+      "title": "Ausbildung",
+      "description": "Beschreibung der Ausbildung",
+      "date": "Erhalten am",
+      "document": "Dokument"
+    },
+    "address": {
+      "address": "Straße und Hausnummer",
+      "addressaddition": "Adresszusatz",
+      "zip": "Postleitzahl",
+      "city": "Stadt",
+      "country": "Land",
+      "near-to-city": "Nächste größere Stadt",
+      "application-area": "Einsatzbereich"
+    },
+    "identity": {
+      "personal": "Persönliche Angaben",
+      "license": "Personalausweis",
+      "license-id": "Ausweisnummer",
+      "outdate": "Gültig bis",
+      "account": "Bankverbindung",
+      "bankaccount_holder": "Kontoinhaber",
+      "iban": "IBAN",
+      "bic": "BIC",
+      "bankname": "Kreditinstitut",
+      "profession": "Aktueller beruflicher Status",
+      "birth_place": "Geburtsort",
+      "birth_country": "Geburtsland"
+    },
+    "contracts": {
+      "freelancer": "Vertragstyp: Gewerbeschein",
+      "tax_card": "Vertragstyp: Lohnsteuerkarte",
+      "tax_number": "Steuernummer",
+      "vat_tax_id": "Umsatzsteuer-Id",
+      "tax_id": {
+        "label": "Steuer-Id",
+        "hint": "Hinweise zur Steuer-Id"
+      },
+      "tax_class": {
+        "label": "Steuerklasse",
+        "hint": "Über welche Steuerklasse sollen Ihre Einsätze abgerechnet werden?"
+      },
+      "child_tax_allowance": "Kinderfreibetrag",
+      "socialsecurity_number": {
+        "label": "Sozialversicherungsnummer",
+        "hint": "Hinweise zur Sozialversicherungsnummer"
+      },
+      "denomination": "Konfession",
+      "health_insurance_type": "Krankenversicherung",
+      "health_insurance_name": "Name der Krankenkasse",
+      "vat_tax_liable": {
+        "label": "Umsatzsteuerpflichtig",
+        "hint": "Wann bin ich umsatzsteuerpflichtig?"
+      }
+    },
+    "gtc": {
+      "upcoming": "Wir haben am {{publishedDate}} unsere Geschäftsbedingungen für die Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}} aktualisiert.\nUm weiterhin für uns tätig zu sein, benötigen wir deine Bestätigung des neuen Rahmenvertrages bis zum {{validDate}}.",
+      "upcoming-tax_card": "Wir haben am {{publishedDate}} unsere Geschäftsbedingungen für die Arbeit über Lohnsteuerkarte aktualisiert.\nUm weiterhin für uns tätig zu sein, benötigen wir deine Bestätigung des neuen Rahmenvertrages bis zum {{validDate}}.",
+      "upcoming-freelancer": "Wir haben am {{publishedDate}} unsere Geschäftsbedingungen für die Arbeit über Gewerbeschein aktualisiert.\nUm weiterhin für uns tätig zu sein, benötigen wir deine Bestätigung des neuen Rahmenvertrages bis zum {{validDate}}.",
+      "pending": "Deine Änderungen im Bereich Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}} werden noch von uns geprüft.",
+      "pending-tax_card": "Deine Änderungen im Bereich Arbeit über Lohnsteuerkarte werden noch von uns geprüft.",
+      "pending-freelancer": "Deine Änderungen im Bereich Arbeit über Gewerbeschein werden noch von uns geprüft.",
+      "missing": "Seit dem {{validDate}} gelten unsere neuen Geschäftsbedingungen für die Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}} .\nUm weiterhin für uns tätig zu sein, benötigen wir noch deine Bestätigung des neuen Rahmenvertrages.",
+      "missing-tax_card": "Seit dem {{validDate}} gelten unsere neuen Geschäftsbedingungen für die Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}} .\nUm weiterhin für uns tätig zu sein, benötigen wir noch deine Bestätigung des neuen Rahmenvertrages.",
+      "missing-freelancer": "Seit dem {{validDate}} gelten unsere neuen Geschäftsbedingungen für die Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}} .\nUm weiterhin für uns tätig zu sein, benötigen wir noch deine Bestätigung des neuen Rahmenvertrages.",
+      "todo-hint": "Bitte gehe dazu in den entsprechenden Bereich in deinem Profil und öffne die Dokumente, lies sie sorgfältig und bestätige den Inhalt durch den 'Akzeptieren' - Button oder lade sie unterschrieben wieder hoch.",
+      "open": "Dokument öffnen",
+      "profile": "Zum Profil",
+      "download": "Dokument herunterladen",
+      "approve": "Akzeptieren",
+      "cancel": "Ablehnen",
+      "confirm": {
+        "title": "Rahmenvertrag akzeptieren",
+        "message": "Hiermit bestätige ich, dass ich {{identifier}} gelesen und verstanden habe."
+      },
+      "reconfirm": {
+        "title": "Wiederbestätigung speichern",
+        "message": "Möchtest du deine Änderungen speichern?",
+        "buttons": {
+          "cancel": "Nein",
+          "confirm": "Ja"
+        }
+      },
+      "table": {
+        "identifier": "Name",
+        "publishedAt": "Veröffentlicht am",
+        "validAt": "Gültig vom",
+        "acceptedAt": "Akzeptiert am",
+        "actions": {
+          "download": "Dokument herunterladen",
+          "details": "Details"
+        },
+        "title": "Akzeptierte AGB Versionen"
+      },
+      "documents": {
+        "type": {
+          "terms-and-conditions": "Rahmenvertrag",
+          "attachment": "{{index}}. Anlage zum Rahmenvertrag",
+          "signed-terms-and-conditions": "Rahmenvertrag (Bestätigung)",
+          "signed-attachment": "Anlage zum Rahmenvertrag (Bestätigung)"
+        },
+        "name": " ({{name}})",
+        "checked": {
+          "action": "Dokument öffnen.",
+          "hint": "Du musst dieses Dokument lesen und bestätigen!",
+          "state": {
+            "confirmed": "Der Inhalt dieses Dokuments wurde bestätigt.",
+            "unconfirmed": "Der Inhalt dieses Dokuments wurde noch nicht bestätigt."
+          }
+        },
+        "upload-signed": {
+          "action": "Dokument herunterladen.",
+          "hint": "Du musst dieses Dokument herunterladen und unterschrieben hier wieder hochladen!"
+        },
+        "confirm": {
+          "title": "Dokument akzeptieren",
+          "message": "Hiermit bestätige ich, dass ich {{name}} gelesen und verstanden habe."
+        },
+        "reconfirmation-hint": "Die folgenden Dokumente müssen erneut bestätigt werden."
+      }
+    },
+    "dashboard": {
+      "contract_types": {
+        "header": "Mögliche Vertragstypen",
+        "table": {
+          "label": "Vertragstyp",
+          "enabled": "Registriert? (Ja/Nein)",
+          "state": "Status",
+          "pending": "Aktuell zur Prüfung eingereicht? (Ja/Nein)"
+        },
+        "states": {
+          "not-registered": "nicht aktiv",
+          "pending": "wird derzeit geprüft",
+          "active": "aktiv"
+        },
+        "buttons": {
+          "details": "Details"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,639 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="acion-title-holder">
+        <a [routerLink]="['/jobs']">
+          {{ 'job.buttons.back' | translate }}
+        </a>
+        <h1 translate="projects.jobs.bulk_create.title.new"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="alert alert-info" *ngIf="!(overwriteAllowed$ | async)">
+        <p translate="projects.jobs.bulk_create.explanation"></p>
+      </div>
+      <div class="alert alert-info" *ngIf="siteIdLength">
+        <p>{{'projects.jobs.bulk_create.result.success' | translate: {count: siteIdLength} }}</p>
+      </div>
+      <!-- <div class="alert alert-warning" *ngIf="bulkJob.errors.length">
+        <p data-translate="projects.jobs.bulk_create.result.failure"
+          data-translate-values="{failed: bulkJob.errors.join('\n')}"></p>
+      </div>
+      <div class="alert alert-warning" *ngIf="bulkJob.isSubmitting">
+        <p data-translate-once="projects.jobs.bulk_create.result.submitting"></p>
+      </div> -->
+    </div>
+  </div>
+  <form [formGroup]="detailForm" *ngIf="detailForm">
+    <div class="row">
+      <div class="form-group col-md-8 col-xs-12 project-container">
+        <mat-form-field class="full-width">
+          <mat-label data-required>{{"projects.fields.project.label-new-job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="project" [clearSelection]="true" #project [options]="projectLK"
+            [error]="displayMessage.project">
+          </app-static-auto-complete>
+          <mat-error *ngIf="displayMessage.project">{{displayMessage.project}}</mat-error>
+        </mat-form-field>
+        <button class="add-project" (click)="addProject()"><mat-icon>add_circle_outline</mat-icon></button>
+      </div>
+    </div>
+
+    <div *ngIf="projectId && projectDetail">
+      <div class="col-xs-12">
+      <mat-accordion multi>
+        <mat-expansion-panel hideToggle expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "administration.client.section.basicinfo" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-job-detail-general-edit [group]="generalGroup" [overwriteAllowed]="overwriteAllowed$ | async"
+            [project]="projectDetail" [budgetLK]="budgetLK" [createMode]="true" (addAdditionalCost)="addAdditionalCost()"
+            (removeAdditionalCost)="removeAdditionalCost($event)"
+            [displayMessage]="displayMessage && displayMessage.general ? displayMessage.general : {}">
+          </app-job-detail-general-edit>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel hideToggle expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "administration.client.section.additionalinfo" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <fieldset>
+            <!--<div class="row radio-btn-cnt">
+              <div class="col-xs">
+                <label required translate="projects.jobs.location-type.label"></label>
+                <mat-radio-group (change)="onLocationTypeChange()" aria-labelledby="Location Type" class="row" color="primary" formControlName="location_type">
+                  <mat-radio-button class="col-xs-12 col-md-4" value="pos">
+                    {{'projects.jobs.pos.label' | translate}}
+                  </mat-radio-button>
+                  <mat-radio-button class="col-xs-12 col-md-4" value="live">
+                    {{'projects.jobs.live.label' | translate}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="row">
+              <div *ngIf="detailForm.get('location_type')?.value === 'live'" class="col-md-6 col-xs-12">
+                <mat-form-field class="full-width">
+                  <mat-label required>{{
+                    "projects.jobs.live.label" | translate
+                  }}</mat-label>
+                  <input matInput
+                  (input)="onSearchChange()"
+                  #locality
+                  formControlName="job_location" name="job_location" />
+                  <mat-error *ngIf="displayMessage.job_location">{{
+                    displayMessage.job_location
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div *ngIf="detailForm.get('location_type')?.value === 'pos'" class="col-md-6 col-xs-12">
+                <app-multi-select-auto-complete class="form-field" [required]="true"
+                  label="{{'projects.jobs.bulk_create.fields.sites.label' | translate: {count: selectedSites || 0, total: totalSiteCount || '...'} }}"
+                  [filteredOptions]="siteList" [static]="true" formControlName="site_ids">
+                </app-multi-select-auto-complete>
+              </div>
+            </div>-->
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <mat-form-field class="full-width">
+                  <mat-label required>{{
+                    "projects.jobs.live.label" | translate
+                  }}</mat-label>
+                  <input matInput
+                  (input)="onSearchChange()"
+                  #locality
+                  formControlName="job_location" name="job_location" />
+                  <mat-error *ngIf="displayMessage.job_location">{{
+                    displayMessage.job_location
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <mat-form-field class="full-width">
+                  <mat-label required>{{
+                    "jobs.freelancer.filters.contractType" | translate
+                  }}</mat-label>
+                  <mat-select formControlName="contract_type_id">
+                    <mat-option *ngFor="let option of contractTypeLK" [value]="option.value">
+                      {{ option.text }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <label required translate="projects.jobs.staff-briefing.label"></label>
+                <angular-editor formControlName="staff_briefing"
+                placeholder="{{
+                  'projects.jobs.staff-briefing.placeholder' | translate
+                }}"
+                id="staff_briefing"
+                [config]="editorConfig"></angular-editor>
+                <mat-error *ngIf="displayMessage.staff_briefing">{{
+                  displayMessage.job_name
+                }}</mat-error>
+              </div>
+            </div>
+          </fieldset>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "administration.client.section.teaminfo" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!--Team Info Container-->
+          <fieldset>
+            <div *ngIf="teamInfo" formArrayName="teamInfo">
+              <div *ngFor="let sale of teamInfo.controls; let i = index" class="col-xs-12">
+                <div [formGroupName]="i" class="row top-xs middle-md team-info">
+                  <div class="col-sm-11 col-xs-11 padding-none">
+                    <div class="row">
+                      <div class="col-sm-3 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.name.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="name" />
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].name }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.checkin_location.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="checkin_location" />
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].checkin_location }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.role.label" | translate}}
+                          </mat-label>
+                          <mat-select formControlName="role" name="role" (selectionChange)="onTeamRoleChange($event, sale)">
+                            <mat-option *ngFor="let option of projectRoles" [value]="option.value">
+                              {{option.text}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].role }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.staff_count.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="staff_count" />
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].staff_count }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.rate-type.label" | translate}}
+                          </mat-label>
+                          <mat-select required formControlName="rate_type" name="rate_type" (selectionChange)="onRateType($event, sale)">
+                            <mat-option *ngFor="let option of rateTypes" [value]="option.value">
+                              {{"jobs.rate-types." + option?.value | translate}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].rate_type }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.rate.label" | translate}}
+                          </mat-label>
+                          <span matPrefix [appCurrencySymbol]="currency"></span>
+                          <input matInput formControlName="rate" />
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].rate }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.shift_name.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="shift_name" />
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].shift_name }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.shift_start_time.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="shift_start_time" [ngxTimepicker]="shift_start_time" [format]="24" readonly>
+                          <ngx-material-timepicker #shift_start_time [enableKeyboardInput]="true">
+                          </ngx-material-timepicker>
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].shift_start_time }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.shift_end_time.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="shift_end_time" [ngxTimepicker]="shift_end_time" [format]="24" readonly>
+                          <ngx-material-timepicker #shift_end_time [enableKeyboardInput]="true">
+                          </ngx-material-timepicker>
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].shift_end_time }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-2 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.teaminfo.break_durtion.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="break_durtion" />
+                          <mat-error *ngIf="displayMessage.teamInfo[i]">
+                            {{ displayMessage.teamInfo[i].break_durtion }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 col-xs-1 padding-none btn-cls">
+                    <button
+                      type="button"
+                      mat-icon-button
+                      color="primary"
+                      (click)="addTeamInfo()"
+                    >
+                      <i class="fa fa-plus"></i>
+                    </button>
+                    <button *ngIf="teamInfo.controls.length > 1" type="button" mat-icon-button color="warn" (click)="removeTeamInfo(i)">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "administration.client.section.taskinfo" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!--Task Info Container-->
+          <fieldset>
+            <div *ngIf="taskInfo" formArrayName="taskInfo">
+              <div *ngFor="let sale of taskInfo.controls; let i = index" class="col-xs-12">
+                <div [formGroupName]="i" class="row top-xs middle-md team-info">
+                  <div class="col-sm-11 col-xs-11 padding-none">
+                    <div class="row">
+                      <div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.taskinfo.role.label" | translate}}
+                          </mat-label>
+                          <mat-select formControlName="role" name="role">
+                            <mat-option *ngFor="let option of teamRoles" [value]="option.value">
+                              {{option.text}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="displayMessage.taskInfo[i]">
+                            {{ displayMessage.taskInfo[i].role }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <!--<div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.taskinfo.shift.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="shift" />
+                          <mat-error *ngIf="displayMessage.taskInfo[i]">
+                            {{ displayMessage.taskInfo[i].shift }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>-->
+                      <div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.taskinfo.task_name.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="task_name" />
+                          <mat-error *ngIf="displayMessage.taskInfo[i]">
+                            {{ displayMessage.taskInfo[i].task_name }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <!--<div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.taskinfo.type.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="type" />
+                          <mat-error *ngIf="displayMessage.taskInfo[i]">
+                            {{ displayMessage.taskInfo[i].type }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>-->
+                      <div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.taskinfo.remarks.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="remarks" />
+                          <mat-error *ngIf="displayMessage.taskInfo[i]">
+                            {{ displayMessage.taskInfo[i].remarks }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <!-- <div class="col-sm-3 col-xs-12">
+                        <app-file-upload [buttonOnly]="true" (documentUploaded)="templateDocUploaded($event)" text="Upload Files" type="document">
+                        </app-file-upload>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="col-sm-1 col-xs-1 padding-none btn-cls">
+                    <button
+                      type="button"
+                      mat-icon-button
+                      color="primary"
+                      (click)="addTaskInfo()"
+                    >
+                      <i class="fa fa-plus"></i>
+                    </button>
+                    <button *ngIf="taskInfo.controls.length > 1" type="button" mat-icon-button color="warn" (click)="removeTaskInfo(i)">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel hideToggle expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "administration.client.section.otherinfo" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <fieldset class="form-group">
+            <div class="col-sm-6 col-xs-12">
+              <app-multi-select-auto-complete class="form-field"
+                label="{{'projects.inherited.fields.certificates.label' | translate}}" [filteredOptions]="certificateLK"
+                [static]="true" formControlName="certificate_ids">
+              </app-multi-select-auto-complete>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <label translate="administration.client.section.freelancer-ratings"></label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <app-load-html *ngIf="!(freelancer_ratings && freelancer_ratings.length)"
+                  template="administration.client.freelancer-ratings.hint"></app-load-html>
+              </div>
+            </div>
+            <div *ngIf="freelancer_ratings" formArrayName="freelancer_ratings">
+              <div *ngFor="let alias of freelancer_ratings.controls; let i = index" class="row middle-xs">
+                <div class="col-sm-6 col-xs-12">
+                  <mat-form-field class="full-width">
+                    <mat-label required>
+                      {{"administration.client.fields.freelancer-ratings.placeholder" | translate}}
+                    </mat-label>
+                    <input matInput [formControlName]="i" />
+                    <mat-error *ngIf="displayMessage.freelancer_ratings && displayMessage.freelancer_ratings[i]">
+                      {{displayMessage.freelancer_ratings && displayMessage.freelancer_ratings[i]}}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                  <button type="button" mat-stroked-button color="primary" (click)="removeCriteria(i)"
+                    translate="administration.client.buttons.delete-criteria"></button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs">
+                  <button type="button" mat-stroked-button color="primary" (click)="addCriteria()"
+                    translate="administration.client.buttons.add-criteria"></button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="row">
+              <div class="col-xs-12">
+                <label translate="administration.client.section.saleslots"></label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <app-load-html *ngIf="!(salesSlots && salesSlots.length)" template="administration.client.saleslots.hint">
+                </app-load-html>
+              </div>
+            </div>
+            <div *ngIf="salesSlots" formArrayName="salesSlots" class="col-xs padding-none">
+              <div *ngFor="let sale of salesSlots.controls; let i = index" class="col-xs padding-none">
+                <div [formGroupName]="i" class="row top-xs middle-md">
+                  <div class="col-sm-11 col-xs-11 padding-none">
+                    <div class="row">
+                      <div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label required>
+                            {{"administration.client.fields.saleslots.name.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="name" />
+                          <mat-error *ngIf="displayMessage.salesSlots[i]">
+                            {{ displayMessage.salesSlots[i].name }}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.saleslots.price.label" | translate}}
+                          </mat-label>
+                          <span matPrefix [appCurrencySymbol]="currency"></span>
+                          <input matInput formControlName="price" />
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-4 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label>
+                            {{"administration.client.fields.saleslots.description.label" | translate}}
+                          </mat-label>
+                          <input matInput formControlName="description" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 col-xs-1 padding-none">
+                    <button type="button" mat-icon-button color="accent" (click)="removeSlot(i)">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs">
+                  <button type="button" mat-stroked-button color="primary" (click)="addSlot()"
+                    translate="administration.client.buttons.add-slot"></button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="row">
+              <div class="col-xs-12">
+                <label translate="projects.inherited.fields.feedback-questions.label"></label>
+              </div>
+            </div>
+            <div class="row" *ngIf="!(questions && questions.length)">
+              <div class="col-xs-12">
+                <p>{{ "projects.feedback-questions.none" | translate }}</p>
+              </div>
+            </div>
+            <div *ngIf="questions" formArrayName="questions" class="col-xs padding-none">
+              <div *ngFor="let sale of questions.controls; let i = index" class="col-xs padding-none">
+                <div [formGroupName]="i" class="row top-xs middle-md">
+                  <div class="col-sm-11 col-xs-11 padding-none">
+                    <div class="row">
+                      <div class="col-sm-9 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label required>
+                            {{"projects.feedback-questions.fields.question.label"| translate}}
+                          </mat-label>
+                          <input matInput formControlName="question" />
+                          <mat-error *ngIf="displayMessage.questions[i]">
+                            {{displayMessage.questions[i].question}}
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                        <mat-form-field class="full-width">
+                          <mat-label required>
+                            {{"projects.feedback-questions.fields.type.label" | translate}}
+                          </mat-label>
+                          <mat-select formControlName="type" name="type">
+                            <mat-option *ngFor="let option of questionTypeLK" [value]="option">
+                              {{"projects.feedback-questions.fields.feedback." +option | translate}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 col-xs-1 padding-none">
+                    <button type="button" mat-icon-button color="accent" (click)="removeQuestion(i)">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs">
+                  <button type="button" mat-stroked-button color="primary" (click)="addQuestion()"
+                    translate="projects.feedback-questions.buttons.add"></button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <!-- <fieldset class="padding-none">
+            <div class="row">
+              <div class="col-xs-12 information">
+                <mat-form-field class="full-width">
+                  <mat-label>{{"projects.fields.information.label" | translate}}</mat-label>
+                  <textarea matInput formControlName="information" name="information" rows="5"></textarea>
+                  <mat-error *ngIf="displayMessage.information">{{displayMessage.information}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-xs-12">
+                <mat-form-field class="full-width">
+                  <mat-label>{{"projects.fields.briefing.label" | translate}}</mat-label>
+                  <textarea matInput formControlName="briefing" name="briefing" rows="10"></textarea>
+                  <mat-error *ngIf="displayMessage.briefing">{{displayMessage.briefing}}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="row">
+              <div class="col-xs-12">
+                <label translate="projects.inherited.fields.document.briefing.label"></label>
+              </div>
+            </div>
+            <app-job-documents mode="create" *ngIf="briefingDocs && briefingDocs.length" [documents]="briefingDocs"
+              (documentDeleted)="briefingDeleted($event)">
+            </app-job-documents>
+            <div class="row">
+              <div class="col-xs-12">
+                <app-file-upload (documentUploaded)="briefingUploaded($event)" text="Upload Document" type="document">
+                </app-file-upload>
+              </div>
+            </div>
+          </fieldset>-->
+          <fieldset>
+            <div class="row">
+              <div class="col-xs-12">
+                <label required translate="projects.inherited.fields.document.report.label"></label>
+              </div>
+            </div>
+            <app-job-documents mode="create" *ngIf="templateDocs && templateDocs.length"
+              (documentDeleted)="templateDocDeleted($event)" [documents]="templateDocs">
+            </app-job-documents>
+            <div class="row">
+              <div class="col-xs-12">
+                <div *ngIf="!(templateDocs && templateDocs.length)">
+                  <app-file-upload (documentUploaded)="templateDocUploaded($event)" text="Upload Document" type="document">
+                  </app-file-upload>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </mat-expansion-panel>
+      </mat-accordion>
+      </div>
+      <ng-container *ngTemplateOutlet="buttons"></ng-container>
+    </div>
+  </form>
+</div>
+
+<ng-template #buttons>
+  <div class="row">
+    <div class="col-xs">
+      <button mat-stroked-button type="button" color="primary" (click)="cancelEdit()"
+        translate="projects.details.buttons.cancel-edit"></button>
+      <button mat-flat-button type="submit" color="accent" [disabled]="detailForm?.invalid" (click)="saveDetail()">
+        {{"projects.jobs.bulk_create.buttons.create" | translate}}
+      </button>
+    </div>
+  </div>
+</ng-template>

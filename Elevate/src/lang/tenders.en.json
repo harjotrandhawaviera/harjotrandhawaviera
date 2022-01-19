@@ -1,0 +1,371 @@
+{
+  "tenders": {
+    "tenders": {
+      "title": "Overview of Job Postings",
+      "search-placeholder": "Name of the Advertisement",
+      "search-job-placeholder": "Name of the Job or Location",
+      "table": {
+        "id": "ID",
+        "appointedAt": "Date",
+        "start_time": "Start Time",
+        "finish_time": "End Time",
+        "jobTitle": "Job Title",
+        "siteName": "Location",
+        "sitePlace": "Postal Code",
+        "siteCity": "City",
+        "publishedAt": "Published By",
+        "startDateTimeLabel": "Start Date",
+        "invalidAt": "Published until",
+        "projectName": "Project Name",
+        "clientName": "Customer Name",
+        "status": "Status",
+        "actions": {
+          "details": "Details",
+          "close": "Close",
+          "delete": "Delete"
+        },
+        "dailyRateMin": "Daily Rate",
+        "dailyRateMax": "including Premium",
+        "close": {
+          "title": "Close Job Postings",
+          "message": "Do you really want to close the Job Postings?"
+        },
+        "start_date": "Start Date",
+        "finish_date": "End Date",
+        "role": "Role",
+        "staff_count": "Staff Count",
+        "days": "# Days",
+        "staff_manager": "Staff Manager"
+      },
+      "filters": {
+        "status": "Status of the alert",
+        "job": "Job Name",
+        "type": "Class of the alert",
+        "dates": "Dates",
+        "postcodes": "Postal Code of the Location",
+        "agent": "Staffing Manager",
+        "contractType": "Contract Type"
+      },
+      "fields": {
+        "staff": "Staff(s)",
+        "start": "Start",
+        "end": "End",
+        "days": "Days",
+        "contract_type": "Contract Type",
+        "matching": {
+          "all": "All alerts",
+          "matched": "My Offers",
+          "mismatched": "More Offers"
+        }
+      },
+      "buttons": {
+        "invite": "Invite"
+      }
+    },
+    "bookedTenders": {
+      "title": "My Jobs",
+      "table": {
+        "actions": {
+          "details": "Details"
+        },
+        "search-placeholder": "Search for Job (min. 3 characters)",
+        "jobTitle": "Job Title",
+        "siteCity": "City",
+        "startDateTimeLabel": "Start Date"
+      }
+    },
+    "tender": {
+      "title": {
+        "details": "Advertisement Details",
+        "new": "New Tender",
+        "edit": "Edit Tender",
+        "assignment": "Assignment Details",
+        "criteria": "JOB POSTING CRITERIA",
+        "info": "JOB POSTING DETAILS",
+        "freelancer": "Staff Member",
+        "date": "Date: {{appointedAt}}",
+        "time": "{{start_time}} - {{finish_time}}"
+      },
+      "fields": {
+        "published-at": {
+          "label": "Valid Until",
+          "placeholder": ""
+        },
+        "publishedAt": {
+          "label": "Published From",
+          "placeholder": ""
+        },
+        "invalid-at": {
+          "label": "Publsihed until",
+          "placeholder": ""
+        },
+        "expired-at": {
+          "label": "Valid until"
+        },
+        "state": {
+          "label": "Status"
+        },
+        "client-name": "Customer Name",
+        "project-title": "Project",
+        "site-name": "Name",
+        "job-name": "Job",
+        "site-place": "Address",
+        "federal-state": {
+          "label": "State"
+        },
+        "zip-min": {
+          "label": "Postal Code from"
+        },
+        "gender": {
+          "label": "Gender"
+        },
+        "radius": {
+          "label": "Radius (in kms)"
+        },
+        "zip-max": {
+          "label": "Postal Code until"
+        },
+        "cities": {
+          "label": "Location"
+        },
+        "skills": {
+          "label": "Skills"
+        },
+        "contract-type": {
+          "label": "Contract Type"
+        },
+        "certificates": {
+          "label": "Certificates"
+        },
+        "start": {
+          "label": "SHIFT START DATE"
+        },
+        "end": {
+          "label": "SHIFT END DATE"
+        },
+        "days": {
+          "label": "# Days"
+        },
+        "wage": {
+          "label": "Hourly Rate",
+          "none": "-"
+        },
+        "category": {
+          "label": "Category"
+        },
+        "start-time": {
+          "label": "Start Time"
+        },
+        "finish-time": {
+          "label": "End Time"
+        },
+        "previous-tender": {
+          "label": "Original Tender"
+        },
+        "deleted-at": {
+          "label": "Deleted on"
+        },
+        "daily-rate-min": {
+          "label": "Daily Rate Minimum"
+        },
+        "daily-rate-max": {
+          "label": "Daily Rate Maximum"
+        },
+        "max-incentives": "including premiums",
+        "max-additionals": "including remuneration",
+        "incentives": {
+          "label": "Premiums",
+          "none": "-"
+        },
+        "additional-costs": {
+          "label": "Remuneration",
+          "none": "-"
+        },
+        "responsible": {
+          "label": "Responsible Person"
+        }
+      },
+      "buttons": {
+        "create": "Add Tender",
+        "edit": "Edit",
+        "update": "Save changes",
+        "cancel": "Cancel",
+        "cancel-edit": "Cancel",
+        "back": "To the overview of Advertisement",
+        "overview": "Show All",
+        "remove": "Close call for Job Posting",
+        "details": "Details",
+        "show-logs": "Show Logs"
+      },
+      "state": {
+        "expired": "Closed",
+        "scheduled": "Planned",
+        "draft": "Planned",
+        "active": "Published",
+        "undefined": "-"
+      },
+      "hint-expired": "This tender is already closed. Editing the tender is therefore no longer possible.",
+      "logs": "Logs",
+      "table": {
+        "jobTitle": "Job Title",
+        "jobShortTitle": "Job Short Description",
+        "siteCity": "City",
+        "startDateTime": "Start Date",
+        "startDateTimeLabel": "Date",
+        "details": ""
+      },
+      "close": {
+        "title": "Close Alert",
+        "message": "Do you really want to close the alert?"
+      },
+      "delete": {
+        "title": "Delete Alert",
+        "message": "Do you really want to delete the alert?"
+      },
+      "submit-offer": {
+        "title": "Submit binding Offer",
+        "message": "Almost done:\nOnce you confirm, you submit a binding offer to us for this assignment. After we have agreed, a binding contract is concluded."
+      },
+      "reject": {
+        "title": "Reject Tender",
+        "message": "Are you sure you want to reject the Tender?",
+        "placeholder": "Give a reason here."
+      },
+      "header-recommended": "Recommended Jobs",
+      "header-all": "All Jobs",
+      "header-invited": "Invited Jobs",
+      "more-information": "More Information",
+      "less-information": "Back",
+      "confirm": {
+        "edit": {
+          "title": "Are you sure you want to change the job offer?",
+          "message": "[offers_count] Offers from Freelancers will be rejected with this."
+        }
+      }
+    },
+    "offers": {
+      "submitJob": "Overview of Submitted Jobs",
+      "title": "Applied Jobs",
+      "header": "Offers",
+      "table": {
+        "search-placeholder": "minimum 3 characters",
+        "jobTitle": "Job Title",
+        "sitePlace": "Job Location",
+        "roleName": "Role",
+        "shiftName": "Shift",
+        "appointedAt": "Date",
+        "expired_at": "Valid until",
+        "expiredAt": "Valid until",
+        "freelancerName": "Staff Member Name",
+        "actions": {
+          "details": "Details"
+        },
+        "filter": {
+          "job": "Job"
+        },
+        "details": "",
+        "filters": {
+          "state": "Application Status",
+          "job": "Job",
+          "project": "Project",
+          "site": "POS",
+          "client": "Client Name",
+          "agent": "Staffing Manager",
+          "dates": "Tenders (from - to)",
+          "contractType": "Contract Type",
+          "freelancer": "Staff Member"
+        }
+      },
+      "search-placeholder": "Staff Member",
+      "freelancer.table": {
+        "jobTitle": "Job Title",
+        "jobShortTitle": "Job Short Description",
+        "sitePlace": "Site Location",
+        "dailyRateMax": "Daily Rate (max.)",
+        "appointedAt": "Date",
+        "expired_at": "Valid until",
+        "expiredAt": "Valid until",
+        "actions": {
+          "details": "Details"
+        },
+        "details": "",
+        "search-placeholder": "Job or Location"
+      },
+      "buttons": {
+        "overview": "Show All",
+        "accept": "Accept Offer",
+        "reject": "Reject Offer",
+        "details": "Details"
+      },
+      "fields": {
+        "name": "Staff Member",
+        "mobile": "Telephone (mobile)",
+        "email": "E-Mail",
+        "state": {
+          "pending": "In-Progress",
+          "rejected": "Rejected"
+        }
+      },
+      "accept": {
+        "title": "Accept Offer",
+        "message": "Do you really want to accept the offer from <b>{fullname}}</b>?"
+      },
+      "reject": {
+        "title": "Decline Offer",
+        "message": "Do you really want to reject the offer of <b>{fullname}}</b>?"
+      },
+      "state": {
+        "submitted": "Submitted",
+        "shortlisted": "Shortlisted",
+        "approved": "Approved",
+        "assigned": "Assigned",
+        "rejected": "Rejected",
+        "booked": "Booked"
+      }
+    },
+    "freelancer-tender": {
+      "title": {
+        "details": "Job Offers"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create Offer",
+        "submit-offer": "Submit binding Offer",
+        "reject-offer": "Reject Offer"
+      },
+      "deactivated-info": "You cannot submit bids because your account is disabled."
+    },
+    "booked-tender": {
+      "header": "My Current Jobs",
+      "buttons": {
+        "overview": "Show All",
+        "details": "Details"
+      },
+      "table": {
+        "jobTitle": "Job Title",
+        "jobShortTitle": "Job Short Description",
+        "siteCity": "City",
+        "startDateTime": "Start Date",
+        "startDateTimeLabel": "Date",
+        "details": ""
+      }
+    },
+    "not-matching-tender": {
+      "header": "More Offers",
+      "buttons": {
+        "overview": "Show All"
+      },
+      "table": {
+        "jobTitle": "Job Title",
+        "jobShortTitle": "Job Short Description",
+        "siteCity": "City",
+        "missingCertificates": "Missing Certificates",
+        "countMissingCertificates": "Missing certificates: {{count}}",
+        "missingLocation": "Location of operation does not match",
+        "missingContractType": "Contract Type not matching",
+        "startDateTimeLabel": "Date",
+        "details": ""
+      }
+    }
+  }
+}

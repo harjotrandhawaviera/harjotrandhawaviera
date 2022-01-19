@@ -1,0 +1,1229 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+@import "./base/variables";
+@import "~ngx-bar-rating/themes/br-fontawesome-o-theme";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: '"Open Sans", sans-serif',
+  $display-4: mat-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3: mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2: mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1: mat-typography-level(34px, 40px, 400),
+  $headline: mat-typography-level(36px, 1.1, 500),
+  $title: mat-typography-level(30px, 1.1, 500),
+  $subheading-2: mat-typography-level(23px, 1.1, 500),
+  $subheading-1: mat-typography-level(17px, 1.1, 500),
+  $body-2: mat-typography-level(14px, 24px, 500),
+  $body-1: mat-typography-level(14px, 18px, 400),
+  $caption: mat-typography-level(12px, 20px, 400),
+  $button: mat-typography-level(14px, 14px, 500),
+  $input: mat-typography-level(inherit, 1.25, 400),
+);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+$custom-typography: mat-typography-config(
+  $font-family: '"Open Sans", sans-serif',
+  $subheading-2: mat-typography-level(14px, 18px, 400),
+);
+// Override typography for a specific Angular Material components.
+@include mat-list-typography($custom-typography);
+@include mat-option-typography($custom-typography);
+$app-primary-color: $brand-primary;
+$primary-palette: (
+  50: #e1f3f3,
+  100: #b3e2e0,
+  200: #80cfcc,
+  300: #4dbcb7,
+  400: #27ada7,
+  500: #019f98,
+  600: #019790,
+  700: #018d85,
+  800: #01837b,
+  900: #00726a,
+  A100: #a1fff6,
+  A200: #6efff2,
+  A400: #3bffed,
+  A700: #21ffeb,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$secondary-palette: (
+  50: #e0e0e0,
+  100: #b3b3b3,
+  200: #808080,
+  300: #4d4d4d,
+  400: #262626,
+  500: #000000,
+  600: #000000,
+  700: #000000,
+  800: #000000,
+  900: #000000,
+  A100: #a6a6a6,
+  A200: #8c8c8c,
+  A400: #737373,
+  A700: #666666,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$elevate-ui-primary: mat-palette($primary-palette);
+$elevate-ui-accent: mat-palette($secondary-palette);
+
+// The warn palette is optional (defaults to red).
+$elevate-ui-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$elevate-ui-theme: mat-light-theme(
+  (
+    color: (
+      primary: $elevate-ui-primary,
+      accent: $elevate-ui-accent,
+      warn: $elevate-ui-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($elevate-ui-theme);
+
+.mat-form-field {
+  line-height: 1.25 !important;
+}
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: $p4y-color-black;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+}
+h1 small,
+h1 .small,
+h2 small,
+h2 .small,
+h3 small,
+h3 .small,
+h4 small,
+h4 .small,
+h5 small,
+h5 .small,
+h6 small,
+h6 .small,
+.h1 small,
+.h1 .small,
+.h2 small,
+.h2 .small,
+.h3 small,
+.h3 .small,
+.h4 small,
+.h4 .small,
+.h5 small,
+.h5 .small,
+.h6 small,
+.h6 .small {
+  font-weight: 400;
+  line-height: 1;
+  color: $p4y-color-gray-medium;
+  font-size: 65%;
+}
+a {
+  color: #21b4b0;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #157371;
+  &:not(.mat-button-base),
+  &:not(.mat-list-item) {
+    text-decoration: underline;
+  }
+  &:not(.mat-stroked-button) {
+    .mat-button-wrapper {
+      color: #bcede8;
+    }
+  }
+}
+
+.gallery-wrapper a.prev-icon:hover,
+.gallery-wrapper a.next-icon:hover,
+.gallery-wrapper a.prev-icon:focus,
+.gallery-wrapper a.next-icon:focus {
+  color: #157371;
+  &:not(.mat-button-base),
+  &:not(.mat-list-item) {
+    text-decoration: none;
+  }
+  &:not(.mat-stroked-button) {
+    .mat-button-wrapper {
+      color: #bcede8;
+    }
+  }
+}
+
+a:not(.mat-button-base):focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.mat-list-item {
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+}
+
+a {
+  &.mat-list-item,
+  &.mat-button-base {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  &.mat-button-base {
+    text-transform: uppercase;
+  }
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-uppercase,
+.initialism {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-muted {
+  color: #d0d0d1;
+}
+
+.text-primary {
+  color: #21b4b0;
+}
+
+a.text-primary:hover,
+a.text-primary:focus {
+  color: #198986;
+}
+
+.text-success {
+  color: #000;
+}
+
+a.text-success:hover,
+a.text-success:focus {
+  color: black;
+}
+
+.text-info {
+  color: #000;
+}
+
+a.text-info:hover,
+a.text-info:focus {
+  color: black;
+}
+
+.text-warning {
+  color: #000;
+}
+
+a.text-warning:hover,
+a.text-warning:focus {
+  color: black;
+}
+
+.text-danger {
+  color: #000;
+}
+
+a.text-danger:hover,
+a.text-danger:focus {
+  color: black;
+}
+
+.bg-primary {
+  color: #fff;
+}
+
+.bg-primary {
+  background-color: #21b4b0;
+}
+
+a.bg-primary:hover,
+a.bg-primary:focus {
+  background-color: #198986;
+}
+
+.bg-success {
+  background-color: #edf7f7;
+}
+
+a.bg-success:hover,
+a.bg-success:focus {
+  background-color: #cae7e7;
+}
+
+.bg-info {
+  background-color: #edf7f7;
+}
+
+a.bg-info:hover,
+a.bg-info:focus {
+  background-color: #cae7e7;
+}
+
+.bg-warning {
+  background-color: #fde9be;
+}
+
+a.bg-warning:hover,
+a.bg-warning:focus {
+  background-color: #fbd88d;
+}
+
+.bg-danger {
+  background-color: #f4c6c6;
+}
+
+a.bg-danger:hover,
+a.bg-danger:focus {
+  background-color: #ec9b9b;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-rounded {
+  border-radius: 6px;
+}
+
+.img-thumbnail {
+  padding: 4px;
+  line-height: 1.42857;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+button,
+.button,
+.btn {
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.toast-success {
+  background-color: $brand-success;
+  color: $p4y-color-black;
+}
+.toast-error {
+  background-color: $brand-danger;
+  color: $p4y-color-black;
+}
+.toast-info {
+  background-color: darken($brand-info, 20%);
+  color: $p4y-color-black;
+}
+.toast-warning {
+  background-color: $brand-warning;
+  color: $p4y-color-black;
+}
+
+.drop-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.mat-form-field {
+  &.mat-form-field-appearance-outline {
+    .mat-form-field-wrapper {
+      padding-bottom: 5px;
+    }
+    .mat-form-field-subscript-wrapper {
+      padding: 0;
+    }
+    .mat-form-field {
+      &-underline {
+        position: relative;
+        bottom: auto;
+      }
+      &-subscript-wrapper {
+        position: static;
+      }
+    }
+  }
+}
+
+.mat-option {
+  line-height: 1.25 !important;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+
+.alert .alert-link {
+  font-weight: bold;
+}
+
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+
+.alert > p + p {
+  margin-top: 5px;
+}
+
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+
+.alert-success {
+  color: #000;
+  background-color: #edf7f7;
+  border-color: #dbefec;
+}
+
+.alert-success hr {
+  border-top-color: #cae7e2;
+}
+
+.alert-success .alert-link {
+  color: black;
+}
+
+.alert-info {
+  color: #000;
+  background-color: #edf7f7;
+  border-color: #d4ece8;
+}
+
+.alert-info hr {
+  border-top-color: #c3e4df;
+}
+
+.alert-info .alert-link {
+  color: black;
+}
+
+.alert-warning {
+  color: #000;
+  background-color: #fde9be;
+  border-color: #fcd2a5;
+}
+
+.alert-warning hr {
+  border-top-color: #fbc68d;
+}
+
+.alert-warning .alert-link {
+  color: black;
+}
+
+.alert-danger {
+  color: #000;
+  background-color: #f4c6c6;
+  border-color: #f0b1bb;
+}
+
+.alert-danger hr {
+  border-top-color: #ec9ba9;
+}
+
+.alert-danger .alert-link {
+  color: black;
+}
+
+#auth-module {
+  // #main {
+  //   margin: 0 auto;
+  //   width: 100%;
+  // }
+
+  div.auth {
+    // [class^="slogan-"] {
+    //   color: $p4y-color-white;
+    //   margin-top: 20px;
+
+    //   .slogan-subtitle {
+    //     font-weight: 900;
+    //     font-size: 24px;
+    //   }
+    //   .slogan-copy {
+    //     margin-top: 40px;
+    //     font-size: 16px;
+    //   }
+    //   .slogan-arrow {
+    //     background: url("/assets/images/arrows.png") no-repeat right bottom;
+    //     background-size: contain;
+    //     width: 100%;
+    //     min-height: 120px;
+    //     margin-top: 60px;
+    //     @media (max-width: $screen-sm-max) {
+    //       display: none;
+    //     }
+    //   }
+    // }
+
+    .contact.center-block,
+    .imprint.center-block,
+    .form-wrapper.center-block {
+      float: none;
+    }
+
+    form {
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .form-header,
+    .form-body,
+    .form-footer {
+      background: $p4y-color-white;
+      padding: $p4y-form-padding-base;
+    }
+
+    .form-footer {
+      margin-top: 2px;
+      &.imprint {
+        padding-top: 50px;
+      }
+    }
+
+    .form-group {
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .progress {
+      margin-top: 2px;
+    }
+
+    .bg-warning {
+      span {
+        display: block;
+      }
+      span,
+      li {
+        padding: 6px $p4y-form-padding-base;
+      }
+    }
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  opacity: 0;
+}
+
+::-webkit-scrollbar:hover {
+  width: 5px;
+  opacity: 1;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $app-primary-color;
+  border-radius: 3px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover
+//   background: #b30000
+html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.app-scrollbar {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 5px;
+    opacity: 0;
+  }
+  &::-webkit-scrollbar:hover {
+    width: 5px;
+    opacity: 1;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $app-primary-color;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+}
+.mat-header-cell {
+  font-size: 14px;
+  font-weight: 700;
+  color: $p4y-color-black;
+}
+.mat-drawer-container {
+  background-color: white;
+}
+
+.table-wrapper {
+  position: relative;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  overflow-x: auto;
+  .table-inner-wrapper {
+    width: 100%;
+    overflow: auto;
+  }
+}
+app-table-spinner {
+  border: none;
+  box-shadow: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  background-color: $p4y-color-white;
+  opacity: 0.75;
+  z-index: 1;
+  // background: linear-gradient(
+  //   to right,
+  //   rgba(255, 255, 255, 0) 0,
+  //   rgba(255, 255, 255, 0.9) 25%,
+  //   rgba(255, 255, 255, 0.9) 75%,
+  //   rgba(255, 255, 255, 0) 100%
+  // );
+}
+
+.mat-stroked-button {
+  &.mat-primary {
+    border-color: $brand-primary;
+    &.mat-button-disabled {
+      opacity: 0.3;
+      color: #000;
+    }
+  }
+}
+tr {
+  td.action {
+    min-width: 35px;
+    .btn-action {
+      display: none;
+      padding: 0px;
+      min-width: 35px;
+      border-radius: 13px;
+      margin-top: 5px;
+      &.keep-open {
+        display: inline;
+      }
+    }
+  }
+  &:hover {
+    td.action {
+      .btn-action {
+        display: inline;
+      }
+    }
+  }
+}
+.search-table {
+  width: 100%;
+  tr.mat-header-row {
+    th {
+      padding: 8px;
+      vertical-align: middle;
+      line-height: 24px;
+      padding: 8px;
+      &.action {
+        width: 40px;
+      }
+    }
+  }
+  tr.mat-row {
+    cursor: pointer;
+    &:hover {
+      background-color: $p4y-row-gray-hover !important;
+    }
+    &:nth-child(even) {
+      background: $p4y-color-white;
+    }
+    &:nth-child(odd) {
+      background: $p4y-alt-row-gray;
+    }
+    > td {
+      vertical-align: middle;
+      line-height: 24px;
+      padding: 8px;
+      &.action {
+        width: 40px;
+      }
+    }
+  }
+}
+fieldset {
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 1rem 0 1rem;
+}
+
+// fieldset:last-of-type {
+//   padding: 0;
+// }
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #8b8c8e;
+  border: none;
+  line-height: normal;
+}
+
+label {
+  &:not([class^="mat-"]) {
+    font-variant: all-small-caps;
+    font-size: 17px;
+    font-weight: 300;
+    color: #999;
+  }
+  &[data-required],
+  &[required] {
+    &:after {
+      content: "*";
+    }
+  }
+}
+mat-label {
+  &[data-required-field="true"],
+  &[data-required],
+  &[required] {
+    &:after {
+      content: "*";
+    }
+  }
+}
+.mat-button-base + .mat-button-base {
+  margin-left: 10px;
+  // margin-top: 10px;
+}
+.calendar-cont {
+  max-width: 320px;
+  .mat-calendar {
+    .mat-calendar-header {
+      .mat-calendar-controls {
+        margin-top: 0;
+        .mat-button-base + .mat-button-base {
+          margin: 0;
+        }
+      }
+    }
+    .mat-calendar-content {
+      .mat-calendar-body-cell {
+        &.selected-date-td {
+          .mat-calendar-body-cell-content {
+            color: #fff;
+            background: #019f98;
+          }
+        }
+      }
+      .mat-calendar-body-cell-content {
+        &.mat-calendar-body-selected {
+          color: rgba(0, 0, 0, 0.87);
+          background: none;
+        }
+        &.mat-calendar-body-today {
+          border-color: rgba(1, 159, 152, 0.6);
+          background: rgba(1, 159, 152, 0.2);
+        }
+      }
+    }
+  }
+}
+
+.datepicker-cont {
+  ::ng-deep .mat-calendar {
+    .mat-calendar-header {
+      .mat-calendar-controls {
+        margin-top: 0;
+        .mat-button-base + .mat-button-base {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+.action-button {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.padding-none {
+  padding: 0;
+}
+.line-ellipsis {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+app-search-list {
+  width: 100%;
+  flex: 1;
+}
+.search-panel {
+  h4 {
+    margin-top: 15px;
+  }
+}
+.mat-expansion-panel {
+  box-shadow: none !important;
+  border: 1px solid $expansion-panel-border-color;
+  margin: 10px 0 !important;
+  border-radius: 3px !important;
+  .mat-expansion-panel-header {
+    height: auto !important;
+    padding: 10px 15px;
+    background-color: $expansion-panel-background-color;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    &.mat-expanded {
+      border-bottom: 1px solid $expansion-panel-border-color;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $expansion-panel-background-color !important;
+      text-decoration: underline;
+    }
+  }
+  .mat-expansion-panel-body {
+    padding: 15px !important;
+  }
+  &.primary {
+    border: 1px solid $expansion-panel-primary-border-color;
+    .mat-expansion-panel-header {
+      background-color: $expansion-panel-primary-background-color;
+      &.mat-expanded {
+        border-bottom: 1px solid $expansion-panel-primary-border-color;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $expansion-panel-primary-background-color !important;
+      }
+    }
+  }
+}
+.form-group {
+  margin-bottom: 15px;
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}
+.contacts-cont {
+  .col-md-6.col-xs-12 {
+    margin: 15px 0;
+    p {
+      margin-bottom: 7px;
+    }
+  }
+}
+app-contact {
+  display: block;
+  width: 100%;
+}
+.br-fontawesome-o {
+  .br-unit:after {
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f005";
+    font-size: 18px;
+    color: #ccc;
+  }
+  .br-selected:after {
+    content: "\f005";
+    font-weight: 900;
+    color: $brand-primary;
+  }
+}
+mat-option {
+  &.multi-line {
+    height: auto;
+    line-height: 21px !important;
+    min-height: 48px;
+    white-space: normal;
+    padding: 5px 16px;
+  }
+}
+
+.mat-slide-toggle-label {
+  font-variant: unset;
+  font-size: unset;
+  color: $p4y-color-black;
+}
+
+.long-col {
+  @media (max-width: $screen-sm-max) {
+    min-width: 200px;
+  }
+}
+.additional-cost {
+  line-height: 22px;
+}
+// app-onboarding-welcome {
+//   li {
+//     position: relative;
+//     padding: 10px 41px;
+//   }
+
+//   p {
+//     margin-bottom: 20px;
+//     &:first-of-type {
+//       margin-top: 45px;
+//     }
+//   }
+//   .welcome-video {
+//     width: 560px;
+//     height: 315px;
+//     margin: 10px 10px 40px;
+
+//     iframe {
+//       width: 100%;
+//       height: 100%;
+//     }
+//   }
+//   .symbol-legend {
+//     padding-top: 40px;
+//   }
+// }
+app-profile-photo {
+  app-picture-upload {
+    .drag-drop-cont {
+      height: 100% !important;
+      border: none !important;
+      .mat-button-base {
+        display: none;
+      }
+    }
+  }
+  &:hover {
+    app-picture-upload {
+      .drag-drop-cont {
+        .mat-button-base {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.welcome-text-list {
+  padding-left: 0;
+  list-style: none;
+  li {
+    i {
+      position: absolute;
+      display: block;
+      top: 4px;
+      left: 0;
+      font-size: 16px;
+      width: 1em;
+      height: 1em;
+      border-radius: 16px;
+      padding: 8px;
+      color: white;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .fa-pencil-alt {
+      background-color: #000;
+    }
+    .fa-check {
+      background-color: #21b4b0;
+    }
+    .fa-check.success {
+      background-color: #8ae2e0;
+    }
+    .fa-exclamation {
+      background-color: #d44;
+    }
+    .fa-lock {
+      background-color: #999;
+    }
+    position: relative;
+    line-height: 24px;
+    padding: 10px 41px;
+  }
+}
+.approval-tab,
+.approval-change {
+  input,
+  select,
+  .mat-select-disabled .mat-select-value,
+  .mat-radio-disabled .mat-radio-label-content {
+    color: #000 !important;
+  }
+}
+.approval-tab,
+.approval-change {
+  .inreview,
+  .missing-contract-type,
+  .pending-contract-type,
+  .app-profile-certificate,
+  .exam-container {
+    display: none;
+  }
+  .inreview {
+    display: none;
+  }
+  .taxes-hint {
+    display: none;
+  }
+  .approve-freelancer-gtc {
+    .app-profile-gtc-table {
+      display: none;
+    }
+    .gtc_document {
+      padding-bottom: 10px;
+    }
+  }
+}
+.data-change {
+  h3,
+  .app-profile-gtc-documents,
+  .selector {
+    display: none;
+  }
+
+  .previous {
+    background-color: $p4y-color-gray-lightest;
+  }
+  .container-fluid {
+    padding: 0 !important;
+  }
+}
+app-freelancer-detail {
+  label {
+    margin-bottom: 5px;
+  }
+  p {
+    padding: 4px 6px;
+    margin-bottom: 16px;
+    min-height: 20px;
+    background-color: rgba(204, 204, 204, 0.1);
+  }
+}
+.tender-assignment-detail {
+  .job-site-data {
+    display: none;
+  }
+}
+.approval-state-radio {
+  &.accepted,
+  &.pending {
+    .mat-radio-inner-circle {
+      background-color: $brand-primary !important;
+    }
+    .mat-radio-outer-circle {
+      border-color: $brand-primary !important;
+    }
+    .mat-radio-label-content {
+      color: rgba(0, 0, 0, 0.87) !important;
+    }
+  }
+  &.rejected {
+    .mat-radio-inner-circle {
+      background-color: $brand-danger !important;
+    }
+    .mat-radio-outer-circle {
+      border-color: $brand-danger !important;
+    }
+    .mat-radio-label-content {
+      color: rgba(0, 0, 0, 0.87) !important;
+    }
+  }
+}
+app-invoice-preparation-edit {
+  [app-survey-details-button] {
+    .pending {
+      display: none;
+    }
+  }
+}
+.mat-tab-label-active {
+  .circled-number {
+    background: #21B4B0 !important;
+    color: #fff !important;
+  }
+}
+.m-b-0 {
+  margin-bottom : 0px !important;
+}

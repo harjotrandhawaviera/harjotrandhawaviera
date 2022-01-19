@@ -1,0 +1,40 @@
+@import 'variables';
+.action-button {
+  margin-bottom: 50px;
+}
+.qualification-footer-wrapper{
+  margin-top: 16px;
+}
+.section-button {
+  margin: 10px 0;
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+}
+
+.legal-action-button{
+  margin-left: -35px;
+  text-align: right;
+  .fas{
+    font-size: 14px !important;
+    margin-top: 10px;
+    cursor: pointer;
+    &.fa-file-download{
+      margin-left: 28px;
+    }
+    .mt-3{
+      margin-top: 12px;
+    }
+  }
+}
+
+::ng-deep{
+  .rich-text-editor-wrapper{
+    .angular-editor-placeholder{
+      display: block !important;
+    }
+  }
+}
+
+
+

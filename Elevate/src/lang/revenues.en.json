@@ -1,0 +1,106 @@
+{
+    "revenues": {
+        "title": {
+            "list": "Sales Report"
+        },
+        "filters": {
+            "project": "Project",
+            "job": "Job",
+            "freelancer": "Staff Member",
+            "state": "Status",
+            "dates": "Sales (from - to)",
+            "client": "Customer"
+        },
+        "table": {
+            "assignmentsCount": "Operations",
+            "assignment-date": "Deployment Date",
+            "total": "Total Turnover",
+            "comment": "Comment",
+            "createdAt": "Reported on",
+            "createdAtDate": "Reported on {{createdAt}}",
+            "creatorName": "Reported By",
+            "jobTitle": "Job",
+            "clientName": "Customer",
+            "salesVolumes": "Sales per Product",
+            "appointedAt": "Use",
+            "actions": {
+                "label": "Action",
+                "details": "Details",
+                "more-details": "More Information",
+                "less-details": "Less Information",
+                "edit": "Edit",
+                "delete": "Delete",
+                "remove": "Delete"
+            },
+            "remove": {
+                "title": "Delete Sales Report",
+                "message": "Do you really want to delete the Sales Report?"
+            }
+        },
+        "tile": {
+            "sales-volume": "Sales per Product",
+            "sales-volume-more": "More products ...",
+            "total": "Total Sales",
+            "comment": "Note",
+            "assignments": "Use",
+            "count-of-assignments": "{{count}} {count, select, 1 { use} other { uses}}",
+            "created-at": "Reported on  {{date}}",
+            "state": "Status"
+        },
+        "fields":{
+            "states": {
+                "rejected": "Rejected",
+                "accepted": "Approved",
+                "pending": "In Progress"
+            }
+        },
+        "buttons": {
+            "create": "Create Sales Report"
+        },
+        "summary": {
+            "total": "Total Sales: ",
+            "details": "Details"
+        },
+        "export-prefix": "Product: "
+    },
+    "revenue": {
+        "title": {
+            "details": "Sales Report",
+            "edit": "Edit Sales Report",
+            "new": "Create Sales Report"
+        },
+        "label": {
+            "job-title": "Job",
+            "freelancer": "Staff Member",
+            "sales-volume": "Sales",
+            "comment": "Comment",
+            "created-at": "Reported on",
+            "assignments": "Use",
+            "state": "Status",
+            "total": "Total",
+            "creator": "Reported By",
+            "updator": "Updated By"
+        },
+        "hint": {
+            "job-title": "Please select the Job:",
+            "freelancer": "please select the Staff Member:",
+            "assignments": "Please select the Assignment"
+        },
+        "buttons": {
+            "edit": "Edit",
+            "back": "Back to the Overview",
+            "cancel": "Cancel",
+            "create": "Create Sales Report",
+            "update": "Save changes",
+            "remove": "Delete Sales Report",
+            "add": "Add Sales Report",
+            "back-from-list": "Back"
+        },
+        "confirm": {
+            "remove": {
+                "title": "Delete Sales Report",
+                "message": "Do you really want to delete the Sales Report?"
+            }
+        }
+    }
+}

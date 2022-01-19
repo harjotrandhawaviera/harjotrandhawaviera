@@ -1,0 +1,25 @@
+@import "variables";
+@import "mixins";
+
+.ratings-cont {
+  h3 {
+    display: flex;
+    margin: 0 0 10px;
+  }
+  .rating-section {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    label {
+      margin-bottom: 8px;
+    }
+    .mat-radio-group {
+      .mat-radio-button {
+        margin-right: 10px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

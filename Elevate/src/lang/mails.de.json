@@ -1,0 +1,44 @@
+{
+    "mails": {
+        "title": {
+            "details": "E-Mail schreiben"
+        },
+        "buttons": {
+            "create": "E-Mail absenden",
+            "reset": "Zurücksetzen"
+        },
+        "subject": {
+            "label": "Betreff",
+            "placeholder": "Grund der Nachricht"
+        },
+        "content": {
+            "label": "Nachricht",
+            "description": "Bitte gib hier deine Nachricht ein. Die persönliche Anrede ('Hallo <Vorname>'), wird automatisch deiner Nachricht hinzugefügt.",
+            "placeholder": "..."
+        },
+        "document": {
+            "label": "Anhang"
+        },
+        "recipient": {
+            "label": "Empfänger",
+            "description": "{count, select, 0{Bitte wähle einen oder mehrere Empfänger aus.} other{{count}}/{{total}} Empfänger ausgewählt}}",
+            "description-0": "Bitte wähle einen oder mehrere Empfänger aus.",
+            "description-1": "{{count}}/{{total}} Empfänger ausgewählt",
+            "freelancer-filter-hint": "Bitte wähle einen oder mehrere Filter für die Empfängerliste aus oder verändere deine Suchanfrage.",
+            "table": {
+                "recipient": "Empfänger",
+                "status": "Status",
+                "postcodes": "Wohnort",
+                "certificates": "Zertifikate"
+            }
+        },
+        "send-mail": {
+            "title": "E-Mail versenden",
+            "message": "Möchtest du diese E-Mail wirklich an <b>{{count}}</b> Empfänger versenden?"
+        },
+        "toggle-view": {
+            "show": "Liste anzeigen",
+            "hide": "Liste schließen"
+        }
+    }
+}

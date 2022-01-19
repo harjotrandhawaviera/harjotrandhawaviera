@@ -1,0 +1,165 @@
+<div class="col-md-12 add-revenue" *ngIf="editable && !revenuesAvailable">
+  <span
+    class="pull-left"
+    *ngIf="!onBehalf"
+    translate="invoices.preparation.description.revenues"
+  ></span>
+  <button
+    type="button"
+    class="btn btn-default pull-right"
+    (click)="add()"
+    translate="revenue.buttons.add"
+  ></button>
+</div>
+
+<div class="col-md-12 padding-none">
+  <form role="form" name="revenue.form" class="">
+    <div class="row">
+      <div class="col-md-12 table-wrapper padding-none" *ngIf="revenuesAvailable">
+        <h4
+          [translate]="'invoices.fields.revenues.label'"
+          [translateParams]="{ count: data.length }"
+        ></h4>
+        <table>
+          <tr>
+            <th translate="revenues.table.assignment-date"></th>
+            <th *ngFor="let item of data">{{ item.appointedAt }}</th>
+            <th class="revenue-actions">
+              <div class="pull-right">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  mat-raised-button
+                  *ngIf="showDetails && !editing"
+                  translate="revenues.table.actions.less-details"
+                  (click)="showDetails = false"
+                ></button>
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  mat-raised-button
+                  *ngIf="!showDetails && !editable"
+                  translate="revenues.table.actions.more-details"
+                  (click)="showDetails = true"
+                ></button>
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  mat-raised-button
+                  *ngIf="!showDetails && editable"
+                  translate="revenues.table.actions.edit"
+                  (click)="edit()"
+                ></button>
+              </div>
+            </th>
+          </tr>
+          <ng-container *ngFor="let saleslot of saleslots">
+            <tr *ngIf="showDetails">
+              <td>
+                <span class="line-ellipsis" data-ng-bind="">{{
+                  saleslot
+                }}</span>
+              </td>
+              <td *ngFor="let item of data">
+                <div
+                  class="form-group"
+                  data-ng-class="{'readonly': item.readonly || !revenue.editing}"
+                >
+                  <span
+                    *ngIf="item.readonly || !editing"
+                    data-ng-bind="item.salesVolume[saleslot] | currency: '€'"
+                    >{{ item.salesVolume[saleslot] | currency }}</span
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    data-currencyformat="€"
+                    data-ng-model="item.salesVolume[saleslot]"
+                    data-ng-change="revenue.total(item)"
+                    *ngIf="!item.readonly && editing"
+                    required
+                  />
+                </div>
+              </td>
+              <td></td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="showDetails">
+            <td translate="revenue.label.comment"></td>
+            <td *ngFor="let item of data">
+              <div
+                class="form-group comment"
+                [ngClass]="{ readonly: item.readonly || !editing }"
+              >
+                <!-- <textarea
+                  class="form-control"
+                  data-ng-model="item.comment"
+                ></textarea> -->
+                <div data-ng-bind="item.comment">{{ item.comment }}</div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr *ngIf="withCreator">
+            <td translate="revenue.label.creator"></td>
+            <td *ngFor="let item of data">{{ item.creator?.data?.name }}</td>
+            <td></td>
+          </tr>
+          <tr *ngIf="withCreator">
+            <td translate="revenue.label.created-at"></td>
+            <td *ngFor="let item of data">{{ item.created_at | date: 'mediumDate'}}</td>
+            <td></td>
+          </tr>
+          <tr *ngIf="withCreator">
+            <td translate="revenue.label.updator"></td>
+            <td *ngFor="let item of data">
+              {{ item.updatorName }}
+            </td>
+            <td></td>
+          </tr>
+          <tr class="total">
+            <td translate="revenue.label.total"></td>
+            <td
+              *ngFor="let item of data"
+              [ngClass]="{
+                'threshold-warning': item.warning,
+                'missing-warning': item.total === 0
+              }"
+            >
+              <i class="threshold fa fa-exclamation"></i>
+              <span>{{ item.total | currency }}</span>
+            </td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div
+        class="col-md-12"
+        *ngIf="editable && revenuesEditable && showDetails && !editing"
+      >
+        <button
+          type="button"
+          class="btn btn-default"
+          (click)="edit()"
+          translate="revenue.buttons.edit"
+        ></button>
+      </div>
+
+      <div class="col-md-12" *ngIf="editing">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="update()"
+          translate="revenue.buttons.update"
+        ></button>
+        <button
+          type="button"
+          class="btn btn-default"
+          (click)="cancel()"
+          translate="revenue.buttons.cancel"
+        ></button>
+      </div>
+    </div>
+  </form>
+</div>

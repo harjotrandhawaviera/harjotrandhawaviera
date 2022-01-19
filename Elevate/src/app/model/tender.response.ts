@@ -1,0 +1,101 @@
+import { MultipleResponse, SingleResponse } from './response';
+
+import { AdditionalCostVM } from './job.model';
+import { AgentResponse } from './agent.response';
+import { AssignmentResponse } from './assignment.response';
+import { ClientResponse } from './client.response';
+import { ContractTypeResponse } from './contract-type.response';
+import { DatesResponse } from './dates.response';
+import { DocumentResponse } from './document.response';
+import { IncentiveModelResponse } from './incentive_model.response';
+import { JobResponse } from './job.response';
+import { OfferResponse } from './offer.response';
+import { ProjectResponse } from './project.response';
+import { SiteResponse } from './site.response';
+
+export interface TenderResponse {
+  id?: number;
+  agent?: AgentResponse;
+  assignment?: { data: AssignmentResponse };
+  assignment_id?: number;
+  category?: string;
+  certificate_ids?: number[];
+  cities?: string[];
+  contract_type?: SingleResponse<ContractTypeResponse>;
+  contract_type_id?: number;
+  contract_type_identifier?: string;
+  created_at?: string;
+  daily_rate_max?: number;
+  daily_rate_min?: number;
+  deleted_at?: string;
+  federal_state?: string;
+  invalid_at?: string;
+  job_id?: number;
+  shift_start_time?: string;
+  shift_end_time?: string;
+  offers?: MultipleResponse<OfferResponse>;
+  offers_count?: number;
+  published_at?: string;
+  snapshots?: {
+    assignment?: AssignmentResponse;
+    client?: ClientResponse;
+    contacts?: {
+      agency?: any;
+      site?: any;
+    };
+    date?: DatesResponse;
+    documents?: MultipleResponse<DocumentResponse>;
+    incentive_model?: IncentiveModelResponse;
+    job?: JobResponse;
+    project?: ProjectResponse;
+    site?: SiteResponse;
+  };
+  state?: string;
+  tender_id?: string;
+  zip_max?: string;
+  zip_min?: string;
+  logs?: any;
+  radius?: string;
+  gender?: string;
+  contractType?: string;
+  skill?: string;
+  certificate?: string;
+  job_name?: string;
+  client_name?: string;
+  job_code?: string;
+  job_status?: string;
+  role_name?: string;
+  staff_manager?: string;
+  job_location?: string;
+  job_start_date?: string;
+  job_finish_date?: string;
+  job_start_time?: string;
+  job_finish_time?: string;
+  staff_count?: string;
+  start_date?: string;
+  end_date?: string;
+  days?: string;
+  job_advert_end_date?: string;
+  job_advert_end_date_time?: string;
+  job_advert_start_date?: string;
+  job_advert_start_date_time?: string;
+  staff_role_id?: string;
+  job_advertisement_id?: string;
+  job_info?: any;
+  tenders?: any;
+  tender?: any;
+}
+
+export interface TenderRequest {
+  additional_costs?: AdditionalCostVM[];
+  assignment_budget?: number;
+  budget_id?: number;
+  cities?: string[];
+  dates?: string[];
+  finish_time?: string;
+  published_at?: string;
+  start_time?: string;
+  wage?: string;
+  zip_max?: string;
+  zip_min?: string;
+}

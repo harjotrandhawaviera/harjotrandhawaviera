@@ -1,0 +1,10 @@
+.search-form {
+  padding: 20px;
+}
+.status-cont {
+  display: flex;
+  flex-direction: column;
+  mat-slide-toggle {
+    margin: 8px 0;
+  }
+}

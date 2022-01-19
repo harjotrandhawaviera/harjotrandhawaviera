@@ -1,0 +1,36 @@
+@import 'variables';
+
+.pagination-panel {
+  width: 100%;
+  padding: 1rem 0;
+  .page-info {
+    @media screen and (max-width: $screen-md-max) {
+      margin-bottom: 15px;
+    }
+  }
+}
+.app-paginator-navigation {
+  color: $p4y-color-black !important;
+  border: 1px solid $brand-primary !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  margin-left: -1px !important;
+  min-width: 40px !important;
+  padding: 0 10px !important;
+  &:disabled {
+    background-color: white !important;
+  }
+  &:first-child {
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    margin-left: 0px !important;
+  }
+  &:last-child {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+  }
+  &.active-page {
+    background-color: $p4y-color-black !important;
+    color: white !important;
+  }
+}

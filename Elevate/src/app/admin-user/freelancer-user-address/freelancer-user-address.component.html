@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 padding-none">
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <label translate="profile.address.address"></label>
+        <p>{{ data.address }}</p>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <label translate="profile.address.addressaddition"></label>
+        <p>{{ data.addressaddition }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <label translate="profile.address.zip"></label>
+        <p>{{ data.zip }}</p>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <label translate="profile.address.city"></label>
+        <p>{{ data.city }}</p>
+      </div>
+      <div class="col-xs-12">
+        <label translate="profile.address.country"></label>
+        <p>{{ data.country }}</p>
+      </div>
+      <div class="col-xs-12">
+        <label translate="profile.address.near-to-city"></label>
+        <div>
+          <div class="near-city" *ngIf="data.near_to_city">
+            {{ data.near_to_city }}
+          </div>
+          <p *ngIf="!data.near_to_city">-</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 padding-none">
+    <div class="row">
+      <div class="col-xs-12">
+        <label translate="profile.address.application-area"></label>
+        <p>
+          <span class="fa fa-map-marker"></span>
+          {{ data.city }}
+          <span
+            *ngIf="applicationArea"
+            [translate]="'administration.users.details.address.area'"
+            [translateParams]="{ areaRadius: areaRadius }"
+          ></span>
+        </p>
+      </div>
+      <div class="col-xs-12" *ngIf="mapLoaded && map">
+        <google-map height="180px" width="100%" [center]="map.center" [zoom]="map.zoom">
+          <map-circle [center]="applicationArea.center"
+          [radius]="applicationArea.radius"
+          [options]="applicationArea"></map-circle>
+        </google-map>
+        <!-- <div
+          data-ui-gmap-google-map
+          data-center="address.map.center"
+          data-zoom="address.map.zoom"
+        >
+          <div
+            data-ui-gmap-circle
+            *ngIf="applicationArea"
+            data-ng-repeat="applicationArea in [address.applicationArea]"
+            data-center="applicationArea.center"
+            data-radius="applicationArea.radius"
+            data-stroke="applicationArea.stroke"
+            data-fill="applicationArea.fill"
+          ></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

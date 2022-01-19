@@ -1,0 +1,164 @@
+<div class="container-fluid">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/administration/clients']">{{
+        'administration.client.buttons.back' | translate}}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md start-xs">
+      <h1 translate="administration.client.title.details"></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs">
+      <div class="row end-xs">
+        <a mat-flat-button color="accent" [routerLink]="['/administration/clients/edit', id]">{{
+          'administration.client.buttons.edit' | translate}}
+          <!-- [skipLocationChange]="true" -->
+        </a>
+          <a *ngIf="backToProject" mat-flat-button color="accent" [routerLink]="['/projects/create']">{{
+            'administration.client.buttons.back-to-project' | translate}}
+          </a>  
+      </div>
+    </div>
+  </div>
+  <fieldset *ngIf="clientDetail$ | async as client">
+    <div class="row">
+      <div class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.client.fields.name.label"></label>
+        <div>{{client.name}}</div>
+      </div>
+      <div class="form-group col-sm-4 col-xs-12" *ngIf="!client.isParent">
+        <label translate="administration.client.fields.parent.label"></label>
+        <div>{{client.parent?.name}}</div>
+      </div>
+      <div class="form-group col-sm-4 col-xs-12" *ngIf="client.isParent">
+        <label translate="administration.client.fields.children.label"></label>
+        <div [translate]="'administration.client.fields.children.hint'"
+          [translateParams]="{count: client.children?.length}"></div>
+      </div>
+      <div class="form-group col-md-2 col-xs-12">
+        <label translate="administration.client.fields.clientid.label"></label>
+        <div>{{client.id}}</div>
+      </div>
+      <div class="form-group col-md-2 col-xs-12">
+        <label translate="administration.client.fields.debitorid.label"></label>
+        <div>{{client.debitorid}}</div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset *ngIf="clientDetail$ | async as client">
+    <div class="row">
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="address" translate="administration.client.fields.address.label"></label>
+        <div id="address">{{client.address}}</div>
+      </div>
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="address-advanced" translate="administration.client.fields.addressaddition.label"></label>
+        <div id="address-advanced">{{client.addressaddition}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="zip" translate="administration.client.fields.zip.label"></label>
+        <div id="zip">{{client.zip}}</div>
+      </div>
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="city" translate="administration.client.fields.city.label"></label>
+        <div id="city">{{client.city}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6 col-xs-12">
+        <label for="country" translate="administration.client.fields.country.label"></label>
+        <div id="country">{{client.country}}</div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset *ngIf="clientDetail$ | async as client">
+    <div class="row">
+      <div class="col-xs">
+        <legend translate="administration.client.section.contact"></legend>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6 col-xs-12">
+        <label translate="administration.client.fields.phone.label"></label>
+        <div class="phone">
+          <a [attr.href]="'tel:'+client.phone | telNumber">
+            {{client.phone}}
+          </a>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-xs-12">
+        <label translate="administration.client.fields.email.label"></label>
+        <div class="email">
+          <a [attr.href]="'mailto:'+client.email">
+            {{client.email}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset *ngIf="clientDetail$ | async as client">
+    <div class="row">
+      <div class="col-xs">
+        <legend translate="administration.client.section.custom-properties"></legend>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs">
+        <app-load-html *ngIf="!client.custom_properties?.length"
+          template="administration.client.custom-properties.hint"></app-load-html>
+        <p *ngFor="let property of client.custom_properties">
+          {{property}}
+        </p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset *ngIf="clientDetail$ | async as client">
+    <div class="row">
+      <div class="col-xs">
+        <legend translate="administration.client.section.freelancer-ratings"></legend>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs">
+        <app-load-html *ngIf="!client.freelancer_ratings?.length"
+          template="administration.client.freelancer-ratings.hint"></app-load-html>
+        <p *ngFor="let rating of client.freelancer_ratings">
+          {{rating}}
+        </p>
+      </div>
+    </div>
+  </fieldset>
+
+  <app-sales-slots [salesSlots]="salesSlots$ | async"></app-sales-slots>
+
+  <fieldset>
+    <div class="row">
+      <div class="col-xs">
+        <legend translate="administration.client.section.contacts"></legend>
+      </div>
+    </div>
+    <!-- <div data-client-contacts="client.data.id" data-hide-address="true" data-mandatory="['position', 'email', 'phone']">
+    </div> -->
+    <div class="row">
+      <div class="col-xs">
+        <app-contact-list [contacts]="contacts$ | async" (contactEdited)="contactEdit($event)"
+          (contactRemoved)="contactDelete($event)" [canManage]="manageContactPermission$ | async"
+          (download)="downloadContacts()"></app-contact-list>
+        <app-contact-detail *ngIf="contactMode$ | async" [clientId]="id" [contact]="contactDetail$ | async">
+        </app-contact-detail>
+      </div>
+    </div>
+    <div class="row" *ngIf="!(contactMode$ | async)">
+      <div class="col-xs">
+        <button type="button" class="section-button" mat-stroked-button color="primary" translate="administration.contact.buttons.add-contact"
+          *ngIf="manageContactPermission$ | async" (click)="addContact()"></button>
+      </div>
+    </div>
+
+  </fieldset>
+</div>

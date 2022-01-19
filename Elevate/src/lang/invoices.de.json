@@ -1,0 +1,391 @@
+{
+    "invoices": {
+        "title": {
+            "list": "Überblick",
+            "details": "Details",
+            "edit": "Rechnung bearbeiten",
+            "new": "Rechnung erstellen"
+        },
+        "filters": {
+            "job": "Job",
+            "freelancer": "Fachberater",
+            "state": "Status",
+            "dates": "Einsendedatum",
+            "attributes": "Skonto-Zahlung"
+        },
+        "download-as-zip": "Zip",
+        "fields": {
+            "number": {
+                "label": "Rechnungsnummer"
+            },
+            "issued": {
+                "label": "Einsendedatum"
+            },
+            "total": {
+                "label": "Rechnungssumme"
+            },
+            "total-net": {
+                "label": "Rechnungssumme (netto)"
+            },
+            "total-gross": {
+                "label": "Rechnungssumme"
+            },
+            "generator-total": {
+                "label": "Rechnungssumme"
+            },
+            "document": {
+                "label": "Rechnungsdokument"
+            },
+            "assignments": {
+                "label": "Liste der Einsätze"
+            },
+            "comment": {
+                "label": "Kommentar"
+            },
+            "freelancer": {
+                "label": "Bitte wähle den Fachberater aus, für den die Rechnung hochgeladen und angelegt werden soll:"
+            },
+            "job": {
+                "label": "Job"
+            },
+            "states": {
+                "label": "Status",
+                "issued": "In Bearbeitung",
+                "approved": "Freigegeben",
+                "payment-authorized": "Zahlung angewiesen",
+                "money-transfered": "Zahlung erfolgt",
+                "rejected": "Zurückgewiesen",
+                "hint": "Die Rechnung wurde zurückgewiesen.\nBitte kontrolliere alle einsatzbezogenen Dokumente, z.B. Einsatzbericht und überarbeite diese falls nötig.\nAnschließend überarbeite deine Angaben im Rechnungsformular (Button 'Bearbeiten'), lade ggf. ein neues Rechnungsdokument hoch und reiche die Rechnung durch den Button 'Einsenden' erneut bei uns ein."
+            },
+            "approval-state": {
+                "label": "Genehmigungsstatus"
+            },
+            "taxes": {
+                "label": "Umsatzsteuerpflichtig",
+                "included": "ja",
+                "not-included": "nein",
+                "hint": "Wann bin ich umsatzsteuerpflichtig?"
+            },
+            "creator": {
+                "label": "Gespeichert von"
+            },
+            "additional-documents": {
+                "label": "Weitere Dokumente",
+                "not-available": "Nicht vorhanden",
+                "report": {
+                    "label": "Einsatzberichte"
+                },
+                "questionnaire": {
+                    "label": "Stellungnahmen"
+                },
+                "picture-documentation": {
+                    "label": "Fotodokumentation"
+                },
+                "freelancer": {
+                    "report": {
+                        "label": "Einsatzberichte"
+                    },
+                    "questionnaire": {
+                        "label": "Stellungnahmen"
+                    },
+                    "picture-documentation": {
+                        "label": "Fotodokumentation"
+                    }
+                },
+                "tax_card": {
+                    "report": {
+                        "label": "Arbeitszeitnachweise"
+                    },
+                    "questionnaire": {
+                        "label": "Stellungnahmen"
+                    },
+                    "picture-documentation": {
+                        "label": "Fotodokumentation"
+                    }
+                }
+            },
+            "appointments": {
+                "label": "{count, select, 1 {{Einsatztag}} other {{Einsatztage}}: {{dates}}",
+                "label-single": "Einsatztag: {{dates}}",
+                "label-multiple": "Einsatztage: {{dates}}"
+            },
+            "questionnaire": {
+                "label": "Online-Stellungnahme"
+            },
+            "feedback": {
+                "label": "Feedback",
+                "not-requested": "Kein Feedback für {{appointedAt}} angefordert."
+            },
+            "revenues": {
+                "label": "Umsatzmeldung",
+                "label-multi": "Umsatzmeldungen"
+            },
+            "payment-data": {
+                "label": "Zahlungsinformationen"
+            },
+            "payment-target": {
+                "label": "Zahlungsziel",
+                "hint": "Zahlungsziel in der Vergangenheit"
+            },
+            "payment-total": {
+                "net": {
+                    "label": "Netto"
+                },
+                "gross": {
+                    "label": "Zahlbetrag"
+                },
+                "warning": "Die Einsätze haben unterschiedliche Mehrwertsteuersätze, die Berechnung des Nettobetrages basiert auf den geschätzten bzw. angegebenen Freelancerkosten pro Einsatz."
+            },
+            "payment-comment": {
+                "label": "Kommentar zu Zahlungsziel/Zahlbetrag"
+            },
+            "payment-discount": {
+                "label": "Skonto-Zahlung",
+                "hint": "4% Abzug bei einer Überweisung innerhalb von 7 Banktagen."
+            },
+            "iban": {
+                "label": "IBAN",
+                "placeholder": "IBAN"
+            },
+            "fullname": {
+                "label": "Fachberater",
+                "placeholder": ""
+            },
+            "bic": {
+                "label": "BIC",
+                "placeholder": "BIC"
+            },
+            "attributes": {
+                "only_with_sconto": "Nur mit Skonto"
+            }
+        },
+        "submit": {
+            "title": "Rechnung einsenden",
+            "message": "Möchtest du die Rechnung jetzt einsenden?"
+        },
+        "update-payment-target": {
+            "title": "Zahlungsinformationen speichern",
+            "message": "Möchtest du die Zahlungsinformationen jetzt speichern?"
+        },
+        "reset-state": {
+            "title": "Rechnungsstatus zurücksetzen",
+            "message": "Möchtest du den Status dieser Rechnung zurücksetzen?",
+            "comment": "Der Rechnungsstatus wurde zurückgesetzt."
+        },
+        "buttons": {
+            "create": "Rechnung erstellen",
+            "back": "Zurück zur Übersicht",
+            "edit": "Bearbeiten",
+            "check": "Prüfen",
+            "generate": "Zum Rechnungsgenerator",
+            "submit": "Einsenden",
+            "cancel": "Abbrechen",
+            "preparation": "Dokumente zur Rechnungsstellung bearbeiten",
+            "reset": "Status zurücksetzen"
+        },
+        "taxes": {
+            "label": "Umsatzsteuerpflichtig",
+            "included": "ja",
+            "not-included": "nein"
+        },
+        "check": {
+            "title": {
+                "new": "Rechnung prüfen"
+            },
+            "buttons": {
+                "back": "Zurück",
+                "approve": "Genehmigen",
+                "reject": "Zurückweisen"
+            },
+            "approve": {
+                "title": "Rechnung genehmigen",
+                "message": "Willst du die Rechnung über <b>{{payment_total}} €</b> wirklich genehmigen?"
+            },
+            "reject": {
+                "title": "Rechnung ablehnen",
+                "message": "Willst du die Rechnung wirklich ablehnen?",
+                "placeholder": "Gib hier einen Grund an."
+            },
+            "reject-connected": "Die Rechnung wurde zurückgewiesen, da ein Einsatzbericht oder eine Stellungnahme zurückgewiesen wurde."
+        },
+        "tile": {
+            "assignments": "{{number}} {number, select, 1{Termin ({{from}})} other{Termine ({{from}} - {{to}})}}",
+            "with_discount": "(abzgl. Skonto)"
+        },
+        "preparation": {
+            "title": {
+                "new": "Einsatzbericht, Umsatzmeldung und Stellungnahme",
+                "list": "Vorbereitungen zur Rechnungsstellung\n(Einsatzbericht, Umsatzmeldung und  Stellungnahme)",
+                "details": "Vorbereitungen zur Rechnungsstellung\n(Einsatzberichte, Umsatzmeldung und Stellungnahme)"
+            },
+            "description": {
+                "assignments-list": "Bitte wähle hier den Einsatz aus, für den Du Einsatzbericht und Umsatzmeldung bereitstellen möchtest.",
+                "revenues": "Bitte erfasse deine Umsätze dieses Einsatzes.",
+                "templates": "Dies sind Vorlagen für die Dokumente, die du nach dem Einsatz ausgefüllt hier hochladen solltest."
+            },
+            "status": "{{done}} von {{all}} Einsätzen bearbeitet",
+            "onbehalf": "Im Auftrag von {{fullname}}",
+            "assignments": "Einsätze",
+            "assignment-date": "Termin: {{appointedAt}}",
+            "preparation-done-hint": "Die Angaben zu diesem Einsatz sind vollständig. Der Einsatz kann in Rechnung gestellt werden.",
+            "document-not-saved": "Das Dokument wurde noch nicht gespeichert.",
+            "report": {
+                "title": "Bereitstellungsbericht"
+            },
+            "picture-documentation": {
+                "title": "Fotodokumentation"
+            },
+            "online-questionnaire": {
+                "title": "Stellungnahme"
+            },
+            "feedback": {
+                "title": "Feedback"
+            },
+            "questionnaire": {
+                "title": "Stellungnahme"
+            },
+            "templates": {
+                "title": "Vorlagen"
+            },
+            "revenue": {
+                "title": "Umsatzmeldung"
+            },
+            "freelancer": {
+                "label": "Bitte wähle den Fachberater aus, für den die Rechnungsvorbereitung durchgeführt werden soll:"
+            },
+            "buttons": {
+                "create": "Speichern",
+                "back": "Zurück zur Übersicht",
+                "save": "Speichern",
+                "cancel": "Abbrechen",
+                "add-document": "Neues Dokument",
+                "remove-document": "Dokument löschen",
+                "add-revenue": "Umsatzmeldung hinzufügen"
+            },
+            "save-document": {
+                "title": "Dokument speichern?",
+                "message": "Möchtest du das Dokument jetzt speichern?",
+                "buttons": {
+                    "cancel": "Abbrechen",
+                    "confirm": "Speichern"
+                }
+            },
+            "table": {
+                "actions": {
+                    "label": "Aktionen",
+                    "details": "Details"
+                }
+            },
+            "checklist": {
+                "questionnaire": "Stellungnahme",
+                "feedback": "Feedback",
+                "report": "Einsatzbericht hochladen",
+                "picture_documentation": "Foto hochladen ({{incentive}} Prämie)",
+                "sales_report": "Umsatz eintragen ({{incentive}} Prämie)"
+            }
+        },
+        "documents": {
+            "type": {
+                "template-questionnaire": "Stellungnahme",
+                "template-report": "Einsatzbericht",
+                "template": "Vorlage"
+            },
+            "remove": {
+                "title": "Dokument löschen",
+                "message": "Möchtest du das Dokument wirklich löschen?"
+            },
+            "actions": {
+                "label": "Aktionen",
+                "edit": "Bearbeiten",
+                "remove": "Löschen"
+            }
+        },
+        "table": {
+            "appointedAt": "Termin",
+            "jobname": "Jobname",
+            "sitename": "Einsatzort",
+            "no-records": "Keine Einsätze gefunden.",
+            "checkinStart": "Arbeitsbeginn",
+            "checkinEnd": "Arbeitsende",
+            "checkinPerformer": "Erfasst von",
+            "wage": "Stundensatz",
+            "additionalCosts": "Vergütung",
+            "incentiveModel": "Pauschalen",
+            "number": "Rechnungsnummer",
+            "total": "Rechnungssumme",
+            "comment": "Kommentar",
+            "issuedAt": "Einsendedatum",
+            "stateName": "Status",
+            "summaryFrom": "Beginn der Tätigkeit",
+            "summaryTo": "Ende der Tätigkeit",
+            "freelancerCostsNet": "reales Staff Member Honorar (netto)",
+            "assignmentBudget": "Kosten Kunde (geplant)",
+            "assignmentBudgetCorrection": "Korrektur",
+            "estimatedCosts": "mögliches Staff Member Honorar (ohne Zusatz)",
+            "maxEstimatedCosts": "mögliches Staff Member Honorar",
+            "plannedCosts": "Kosten Kunde",
+            "paymentTarget": "Zahlungsziel",
+            "withDiscount": "Skonto",
+            "freelancer_name": "Fachberater",
+            "taxRate": "USt.",
+            "incentives": {
+                "checkin": "Bei Anmeldung: {{checkin}}",
+                "sales_report": "Umsatzmeldung: {{sales_report}}",
+                "picture_documentation": "Foto-Dokumentation: {{picture_documentation}}"
+            },
+            "actions": {
+                "details": "Details",
+                "check": "Prüfen",
+                "update-freelancer-costs-net": "Reale Einsatzkosten (netto) erfassen",
+                "update-comment": "Kommentar hinzufügen/ändern",
+                "update-correction": "Geplantes Budget korrigieren",
+                "label": "Aktionen"
+            }
+        },
+        "generator": {
+            "title": "Rechnungsgenerator",
+            "states": {
+                "job": "Job und Einsatztag",
+                "details": "Einsatzdetails",
+                "general": "Weitere Angaben",
+                "confirmation": "Bestätigung"
+            },
+            "buttons": {
+                "next-step": "Weiter",
+                "submit": "Rechnungsvorschau erzeugen",
+                "create-invoice": "Rechnung einsenden",
+                "restart-generator": "Diese Rechnung löschen und neu erzeugen"
+            },
+            "job": {
+                "description": "Bitte wähle den Job, sowie die Einsatztage aus, für die du eine Rechnungsvorschau erzeugen möchtest.\nAnschließend kannst du genauere Angaben zu den einzelnen Tagen machen."
+            },
+            "details": {
+                "description": "Bitte wähle für die einzelnen Einsatztage aus, welche Vergütungen und Prämien von dir in Rechnung gestellt werden.\nSollte ein Stundensatz festgelegt worden sein, passe den Wert bitte entsprechend deiner geleisteten Arbeitszeit an."
+            },
+            "general": {
+                "description": "Fast geschafft, es fehlen noch Angaben zu Skonto und Umsatzsteuerpflicht. Ausserdem musst du noch deine Rechnungsnummer vergeben, die im Rechnungsdokument verwendet werden sollen."
+            },
+            "incentives": {
+                "checkin": "Anmeldung am Einsatztag",
+                "sales_report": "Umsatzmeldung eingereicht",
+                "picture_documentation": "Foto-Dokumentation eingereicht"
+            },
+            "table": {
+                "appointed": "Einsatztag",
+                "costs_on_time": "Honorar (auf Stundenbasis)",
+                "additional_costs": "Vergütungen",
+                "incentives": "Pauschalen",
+                "sum": "Gesamt"
+            },
+            "personal": "Persönliche Angaben",
+            "addresses": {
+                "label": "Adresse",
+                "hint": "Bitte wähle die Adresse aus, die du als Anschrift in der Rechnung verwenden möchtest:"
+            },
+            "generate": {
+                "title": "Rechnungsvorschau erzeugen?",
+                "message": "Möchtest du die Rechnungsvorschau mit der Nummer <b>{{number}}</b> über <b>{{total}}</b> erzeugen?\nDu erhälst ein PDF zum Herunterladen."
+            }
+        }
+    }
+}

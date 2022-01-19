@@ -1,0 +1,144 @@
+{
+    "accounting": {
+        "export": {
+            "title": "Export",
+            "selected-total": "Summe:",
+            "fields": {
+                "types": {
+                    "accounting": "Buchhaltung",
+                    "sepa": "SEPA"
+                }
+            },
+            "filters": {
+                "dates": "Zahlungsziel",
+                "filter_for_export": "Rechnungen möglich export nach"
+            },
+            "table": {
+                "comment": "Kommentar",
+                "number": "Rechnungsnummer",
+                "issuedAt": "Einsendedatum",
+                "paymentTarget": "Zahlungsziel",
+                "no-records": "Keine Rechnungen",
+                "includesTaxesText": "Steuern",
+                "paymentTotal": "Rechnungssumme (Skonto)",
+                "freelancer_name": "Fachberater"
+            },
+            "buttons": {
+                "export": "Export"
+            },
+            "sepa": {
+                "export": {
+                    "title": "Willst du die SEPA Datei (XML) für die ausgewählten Rechnungen erzeugen?",
+                    "message": "Alle ausgewählten Rechnungen werden zur Zahlung autorisiert und können nicht erneut exportiert werden."
+                }
+            },
+            "accounting": {
+                "export": {
+                    "title": "Willst du die Buchhaltung Datei (CSV) für die ausgewählten Rechnungen erzeugen?",
+                    "message": "Alle ausgewählten Rechnungen werden als exportiert markiert und können nicht erneut exportiert werden."
+                }
+            }
+        },
+        "files": {
+            "title": "Dateien",
+            "fields": {
+                "types": {
+                    "accounting": "Buchhaltung",
+                    "sepa": "SEPA"
+                }
+            },
+            "filters": {
+                "dates": "Termine",
+                "export_type": "Typ"
+            },
+            "table": {
+                "actions": {
+                    "download": "Herunterladen"
+                },
+                "createdAt": "Datum",
+                "creatorName": "Gemeldet von",
+                "invoice_count": "Rechnungen",
+                "size": "Dateigrösse",
+                "paymentTotal": "Gesamtsumme",
+                "typeName": "Typ"
+            },
+            "type": {
+                "accounting": "Buchhaltung",
+                "sepa": "SEPA"
+            }
+        },
+        "bills": {
+            "search-bills-placeholder": "Nach Rechnungsnummer suchen",
+            "title": {
+                "details": "Rechnungsdetails für Kunde {{client}}"
+            },
+            "filters": {
+                "client": "Kunde",
+                "project": "Projekt",
+                "job": "Jobname",
+                "dates": "Termine",
+                "order": "Auftrag"
+            },
+            "buttons": {
+                "create": "Rechnung erzeugen",
+                "edit": "Bearbeiten",
+                "update": "Speichern",
+                "cancel": "Abbrechen",
+                "back": "Zurück zur Kundenrechnungen-Übersicht"
+            },
+            "table": {
+                "appointedAt": "Termin",
+                "start_time": "Start",
+                "finish_time": "Ende",
+                "comment": "Kommentar",
+                "clientName": "Kunde",
+                "report": "Einsatzberichte",
+                "list": "Liste des missions",
+                "dateRange": "Termin",
+                "jobTitle": "Jobname",
+                "correction": "Korrektur",
+                "assignmentBudget": "Budget für Einsatz",
+                "plannedCosts": "Kosten Kunde",
+                "hours": "Gemeldete Zeiten",
+                "number": "Rechnungsnummer",
+                "totalSum": "Rechnungssumme",
+                "freelancerName": "Fachberater",
+                "billId": "Rechnungsnummer",
+                "clientName": "Kunde",
+                "search-placeholder": "",
+                "actions": {
+                    "details": "Details",
+                    "remove": "Löschen"
+                },
+                "remove": {
+                    "title": "Kundenrechnungen löschen",
+                    "message": "Möchtest du die Kundenrechnungen wirklich löschen?"
+                }
+            },
+            "fields": {
+                "issuedAt": "Einsendedatum",
+                "number": "Rechnungsnummer",
+                "total": "Gesamt: ",
+                "comment": "Kommentar",
+                "number-of-assignments": "{{count}} {count, select, 1 { Einsatz}  other{ Einsätze}}",
+                "date-range": "vom {{min}} - {{max}}",
+                "date": "am {{date}}",
+                "selected-assignments-number": "{{count}} von {{total}}{count, select, 1 { Einsatz}  other{ Einsätzen}} ausgewählt",
+                "assignments": "Einsatzliste"
+
+            },
+            "preparation": {
+                "creation": "Rechnung für Kunde {{client}} erzeugen",
+                "title": {
+                    "new": "Rechnung erstellen",
+                    "edit": "Bearbeiten",
+                    "list": "Übersicht der abrechenbaren Jobs"
+                },
+                "buttons": {
+                    "back": "Zurück zur Vorbereitung"
+                },
+                "no-filter-hint": "Bitte wähle zunächst den Kunden, das Projekt oder einen Job aus."
+            }
+        }
+    }
+}

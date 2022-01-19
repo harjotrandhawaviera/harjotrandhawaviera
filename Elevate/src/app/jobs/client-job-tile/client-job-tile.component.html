@@ -1,0 +1,113 @@
+<div class="panel panel-default client-job" *ngIf="clientJob">
+  <div class="panel-heading">
+    <div class="action-title-cont">
+      <strong *ngIf="shortTitle"> {{ shortTitle }} </strong>
+      <a color="accent" [matMenuTriggerFor]="subMenu">
+        <i class="fas fa-ellipsis-h"></i>
+      </a>
+      <mat-menu #subMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="navigateToDetail(clientJob)">
+          {{'jobs.client.list.table.actions.details' | translate}}
+        </button>
+        <button mat-menu-item (click)="navigateToCreateClientJobTender(clientJob)">
+          {{'jobs.client.list.table.actions.createTender' | translate}}
+        </button>
+      </mat-menu>
+    </div>
+    <div class="small-text-cont">
+      <span>{{'projects.inherited.fields.category.'+clientJob.category | translate }}</span>
+      <span>{{'contracts.identifier.'+clientJob.contract_type.identifier | translate }}</span>
+    </div>
+  </div>
+  <div class="panel-body flipper-container">
+    <div class="flipper">
+      <div class="front">
+        <div class="col-xs-12 padding-none">
+          <div *ngIf="clientJob.site">
+            <strong class="trim-text" *ngIf="clientJob.site.group">
+              <i class="far fa-building"></i>
+              {{ clientJob.site.group }}
+            </strong>
+            <address>
+              <div class="trim-text">
+                <span>{{ clientJob.site.name }}</span>
+                <span *ngIf="clientJob.site.number"> | {{ clientJob.site.number }}</span>
+              </div>
+              <div class="trim-text">
+                <span>{{ clientJob.site.address }}, {{ clientJob.site.zip }} {{ clientJob.site.city }}</span>
+              </div>
+            </address>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-none">
+          <ng-container *ngIf="clientJob.summary && clientJob.summary.assignments">
+            <span *ngIf="!clientJob.summary.assignments.count || clientJob.summary.assignments.count < 2">
+              {{ 'jobs.client.list.assignmentNumber' | translate: {assignmentsNumber:
+              clientJob.summary.assignments.count || 0} }}
+            </span>
+            <span *ngIf="clientJob.summary.assignments.count && clientJob.summary.assignments.count > 1">
+              {{ 'jobs.client.list.assignmentsNumber' | translate: {assignmentsNumber:
+              clientJob.summary.assignments.count} }}
+            </span>
+          </ng-container>
+        </div>
+      </div>
+      <div class="back">
+        <ng-container *ngIf="clientJob.summary">
+          <div *ngIf="clientJob.summary.assignments">
+            <span *ngIf="!clientJob.summary.assignments.count || clientJob.summary.assignments.count < 2">
+              {{ 'jobs.client.list.assignmentNumber' | translate: {assignmentsNumber:
+              clientJob.summary.assignments.count || 0} }}
+            </span>
+            <span *ngIf="clientJob.summary.assignments.count && clientJob.summary.assignments.count > 1">
+              {{ 'jobs.client.list.assignmentsNumber' | translate: {assignmentsNumber:
+              clientJob.summary.assignments.count} }}
+            </span>
+          </div>
+          <ng-container
+            *ngIf="clientJob.summary && clientJob.summary.assignments && clientJob.summary.assignments.states">
+            <div>
+              <span *ngIf="!(clientJob.summary.assignments.states.booked) ||
+                  (clientJob.summary.assignments.states.booked && clientJob.summary.assignments.states.booked < 2)">
+                {{ 'jobs.client.list.bookedAssignmentNumber' | translate: {bookedAssignmentsNumber:
+                clientJob.summary.assignments.states.booked || 0} }}
+              </span>
+              <span
+                *ngIf="clientJob.summary.assignments.states.booked && clientJob.summary.assignments.states.booked > 1">
+                {{ 'jobs.client.list.bookedAssignmentsNumber' | translate: {bookedAssignmentsNumber:
+                clientJob.summary.assignments.states.booked || 0} }}
+              </span>
+            </div>
+            <div>
+              <span
+                *ngIf="!clientJob.summary.assignments.states.open_upcoming || (clientJob.summary.assignments.states.open_upcoming && clientJob.summary.assignments.states.open_upcoming) < 2">
+                {{ 'jobs.client.list.openUpcomingAssignmentNumber' | translate: {openUpcomingAssignmentsNumber:
+                clientJob.summary.assignments.states.open_upcoming || 0} }}
+              </span>
+              <span
+                *ngIf="clientJob.summary.assignments.states.open_upcoming && clientJob.summary.assignments.states.open_upcoming > 1">
+                {{ 'jobs.client.list.openUpcomingAssignmentsNumber' | translate: {openUpcomingAssignmentsNumber:
+                clientJob.summary.assignments.states.open_upcoming || 0} }}
+              </span>
+            </div>
+            <div>
+              <span
+                *ngIf="!clientJob.summary.assignments.states.preparation || clientJob.summary.assignments.states.preparation < 2">
+                {{ 'jobs.client.list.finishedAssignmentNumber' | translate: {finishedAssignmentsNumber:
+                clientJob.summary.assignments.states.preparation || 0} }}
+              </span>
+              <span
+                *ngIf="clientJob.summary.assignments.states.preparation && clientJob.summary.assignments.states.preparation > 1">
+                {{ 'jobs.client.list.finishedAssignmentsNumber' | translate: {finishedAssignmentsNumber:
+                clientJob.summary.assignments.states.preparation || 0} }}
+              </span>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <span class="text-info">
+      <i class="fas fa-info-circle"></i>
+    </span>
+  </div>
+</div>

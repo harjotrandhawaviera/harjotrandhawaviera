@@ -1,0 +1,56 @@
+<div
+class="row"
+*ngIf="inFormGroup"
+[formGroup]="inFormGroup"
+style="margin-bottom: 20px"
+>
+<div class="col-xs-12 col-sm-6">
+  <mat-form-field class="full-width">
+    <!-- <mat-label>{{ "profile.fields.qualification.school.label" | translate}}</mat-label> -->
+    <mat-label>{{ "profile.fields.training.name.label" | translate}}</mat-label>
+
+    <input matInput formControlName="name" name="name" >
+  </mat-form-field>
+</div>
+<div class="col-xs-12 col-sm-6">
+  <mat-form-field class="full-width">
+    <mat-label>{{ "profile.fields.training.organization.label" | translate}}</mat-label>
+    <input matInput formControlName="issuing_organization" name="issuing_organization">
+  </mat-form-field>
+</div>
+<div class="col-xs-12 col-sm-6">
+  <mat-form-field appearance="fill" class="full-width date-picker-wrapper">
+    <mat-label>{{ "profile.fields.training.issueDate.label" | translate}}</mat-label>
+    <input (blur)="onIssueFieldChange()"  matInput (blur)="onTrainingFieldChange()" [matDatepicker]="DatePickerStart" formControlName="issue_date"  (click)="DatePickerStart.open()"  name="issue_date" [max]="maxDate">
+    <mat-datepicker-toggle matSuffix [for]="DatePickerStart"></mat-datepicker-toggle>
+    <mat-datepicker #DatePickerStart
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, DatePickerStart)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+    <mat-error *ngIf="displayMessage.issue_date">{{
+      displayMessage.issue_date
+    }}</mat-error>
+  </mat-form-field>
+  </div>
+
+<div class="col-xs-12">
+  <mat-form-field class="full-width">
+    <mat-label>{{ "profile.fields.training.description.label" | translate}}</mat-label>
+    <input matInput formControlName="description" name="description">
+    <mat-error></mat-error>
+  </mat-form-field>
+</div>
+<div class="col-xs-12">
+  <label
+    for="document"
+    translate="profile.fields.training.document.label"
+  ></label>
+</div>
+<div class="col-xs-12 padding-none">
+  <!-- <app-profile-document [readonly]="readonly" formControlName="document" [buttonText]="'buttons.upload-document' | translate"></app-profile-document> -->
+  <app-profile-document  formControlName="document" [buttonText]="'buttons.upload-document' | translate"></app-profile-document>
+
+</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/administration/incentives']"
+      >{{ "administration.site.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="col-xs-12 padding-none">
+  <div class="row incentive-title-holder">
+    <h1 class="col-md-8 col-xs-12" translate="administration.incentives.details.title.details"></h1>
+    <div class="col-md-4 col-xs-12  end-xs">
+      <a
+        [routerLink]="['/administration/incentives/edit',paramId]"
+        mat-flat-button
+        color="accent"
+        (click)="Edata(paramId)"
+      >{{ "administration.incentives.details.buttons.edit" | translate }}
+      </a>
+    </div>
+  </div>
+  </div>
+  <div class="form-group col-sm-4 col-xs-12">
+    <label translate="administration.incentives.fields.name.label" required></label>
+    <div>{{IncentiveDetails?.name}}</div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-4 col-xs-12">
+      <label translate="administration.incentives.fields.checkin.label"></label>
+      <div>{{IncentiveDetails?.register | currency }}</div>
+    </div>
+    <div class="form-group col-sm-4 col-xs-12">
+      <label translate="administration.incentives.fields.sales_report.label"></label>
+      <div>{{IncentiveDetails?.sales | currency}}</div>
+    </div>
+    <div class="form-group col-sm-4 col-xs-12">
+      <label translate="administration.incentives.fields.picture_documentation.label"></label>
+      <div>{{IncentiveDetails?.value | currency}}</div>
+    </div>
+  </div>
+</div>

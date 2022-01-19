@@ -1,0 +1,19 @@
+@import "variables";
+
+.store-badges {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 340px;
+  @media (max-width: $screen-md-max) {
+    width: 300px;
+  }
+  a {
+    img {
+      max-height: 48px;
+      @media (max-width: $screen-md-max) {
+        max-height: 40px;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+    "messages": {
+        "required": "Please enter subject and message.",
+        "subject": {
+            "label": "Subject",
+            "placeholder": "Reason for the message",
+            "action": {
+                "replace-freelancer-bodypicture": "Comment on updating the full body photo",
+                "replace-freelancer-portraitpicture": "Comment on portrait photo update",
+                "replace-freelancer-tradelicence": "Comment on updating the trade license",
+                "replace-freelancer-workpermit": "Comment on updating the work permit",
+                "replace-freelancer-evidence": "Comment on updating the proof",
+                "approve-freelancer-onboarding": "Comment on updating staff member status from onboarding",
+                "approve-freelancer-contract": "Comment on updating your profile",
+                "approve-freelancer-data-change": "Comment on updating your contract data",
+                "approve-freelancer-gtc": "Comment on updating the information for the general terms and conditions",
+                "replace-freelancer-gtc-document": "Comment on updating the document of the general terms and conditions",
+                "answer-job-message": "Re: {{subject}}",
+                "create-job-message": "Question about the job '{{title}}'"
+            }
+        },
+        "content": {
+            "placeholder": "..."
+        },
+        "sender-info": "{{fullname}}, {{date}}",
+        "details": {
+            "header": "Message from {{senderFullname}} ({{senderEmail}}) {{createdAt}}",
+            "subject": "Subject: {{subject}}",
+            "content": "{{content}}",
+            "content2": " Question: {{content}}",
+            "response" : "Response: {{response}}",
+            "recipient": "Responsible {{recipientFullname}}",
+            "tenders": "{{tenders_count}}{tenders_count, select, 1{ Advertisement}  other{ Tenders}}",
+            "link-to-job": "To the Job offer",
+            "question": "Your original message: {{questionContent}}",
+            "link-to-certificate": "To the Certificate"
+        },
+        "jobs": {
+            "title": "Messages/questions about job offers",
+            "table": {
+                "filters": {
+                    "job": "Job",
+                    "agent": "Agent Responsible",
+                    "sender": "Staff Member"
+                },
+                "actions": {
+                    "remove": "Delete",
+                    "answer": "Answer"
+                },
+                "answer": {
+                    "title": "Reply",
+                    "message": "Re: {{subject}}",
+                    "placeholder": "The answer is..."
+                },
+                "remove": {
+                    "title": "Delete?",
+                    "message": "Do you really want to delete this unanswered message?",
+                    "message_freelancer": "Read response to the question, please send"
+                }
+            }
+        }
+    }
+}

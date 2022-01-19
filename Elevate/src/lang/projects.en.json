@@ -1,0 +1,732 @@
+{
+    "projects": {
+        "list": {
+            "title": "Project Overview",
+            "table": {
+                "status": "Status",
+                "id": "Project ID",
+                "name": "Name",
+                "customer": "Client",
+                "customerContactName": "Contact",
+                "jobsNumber": "Jobs",
+                "orderName": "Order",
+                "startedAt": "Project Start",
+                "finishedAt": "Project End",
+                "agentName": "Agent",
+                "categoryName" : "Category",
+                "budgetName"  : "Budget",
+                "budgetValue" : "Total",
+                "budgetConsumed" : "Consumed",
+                "createdAt": "Created Date",
+                "createdBy": "Created By",
+                "orderedAt"   : "Order Date",
+                "clientProperties" : "Customized Properties",
+                "revenueTotal" : "Total Turnover",
+                "sumPlannedCosts": "Planned Client Budget",
+                "sumMinEstimatedCosts": "Estimated Staff Member Fee (min)",
+                "sumMaxEstimatedCosts": "Estimated Staff Member Fee (max)",
+                "sumFreelancerCosts": "Reported Staff Member Fee",
+                "staffCost": "Estimated Staff Cost",
+                "accountingSummaryState": "",
+                "search-placeholder": "By Projects (Name or ID) search (min. 3 characters)",
+                "actions": {
+                    "edit": "Details",
+                    "copy": "Copy",
+                    "remove": "Delete",
+                    "bulk": "Create Jobs"
+                },
+                "remove": {
+                    "title": "Delete Project",
+                    "message": "The project {{name}} cannot be restored."
+                }
+            },
+            "filters": {
+                "client": "Client",
+                "order": "Job",
+                "agent": "Staffing Manager",
+                "state": "Status",
+                "contractType": "Contract Type"
+            },
+            "search-placeholder": "Search for customers or projects (min. 3 characters)",
+            "search": {
+              "label": "Search by Project Name",
+              "placeholder": "min. 3 characters"
+            },
+            "buttons": {
+                "create": "Create new Project"
+            }
+        },
+        "details": {
+            "title": {
+                "new": "Create Project",
+                "details": "Project Details",
+                "edit": "Edit Project"
+            },
+          "skills": {
+            "undefined": "undefined",
+            "Brand Promotion": "Brand Promotion",
+            "Covid Fighter": "Covid Fighter",
+            "Event Management": "Event Management"
+          },
+          "brand_promotion": {
+            "Product Overview": "Product Overview",
+            "Product Knowledge": "Product Knowledge",
+            "Product Demo": "Product Demo",
+            "Product Selling": "Product Selling",
+            "Staff Engagement": "Staff Engagement"
+          },
+            "tab": {
+                "general": "General Information",
+                "briefing": "Briefing",
+                "reports": "Reviews, Products and Feedback",
+                "jobs": "Jobs",
+                "summary": "Short Evaluation",
+                "revenues": "Sales Overview",
+                "accounting-summary": "Operating Costs Overview",
+                "evaluation": "Evaluations"
+            },
+            "buttons": {
+                "create": "Save New Project",
+                "update": "Save Changes",
+                "back": "Back to the Overview",
+                "edit": "Edit",
+                "cancel-edit": "Cancel",
+                "back-to-job": "Back to Job"
+            },
+            "label": {
+                "summary": "Summary",
+                "customer": "Client",
+                "jobs": "Jobs",
+                "assignments": "Bookings",
+                "dates": "Shifts",
+                "offers": "Offers",
+                "tenders": "Job Postings",
+                "count": "Total",
+                "active": "active",
+                "open": "Open, without Job Post",
+                "tendered": "job posted",
+                "invoiced": "invoiced",
+                "booked": "booked",
+                "expired": "expired or closed",
+                "scheduled": "planned",
+                "draft": "in draft",
+                "assigned": "with use",
+                "enabled": "ready",
+                "preparation": "Invoice in preparation",
+                "valid": "valid",
+                "done": "completed",
+                "open_upcoming": "pending, without booking",
+                "primary_address": "Primary Location",
+                "site_address": "Site Location",
+                "po_details": "Client Purchase Order Details",
+                "global_brand": "Industries",
+                "skills_required": "Skills Required",
+                "target_budget": "Same as Target Budget"
+            }
+        },
+        "fields": {
+            "name": {
+                "label": "Project Name",
+                "placeholder": "Project Name"
+            },
+            "responsible": {
+                "label": "Responsible",
+                "placeholder": "Responsible"
+            },
+            "state": {
+                "label": "Status",
+                "draft": "Planned",
+                "active": "Active",
+                "closed": "Completed"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Please enter brief description of the project.",
+                "value": {
+                    "freelancer": "Job Description:\n* primary goal: increase sales + increase brand awareness\n* Action implementation: on image area, small area, on shelf, on gondola\n* Staff Member:\n* Target Turnover:\n* Target client approach: 100\n* Target consulting sessions: 30 (according to experience, at least 4 consulting sessions per hour of 10 minutes each are possible.)\n\nPremium explanation:\n* Registration: Please register via APP on the day of the assignment at the earliest 30 minutes before the start of the assignment.\n* Sales report: Upload of the assignment report in the portal / via app + entry of the sales in the portal / via app.\n* Photo documentation: 1 photo of yourself + deployment area + upload in the portal / via app",
+                    "tax_card": "Job Description:\nThis assignment is to support the permanent staff / counter staff in sales, consulting, counter maintenance.\nAs an employee you are part of a team at the workplace and thus integrated into fixed structures.\n\nTask explanation\n* Registration: Please register with us on the day of assignment at the start of your working hours. This is possible via the APP using the CHECK IN button.\n* Proof of hours worked: Sign and stamp the completed proof and then upload it to the portal / via the app..\n* Photo documentation: Take 1 photo of yourself + work area and upload it to the portal / via app."
+                }
+            },
+            "start": {
+                "label": "Project Start Date"
+            },
+            "finish": {
+                "label": "Project End Date"
+            },
+            "client": {
+                "label": "Client Name"
+            },
+            "contact": {
+                "label": "Contact Person"
+            },
+            "category": {
+                "label": "Project Category",
+                "none": "None",
+                "fragrance": "Scent",
+                "care": "Care",
+                "visa": "Visa",
+                "cabin": "Cabin",
+                "spray": "Spray Application",
+                "flyer": "Flyer",
+                "wrap": "Packing Service",
+                "teasing": "Teasing"
+            },
+            "order": {
+                "label": "Order"
+            },
+            "budget": {
+                "label": "Budget"
+            },
+            "wage": {
+                "label": "Staff Member fee (per hour)",
+                "placeholder": ""
+            },
+            "information": {
+                "label": "Internal Information",
+                "placeholder": "For internal use, e.g. client requests.",
+                "value": {
+                    "freelancer": "",
+                    "tax_card": ""
+                }
+            },
+            "briefing": {
+                "label": "General Briefing",
+                "placeholder": "Visible in the Tender.",
+                "value": {
+                    "freelancer": "Notes on the assignment:\nPreparation:\n* Well-groomed, clean and ironed clothing (see appendix \"How to Look\")\n* Preferred color in perfumery: black\n* If possible no sporty or too sexy clothes\n* Neat appearance (make-up, hair, fingernails)\n* please wear a neutral name tag without brand logo (belongs to your work material and has to be provided by yourself) \n\nOn-Site:\n* proactive approach on-site\n* client-oriented appearance\n* polite and chosen way of expression\n* always with the aim of increasing sales and brand awareness\n* no work in the warehouse / at the cash register\n* arrangement of breaks according to own needs (if possible in consultation)\n* please observe the house rules",
+                    "tax_card": "Notes on the assignment:\nPreparation:\n* Wardrobe: Your wardrobe depends on the work clothes of your employer. Please note the attached grooming. If there is no information about the wardrobe, please dress in black.\nImportant: No wardrobe that is too sexy. No short skirts, no sports wardrobe, no sneakers.\n* Make-up: For this, please note the attached grooming. If there are no styling instructions, please make sure you have a well-groomed daytime make-up, well-groomed and painted nails, well-groomed and coiffed hair.\n\nOn-Site:\n* Register at the counter/shop manager\n* please pay attention to the instructions of the counter leader\n* proactive approach on-site, client-oriented appearance\n* Polite and well-chosen manner of expression\n* always with the aim of increasing sales and brand awareness\n* cashiering, replenishing goods, keeping order\n* break regulations in consultation with the other counter staff\n* Observe House Rules"
+                }
+            },
+            "additional": {
+                "label": "Additional client requests",
+                "placeholder": "For internal use."
+            },
+            "certificates": {
+                "label": "Required Certificates",
+                "update_associated": {
+                    "label": "Undertake deployment training for jobs/future deployments/advertisements?",
+                    "description": "If activated, then all deployment trainings of jobs/future deployments/tenders will be overwritten with the project settings!"
+                }
+            },
+            "document": {
+                "label": "Name",
+                "description-placeholder": "Description"
+            },
+            "assignment_budget": {
+                "label": "Cost Client",
+                "placeholder": ""
+            },
+            "job": {
+                "label": "Job"
+            },
+            "site": {
+                "label": "Branch"
+            },
+            "siteClientContact": {
+                "label": "Field Service"
+            },
+            "project": {
+                "label": "Project",
+                "label-new-job": "Select Project"
+            },
+            "custom-properties": {
+                "custom": {
+                    "label": "Property",
+                    "placeholder": "Property",
+                    "none": "None"
+                },
+                "client": {
+                    "label": "Client specific properties",
+                    "placeholder": "Value",
+                    "none": "None"
+                }
+            },
+            "freelancer-ratings": {
+                "label": "Evaluation criteria"
+            },
+            "start_time": {
+                "label": "Start"
+            },
+            "finish_time": {
+                "label": "End"
+            },
+            "start_date": {
+                "label": "Start"
+            },
+            "finish_date": {
+                "label": "End"
+            },
+            "job_category": {
+                "label": "Category"
+            },
+            "contract_type": {
+                "label": "Contract Type"
+            },
+            "account-manager": {
+                "label": "Account Manager"
+            },
+            "staffing-manager": {
+                "label": "Staffing Manager"
+            },
+            "duration": {
+                "label": "Duration (In Days)"
+            },
+            "primary_address": {
+                "label": "Address"
+            },
+            "primary_country": {
+                "label": "Country"
+            },
+            "primary_state": {
+                "label": "State"
+            },
+            "primary_city": {
+                "label": "City"
+            },
+            "primary_zip": {
+                "label": "ZIP / Post Code"
+            },
+            "site_address": {
+                "label": "Address"
+            },
+            "site_country": {
+                "label": "Country"
+            },
+            "site_state": {
+                "label": "State"
+            },
+            "site_city": {
+                "label": "City"
+            },
+            "site_zip": {
+                "label": "ZIP / Post Code"
+            },
+            "po_no": {
+                "label": "Number"
+            },
+            "po_amount": {
+                "label": "Amount"
+            },
+            "po_date": {
+                "label": "Date"
+            },
+            "po_comment": {
+                "label": "Comment",
+                "placeholder": "Add Comment"
+            },
+            "skills_required": {
+                "label": "Skills"
+            },
+            "target_budget": {
+                "label": "Target Budget"
+            },
+            "global_brand_id": {
+                "label": "Industries"
+            },
+            "currency": {
+                "label": "Currency"
+            }
+        },
+        "jobs": {
+            "bulk_create": {
+                "buttons": {
+                    "back": "Back",
+                    "create": "Create new Jobs",
+                    "submit": "Create Jobs",
+                    "cancel": "Cancel"
+                },
+                "title": {
+                    "new": "Create New Jobs",
+                    "details": "Create New Jobs"
+                },
+                "result": {
+                    "submitting": "The jobs are created...",
+                    "success": "{{count}} job(s) created.",
+                    "failure": "The jobs for the following POS could not be created: {failed}"
+                },
+                "fields": {
+                    "sites": {
+                        "label": "POS ({{count}} of {{total}} store(s) selected)"
+                    }
+                },
+                "explanation": "Please create the jobs for the different stores here first. Then the assignments (appointments) for each job must be advertised.\nThis can be done via 'Publish appointments' in the job details."
+            },
+            "job-name": {
+                "label": "Job Name"
+            },
+            "role": {
+                "label": "Role"
+            },
+            "job-code": {
+                "label": "Job Number"
+            },
+            "job-location": {
+                "label": "Job Location"
+            },
+            "location-type": {
+                "label": "Location Type"
+            },
+            "pos": {
+                "label": "POS Location"
+            },
+            "live": {
+                "label": "Live Location"
+            },
+            "job-overview": {
+                "label": "Job Overview",
+                "placeholder": "Enter Job Overview"
+            },
+            "staff-briefing": {
+                "label": "Staff Briefing",
+                "placeholder": "Enter Staff Briefing"
+            },
+            "table": {
+                "title": "Job",
+                "job_category": "Category",
+                "site_name": "Branch",
+                "contact_name": "Field service",
+                "job_state": "Status",
+                "wage": "Staff Member Fee (per hour)",
+                "assignment_budget": "Cost Client",
+                "actions": {
+                    "edit": "Details",
+                    "remove": "Delete"
+                },
+                "remove": {
+                    "title": "Delete Job",
+                    "message": "Do you want to delete the job?"
+                }
+            },
+            "fields": {
+                "state": {
+                    "draft": "Draft",
+                    "active": "Active",
+                    "completed": "Completed",
+                    "scheduled": "Planned"
+                }
+            },
+            "buttons": {
+                "add": "Add Job",
+                "save": "Save Job",
+                "cancel": "Cancel",
+                "confirm": "OK"
+            }
+        },
+        "state": {
+            "draft": "Planned",
+            "active": "Active",
+            "closed": "Completed",
+            "scheduled": "Planned"
+        },
+        "inherited": {
+            "fields": {
+                "state": {
+                    "label": "Status",
+                    "draft": "Planned",
+                    "active": "Active",
+                    "completed": "Completed",
+                    "scheduled": "Planned"
+                },
+                "category": {
+                    "label": "Category",
+                    "none": "None",
+                    "fragrance": "Scent",
+                    "care": "Care",
+                    "visa": "Visa",
+                    "cabin": "Cabin",
+                    "spray": "Spray insert",
+                    "flyer": "Flyer",
+                    "wrap": "Packing Service",
+                    "teasing": "Teasing",
+                    "null": "None"
+                },
+                "certificates": {
+                    "label": "Required Certificates",
+                    "none": "None"
+                },
+                "exclusive-certificates": {
+                    "label": "Required operational training",
+                    "none": "None"
+                },
+                "document": {
+                    "label": "Name",
+                    "description-placeholder": "Description",
+                    "briefing": {
+                        "label": "Briefing Documents"
+                    },
+                    "questionnaire": {
+                        "label": "Statement (template)"
+                    },
+                    "report": {
+                        "label": "Deployment report/time sheet (template)"
+                    },
+                    "freelancer": {
+                        "briefing": {
+                            "label": "Briefing Documents"
+                        },
+                        "questionnaire": {
+                            "label": "Statement (template)"
+                        },
+                        "report": {
+                            "label": "Mission Report (template)"
+                        }
+                    },
+                    "tax_card": {
+                        "briefing": {
+                            "label": "Briefing Documents"
+                        },
+                        "questionnaire": {
+                            "label": "Statement (template)"
+                        },
+                        "report": {
+                            "label": "Timesheet (template)"
+                        }
+                    }
+                },
+                "assignment_budget": {
+                    "label": "Client costs (planned)",
+                    "none": "None",
+                    "hint-correction-available": "Please use the cost correction to change."
+                },
+                "budget": {
+                    "label": "Budget"
+                },
+                "wage": {
+                    "label": "Staff Member Fee (per hour)",
+                    "placeholder": ""
+                },
+                "information": {
+                    "label": "Internal Information",
+                    "placeholder": "For internal use, e.g. client requests."
+                },
+                "briefing": {
+                    "label": "General Briefing",
+                    "placeholder": "Visible in the Tender."
+                },
+                "description": {
+                    "label": "Description/objective of the Project",
+                    "placeholder": "Visible in the Tender."
+                },
+                "responsible": {
+                    "label": "Responsible",
+                    "placeholder": "Person Responsible"
+                },
+                "custom-properties": {
+                    "client": {
+                        "label": "Client specific features",
+                        "placeholder": "Value",
+                        "empty-list": "No features specified"
+                    },
+                    "custom": {
+                        "label": "Property",
+                        "placeholder": "Feature",
+                        "empty-list": "No property"
+                    }
+                },
+                "freelancer-ratings": {
+                    "label": "Evaluation criteria",
+                    "placeholder": "Criteria",
+                    "empty-list": "No criteria specified"
+                },
+                "feedback-questions": {
+                    "label": "Feedback questions"
+                },
+                "account-manager": {
+                    "label": "Account Manager"
+                },
+                "staffing-manager": {
+                    "label": "Staffing Manager"
+                }
+            }
+        },
+        "client": {
+            "list": {
+                "header": "Projects",
+                "table": {
+                    "name": "Name",
+                    "startedAt": "Project Start",
+                    "finishedAt": "Project End",
+                    "agentName": "Agent",
+                    "jobsNumber": "Jobs",
+                    "datesNumber": "Dates",
+                    "openTendersNumber": "Tenders",
+                    "assignmentsNumber": "Insert",
+                    "openUpcomingAssignmentsNumber": "Open Assignments",
+                    "bookedAssignmentsNumber": "Booked Assignments",
+                    "finishedAssignmentsNumber": "Completed Assignments",
+                    "offersNumber": "Tenders",
+                    "status": "Status",
+                    "details": "",
+                    "category" : "Category",
+                    "assignment_budget" : "Costs",
+                    "budgetName"  : "Budget",
+                    "budgetValue" : "Total",
+                    "budgetConsumed" : "Consumed",
+                    "orderName"   : "Order",
+                    "orderedAt"   : "Order Date",
+                    "clientProperties" : "Customized Properties",
+                    "revenueTotal" : "Total Turnover",
+                    "revenueAvg" : "Average Turnover/Day",
+                    "search-placeholder": "Search for projects (name or ID) (min. 3 characters)",
+                    "actions": {
+                        "details": "Details",
+                        "bulk": "Create Jobs"
+                    }
+                },
+                "buttons": {
+                    "overview": "Show All",
+                    "details": "Details"
+                }
+            }
+        },
+        "accounting-summary": {
+            "freelancer-costs": "Reported Staff Member Fee",
+            "estimated-costs": "Estimated Staff Member Fee (min-max)",
+            "planned-costs": "Cost Client"
+        },
+        "additional-costs": {
+            "label": "Task-based Compensation",
+            "update-hint": "The compensation has been changed, please do not forget to save the changes.",
+            "none": "-",
+            "fields": {
+                "name": {
+                    "label": "Name",
+                    "placeholder": ""
+                },
+                "value": {
+                    "label": "Max. Amount in €",
+                    "placeholder": ""
+                },
+                "description": {
+                    "label": "Additional Information",
+                    "placeholder": ""
+                }
+            },
+            "table": {
+                "name": "Name",
+                "formattedValue": "Max. Amount in €",
+                "description": "Additional Information",
+                "actions": {
+                    "edit": "Edit",
+                    "remove": "Delete"
+                },
+                "remove": {
+                    "title": "Remove Remuneration?",
+                    "message": "Do you really want to remove this allowance?"
+                }
+            },
+            "buttons": {
+                "save": "Apply Compensation",
+                "cancel": "Discard",
+                "add": "Create new Compensation"
+            }
+        },
+        "target-budget": {
+            "label": "Target Staff Budget",
+            "update-hint": "The compensation has been changed, please do not forget to save the changes.",
+            "none": "-",
+            "fields": {
+                "role": {
+                    "label": "Role Name",
+                    "placeholder": ""
+                },
+                "total": {
+                    "label": "Total",
+                    "placeholder": ""
+                },
+                "per-hour": {
+                    "label": "Per Hour",
+                    "placeholder": ""
+                },
+                "per-shift": {
+                    "label": "Per Shift",
+                    "placeholder": ""
+                }
+            },
+            "table": {
+                "role": "Role Name",
+                "total": "Total",
+                "per-hour": "Per Hour",
+                "per-shift": "Per Shift",
+                "actions": {
+                    "edit": "Edit",
+                    "remove": "Delete"
+                },
+                "remove": {
+                    "title": "Remove Remuneration?",
+                    "message": "Do you really want to remove this allowance?"
+                }
+            },
+            "buttons": {
+                "save": "Apply",
+                "cancel": "Discard",
+                "add": "Add new Budget"
+            }
+        },
+        "feedback-questions": {
+            "label": "Feedback Questions",
+            "update-hint": "The feedback questions have been changed, please do not forget to save these changes.",
+            "none": "No feedback questions were specified.",
+            "fields": {
+                "question": {
+                    "label": "Question",
+                    "placeholder": ""
+                },
+                "type": {
+                    "label": "Answer Type",
+                    "placeholder": ""
+                },
+                "feedback": {
+                    "boolean": "Yes/No Question",
+                    "string": "Free Text"
+                }
+            },
+            "table": {
+                "question": "Question",
+                "translatedType": "Answer Type",
+                "actions": {
+                    "edit": "Edit",
+                    "remove": "Delete"
+                },
+                "remove": {
+                    "title": "Remove feedback question?",
+                    "message": "Do you really want to remove this question?"
+                }
+            },
+            "buttons": {
+                "save": "Apply Question",
+                "cancel": "Discard",
+                "add": "Create new Question"
+            }
+        },
+        "evaluation": {
+            "buttons": {
+                "download-feedback": "Download Feedback as CSV",
+                "download-report": "Download Deployment Report as CSV"
+            },
+            "filter": {
+                "date": "Please select the period for evaluation:"
+            }
+        },
+        "brands": {
+            "1": "Advertising Agencies",
+            "2": "Automobiles",
+            "3": "Banking & Financial Services",
+            "4": "E-Commerce",
+            "5": "Education",
+            "6": "Event Management",
+            "7": "Govt. & Public Utilities",
+            "8": "Health & Beauty",
+            "9": "Healthcare",
+            "10": "Logistics",
+            "11": "Media & Entertainment",
+            "12": "NGOS",
+            "13": "Real Estate",
+            "14": "Recruitment",
+            "15": "Restaurants & Takeaways",
+            "16": "Retail",
+            "17": "Technology",
+            "18": "Travel & Tourism"
+        }
+    }
+}

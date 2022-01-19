@@ -1,0 +1,16 @@
+.add_freelancer {
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+.avatar {
+  min-width: 36px;
+  height: 36px;
+  background: center no-repeat;
+  background-size: cover;
+  margin-bottom: 0;
+  background-image: url("../../../assets/images/avatar.png");
+  border: #f8f8f8;
+  border-radius: 50%;
+  margin-right: 5px;
+}

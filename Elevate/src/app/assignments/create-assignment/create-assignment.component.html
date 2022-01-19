@@ -1,0 +1,230 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="acion-title-holder">
+        <h1 translate="assignment.title.new"></h1>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-xs-12">
+      <div class="alert alert-info" *ngIf="!(overwriteAllowed$ | async)">
+        <p translate="projects.jobs.bulk_create.explanation"></p>
+      </div>
+      <div class="alert alert-info" *ngIf="siteIdLength">
+        <p>{{'projects.jobs.bulk_create.result.success' | translate: {count: siteIdLength} }}</p>
+      </div>
+      <div class="alert alert-warning" *ngIf="bulkJob.errors.length">
+        <p data-translate="projects.jobs.bulk_create.result.failure"
+          data-translate-values="{failed: bulkJob.errors.join('\n')}"></p>
+      </div>
+      <div class="alert alert-warning" *ngIf="bulkJob.isSubmitting">
+        <p data-translate-once="projects.jobs.bulk_create.result.submitting"></p>
+      </div>
+    </div>
+  </div> -->
+  <form [formGroup]="createForm" *ngIf="createForm">
+    <div class="job-cont" *ngIf="(dateDetail$ | async) as date">
+      <div class="row" *ngIf="date.job">
+        <div class="col-xs-12 job-title">{{date.job.title}}</div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label required translate="projects.fields.site.label"></label>
+          <div *ngIf="date.job.site">
+            <strong class="trim-text" *ngIf="date.job.site.group">
+              <i class="far fa-building"></i>
+              {{ date.job.site.group }}
+            </strong>
+            <address>
+              <div class="trim-text">
+                <span>{{ date.job.site.name }}</span>
+                <span *ngIf="date.job.site.number"> | {{ date.job.site.number }}</span>
+              </div>
+              <div class="trim-text">
+                <span>{{ date.job.site.address }}, {{ date.job.site.zip }} {{ date.job.site.city }}</span>
+              </div>
+            </address>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label translate="projects.fields.siteClientContact.label"></label>
+          <div>{{ date.job.site_client_contact }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group lrg-txt col-md-3 col-xs-12">
+          <label> </label>
+          <div>{{ 'assignment.title.date' | translate: {appointedAt: date.appointed_at | date: 'mediumDate'} }}</div>
+        </div>
+        <div class="form-group col-md-3 col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label required>{{"date.fields.start_time.label" | translate}}</mat-label>
+            <input matInput formControlName="start_time" [ngxTimepicker]="start_time" [format]="24" readonly>
+            <ngx-material-timepicker #start_time [enableKeyboardInput]="true">
+            </ngx-material-timepicker>
+            <mat-error *ngIf="displayMessage.start_time">{{displayMessage.start_time}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-3 col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label required>{{"date.fields.finish_time.label" | translate}}</mat-label>
+            <input matInput formControlName="finish_time" [ngxTimepicker]="finish_time" [format]="24" readonly>
+            <ngx-material-timepicker #finish_time [enableKeyboardInput]="true">
+            </ngx-material-timepicker>
+            <mat-error *ngIf="displayMessage.finish_time">{{displayMessage.finish_time}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{"assignment.fields.comment.label" | translate}}</mat-label>
+            <textarea matInput formControlName="comment" name="comment" rows="4"></textarea>
+            <mat-hint>{{ 'assignment.fields.comment.placeholder' | translate }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label required translate="projects.inherited.fields.responsible.label"></label>
+          <div>{{ agent?.fullname }}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label required translate="projects.fields.contract_type.label"></label>
+          <div>{{ ('contracts.identifier.'+date.job?.contract_type_identifier) | translate }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{"projects.inherited.fields.budget.label" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="budget_id" [clearSelection]="true" #budget_id
+              [options]="budgetLK">
+            </app-static-auto-complete>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label required>{{"projects.inherited.fields.assignment_budget.label" | translate}}</mat-label>
+            <input matInput formControlName="assignment_budget" name="assignment_budget" />
+            <mat-error *ngIf="displayMessage.assignment_budget">{{displayMessage.assignment_budget}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label required>{{"projects.inherited.fields.wage.label" | translate}}</mat-label>
+            <input matInput formControlName="wage" name="wage" />
+            <mat-error *ngIf="displayMessage.wage">{{displayMessage.wage}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <fieldset class="form-group">
+        <div class="row">
+          <div class="col-xs-12">
+            <label translate="projects.additional-costs.label"></label>
+          </div>
+          <div class="col-xs-12" *ngIf="!(additional_costs && additional_costs.length)">
+            <app-load-html template="additional-costs.hint"></app-load-html>
+          </div>
+        </div>
+        <div class="row" *ngIf="additional_costs">
+          <div class="col-xs padding-none" formArrayName="additional_costs">
+            <div *ngFor="let sale of additional_costs.controls; let i = index" class="col-xs padding-none">
+              <div [formGroupName]="i" class="row top-xs middle-md">
+                <div class="col-xs-11 padding-none">
+                  <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                      <mat-form-field class="full-width">
+                        <mat-label required>
+                          {{"projects.additional-costs.fields.name.label" | translate}}
+                        </mat-label>
+                        <input matInput formControlName="name" />
+                        <mat-error
+                          *ngIf="displayMessage && displayMessage.additional_costs && displayMessage.additional_costs[i].name">
+                          {{ displayMessage.additional_costs[i].name }}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                      <mat-form-field class="full-width">
+                        <mat-label required>
+                          {{"projects.additional-costs.fields.value.label" | translate}}
+                        </mat-label>
+                        <input matInput formControlName="value" />
+                        <mat-error
+                          *ngIf="displayMessage && displayMessage.additional_costs && displayMessage.additional_costs[i].value">
+                          {{ displayMessage.additional_costs[i].value }}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                      <mat-form-field class="full-width">
+                        <mat-label>
+                          {{"projects.additional-costs.fields.description.label" | translate}}
+                        </mat-label>
+                        <input matInput formControlName="description" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-1 padding-none">
+                  <button type="button" mat-icon-button color="accent" (click)="removeAdditionalCost(i)">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs">
+                <button type="button" mat-stroked-button color="primary" (click)="addAdditionalCost()"
+                  translate="projects.additional-costs.buttons.add"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="row">
+        <!-- <div class="form-group col-sm-6 col-xs-12">
+          <label required translate="projects.inherited.fields.category.label"></label>
+          <div>{{ 'projects.inherited.fields.category.' +date.job?.category | translate }}</div>
+        </div> -->
+        <div class="form-group col-sm-6 col-xs-12">
+          <label translate="projects.inherited.fields.certificates.label"></label>
+          <div class="certificate" *ngFor="let cert of date.job?.certificates">
+            <span [ngClass]="{'exclusive': cert.is_exclusive}">{{ cert.name }}</span>
+          </div>
+        </div>
+      </div>
+      <app-custom-properties-value [module]="'client'" [job]="date.job"></app-custom-properties-value>
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label translate="administration.client.section.freelancer-ratings"></label>
+          <app-load-html *ngIf="!(date.job && date.job.freelancer_ratings && date.job.freelancer_ratings.length)"
+            template="administration.client.freelancer-ratings.hint">
+          </app-load-html>
+          <div class="rating" *ngFor="let rating of date.job?.freelancer_ratings">
+            {{rating}}
+          </div>
+        </div>
+      </div>
+      <fieldset *ngIf="date.job">
+        <app-assignment-job-products [salesSlot]="date.job?.saleslots"></app-assignment-job-products>
+        <app-assignment-job-feedback [feedback]="date.job?.feedback"></app-assignment-job-feedback>
+        <app-assignment-job-info-document [job]="date.job"></app-assignment-job-info-document>
+      </fieldset>
+      <ng-container *ngTemplateOutlet="buttons"></ng-container>
+    </div>
+  </form>
+</div>
+
+<ng-template #buttons>
+  <div class="row">
+    <div class="col-xs">
+      <button mat-flat-button type="submit" color="accent" (click)="save()">
+        {{"assignment.buttons.create" | translate}}
+      </button>
+      <button mat-stroked-button type="button" color="primary" (click)="cancel()">
+        {{ 'assignment.buttons.cancel' | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>

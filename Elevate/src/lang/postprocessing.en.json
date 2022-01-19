@@ -1,0 +1,90 @@
+{
+    "postprocessing": {
+        "title": {
+            "new": "Timesheet, Turnover Report & Statement",
+            "list": "Time sheet, Sales Report and Statement",
+            "details": "Proof of working hours, Turnover Report and Statement"
+        },
+        "description": {
+            "assignments-list": "Please select here the operation for which you want to provide time sheet and sales report.",
+            "revenues": "Please record your sales of this assignment.",
+            "templates": "These are templates for the documents that you should complete and upload here after deployment."
+        },
+        "status": "{{done}} from {{all}} Deployments Edited",
+        "onbehalf": "On behalf of {{fullname}}",
+        "assignments": "Deployments",
+        "assignment-date": "Appointment: {{appointedAt}}",
+        "preparation-done-hint": "The information for this deployment is complete. The assignment can be invoiced.",
+        "document-not-saved": "The document has not been saved yet.",
+        "report": {
+            "title": "Timesheet"
+        },
+        "picture-documentation": {
+            "title": "Photo documentation"
+        },
+        "online-questionnaire": {
+            "title": "Statement"
+        },
+        "feedback": {
+            "title": "Feedback"
+        },
+        "questionnaire": {
+            "title": "Statement"
+        },
+        "templates": {
+            "title": "Templates"
+        },
+        "revenue": {
+            "title": "Sales Report"
+        },
+        "freelancer": {
+            "label": "Please select the freelancer for whom the mission follow-up is to be carried out:"
+        },
+        "buttons": {
+            "create": "Save",
+            "back": "Back to the overview",
+            "save": "Save",
+            "cancel": "Cancel",
+            "add-document": "New Document",
+            "remove-document": "Delete Document",
+            "add-revenue": "Add Sales Report"
+        },
+        "save-document": {
+            "title": "Save Report?",
+            "message": "Do you want to save the document now?",
+            "buttons": {
+                "cancel": "Cancel",
+                "confirm": "Save"
+            }
+        },
+        "table": {
+            "actions": {
+                "label": "Actions",
+                "details": "Details"
+            }
+        },
+        "checklist": {
+            "questionnaire": "Statement",
+            "feedback": "Feedback",
+            "report": "Upload Timesheet",
+            "picture_documentation": "Upload Photo",
+            "sales_report": "Enter Turnover"
+        },
+        "documents": {
+            "type": {
+                "template-questionnaire": "Statement",
+                "template-report": "Timesheet",
+                "template": "Template"
+            },
+            "remove": {
+                "title": "Delete Document",
+                "message": "Do you really want to delete the document?"
+            },
+            "actions": {
+                "label": "Actions",
+                "edit": "Edit",
+                "remove": "Delete"
+            }
+        }
+    }
+}

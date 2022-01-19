@@ -1,0 +1,91 @@
+<app-search-container>
+  <app-search-panel>
+    <form class="search-form" [formGroup]="searchForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"tenders.tenders.filters.agent" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="agent" #agent [options]="agentLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"tenders.tenders.filters.status" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="state" #state [options]="stateLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <!--<mat-form-field class="full-width">
+          <mat-label>{{"tenders.tenders.filters.contractType" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>-->
+        <mat-form-field class="full-width">
+          <mat-label>{{"tenders.tenders.filters.job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="job" #job [options]="jobLK"
+            [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <div class="row">
+          <label class="form-field-label">{{"tenders.tenders.filters.dates" | translate}}</label>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{'ui.filter.dates.min' | translate}}" [matDatepicker]="dateFrom" formControlName="dateFrom" name="dateFrom" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+            <mat-datepicker #dateFrom></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{'ui.filter.dates.max' | translate}}" [matDatepicker]="dateTo" formControlName="dateTo" name="dateTo" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+            <mat-datepicker #dateTo></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row post-code-cont">
+          <label class="form-field-label">{{"tenders.tenders.filters.postcodes" | translate}}</label>
+          <mat-form-field class="col-sm-6 col-xs-12">
+            <input matInput placeholder="{{'ui.filter.range.min' | translate}}" formControlName="zipFrom" name="zipFrom">
+          </mat-form-field>
+          <mat-form-field class="col-sm-6 col-xs-12">
+            <input matInput placeholder="{{'ui.filter.range.max' | translate}}" formControlName="zipTo" name="zipTo">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"tenders.tenders.search-placeholder" | translate}}</mat-label>
+          <input matInput formControlName="search" type="search" />
+          <i matSuffix class="fas fa-search"></i>
+          <mat-hint>{{"ui.side-option-menu.placeholder" | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="tenders.tenders.title"></h1>
+    <ng-container *ngIf="hasFilter && !(noRecords$ | async)">
+      <div class="row">
+        <div class="tile-cont col-xs-12 col-md-6 padding-none" *ngFor="let item of result$ | async">
+          <app-tenders-tile [tender]="item"></app-tenders-tile>
+        </div>
+        <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+      </div>
+      <app-paginator [disabled]="loading$ | async" hidePageSize="true" showFirstLastButtons="true"
+        [length]="totalRecords$ | async" [pageIndex]="currentPage$ | async" [pageSize]="pageSize$ | async"
+        (page)="pageChange($event)" *ngIf="!(noRecords$ | async)">
+      </app-paginator>
+      <div class="row end-md center-xs" *ngIf="!(noRecords$ | async)">
+        <button type="button" mat-stroked-button color="primary" (click)="download()">
+          Download
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!hasFilter">
+      <div class="alert alert-info">
+        {{ "ui.list-table.filter-required" | translate }}.
+      </div>
+    </ng-container>
+    <ng-container *ngIf="hasFilter && (noRecords$ | async)">
+      <div class="alert alert-info">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </ng-container>
+  </app-search-list>
+</app-search-container>

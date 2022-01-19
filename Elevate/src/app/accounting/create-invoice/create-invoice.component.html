@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <div class="row">
+    <div  class="col-xs-12">
+      <a [routerLink]="['/accounting/preparation']">
+        {{ 'accounting.bills.preparation.buttons.back' | translate }}
+      </a>
+    </div>
+    <div class="col-xs-12">
+      <div class="acion-title-holder sb">
+        <h1 translate="accounting.bills.preparation.title.new"></h1>
+      </div>
+    </div>
+    <div class="col-md-12" [formGroup]="accountingNewForm">
+      <h3>{{ 'accounting.bills.preparation.creation' | translate }}</h3>
+      <div class="col-xs-12 padding-none">
+        <div class="row" >
+          <div class="form-group col-md-4 col-sm-6 col-xs-12" >
+            <label translate="accounting.bills.table.billId" ></label>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="billId" type="billId" />
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <label translate="accounting.bills.fields.date"></label>
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="dateFrom" formControlName="dateFrom" name="dateFrom">
+              <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+              <mat-datepicker #dateFrom></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <label translate="accounting.bills.fields.comment"></label>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="comment" type="comment" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <label translate="accounting.bills.table.report"></label>
+<!--            <div>{{ selectionList }} of {{metaData?.count}} missons selected</div>-->
+          </div>
+        </div>
+        <div class="row">
+          <table mat-table [dataSource]="result" class="search-table" matSort matSortDisableClear
+                 matSortDirection="desc" formArrayName="assignment_ids">
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef >
+                <!--                <mat-checkbox (change)="$event ? masterToggle() : null"-->
+                <!--                              [checked]="selection.hasValue() && isAllSelected()"-->
+                <!--                              [indeterminate]="selection.hasValue() && !isAllSelected()">-->
+                <!--                </mat-checkbox>-->
+              </th>
+              <td mat-cell *matCellDef="let row; let i = index" >
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [formControlName]="i">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="jobname">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.jobTitle" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.date?.data?.job?.data?.title }}</td>
+            </ng-container>
+            <ng-container matColumnDef="term">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.appointedAt" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.appointed_at }}</td>
+            </ng-container>
+            <ng-container matColumnDef="start">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.start_time" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.start_time }}</td>
+            </ng-container>
+            <ng-container matColumnDef="end">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.finish_time" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.finish_time }}</td>
+            </ng-container>
+            <ng-container matColumnDef="reported_times">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.hours" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.start_time }} -  {{ row.finish_time }}</td>
+            </ng-container>
+            <ng-container matColumnDef="comment">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.comment" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.comment }}</td>
+            </ng-container>
+            <ng-container matColumnDef="cost_customer">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.plannedCosts" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.planned_costs | currency }}</td>
+            </ng-container>
+            <ng-container matColumnDef="correction">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.correction" | translate }}</th>
+              <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+            </ng-container>
+            <ng-container matColumnDef="mission_report">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "accounting.bills.table.report" | translate }}</th>
+              <td mat-cell *matCellDef="let row"><div class="mat-icon-align"><mat-icon class="download_icon" aria-hidden="false" aria-label="download icon" (click)="downloadReport(row?.documentId, row?.documentName)">download</mat-icon>{{ row?.documentName }}</div></td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="exam-container {{!isModel ? 'container-fluid': ''}}" *ngIf="examInstance && examInstance.exam">
+  <h3>{{ examInstance.exam.name }}</h3>
+  <div
+    *ngIf="step === 'description'"
+    app-exam-description
+    [exam]="examInstance.exam"
+    (startQuestionnaire)="startQuestionnaire()"
+  ></div>
+  <div
+    *ngIf="step === 'questionnaire'"
+    app-exam-questionnaire
+    [isActiveSummaryBtn]="isActiveSummaryBtn"
+    [activeQuestion]="activeQuestion"
+    [exam]="examInstance.exam"
+    [selection]="selection"
+    (prev)="prev()"
+    (next)="next()"
+    (showSummary)="showSummary()"
+    (toggleAnswer)="toggleAnswer($event)"
+  ></div>
+  <div *ngIf="step === 'summary'">
+    <div
+      app-exam-summary
+      [exam]="examInstance.exam"
+      [selection]="selection"
+      (toggleAnswer)="toggleAnswer($event)"
+    ></div>
+    <div class="col-md-12">
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="submit()"
+        translate="exams.buttons.submit"
+      ></button>
+    </div>
+  </div>
+  <div
+    *ngIf="step === 'result'"
+    app-exam-result
+    [isLegal]="examInstance.exam.is_legal"
+    [jobsCount]="examInstance.exam.jobCount"
+    [result]="result"
+    (nextStep)="closeDialog()"
+    (restartExam)="restartExam()"
+    (backToTraining)="backToTraining()"
+  ></div>
+</div>

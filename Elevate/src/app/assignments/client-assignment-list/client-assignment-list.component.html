@@ -1,0 +1,148 @@
+<app-search-container>
+  <app-search-panel>
+    <form class="search-form" [formGroup]="searchForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"assignments.table.filters.project" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="project" #project [options]="projectLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <!-- <mat-form-field class="full-width">
+          <mat-label>{{"assignments.table.filters.site" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="site" #site [options]="siteLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field> -->
+        <mat-form-field class="full-width">
+          <mat-label>{{"assignments.table.filters.job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="job" #job [options]="jobLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"assignments.table.filters.contractType" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
+            [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <div class="full-width">
+          <app-multi-select-auto-complete formControlName="states" [filteredOptions]="statesLK" [static]="true"
+            label="{{'assignments.table.filters.states' | translate}}">
+          </app-multi-select-auto-complete>
+        </div>
+        <div class="row">
+          <label class="form-field-label">{{"assignments.table.filters.dates" | translate}}</label>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="dateFrom" formControlName="dateFrom" name="dateFrom">
+            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+            <mat-datepicker #dateFrom></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="dateTo" formControlName="dateTo" name="dateTo">
+            <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+            <mat-datepicker #dateTo></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"assignments.search-placeholder" | translate}}</mat-label>
+          <input matInput formControlName="search" type="search" />
+          <i matSuffix class="fas fa-search"></i>
+          <mat-hint>{{"ui.side-option-menu.placeholder" | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="assignments.title"></h1>
+    <ng-container *ngIf="hasFilter && !(noRecords$ | async)">
+      <div class="table-wrapper">
+        <div class="table-inner-wrapper">
+          <table mat-table [dataSource]="result$" class="search-table" matSort matSortDisableClear
+            matSortDirection="desc">
+            <ng-container matColumnDef="jobTitle">
+              <th mat-header-cell *matHeaderCellDef class="long-col">{{ "assignments.table.jobTitle" | translate }}</th>
+              <!-- <td mat-cell *matCellDef="let row">{{ row.title }}</td> -->
+            </ng-container>
+            <ng-container matColumnDef="appointedTimeLabel">
+              <th mat-header-cell *matHeaderCellDef>{{ "assignments.table.appointedTimeLabel" | translate }}</th>
+              <!-- <td mat-cell *matCellDef="let row">{{ row.summary.assignments.count }}</td> -->
+            </ng-container>
+            <ng-container matColumnDef="siteFullAddress">
+              <th mat-header-cell *matHeaderCellDef>{{ "assignments.table.siteFullAddress" | translate }}</th>
+              <!-- <td mat-cell *matCellDef="let row">
+                {{ row.summary.assignments.states.open + row.summary.assignments.states.tendered }}
+              </td> -->
+            </ng-container>
+            <ng-container matColumnDef="freelancerName">
+              <th mat-header-cell *matHeaderCellDef>{{ "assignments.table.freelancerName" | translate }}</th>
+              <!-- <td mat-cell *matCellDef="let row">{{ row.summary.offers.states.valid }}</td> -->
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>{{ "assignments.table.status" | translate }}</th>
+              <!-- <td mat-cell *matCellDef="let row">{{ row.summary.offers.states.valid }}</td> -->
+            </ng-container>
+            <ng-container matColumnDef="invoiceState">
+              <th mat-header-cell *matHeaderCellDef>{{ "assignments.table.invoiceState" | translate }}</th>
+              <!-- <td mat-cell *matCellDef="let row">{{ row.summary.offers.states.valid }}</td> -->
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" class="action">
+                <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <mat-menu #subMenu="matMenu" xPosition="before">
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.details" | translate}}
+                  </button>
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.createTender" | translate}}
+                  </button>
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.dates" | translate}}
+                  </button>
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.assignments" | translate}}
+                  </button>
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.tenders" | translate}}
+                  </button>
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.offers" | translate}}
+                  </button>
+                  <button mat-menu-item>
+                    {{"jobs.table.actions.remove" | translate}}
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+        </div>
+        <app-paginator [disabled]="loading$ | async" hidePageSize="true" showFirstLastButtons="true"
+          [length]="totalRecords$ | async" [pageIndex]="currentPage$ | async" [pageSize]="pageSize$ | async"
+          (page)="pageChange($event)" *ngIf="hasFilter && !(noRecords$ | async)">
+        </app-paginator>
+        <div class="row end-md center-xs" *ngIf="!(noRecords$ | async)">
+          <button type="button" mat-stroked-button color="primary" (click)="download()">
+            Download
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!hasFilter">
+      <div class="alert alert-info">
+        {{ "administration.users.filters.required" | translate }}.
+      </div>
+    </ng-container>
+    <ng-container *ngIf="hasFilter && (noRecords$ | async)">
+      <div class="alert alert-info">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </ng-container>
+  </app-search-list>
+</app-search-container>

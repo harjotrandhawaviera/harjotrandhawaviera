@@ -1,0 +1,80 @@
+<div class="popup" [formGroup]="todosModal">
+  <div>
+    <h1 translate="todos.title.details" *ngIf="data?.isEdit"></h1>
+    <h1 translate="todos.title.new" *ngIf="!data?.isEdit"></h1>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-4" *ngIf="data?.isEdit && data.value.status === 'done' && !data.value.isCreator">
+      <label>{{'todos.details.fields.owner' | translate}}</label>
+      <div>
+      <mat-form-field>
+        <mat-select formControlName="agent" [disabled]="true">
+          <mat-option *ngFor="let text of data.agent" [value]="text?.value">
+            {{text.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    </div>
+    <div class="form-group col-md-4" *ngIf="!data?.isEdit || data.value.status !== 'done' || data.value.isCreator">
+      <label>{{'todos.details.fields.owner' | translate}}</label>
+      <div>
+        <mat-form-field>
+          <mat-select formControlName="agent">
+            <mat-option *ngFor="let text of data.agent" [value]="text?.value">
+              {{text.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-group col-md-4" *ngIf="data?.isEdit && data.value.status === 'done'  && !data.value.isCreator">
+      <label>{{'todos.details.fields.target-at' | translate}}</label>
+      <mat-form-field appearance="outline">
+        <mat-label></mat-label>
+        <input matInput [matDatepicker]="picker" [value]="data.targetDate" formControlName="completeBy" [disabled]="true">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-4" *ngIf="!data?.isEdit || data.value.status !== 'done'  || data.value.isCreator">
+      <label>{{'todos.details.fields.target-at' | translate}}</label>
+      <mat-form-field appearance="outline">
+        <mat-label></mat-label>
+        <input matInput [matDatepicker]="picker" [value]="data.targetDate" [min]="selectDate"  formControlName="completeBy">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-4" *ngIf="data?.isEdit && data.value.status === 'done'  && !data.value.isCreator">
+    <mat-checkbox class="example-margin checkbox" formControlName="important" [disabled]="true">{{'todos.details.fields.important' | translate}}</mat-checkbox>
+  </div>
+    <div class="form-group col-md-4" *ngIf="!data?.isEdit || data.value.status !== 'done'  || data.value.isCreator">
+      <mat-checkbox class="example-margin checkbox" formControlName="important">{{'todos.details.fields.important' | translate}}</mat-checkbox>
+    </div>
+  </div>
+  <label class="la" data-translate-once="todos.details.fields.subject">{{'todos.details.fields.subject' | translate}}</label>
+  <div *ngIf="data?.isEdit && data.value.status === 'done'  && !data.value.isCreator">
+    <label>
+      <textarea class="area" formControlName="content" readonly ></textarea>
+    </label>
+  </div>
+  <div>
+    <label *ngIf="!data?.isEdit || data.value.status !== 'done'  || data.value.isCreator">
+      <textarea class="area" formControlName="content"></textarea>
+    </label>
+  </div>
+
+  <div class="la1" *ngIf="data?.isEdit">
+    <label>{{'todos.details.created-info' | translate: { creatorName: data?.value?.creator, createdAt: data?.value?.created } }}</label>
+  </div>
+
+  <div *ngIf="!data?.isEdit || data.value.status !== 'done'">
+  <button mat-flat-button  class="tosave" *ngIf="data?.isEdit" [mat-dialog-close]="{ modelValue: todosModal.value, selectedAgent: owner_name } ">{{ 'todos.buttons.update' | translate }}</button>
+  <button mat-flat-button  class="tosave" *ngIf="!data?.isEdit" [mat-dialog-close]="{ modelValue: todosModal.value } ">{{ 'todos.buttons.update' | translate }}</button>
+  <button mat-flat-button class="abort" [mat-dialog-close]="false">{{ 'todos.buttons.cancel' | translate }}</button>
+  </div>
+  <div *ngIf="data?.isEdit && data.value.status === 'done'">
+    <button mat-flat-button class="abort" [mat-dialog-close]="false">{{ 'todos.buttons.cancel' | translate }}</button>
+  </div>
+  </div>

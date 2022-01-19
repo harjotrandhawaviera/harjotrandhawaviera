@@ -1,0 +1,67 @@
+@import "../../../styles/base/variables";
+
+.register {
+  display: flex;
+  .slogan-container {
+    padding-right: 104px;
+    @media (max-width: 1180px) {
+      padding-right: 40px;
+    }
+    @media (max-width: $screen-md-max) {
+      padding-right: 0px;
+    }
+  }
+  .form-wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 340px;
+    transition-duration: 0.6s;
+    @media (max-width: $screen-md-max) {
+      width: 300px;
+    }
+    h3 {
+      text-transform: none;
+      font-weight: 600;
+      margin-bottom: 50px;
+    }
+    .form-body {
+      form {
+        button {
+          margin: 15px 0;
+          line-height: 42px;
+        }
+      }
+    }
+
+    .login-link {
+      display: flex;
+      margin: 15px 0 25px;
+      color: $link-color;
+      a {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+.privacy {
+  display: flex;
+  flex-flow: column;
+  margin-top: 25px;
+}
+
+.temp-body {
+  padding: 30px 15px 15px;
+  background: #fff;
+}
+.form-footer {
+  display: flex;
+  background: #fff;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  margin: 3px 0 15px;
+  .btn-group {
+    float: right;
+  }
+}

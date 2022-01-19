@@ -1,0 +1,13 @@
+@import "variables";
+.section-button {
+  margin-top: 10px;
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+.mat-radio-button.col-xs-12 {
+  @media (max-width: $screen-sm-max) {
+    margin-top: 10px;
+  }
+}

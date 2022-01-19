@@ -1,0 +1,905 @@
+{
+  "jobs": {
+    "title": "Job-Übersicht",
+    "table": {
+      "title": "Berufsbezeichnung",
+      "id": "Job-ID",
+      "sitename": "POS",
+      "sitecity": "Stadt",
+      "siteaddress": "Straße und Hausnummer",
+      "agentName": "Verantwortlicher",
+      "sitezip": "PLZ",
+      "projectname": "Projekt",
+      "clientname": "Klient",
+      "categoryName": "Kategorie",
+      "matched": "Matched",
+      "status": "Status",
+      "datesNumber": "Termine",
+      "assignmentsNumber": "Stellenanzeige",
+      "openTendersNumber": "Ausschreibungen",
+      "createdAt": "Erstellungsdatum",
+      "createdBy": "Erstellt von",
+      "bookedAssignmentsNumber": "Einsätze (Gebucht)",
+      "finishedAssignmentsNumber": "Einsätze (Abgeschlossen)",
+      "unbookedAssignmentsNumber": "Verschiebungen",
+      "openUpcomingAssignmentsNumber": "Offene Einsätze",
+      "offersNumber": "Angebote",
+      "revenueTotal": "Gesamtumsatz",
+      "revenueAvg": "Durchschn. Umsatz/Tag",
+      "actions": {
+        "details": "Details",
+        "remove": "Löschen",
+        "dates": "Verschiebungen",
+        "assignments": "Buchungen",
+        "offers": "Stellenbewerbung durch Mitarbeiter",
+        "offers_overview": "Stellenbewerbung durch",
+        "tenders": "Stellenbörse",
+        "createTender": "Job veröffentlichen"
+      },
+      "remove": {
+        "title": "Job löschen",
+        "message": "Möchtest du den Job wirklich löschen?"
+      }
+    },
+    "filters": {
+      "client": "Kunde",
+      "project": "Projekt",
+      "agent": "Personalleiter",
+      "attributes": "Status",
+      "contractType": "Vertragstyp"
+    },
+    "fields": {
+      "attributes": {
+        "with_offer": "Offene Angebote"
+      }
+    },
+    "search-placeholder": "Name oder Job-Id",
+    "search": {
+      "label": "Name oder Job-Id",
+      "placeholder": "mind. 3 Zeichen"
+    },
+    "buttons": {
+      "create": "Neue Jobs anlegen"
+    },
+    "job-invite": {
+      "header": "Sende Einladung",
+      "fields": {
+        "client": "Client",
+        "project": "Projekt",
+        "job": "Job",
+        "publishedJob": "Veröffentlichte Stelle",
+        "city": "Stadt",
+        "postcode": "Postleitzahl",
+        "gender": {
+          "title": "Geschlecht",
+          "F": "weiblich",
+          "M": "männlich",
+          "D": "Vielfältig"
+        },
+        "age": "Altersgruppe",
+        "skills": "Fertigkeitsname",
+        "certificates": "Zertifikat",
+        "languages": {
+          "title": "Sprache",
+          "german": "Deutsch",
+          "english": "Englisch",
+          "french": "Französisch",
+          "turkish": "Türkisch",
+          "arabic": "Arabisch",
+          "italian": "Italienisch",
+          "spanish": "Spanisch",
+          "dutch": "Niederländisch",
+          "polish": "Polnisch",
+          "czech": "Tschechisch",
+          "other": "Andere"
+        },
+        "status": {
+          "title": "Status",
+          "active": "Active",
+          "expired": "Expired",
+          "scheduled": "Scheduled"
+        }
+      },
+      "table": {
+        "name": "Name",
+        "gender": "Geschlecht",
+        "age": "Alter",
+        "mobile": "Mobiltelefon",
+        "email": "Email",
+        "city": "Stadt",
+        "postcode": "Postleitzahl",
+        "date": "Erstellungsdatum",
+        "status": "Status"
+      },
+      "button": {
+        "send": "Sende Einladung",
+        "cancel": "Abbrechen"
+      }
+    },
+    "freelancer": {
+      "matching": {
+        "table": {
+          "shortTitle": "Job",
+          "categoryName": "Kategorie",
+          "sitecity": "Ort",
+          "numberOfTenders": "Termine",
+          "contractType": "Vertragstyp",
+          "details": ""
+        },
+        "header": "Jobangebote",
+        "header-invite": "Eingeladene Arbeitsplätze",
+        "buttons": {
+          "overview": "Alle anzeigen",
+          "details": "Details"
+        }
+      },
+      "not-matching": {
+        "table": {
+          "shortTitle": "Angebot",
+          "categoryName": "Kategorie",
+          "sitecity": "Ort",
+          "missingCertificates": "Fehlende Zertifikate",
+          "missingLocation": "Einsatzort",
+          "details": "",
+          "numberOfTenders": "Termine",
+          "remaining_term": "Restlaufzeit",
+          "missingContractType": "Fehlender Vertragstyp"
+        },
+        "header": "Nicht passende Jobangebote",
+        "buttons": {
+          "overview": "Alle anzeigen"
+        },
+        "missing-location": "Nicht übereinstimmend"
+      },
+      "list": {
+        "header": "Jobangebote",
+        "number-of-tenders": "{{count}} Termin(e)",
+        "date-range": "vom {{min}} - {{max}}",
+        "date": "am {{date}}"
+      },
+      "search-job-placeholder": "Jobname, Einsatzort oder Filiale",
+      "title": {
+        "details": "Jobdetails"
+      },
+      "buttons": {
+        "back": "Zurück zu den Jobangeboten"
+      },
+      "details": {
+        "job": "Job",
+        "tender": "Termine",
+        "buttons": {
+          "select": "verbindlich anbieten",
+          "reject-offer": "Job ablehnen",
+          "submit-offer": "Verbindliche Angebote abgeben",
+          "inquery": "Du hast noch eine Frage?"
+        },
+        "submit-offer": {
+          "title": "Verbindliche Angebote abgeben",
+          "message": "Fast geschafft:\nSobald du bestätigst, gibst du uns ein verbindliches Angebot für diesen Einsatz ab. Nachdem wir zugestimmt haben, ist ein verbindlicher Vertrag geschlossen.",
+          "hint": "Du kannst erst ein Angebot abgeben, nachdem du mindestens einen Termin ausgewählt hast.",
+          "check_in": "Mit Umfrage-Link bestätigen",
+          "check_out": "Bestätigen ohne Umfrage-Link",
+          "placeholder": {
+            "check_in": "Link zur Check-in-Umfrage",
+            "check_out": "Link zur Check-out-Umfrage"
+          },
+          "button": {
+            "abort": "Abbrechen",
+            "accept": "einreichen"
+          }
+        },
+        "reject": {
+          "title": "Ausschreibungen ablehnen",
+          "message": "Bist du sicher, dass du diese Angebote ablehnen möchtest?",
+          "placeholder": "Gib hier einen Grund an."
+        },
+        "inquery": {
+          "title": "Rückfragen",
+          "message": "Du hast eine Frage zu den ausgewählten Ausschreibungen?",
+          "placeholder": "Gib hier bitte deine Frage ein.",
+          "hint": "Du kannst uns deine Frage(n) stellen, nachdem du mindestens einen Termin ausgewählt hast."
+        },
+        "deactivated-info": "Du kannst keine Angebote abgeben oder Fragen zu Ausschreibungen stellen, da dein Konto deaktiviert ist.",
+        "blocked-info": {
+          "legal": "Du kannst keine Angebote abgeben oder Fragen zu Ausschreibungen stellen, da uns noch Unterlagen von dir fehlen oder diese von uns noch nicht geprüft wurden.",
+          "missing-gtc": "Du kannst keine Angebote abgeben oder Fragen zu Ausschreibungen stellen, du hast den neuen Rahmenvertrag noch nicht akzeptiert."
+        },
+        "update-profile": "Mein Profil (Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}}) öffnen.",
+        "accept-agb": "Mein Profil (Arbeit {contract_type_identifier, select, freelancer { über Gewerbeschein}  other{ über Lohnsteuerkarte}}) öffnen zum Akzeptieren",
+        "pending-info": "Wir prüfen aktuell deine Angaben zu diesem Vertragstyp. Du kannst wieder Angebote abgeben, sobald wir deine Änderungen geprüft haben."
+      },
+      "filters": {
+        "type": "Klasse der Ausschreibung",
+        "dates": "Termine",
+        "postcodes": "Postleitzahl des Einsatzortes",
+        "certificate": "Zertifikat",
+        "contractType": "Vertragstyp"
+      }
+    },
+    "client": {
+      "list": {
+        "header": "Jobs",
+        "table": {
+          "title": "Name",
+          "projectname": "Projekt",
+          "clientname": "Kunde",
+          "agentName": "Agent",
+          "status": "Status",
+          "shortTitle": "Name",
+          "sitename": "POS",
+          "siteNameNumber": "POS",
+          "siteaddress": "Straße und Hausnummer",
+          "sitezip": "PLZ",
+          "sitecity": "Stadt",
+          "categoryName": "Kategorie",
+          "datesNumber": "Termine",
+          "assignmentsNumber": "Einsätze",
+          "openTendersNumber": "Ausschreibungen",
+          "bookedAssignmentsNumber": "Gebuchte Einsätze",
+          "finishedAssignmentsNumber": "Abgeschlossene Einsätze",
+          "offersNumber": "Angebote",
+          "openUpcomingAssignmentsNumber": "Offene Einsätze",
+          "revenueTotal": "Gesamtumsatz",
+          "revenueAvg": "Durchschn. Umsatz/Tag",
+          "siteClientContact": "Außendienst",
+          "search-placeholder": "Nach Jobs (Name oder ID) suchen (mind. 3 Zeichen)",
+          "details": "",
+          "actions": {
+            "details": "Details",
+            "offers": "Angebote",
+            "remove": "Löschen",
+            "createTender": "Termine veröffentlichen"
+          },
+          "remove": {
+            "title": "Job löschen",
+            "message": "Möchtest du den Job wirklich löschen?"
+          }
+        },
+        "filters": {
+          "project": "Projekt",
+          "contractType": "Vertragstyp"
+        },
+        "dateNumber": "{{datesNumber}} Termin",
+        "datesNumber": "{{datesNumber}} Termine",
+        "assignmentNumber": "{{assignmentsNumber}} Einsatz",
+        "assignmentsNumber": "{{assignmentsNumber}} Einsätze",
+        "bookedAssignmentNumber": "{{bookedAssignmentsNumber}} gebuchter Einsatz",
+        "bookedAssignmentsNumber": "{{bookedAssignmentsNumber}} gebuchte Einsätze",
+        "finishedAssignmentNumber": "{{finishedAssignmentsNumber}} abgeschlossener Einsatz",
+        "finishedAssignmentsNumber": "{{finishedAssignmentsNumber}} abgeschlossene Einsätze",
+        "openTenderNumber": "{{openTendersNumber}} offene Ausschreibung",
+        "openTendersNumber": "{{openTendersNumber}} offene Ausschreibungen",
+        "openUpcomingAssignmentNumber": "{{openUpcomingAssignmentsNumber}} offener Einsatz",
+        "openUpcomingAssignmentsNumber": "{{openUpcomingAssignmentsNumber}} offene Einsätze",
+        "offerNumber": "{{offersNumber}} verfügbares Angebot",
+        "offersNumber": "{{offersNumber}} verfügbare Angebote",
+        "search-placeholder": "Jobname, Einsatzort oder Filiale",
+        "buttons": {
+          "overview": "Zeige alle",
+          "details": "Details",
+          "create": "Neue Jobs anlegen"
+        }
+      }
+    },
+    "rate-types": {
+      "per_hour": "Pro Stunde",
+      "per_shift": "Pro Schicht",
+      "undefined": ""
+    } ,
+    "shortlist": {
+      "title": "Jobs in der engeren Auswahl",
+      "table": {
+        "search-placeholder": "Suche nach Mitarbeiter in Angeboten (mind. 3 Zeichen)",
+        "jobTitle": "Berufsbezeichnung",
+        "sitePlace": "Standort der Site",
+        "appointedAt": "Datum",
+        "expired_at": "Gültig bis",
+        "expiredAt": "Gültig bis",
+        "freelancerName": "Name des Mitarbeiters",
+        "actions": {
+          "details": "Einzelheiten"
+        },
+        "filter": {
+          "job": "Arbeit"
+        },
+        "details": "",
+        "filters": {
+          "state": "Bewerbungsstatus",
+          "job": "Arbeit",
+          "project": "Projekt",
+          "site": "POS",
+          "client": "Kundenname",
+          "agent": "Agentin",
+          "dates": "Stellenausschreibung (von - bis)",
+          "contractType": "Vertragstyp",
+          "freelancer": "Mitarbeiter"
+        }
+      },
+      "download": {
+          "id": "ID",
+          "freelancer_id": "Mitarbeiter-ID",
+          "job":"Berufsbezeichnung",
+          "site_place": "Standort der Site",
+          "appointed_at": "Datum",
+          "freelancer_name": "Name des Mitarbeiters",
+          "expired_at":"Gültig bis"
+      }
+    }
+  },
+  "job": {
+    "title": {
+      "invite-job": "Jobdetails einladen",
+      "details": "Jobdetails",
+      "edit": "Job bearbeiten",
+      "new": "Neuer Job"
+    },
+    "buttons": {
+      "create": "Job hinzufügen",
+      "edit": "Bearbeiten",
+      "update": "Änderungen speichern",
+      "cancel": "Abbrechen",
+      "cancel-edit": "Abbrechen",
+      "back": "Zurück zur Job-Übersicht",
+      "create-tenders": "Job veröffentlichen",
+      "pending-offers": "Unbearbeitete Angebote"
+    },
+    "create-tenders": {
+      "section": {
+        "dates": "Terminangaben",
+        "tender": "Ausschreibungsdetails",
+        "assignment": "Einsatzdetails",
+        "job": "Jobdetails",
+        "criteria": "Job Posting Criteria"
+      },
+      "title": {
+        "edit": "Job veröffentlichen",
+        "details": "Bestätigung der Terminveröffentlichung"
+      },
+      "buttons": {
+        "edit": "Bearbeiten",
+        "update": "Ausschreibungen erzeugen",
+        "cancel": "Abbrechen",
+        "cancel-edit": "Abbrechen",
+        "back": "Zurück zur Job-Übersicht"
+      },
+      "dates": "{{count}} Termin ausgewählt",
+      "more-dates": "{{count}} Termine ausgewählt",
+      "result": {
+        "not-created": "Folgende Termine konnten nicht ausgeschrieben werden: {{failed}}",
+        "created-tender": "{{count}} Termin wurde ausgeschrieben.",
+        "created-tenders": "{{count}} Termine wurden ausgeschrieben."
+      },
+      "submitting": "Einsätze werden ausgeschrieben...",
+      "budget-exceeded": "Das Budget ist nicht ausreichend. Bitte lösche einige Einsätze.",
+      "save": {
+        "title": "Job veröffentlichen?",
+        "message": "Möchten Sie den Job jetzt veröffentlichen?"
+      }
+    },
+    "offers": {
+      "section": {
+        "pending-offers": "Unbearbeitete Angebote",
+        "job": "Jobdetails"
+      },
+      "title": {
+        "edit": "Anwendungsübersicht"
+      },
+      "buttons": {
+        "update": "Angebote annehmen",
+        "cancel": "Abbrechen",
+        "cancel-edit": "Abbrechen",
+        "back": "Zurück zur Job-Übersicht",
+        "accept-all": "Alle Angebote auswählen",
+        "reset": "Zurücksetzen"
+      },
+      "accept": {
+        "title": "Ausgewählte Angebote annehmen?",
+        "message": "Möchtest Du die ausgewählten Angebote annehmen?"
+      },
+      "no-pending": "Keine unbearbeiteten Angebote vorhanden",
+      "confirmation": {
+        "title": "Angebote annehmen",
+        "message": "Es konnten <b>{{success}}</b> Angebot(e) angenommen werden\n<b>{{failures}}</b> Angebot(e) konnten nicht angenommen werden.",
+        "buttons": {
+          "cancel": "Zurück",
+          "confirm": "Zur Einsatzübersicht"
+        }
+      }
+    },
+    "details": {
+      "fields": {
+        "jobName": "Job",
+        "contractType": "Vertragstyp",
+        "could": "Kunde",
+        "projectCat": "Projektkategorie",
+        "subs_company": "Filiale",
+        "required_cert": "Benötigte Zertifikate",
+        "required_operation_train": "Benötigte Einsatzschulungen",
+        "description_goal": "Beschreibung/Ziel des Projektes",
+        "general_brief": "Allgemeines Briefing",
+        "term": "TERMINE",
+        "registering": "When registering",
+        "salesReport": "Sales report",
+        "photoDocumentation": "Photo documentation:",
+        "compensation": "Task-based compensation",
+        "Possible_fee": "Possible fee",
+        "rate_card": "Rate Card",
+        "offer_binding": "Select Shift",
+        "location_not_match": "Location doesn't Match",
+        "contract_mismatched": "Contract type mismatched"
+      }
+    }
+  },
+  "dates": {
+    "title": {
+      "list": "Termin-Übersicht"
+    },
+    "state": {
+      "draft": "Entwurf",
+      "active": "Offen"
+    },
+    "list": {
+      "title": "Termine"
+    },
+    "table": {
+      "search-placeholder": "Nach Terminen suchen (mind. 3 Zeichen)",
+      "id": "ID",
+      "jobtitle": "Job",
+      "appointedAt": "Datum",
+      "start_time": "Beginn um",
+      "finish_time": "Ende um",
+      "jobName": "Job-Titel",
+      "role_name": "Role",
+      "shift_name": "Shift",
+      "actions": {
+        "edit": "Details",
+        "copy": "Kopieren",
+        "assignments": "Einsätze",
+        "createAssignment": "Einsatz hinzufügen",
+        "remove": "Löschen"
+      },
+      "remove": {
+        "title": "Termin löschen",
+        "message": "Möchtest du den Termin wirklich löschen?"
+      }
+    },
+    "filters": {
+      "job": "Job",
+      "dates": "Einsätze (von - bis)",
+      "project": "Projekt",
+      "agent": "Verantwortlicher"
+    },
+    "buttons": {
+      "add": "Termine hinzufügen",
+      "back": "Zurück zur Job-Übersicht"
+    }
+  },
+  "date": {
+    "title": {
+      "new": "Neuer Termin",
+      "details": "Termindetails",
+      "edit": "Termin bearbeiten"
+    },
+    "fields": {
+      "start_time": {
+        "label": "Beginn"
+      },
+      "finish_time": {
+        "label": "Ende"
+      },
+      "appointed_at": {
+        "label": "Datum"
+      }
+    },
+    "create": {
+      "selected_dates": "Ausgewählte Termine",
+      "selected_range": "Zeitraum der Termine"
+    },
+    "buttons": {
+      "create": "Termine hinzufügen",
+      "save": "Termin speichern",
+      "update": "Änderungen speichern",
+      "edit": "Termin bearbeiten",
+      "cancel": "Abbrechen",
+      "cancel-edit": "Abbrechen",
+      "confirm": "OK",
+      "remove": "Termin löschen",
+      "back": "Zurück zur Termin-Übersicht"
+    },
+    "remove": {
+      "title": "Termin löschen",
+      "message": "Möchtest du den Termin wirklich löschen?"
+    }
+  },
+  "assignments": {
+    "title": "Übersicht der Buchungen",
+    "search-placeholder": "Jobname, Einsatzort oder Filiale",
+    "table": {
+      "search-placeholder": "Nach Einsätze suchen (mind. 3 Zeichen)",
+      "id": "ID",
+      "start_time": "Start",
+      "finish_time": "Ende",
+      "category": "Kategorie",
+      "clientName": "Kunde",
+      "address": "Adresse",
+      "status": "Status",
+      "jobTitle": "Jobname",
+      "appointedAt": "Datum",
+      "appointedTimeLabel": "Datum",
+      "siteName": "Einsatzort (POS)",
+      "siteFullAddress": "Einsatzort (POS)",
+      "sitePlace": "Stadt",
+      "budgetName": "Budget",
+      "budgetValue": "Gesamt",
+      "orderName": "Auftrag",
+      "orderedAt": "Auftragsdatum",
+      "invoiceTotal": "FL-Rechnungssumme",
+      "invoiceState": "FL-Rechnung",
+      "revenueTotal": "Gesamtumsatz",
+      "billsTotal": "Kunden-Rechnungssumme",
+      "billsNumber": "Kunden-Rechnungsnummer",
+      "budgetConsumed": "Verbraucht",
+      "freelancerName": "Fachberater",
+      "assignment_budget": "Kosten Kunde (ohne Korrektur)",
+      "assignment_budget_correction": "Korrektur (Kosten Kunde)",
+      "planned_costs": "Kosten Kunde (inkl Korrektur)",
+      "comment": "Kommentar",
+      "additionalCosts": "Vergütung",
+      "clientProperties": "Kundenspezifische Eigenschaften",
+      "invoicePaymentTotal": "FL-Rechnungssumme (Skonto)",
+      "incentiveModel": "Pauschalen und Skonto",
+      "wage": "Stundensatz",
+      "createdAt": "Angelegt am",
+      "createdBy": "Angelegt von",
+      "modifytime": {
+        "title": "Anwesenheit bestätigen",
+        "message": "Möchtest du die gemeldeten Zeiten für diesen Einsatz ändern?",
+        "placeholder": "HH:mm - HH:mm (Beginn - Ende)"
+      },
+      "update-comment": {
+        "title": "Kommentar zum Einsatz",
+        "message": "Möchtest du den Kommentar für diesen Einsatz ändern?",
+        "placeholder": "Kommentar"
+      },
+      "filters": {
+        "job": "Job",
+        "status": "Status",
+        "states": "Status",
+        "dates": "Einsätze (von - bis)",
+        "freelancer": "Fachberater",
+        "site": "POS",
+        "project": "Projekt",
+        "invoice_state": "Rechnungsstatus",
+        "client_invoice": "Kundenrechnung",
+        "agent": "Personalleiter",
+        "creator": "Angelegt von (Kunde/AD)",
+        "created": "Angelegt am (von - bis)",
+        "client": "Kunde",
+        "contractType": "Vertragstyp"
+      },
+      "actions": {
+        "details": "Details",
+        "remove": "Löschen",
+        "tender_create": "Neue Ausschreibung",
+        "tender_update": "Ausschreibung",
+        "modifytime": "Anwesenheit bestätigen",
+        "invoicepreparation": "Rechnung vorbereiten",
+        "update-comment": "Kommentar",
+        "update-freelancer-costs-net": "Fachberater Honorar (netto) erfassen",
+        "update-correction": "Geplante Kosten für den Kunden korrigieren"
+      },
+      "remove": {
+        "title": "Einsätze löschen",
+        "message": "Bist du sicher, dass du den Einsatz löschen möchtest?\nEvtl. bestehende Ausschreibungen werden geschlossen."
+      }
+    },
+    "labels": {
+      "planned-time": "Geplante Zeiten",
+      "reported-time": "Gemeldete Zeiten",
+      "planned-costs": "Geplante Kosten (Kunde)",
+      "freelancer-costs-net": "Gemeldetes Honorar",
+      "feedback": "Feedback",
+      "documents": {
+        "header": "Dokumente",
+        "report": "Einsatzbericht",
+        "questionnaire": "Stellungnahme",
+        "picture-documentation": "Fotodokumentation",
+        "freelancer": {
+          "report": "Einsatzbericht",
+          "questionnaire": "Stellungnahme",
+          "picture-documentation": "Fotodokumentation"
+        },
+        "tax_card": {
+          "report": "Arbeitszeitnachweis",
+          "questionnaire": "Stellungnahme",
+          "picture-documentation": "Fotodokumentation"
+        },
+        "revenue": "Umsatzmeldung",
+        "invoice": "Rechnung",
+        "not-attached": "Nicht beigefügt",
+        "attached": "Beigefügt"
+      },
+      "comment": "Kommentar"
+    },
+    "fields": {
+      "states": {
+        "null": "Nicht definiert",
+        "open": "Keine Ausschreibung vorhanden",
+        "tendered": "Ausschreibung erzeugt",
+        "booked": "Fachberater gebucht",
+        "preparation": "Nachbereitung erforderlich",
+        "missing-docs": "Fehlende Dokumente",
+        "invoiced": "In Rechnung gestellt",
+        "done": "Abgeschlossen",
+        "preparation,invoiced": "Abgeschlossen"
+      },
+      "client_invoice": {
+        "not_invoiced": "Abrechenbar",
+        "invoiced": "Abgerechnet"
+      },
+      "missing_docs": {
+        "only_missing_docs": "Nur fehlende Dokumente"
+      }
+    },
+    "presence": {
+      "header": "Unbestätigte Anwesenheiten",
+      "table": {
+        "jobTitle": "Job Name",
+        "freelancerName": "Fachberater",
+        "siteCity": "Stadt",
+        "startDateTime": "Startzeit",
+        "details": ""
+      },
+      "buttons": {
+        "overview": "Zeige alle",
+        "details": "Details"
+      }
+    },
+    "ratings": {
+      "label": "Einsatzbewertungen",
+      "rating": {
+        "value-1": "sehr schlecht",
+        "value-2": "schlecht",
+        "value-3": "durchschnittlich",
+        "value-4": "gut",
+        "value-5": "sehr gut",
+        "comment": "Kommentar"
+      },
+      "buttons": {
+        "submit": "Einsatzbewertung speichern"
+      }
+    },
+    "freelancer": {
+      "header": "Meine aktuellen Jobs",
+      "buttons": {
+        "overview": "Alle anzeigen",
+        "details": "Details",
+        "preparation": "Fehlende Dokumente hochladen"
+      },
+      "table": {
+        "jobTitle": "Berufsbezeichnung",
+        "jobShortTitle": "Job",
+        "staffMember": "Mitarbeiter",
+        "startDateTime": "Verfallsdatum",
+        "startDateTimeLabel": "Eingangsdatum",
+        "details": ""
+      },
+      "fields": {
+        "states": {
+          "null": "Nicht definiert",
+          "booked": "Gebucht",
+          "preparation": "Nachbereitung erforderlich",
+          "invoiced": "In Rechnung gestellt"
+        },
+        "attributes": {
+          "only_upcoming": "Anstehende Einsätze"
+        }
+      }
+    },
+    "selection": {
+      "hint": "Bitte wähle {single, select, true {den Einsatz} other {die Einsätze}} aus."
+    },
+    "download": {
+      "confirm": {
+        "title": "Download starten",
+        "message": "Der Download kann einige Zeit in Anspruch nehmen.\nÄnderungen an den Daten, die in der Zeit des laufenden Downloads erfolgen, werden unter Umständen nicht erfasst oder können zu einem fehlerhaften Download führen.",
+        "buttons": {
+          "cancel": "Abbrechen",
+          "confirm": "Download starten"
+        }
+      }
+    },
+    "buttons": {
+      "cancel-booking": "Alle Buchungen stornieren",
+      "tender-assignments": "Alle Jobs veröffentlichen"
+    },
+    "cancel-booking": {
+      "title": "Einsätze absagen",
+      "message": "Möchtest du wirklich alle ausgewählten Einsätze (Anzahl: <b>{{count}}</b>) absagen?",
+      "disabled-hint": "Bitte aktiviere den Status-Filter 'Mitarbeiter gebucht' um diese Funktion zu nutzen."
+    },
+    "tender-assignments": {
+      "title": "Einsätze ausschreiben",
+      "message": "Möchtest du wirklich alle ausgewählten Einsätze (Anzahl: <b>{{count}}</b>) ausschreiben? \n Die Ausschreibungen werden für den PLZ Bereich ausgeschrieben, der als Standardeinstellung im POS eingetragen ist!",
+      "placeholder": "10000 - 99999",
+      "disabled-hint": "Bitte aktiviere den Status-Filter 'Keine Stellenausschreibung verfügbar' sowie den Datumsfilter ('ab mind. heute') um diese Funktion zu nutzen."
+    },
+    "client-created": {
+      "counter-hint": "Anzahl der von Kunden/Außendienstlern seit dem {{start}} angelegten Einsätze."
+    }
+  },
+  "checkins": {
+    "title": "Unbestätigte Anwesenheiten",
+    "search-placeholder": "Jobname, Einsatzort oder Filiale",
+    "confirm": {
+      "title": "Anwesenheit bestätigen",
+      "message": "Du kannst die Start-Zeit hier bestätigen oder ändern.",
+      "placeholder": "HH:mm"
+    },
+    "table": {
+      "address": "Adresse",
+      "appointedAt": "Datum",
+      "jobTitle": "Job Titel",
+      "siteName": "POS",
+      "sitePlace": "Stadt",
+      "clientName": "Kunde",
+      "start_time": "Beginn",
+      "finish_time": "Ende",
+      "freelancerName": "Fachberater",
+      "freelancerEmail": "Email",
+      "freelancerPhone": "Phone",
+      "siteClientContact": "Außendienst",
+      "confirm": {
+        "title": "Anwesenheit bestätigen",
+        "message": "Du kannst die Start-Zeit hier bestätigen oder ändern.",
+        "placeholder": "HH:mm"
+      },
+      "actions": {
+        "details": "Details",
+        "confirm": "Anwesenheit bestätigen"
+      },
+      "filters": {
+        "freelancer": "Fachberater",
+        "site": "POS",
+        "project": "Projekt"
+      }
+    }
+  },
+  "assignment": {
+    "confirm-offer": {
+      "placeholder": {
+        "check_in": "Link zur Check-in-Umfrage",
+        "check_out": "Link zur Check-out-Umfrage"
+      }
+    },
+    "title": {
+      "new": "Neuer Einsatz",
+      "details": "Buchungsdetails",
+      "edit": "Einsatz bearbeiten",
+      "date": "Termin: {{appointedAt}}",
+      "time": "{{start_time}} - {{finish_time}}"
+    },
+    "hint": {
+      "tendered": "Dieser Einsatz kann nicht bearbeitet werden, da eine geplante oder aktive Ausschreibung zu diesem Einsatz vorhanden ist.",
+      "booked": "Diese Buchung kann nicht bearbeitet werden, da für diesen Einsatz bereits ein Mitarbeiter gebucht wurde.",
+      "preparation": "Diese Buchung kann nicht bearbeitet werden, da sie bereits durchgeführt wurde.",
+      "invoiced": "Dieser Einsatz kann nicht bearbeitet werden, da er bereits in Rechnung gestellt wurde."
+    },
+    "hint-missing-checkins": "Dieser Einsatz ist bereits gebucht, aber der Fachberater hat seine Anwesenheit nicht bestätigt. Bestätige die Anwesenheit hier: ",
+    "hint-missing-checkins-link": "Anwesenheit bestätigen",
+    "fields": {
+      "start_time": {
+        "label": "Beginn"
+      },
+      "finish_time": {
+        "label": "Ende"
+      },
+      "reported": {
+        "label": "Gemeldete Einsatzzeit"
+      },
+      "state": {
+        "label": "Status"
+      },
+      "comment": {
+        "label": "Kommentar",
+        "placeholder": "Kommentar"
+      },
+      "budget-correction": {
+        "label": "Korrektur - Kosten Kunde",
+        "hint": "Differenz zu ursprünglich geplanten Kosten",
+        "placeholder": "Differenz (+/- X,XX €) zu geplanten Kosten",
+        "none": "0,00 €"
+      },
+      "planned-costs": {
+        "label": "Kosten Kunde",
+        "hint": "inkl. eventueller Korrekturen"
+      },
+      "freelancer-costs-net": {
+        "label": "Gemeldetes Fachberater Honorar",
+        "hint": "vom Fachberater in Rechnung gestelltes Honorar (netto)",
+        "placeholder": "Honorarkosten in €",
+        "none": "noch nicht erfasst"
+      }
+    },
+    "booked": {
+      "name": "Fachberater",
+      "mobile": "Telefon (mobil)",
+      "email": "E-Mail"
+    },
+    "buttons": {
+      "create": "Einsatz hinzufügen",
+      "save": "Einsatz speichern",
+      "update": "Änderungen speichern",
+      "edit": "Einsatz Buchung",
+      "cancel": "Abbrechen",
+      "confirm": "OK",
+      "remove": "Einsatz löschen",
+      "back": "Zurück zur Buchungsübersicht",
+      "create-tender": "Ausschreibung erstellen",
+      "update-tender": "Zur Ausschreibung",
+      "cancel-booking": "Buchung stornieren",
+      "booked-details": "Zum Fachberater",
+      "survey-link": "Umfrage-Link aktualisieren",
+      "confirmOffer": "Angebot annehmen",
+      "successMessage": "Umfragelink erfolgreich aktualisiert",
+      "abort": "Abbrechen",
+      "accept": "einreichen"
+    },
+    "delete": {
+      "title": "Einsatz Buchung",
+      "message": "Möchtest du den Einsatz wirklich löschen?"
+    },
+    "cancel-booking": {
+      "title": "Buchung stornieren",
+      "message": "Möchtest du den Einsatz wirklich absagen?"
+    },
+    "update-hours": {
+      "title": "Einsatzzeiten bestätigen",
+      "message": "Möchtest du die gemeldeten Zeiten für diesen Einsatz ändern?",
+      "placeholder": "HH:mm - HH:mm (Beginn - Ende)",
+      "buttons": {
+        "cancel": "Abbrechen",
+        "confirm": "Speichern"
+      }
+    },
+    "update-comment": {
+      "title": "Kommentar zur Einsätze",
+      "message": "Möchtest du den Kommentar für diesen Einsatz ändern?",
+      "placeholder": "Kommentar",
+      "buttons": {
+        "cancel": "Abbrechen",
+        "confirm": "Speichern"
+      }
+    },
+    "update-correction": {
+      "title": "Budgetanpassung",
+      "message": "Möchtest du die geplanten Kosten für den Kunden für diesen Einsatz anpassen?",
+      "placeholder": "Differenz (+/-) zu den geplanten Kosten",
+      "buttons": {
+        "cancel": "Abbrechen",
+        "confirm": "Speichern"
+      }
+    },
+    "update-freelancer-costs-net": {
+      "title": "Vom Fachberater erfasstes Honorar (netto)",
+      "message": "Möchtest du das vom Fachberater für diesen Einsatz in Rechnung gestellte Honorar erfassen?",
+      "placeholder": "In Rechnung gestellte Honorarkosten in €",
+      "buttons": {
+        "cancel": "Abbrechen",
+        "confirm": "Speichern"
+      }
+    },
+    "additional-documents": {
+      "label": "Jobdetails",
+      "report": "Einsatzbericht",
+      "questionnaire": "Stellungnahme"
+    },
+    "revenue": "Umsatzmeldung",
+    "online-questionnaire": {
+      "label": "Stellungnahme"
+    },
+    "feedback": {
+      "label": "Feedback"
+    }
+  }
+}

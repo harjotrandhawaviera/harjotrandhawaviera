@@ -1,0 +1,21 @@
+.contact {
+  display: flex;
+  flex-flow: column;
+  // max-width: 425px;
+  .temp-body {
+    padding: 30px 15px 15px;
+    background: #fff;
+  }
+  .link-cont {
+    display: flex;
+    background: #fff;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 3px 0 15px;
+    a.btn {
+      font-weight: 400;
+      text-transform: none;
+    }
+  }
+}

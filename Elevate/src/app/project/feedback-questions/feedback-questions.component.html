@@ -1,0 +1,25 @@
+<div class="row" *ngIf="!(feedbackQuestions && feedbackQuestions.length)">
+  <p class="col-md-12" translate="projects.feedback-questions.none"></p>
+</div>
+<div class="row" *ngIf="feedbackQuestions && feedbackQuestions.length">
+  <div class="col-xs table-wrapper">
+    <div class="table-inner-wrapper">
+      <table class="search-table" mat-table [dataSource]="dataSource">
+        <!-- Name Column -->
+        <ng-container matColumnDef="question">
+          <th mat-header-cell *matHeaderCellDef> {{'projects.feedback-questions.table.question' | translate}}  </th>
+          <td mat-cell *matCellDef="let element"> {{element.question}} </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> {{'projects.feedback-questions.table.translatedType' | translate}}  </th>
+          <td mat-cell *matCellDef="let element"> {{'projects.feedback-questions.fields.feedback.' + element.type | translate}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+
+    <app-paginator [onlyCount]="true" [pageSize]="feedbackQuestions.length" [length]="feedbackQuestions.length"></app-paginator>
+  </div>
+</div>

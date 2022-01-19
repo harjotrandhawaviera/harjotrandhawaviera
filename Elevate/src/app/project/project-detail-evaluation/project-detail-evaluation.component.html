@@ -1,0 +1,59 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <label translate="projects.evaluation.filter.date"></label>
+  </div>
+  <!-- <div class="col-md-4 daterange" data-filter-daterange data-field="evaluation.date.selected"></div> -->
+  <div class="col-xs-12 padding-none">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <mat-form-field class="full-width">
+          <mat-label>{{ "ui.filter.dates.min" | translate }}</mat-label>
+          <input
+            matInput 
+            [matDatepicker]="startAtPicker"
+            [max]="endDate" autocomplete="off"
+            [(ngModel)]="startDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startAtPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startAtPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <mat-form-field class="full-width">
+          <mat-label>{{ "ui.filter.dates.max" | translate }}</mat-label>
+          <input
+            matInput
+            [min]="startDate" autocomplete="off"
+            [matDatepicker]="endAtPicker"
+            [(ngModel)]="endDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endAtPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endAtPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 btn-group-vertical">
+    <button
+      type="button"
+      mat-flat-button
+      color="accent"
+      translate="projects.evaluation.buttons.download-report"
+      (click)="downloadReport()"
+    ></button>
+    <button
+      type="button"
+      mat-flat-button
+      color="accent"
+      translate="projects.evaluation.buttons.download-feedback"
+      (click)="downloadFeedback()"
+    ></button>
+  </div>
+</div>

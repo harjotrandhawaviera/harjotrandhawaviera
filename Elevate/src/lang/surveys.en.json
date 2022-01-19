@@ -1,0 +1,62 @@
+{
+  "surveys": {
+    "details": {
+      "show": "{type, select, questionnaire {{Questionnaire}} feedback {{Feedback}} other {{Poll}}} for the {{date}} Show",
+      "show-questionnaire": "Questionnaire for {{date}}",
+      "show-feedback": "Feedback for {{date}}",
+      "show-other": "Poll for {{date}}",
+      "create": "{type, select, questionnaire {{Questionnaire}} feedback {{Feedback}} other {{Poll}}} for the {{date}} Create",
+      "create-questionnaire": "Answer the Questionnaire for {{date}}",
+      "create-feedback": "Answer the Feedback for {{date}}",
+      "create-other": "Answer the Poll for {{date}}",
+      "not-available": "{type, select, questionnaire {{No Questionnaire}} feedback {{No Feedback}} other {{No Poll}}} for the {{date}} Not Available.",
+      "not-available-questionnaire": "No Questionnaire for {{date}}",
+      "not-available-feedback": "No Feedback for {{date}}",
+      "not-available-other": "No Poll for {{date}}"
+    },
+    "questionnaire": {
+      "title": "Questionnaire",
+      "hint-create": "Before you enter the mission report and the sales report, we need some more information from you.",
+      "hint": "Please answer the following questions truthfully. If you have to answer a question with 'no', please give us a reason for this.\nThank you!",
+      "cancel-saving": "Answering the question is cancelled.",
+      "answer": {
+        "yes": "True",
+        "no": "False",
+        "comment": "Reason/comment on the Question {{index}}"
+      },
+      "review": {
+        "comment": "Comment on the statement - from the agent"
+      }
+    },
+    "feedback": {
+      "title": "Feedback",
+      "hint-create": "",
+      "hint": "Please give us some more feedback on how your assignment went.\nThank you!",
+      "cancel-saving": "Responding to the feedback has been cancelled.",
+      "answer": {
+        "yes": "Yes",
+        "no": "No",
+        "comment": "Reason/comment on the Question {{index}}",
+        "text": "Answer to Question {{index}}"
+      },
+      "review": {
+        "comment": "Comment on Feedback - from the agent"
+      }
+    },
+    "buttons": {
+      "submit": "Save",
+      "cancel": "Cancel",
+      "close": "Close"
+    },
+    "table": {
+      "id": "ID",
+      "createdAt": "Created On",
+      "commentedAt": "Commented On",
+      "comment": "Comment",
+      "commenterName": "Commented By",
+      "jobTitle": "Job",
+      "appointedAt": "Date of Deployment",
+      "freelancerName": "Staff Member Name"
+    }
+  }
+}

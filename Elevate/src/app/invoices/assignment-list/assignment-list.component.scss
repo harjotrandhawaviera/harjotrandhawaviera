@@ -1,0 +1,19 @@
+.search-table {
+  th {
+    min-width: 100px;
+  }
+}
+.col-select {
+  min-width: 50px !important;
+}
+.col-incentiveModel,
+.col-additionalCosts {
+  min-width: 200px;
+  font-size: small;
+}
+.table-wrapper {
+  width: 100%;
+  .table-inner-wrapper {
+    width: 100%;
+  }
+}

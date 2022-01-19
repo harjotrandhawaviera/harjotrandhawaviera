@@ -1,0 +1,52 @@
+<h2>
+  Welcome to our website!
+</h2>
+<div class="row">
+  <div class="col-md-10">
+    <p>You have passed the first hurdle of registration.</p>
+    <p>
+      The second step is to create your profile with us.
+    </p>
+    <p>
+      Step by step you can provide us with everything - from references and education to photos for your sedcard.
+      The sooner your profile is complete, the sooner we can activate you.
+    </p>
+
+    <div class="row welcome-video" data-ng-if="profile.onboardingVideoUrl">
+      <iframe data-ng-src="{{profile.onboardingVideoUrl}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div data-ng-if="profile.missingContractTypes === false">
+      <p>
+        You are almost there so let's get started so we can provide you with great jobs.
+      </p>
+      <p>
+        <a class="btn btn-primary" data-ui-sref="app.profile.master">To the data entry</a>
+      </p>
+    </div>
+
+    <div class="row" data-ng-if="profile.missingContractTypes" >
+      <div class="alert alert-warning">
+        <div data-translate-once="profile.onboarding.missing-contract-type"></div>
+
+        <p>
+          <a class="btn btn-primary" data-ui-sref="app.profile.contract_freelancer" >Working as a self-employed person with a trade license</a>
+          <a class="btn btn-primary" data-ui-sref="app.profile.contract_tax_card" >Work as an employee on income tax basis</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row symbol-legend">
+  <div class="col-md-12">
+    <h4>Symbollegende</h4>
+    <ul class="list-unstyled">
+      <li><i class="fa p4y p4y-pencil-circle black"></i>Currently in progress.</li>
+      <li><i class="fa p4y p4y-check-sign-circle"></i>Data successfully saved.</li>
+      <li><i class="fa p4y p4y-check-sign-circle success"></i>Data successfully confirmed by Staffing Manager.</li>
+      <li><i class="fa p4y p4y-exclamation-circle"></i>Data rejected by Staffing manager, possibly incomplete.
+      </li>
+      <li><i class="fa p4y p4y-lock-circle gray-medium"></i>Processing is currently not possible.</li>
+    </ul>
+  </div>
+</div>

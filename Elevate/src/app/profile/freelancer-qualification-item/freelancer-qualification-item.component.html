@@ -1,0 +1,139 @@
+<div
+  class="row freelancer-qualification"
+  *ngIf="inFormGroup"
+  [formGroup]="inFormGroup"
+  style="margin-bottom: 20px"
+>
+  <div class="col-xs-12 col-sm-6">
+    <!-- <mat-form-field class="full-width">
+      <mat-label required>{{
+        "profile.fields.qualification.title.label" | translate
+      }}</mat-label>
+      <input matInput formControlName="name" name="name" />
+      <mat-error *ngIf="displayMessage.name">{{
+        displayMessage.name
+      }}</mat-error>
+    </mat-form-field> -->
+    <mat-form-field class="full-width">
+      <mat-label required>{{ "profile.fields.qualification.school.label" | translate}}</mat-label>
+      <input (blur)="onEducationFieldChange()"
+             matInput formControlName="school_college_university" name="school_college_university">
+      <mat-error *ngIf="displayMessage.school_college_university">{{
+        displayMessage.school_college_university
+        }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width">
+      <mat-label required>{{ "profile.fields.qualification.degree.label" | translate}}</mat-label>
+      <mat-select (blur)="onEducationFieldChange()"
+                  formControlName="degree" name="degree">
+        <ng-container *ngFor="let data of Degree">
+          <mat-option value="{{data}}">{{data}}</mat-option>
+        </ng-container>
+      </mat-select>
+      <mat-error *ngIf="displayMessage.degree">{{
+        displayMessage.degree
+        }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width">
+      <mat-label>{{ "profile.fields.qualification.field.label" | translate}}</mat-label>
+      <input matInput formControlName="fieldofstudy" name="fieldofstudy">
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field class="full-width" (blur)="onEducationFieldChange()"
+    >
+      <mat-label required>{{ "profile.fields.qualification.grade.label" | translate}}</mat-label>
+      <input matInput formControlName="grade" (blur)="onEducationFieldChange()"
+             name="grade">
+      <mat-error *ngIf="displayMessage.grade">{{
+        displayMessage.grade
+        }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field appearance="fill" class="full-width date-picker-wrapper">
+      <mat-label required>{{ "profile.fields.qualification.startDate.label" | translate}} </mat-label>
+      <input matInput (blur)="onEducationFieldChange()"
+             [matDatepicker]="DatePickerStart" name="start_date" (click)="DatePickerStart.open()"
+             formControlName="start_date" [max]="maxDate" >
+      <mat-datepicker-toggle matSuffix [for]="DatePickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #DatePickerStart
+                      startView="multi-year"
+                      panelClass="example-month-picker"
+                      (monthSelected)="chosenMonthHandler($event, DatePickerStart, true)"
+                      (yearSelected)="chosenYearHandler($event, true)">
+      </mat-datepicker>
+      <mat-error *ngIf="displayMessage.start_date">{{
+        displayMessage.start_date
+        }}</mat-error>
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Month and Year</mat-label>
+      <input matInput [matDatepicker]="dp" [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp
+                      startView="multi-year"
+                      (yearSelected)="chosenYearHandler($event)"
+                      (monthSelected)="chosenMonthHandler($event, dp)"
+                      panelClass="example-month-picker">
+      </mat-datepicker>
+    </mat-form-field> -->
+  </div>
+
+  <div class="col-xs-12 col-sm-6">
+    <mat-form-field appearance="fill" class="full-width date-picker-wrapper">
+      <mat-label required>{{ "profile.fields.qualification.endDate.label" | translate}} </mat-label>
+      <input (blur)="onEducationFieldChange()"
+             matInput [matDatepicker]="DatepickerEnd" name="end_date" (click)="DatepickerEnd.open()"
+             formControlName="end_date" [min]="minDate">
+      <mat-datepicker-toggle matSuffix [for]="DatepickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #DatepickerEnd
+                      startView="multi-year"
+                      panelClass="example-month-picker"
+                      (yearSelected)="chosenYearHandler($event,true )"
+                      (monthSelected)="chosenMonthHandler1($event, DatepickerEnd, false)"
+      >
+      </mat-datepicker>
+      <mat-error *ngIf="displayMessage.end_date">{{
+        displayMessage.end_date
+        }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12">
+    <mat-form-field class="full-width">
+      <mat-label>{{ "profile.fields.qualification.description.label" | translate}}</mat-label>
+      <input matInput formControlName="description" name="description">
+      <mat-error></mat-error>
+    </mat-form-field>
+  </div>
+  <!-- <div class="col-xs-12">
+    <mat-form-field class="full-width">
+      <mat-label>{{
+        "profile.fields.qualification.description.label" | translate
+      }}</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        name="description"
+        rows="3"
+      ></textarea>
+      <mat-error *ngIf="displayMessage.description">{{
+        displayMessage.description
+      }}</mat-error>
+    </mat-form-field>
+  </div> -->
+  <div class="col-xs-12">
+    <label
+      for="document"
+      translate="profile.fields.qualification.document.label"
+    ></label>
+  </div>
+  <div class="col-xs-12 padding-none">
+    <app-profile-document [readonly]="readonly" formControlName="document" (documentUpdated)="onDocumentUpload($event)"
+                          [buttonText]="'buttons.upload-document' | translate"></app-profile-document>
+  </div>
+</div>

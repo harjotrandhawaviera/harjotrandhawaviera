@@ -1,0 +1,16 @@
+.freelancer-qualification {
+  ::ng-deep {
+    .date-picker-wrapper {
+      .mat-form-field-flex {
+        padding-left: 0;
+      }
+    }
+
+    mat-form-field {
+      .mat-form-field-flex {
+        padding-top: 10px !important;
+        background-color: white !important;
+      }
+    }
+  }
+}

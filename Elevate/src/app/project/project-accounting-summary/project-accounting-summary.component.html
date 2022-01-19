@@ -1,0 +1,18 @@
+<div *ngIf="project">
+  <div class="panel panel-default estimated-costs">
+    <div class="panel-heading" translate="projects.accounting-summary.estimated-costs"></div>
+    <div class="panel-body text-right">
+      {{project.sum_min_estimated_costs | currency }} - {{project.sum_max_estimated_costs | currency}}
+    </div>
+  </div>
+  <div class="panel panel-default planned-costs">
+    <div class="panel-heading" translate="projects.accounting-summary.planned-costs"></div>
+    <div class="panel-body text-right">{{ project.sum_planned_costs | currency }}</div>
+  </div>
+  <div class="panel panel-default freelancer-costs">
+    <div class="panel-heading" translate="projects.accounting-summary.freelancer-costs"></div>
+    <div class="panel-body text-right">
+      <span>{{project.sum_freelancer_costs | currency}}</span>
+    </div>
+  </div>
+</div>

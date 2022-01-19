@@ -1,0 +1,167 @@
+<app-search-container>
+  <app-search-panel>
+    <form [formGroup]="filter">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ 'ui.side-option-menu.filter' | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.logs.filters.agent" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <app-static-auto-complete
+              formControlName="agentName"
+              [clearSelection]="true"
+              #agent
+              [options]="AgentList"
+            >
+            </app-static-auto-complete>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.logs.filters.type" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-select formControlName="eventNames" #eventName multiple>
+              <mat-option value="BudgetCreatedEvent" >{{ "administration.logs.fields.type.BudgetCreatedEvent" | translate}}</mat-option>
+              <mat-option value="OfferPlacedEvent"> {{ "administration.logs.fields.type.OfferPlacedEvent" | translate}} </mat-option>
+              <mat-option value="OfferDeclinedEvent">{{ "administration.logs.fields.type.OfferDeclinedEvent" | translate}} </mat-option>
+              <mat-option value="TenderDeclinedEvent">{{ "administration.logs.fields.type.TenderDeclinedEvent" | translate}}</mat-option>
+              <mat-option value="FreelancerBookedEvent"> {{ "administration.logs.fields.type.FreelancerBookedEvent" | translate}}</mat-option>
+              <mat-option value="FreelancerUnbookedEvent"> {{ "administration.logs.fields.type.FreelancerUnbookedEvent" | translate}} </mat-option>
+              <mat-option value="DataChangedEvent"> {{ "administration.logs.fields.type.DataChangedEvent" | translate}}</mat-option>
+              <mat-option value="TenderCreatedEvent"> {{ "administration.logs.fields.type.TenderCreatedEvent" | translate}} </mat-option>
+              <mat-option value="TenderClosedEvent"> {{ "administration.logs.fields.type.TenderClosedEvent" | translate}}</mat-option>
+              <mat-option value="UserRequestProcessedEvent"> {{ "administration.logs.fields.type.UserRequestProcessedEvent" | translate}} </mat-option>
+              <mat-option value="UserRequestDeclinedEvent">{{ "administration.logs.fields.type.UserRequestDeclinedEvent" | translate}} </mat-option>
+              <mat-option value="CheckinUpdatedEvent"> {{ "administration.logs.fields.type.CheckinUpdatedEvent" | translate}} </mat-option>
+              <mat-option value="CheckinCreatedEvent"> {{ "administration.logs.fields.type.CheckinCreatedEvent" | translate}} </mat-option>
+              <mat-option value="InvoiceAcceptedEvent"> {{ "administration.logs.fields.type.InvoiceAcceptedEvent" | translate}} </mat-option>
+              <mat-option value="InvoiceRejectedEvent"> {{ "administration.logs.fields.type.InvoiceRejectedEvent" | translate}} </mat-option>
+              <mat-option value="JobMessageCreatedEvent"> {{ "administration.logs.fields.type.JobMessageCreatedEvent" | translate}} </mat-option>
+              <mat-option value="TenderExpiredEvent">{{ "administration.logs.fields.type.TenderExpiredEvent" | translate}} </mat-option>
+              <mat-option value="UserDeletedEvent">{{ "administration.logs.fields.type.UserDeletedEvent" | translate}} </mat-option>
+              <mat-option value="FreelancerDeletedEvent"> {{ "administration.logs.fields.type.FreelancerDeletedEvent" | translate}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.logs.search-placeholder" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.sites.search-placeholder" | translate
+              }}</mat-label>
+            <input matInput formControlName="search" #search type="search"/>
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "administration.users.search.hint" | translate
+              }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="col-xs">
+      <h1>{{ 'administration.logs.title' | translate }}</h1>
+    </div>
+    <div class="table-inner-wrapper col-xs">
+      <table
+        mat-table
+        class="search-table"
+        [dataSource]="LogsList"
+      >
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.logs.table.createdAt" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.date | date: 'mediumDate' }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="performer_name">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.logs.table.performer_name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.name}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="message">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.logs.table.message" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.details}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="referenceName">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.logs.table.referenceName" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row?.rm?.split('\\')[2]}}({{row.project}})
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row" class="action">
+            <!--            <button-->
+            <!--              mat-icon-button-->
+            <!--              color="accent"-->
+            <!--              [matMenuTriggerFor]="subMenu"-->
+
+            <!--            >-->
+            <!--              <i class="fas fa-ellipsis-v"></i>-->
+            <!--            </button>-->
+            <!--            <mat-menu #subMenu="matMenu" xPosition="before">-->
+            <!--              <button mat-menu-item >-->
+            <!--                {{ "administration.health-insurances.table.actions.details" | translate }}-->
+            <!--              </button>-->
+            <!--            </mat-menu>-->
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns;"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <app-paginator *ngIf="LogsList.length"
+        [disabled]="loading$ | async"
+        hidePageSize="true"
+        showFirstLastButtons="true"
+        [length]="paginator?.total"
+        [pageIndex]="paginator?.current_page - 1"
+        (page)="pageChange($event)"
+      >
+      </app-paginator>
+    </div>
+    <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+    <div class="col-xs" *ngIf="!LogsList.length && noRecords$">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+    <div class="row end-md center-xs">
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        (click)="dataList()"
+      >
+        {{'ui.list-table.default.download' | translate}}
+      </button>
+    </div>
+  </app-search-list>
+</app-search-container>

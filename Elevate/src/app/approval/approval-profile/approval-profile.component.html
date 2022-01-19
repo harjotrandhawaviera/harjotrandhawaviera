@@ -1,0 +1,215 @@
+<div *ngIf="requestId && request && data">
+  <div class="row space-added">
+    <div class="col-xs">
+      <a [routerLink]="['/approval/freelancer-onboarding']"
+      >{{ "approval.freelancer-onboarding.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1
+        [translate]="'approval.profile.headline'"
+        [translateParams]="{ fullname: data.fullname }"
+      ></h1>
+    </div>
+  </div>
+  <div class="row end-xs">
+    <div class="col-xs">
+      <button
+        (click)="closeRequest()"
+        mat-flat-button
+        color="accent"
+        [disabled]="!allStepsChecked"
+        translate="approval.accept-button"
+      ></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div
+        class="duplicates"
+        *ngIf="data.duplicates && data.duplicates.length > 0"
+      >
+        <div
+          class="duplicates-warning"
+          (click)="duplicatesWarning.expanded = !duplicatesWarning.expanded"
+        >
+          <h4>
+            <i class="fas fa-exclamation"></i>
+            {{ "approval.profile.duplicates.heading" | translate }}
+          </h4>
+          <i
+            class="fa"
+            [ngClass]="
+              duplicatesWarning.expanded ? 'fa-caret-right' : 'fa-caret-down'
+            "
+          ></i>
+        </div>
+        <div *ngIf="duplicatesWarning.expanded">
+          <table class="table table-duplicates">
+            <tr>
+              <th
+                *ngFor="let column of duplicatesWarning.columns"
+                [translate]="'approval.profile.duplicates.columns.' + column.id"
+                class="{{ column.class }}"
+              ></th>
+            </tr>
+            <tr *ngFor="let duplicate of data.duplicates">
+              <td
+                *ngFor="let column of duplicatesWarning.columns"
+                class="{{ column.class }}"
+              >
+                <a
+                  *ngIf="column.id === 'fullname'"
+                  [routerLink]="[
+                    '/administration/freelancers',
+                    duplicate.user_id
+                  ]"
+                  >{{ duplicate.fullname }}</a
+                >
+                <i
+                  *ngIf="column.id != 'fullname'"
+                  [ngClass]="{ 'far fa-copy': duplicate.matched[column.id] }"
+                ></i>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="padding"
+    *ngIf="
+      allStepsChecked &&
+      currentTabIndex > 0 &&
+      currentTabIndex <= onboardingSteps.length
+    "
+  >
+    <div
+      class="alert alert-info"
+      translate="approval.profile.summary.all-done"
+    ></div>
+  </div>
+  <mat-tab-group
+    [selectedIndex]="currentTabIndex - 1"
+    (selectedTabChange)="selectedTabChange($event)"
+  >
+    <mat-tab *ngFor="let step of onboardingSteps">
+      <ng-template mat-tab-label>
+        <container-element [ngSwitch]="freelancerApprovals[step].state">
+          <!-- the same view can be shown in more than one case -->
+          <i *ngSwitchCase="'saved'" class="far fa-eye"></i>
+          <i *ngSwitchCase="'submitted'" class="far fa-eye"></i>
+          <i *ngSwitchCase="'approved'" class="fas fa-check success"></i>
+          <i *ngSwitchCase="'rejected'" class="fas fa-exclamation"></i>
+          <i *ngSwitchDefault class="far fa-eye"></i>
+        </container-element>
+        &nbsp;{{ "menu.profile." + step | translate }}
+      </ng-template>
+
+      <container-element [ngSwitch]="step">
+        <!-- the same view can be shown in more than one case -->
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'master'"
+          app-freelancer-master
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'appearance'"
+          app-freelancer-appearance
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'qualifications'"
+          app-freelancer-qualification
+          [profile]="data"
+        ></div>
+        <div
+        class="approval-tab"
+        *ngSwitchCase="'employment'"
+        app-freelancer-employment-info
+        [profile]="data"
+      ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'legal'"
+          app-freelancer-legal
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'contract_freelancer'"
+          app-freelancer-contract-type
+          [readonly]="true"
+          [type]="'freelancer'"
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'contract_tax_card'"
+          app-freelancer-contract-type
+          [readonly]="true"
+          [type]="'tax_card'"
+          [profile]="data"
+        ></div>
+      </container-element>
+    </mat-tab>
+    <mat-tab *ngIf="allStepsChecked && showSummaryStep" label="Summary">
+      <div class="row center-xs">
+        <div class="col-xs-12">
+          <p class="padding" translate="approval.profile.summary.all-done"></p>
+        </div>
+        <div class="col-xs-12 text-center padding">
+          <button
+            (click)="closeRequest()"
+            mat-flat-button
+            color="accent"
+            translate="approval.accept-button"
+          ></button>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <div
+    class="row footer"
+    *ngIf="currentTabIndex > 0 && currentTabIndex <= onboardingSteps.length"
+  >
+    <div
+      class="col-xs-12 padding-none"
+      *ngIf="onboardingSteps[currentTabIndex - 1] !== 'training'"
+      app-approval-comment
+      [comment]="comment"
+      (commentChange)="comment = $event"
+      [required]="commentRequired"
+    ></div>
+    <div class="col-xs-12 text-left">
+      <div class="action-button">
+        <button
+          type="button"
+          mat-flat-button
+          color="accent"
+          (click)="submitStep(true)"
+          translate="approval.profile.step.accept-button"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          translate="approval.profile.step.submit-decline-button"
+          (click)="submitStep(false)"
+        ></button>
+      </div>
+      <!-- <button
+        class="btn btn-default"
+        data-ng-hide="approval.onboardingSteps[approval.currentTabIndex-1] === 'training'"
+        data-translate-once="approval.profile.step.submit-decline-button"
+        data-ng-click="approval.submitStep(false)"
+      ></button> -->
+    </div>
+  </div>
+</div>

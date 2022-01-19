@@ -1,0 +1,53 @@
+<div class="result" *ngIf="result">
+  <div class="exam-error" *ngIf="error">
+    <p>{{ error | translate }}</p>
+  </div>
+  <div class="exam-result" *ngIf="result.questions">
+    <p [translate]="'exams.result'" [translateParams]="result"></p>
+    <span
+      *ngIf="result.passed"
+      [translate]="'exams.passed'"
+      [translateParams]="result"
+    ></span>
+    <span
+      *ngIf="!isLegal && result.passed && jobsCount"
+      [translate]="'exams.tenders'"
+      [translateParams]="{ jobsCount: jobsCount }"
+    ></span>
+    <p
+      *ngIf="!result.passed"
+      [translate]="'exams.failed'"
+      [translateParams]="result"
+    ></p>
+  </div>
+  <div *ngIf="result.passed">
+    <button
+      mat-flat-button
+      color="accent"
+      translate="exams.buttons.onboarding-next"
+      (click)="nextStep.emit()"
+    ></button>
+  </div>
+  <div *ngIf="result.passed === false && result.question_nok_questions">
+    <p translate="exams.failed-questions.header"></p>
+    <ul class="nok-questions">
+      <li *ngFor="let question of result.question_nok_questions">
+        {{ question }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="result.passed === false">
+    <button
+      mat-flat-button
+      color="accent"
+      translate="exams.buttons.restart-exam"
+      (click)="restartExam.emit()"
+    ></button>
+    <button
+      mat-flat-button
+      color="accent"
+      translate="exams.buttons.back-to-training"
+      (click)="backToTraining.emit()"
+    ></button>
+  </div>
+</div>

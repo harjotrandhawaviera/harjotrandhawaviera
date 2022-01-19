@@ -1,0 +1,7 @@
+{
+  "name": "Elevate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

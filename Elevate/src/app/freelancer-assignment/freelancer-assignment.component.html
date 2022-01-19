@@ -1,0 +1,242 @@
+<app-search-container>
+  <app-search-panel>
+    <form [formGroup]="searchValue">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-checkbox formControlName="upcoming"><b>{{'calls.filters.mission' | translate}}</b></mat-checkbox>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "calls.filters.contractType" | translate
+              }}</mat-label>
+            <app-static-auto-complete
+              #contactType
+              [clearSelection]="true"
+              formControlName="contactType"
+              [options]="contractTypeLK"
+            >
+            </app-static-auto-complete>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!client.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="client.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+          </mat-form-field>
+        </div>
+        <div class="row col-xs-12">
+          <h5>{{ "calls.filters.dates" | translate }}</h5>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="start" formControlName="start" name="start">
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="end" formControlName="end" name="end">
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "calls.filters.status" | translate
+              }}</mat-label>
+            <mat-select formControlName="status">
+              <mat-option>Clear Filter</mat-option>
+              <mat-option value="booked">Booked</mat-option>
+              <mat-option value="invoiced">Be invoiced</mat-option>
+              <mat-option value="preparation">Follow-up required</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="col-xs-12">
+          <mat-label>{{ "calls.filters.invoice_status"  | translate }}</mat-label>
+          <mat-select formControlName="invoice">
+            <mat-option>{{ "ui.option.deselect" | translate }}</mat-option>
+            <mat-option *ngFor="let option of stateLK" [value]="option.value">
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "calls.filters.search-placeholder" | translate
+              }}</mat-label>
+            <input matInput formControlName="search" type="search"/>
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "administration.users.search.hint" | translate
+              }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1>{{ 'calls.title' | translate }}</h1>
+        <ng-container *ngIf="!hasFilter && noRecords || noRecords">
+          <div class="alert alert-info">
+            {{ "ui.list-table.filter-required" | translate }}
+          </div>
+        </ng-container>
+        <ng-container *ngIf="hasFilter && noRecords">
+          <div class="alert alert-info">
+            {{ "ui.list-table.default.no-records" | translate }}
+          </div>
+        </ng-container>
+    <div class="row">
+      <div class="col-md-6 calls-tile" *ngFor="let data of callList; let p= index ">
+        <div class="panel" [ngClass]="{ 'booked': data?.state === 'booked' , 'follow-up': data?.state !== 'booked' }" (click)="navigateToDetails(data)">
+          <div class="flipper">
+            <div class="front" [hidden]="(isChangedBlock === p)">
+              <div class="panel-heading">
+                <!-- <span>{{data.category}}</span> -->
+                <span class="pull-right  padding-none">
+                  <span>{{data.identifier}} </span>
+                  <a color="accent" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation()">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </a>
+                  <mat-menu #subMenu="matMenu" xPosition="before">
+                    <button (click)="navigateToDetails(data)" mat-menu-item>
+                      {{'calls.fields.buttons.actions.details' | translate}}
+                    </button>
+                  </mat-menu>
+                </span>
+              </div>
+              <div class="panel-body">
+                <div class="header date-card">
+                    <span class="date" >
+                      <span class="day">{{data?.date | date: 'd'}}</span>
+                      <span class="month">{{data?.date | date: 'MMM'}}</span>
+                      <span class="year">{{data?.date | date: 'YYYY'}}</span>
+                    </span>
+                  <div>
+                    <div class="title"> {{ data?.name }} </div>
+                    <span class="subtitle">{{data.client}}</span>
+                    <p class="staffP">Staff Manager: {{data.staff}}</p>
+                  </div>
+                </div>
+                <div class="panel-body1">
+                  <div class="panelBodyDetil">
+                    <div class="row">
+                      <div class="col-md-6 padding-none">
+                        <p class="addressB">
+                          <i class="fas fa-building"></i>
+                          <span >{{data.address}}</span>
+                        </p>
+                        <p class="addressB">
+                          <i class="fas fa-map-marker-alt"></i>
+                          <span >{{data.checkin_location}}</span>
+                        </p>
+                      </div>
+                      <div class="col-md-6 padding-none">
+                        <div class="rate-card">
+                          <span class="title">{{'calls.fields.rate_card' | translate}}</span>
+                          <span class="rate" ><span [appCurrencySymbol]="data?.currency"></span>{{data?.rate}}/{{'calls.fields.rate_type.'+data?.rate_type | translate}}</span>
+                        </div>
+                        <ul class="detilList">
+                          <li><strong>Scheduled</strong>: {{data?.start_time + ' - ' + data?.finish_time}}</li>
+                          <li><strong>Reported</strong>: </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class=" between-xs time-rate-cont">
+                  <div class="subtitle">
+                    <label>{{'calls.fields.scheduled_time' | translate}}</label>
+                  </div>
+                  <div class="tender-time">
+                    <i class="far fa-clock"></i>
+                    <span>{{data?.start_time}}</span> -
+                    <span>{{data?.finish_time}}</span>
+                  </div>
+                </div>
+                <div class=" between-xs time-rate-cont">
+                  <div class="subtitle">
+                    <label>{{'calls.fields.report_time' | translate}}</label>
+                  </div>
+                  <div class="tender_time" >
+                    <i class="fa fa-file-text-o"></i>
+                  </div>
+                </div>
+                <div class="col-sm-12 padding-none site">
+                  <div class="site-group line-ellipsis">
+                    <span class="far fa-building"></span>
+                    <span><b>{{data?.address}}</b></span>
+                  </div>
+                </div> -->
+              </div>
+              <div class=" panel-footer between-xs">
+                <div class="row">
+                  <span  *ngIf="data?.state === 'invoiced'">{{'calls.message.invoiced_message' | translate}}</span>
+                  <span class="col-xs end-xs" *ngIf="data?.state === 'invoiced'">{{'calls.message.status_invoice' | translate}}</span>
+                  <span class="col-xs end-xs invoiced-state" *ngIf="data?.state === 'booked'">{{'calls.message.status_booked' | translate}}</span>
+                  <span class="col-xs end-xs follow-up-state" *ngIf="data?.state === 'preparation'">{{'calls.message.status_prepare' | translate}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="back" [hidden]="!(isChangedBlock === p)">
+              <div class="panel-heading">
+                <!-- <span>{{data.category}}</span> -->
+                <span class="pull-right  padding-none">
+                  <span>{{data.identifier}}</span>
+                  <a color="accent" [matMenuTriggerFor]="subMenu">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </a>
+                  <mat-menu #subMenu="matMenu" xPosition="before">
+                    <button mat-menu-item>
+                      {{'tenders.tenders.table.actions.details' | translate}}
+                    </button>
+                  </mat-menu>
+                </span>
+              </div>
+              <div class="panel-body">
+                <div>
+                  <div class="title"> {{ data?.name }} </div>
+                  <div class="subtitle" *ngFor="let lists of data?.document; let i =index">
+                    <span *ngIf="i === 16">{{lists?.original_filename}}</span>
+                    <span *ngIf="i === 17">{{lists.original_filename}}</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="subtitle" *ngFor="let list of data?.total">
+                    <span>{{list?.total | currency}}</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="subtitle" *ngFor="let list of data?.invoice">
+                   <span>{{list?.number}}</span> <span>({{list?.payment_total | currency}})</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-paginator
+      *ngIf="callList?.length"
+      [length]="paginator?.total"
+      [pageIndex]="paginator?.current_page - 1"
+      (page)="pageChange($event)">
+
+    </app-paginator>
+    <div class="col-xs" *ngIf="!callList?.length">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+  </app-search-list>
+</app-search-container>

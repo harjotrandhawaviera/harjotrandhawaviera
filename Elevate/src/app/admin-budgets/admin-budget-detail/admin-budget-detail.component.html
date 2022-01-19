@@ -1,0 +1,37 @@
+<div class="container-fluid" *ngIf="budget">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/administration/budgets']">{{
+        "administration.budgets.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12">
+      <h1 translate="administration.budgets.title.details"></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs">
+      <a
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/administration/budgets/' + budgetId + '/record']"
+        >{{ "administration.budgets.buttons.create-record" | translate }}
+      </a>
+      <a
+        mat-flat-button
+        color="accent"
+        [routerLink]="['/administration/budgets/edit', budgetId]"
+        [skipLocationChange]="true"
+        >{{ "administration.budgets.buttons.edit" | translate }}
+      </a>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      app-budget-detail-view
+      [budget]="budget"
+    ></div>
+    <div
+      class="col-xs-12 padding-none"
+      app-admin-budget-records
+      [budgetId]="budgetId"
+    ></div>
+  </div>
+</div>

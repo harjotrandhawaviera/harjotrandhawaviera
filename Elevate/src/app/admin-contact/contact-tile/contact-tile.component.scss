@@ -1,0 +1,74 @@
+@import "variables";
+@import "mixins";
+$line-height-base: 1.428571429;
+$p4y-tile-inner-padding: 10px !default;
+$font-size-base: 14px !default;
+.panel.contact {
+  padding: 15px;
+  border: 1px solid $brand-primary;
+  margin: 15px;
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  h3,
+  h4 {
+    margin: 0;
+    line-height: $line-height-base;
+  }
+
+  h4 {
+    margin-bottom: 2 * $p4y-tile-inner-padding;
+  }
+
+  dl,
+  dl {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: $line-height-base;
+  }
+
+  dt,
+  dd {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    color: $brand-primary;
+  }
+
+  dt {
+    width: 7%;
+    float: left;
+  }
+
+  dd {
+    width: 93%;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .position {
+    font-style: italic;
+  }
+
+  .contact-direct {
+    padding: 0;
+  }
+
+  .panel-heading {
+    .fa,
+    .far,
+    .fas {
+      min-width: $font-size-base;
+      margin-right: $p4y-tile-inner-padding;
+    }
+  }
+
+  .panel-body {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 180px;
+  }
+}

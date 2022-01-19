@@ -1,0 +1,808 @@
+<div *ngIf="loggedRole === 'admin'">
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="dashboard-tag">
+          <h1> {{ loggedEmail }}'S dashboard</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedRole === 'agent'">
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="dashboard-tag">
+          <h1>{{ loggedUser }}'S dashboard</h1>
+        </div>
+        <div class="title count-div" [routerLink]="'/messages/jobs'">
+          <span class="fa fa-comments"></span><span class="count">{{message?.length}}</span>
+        </div>
+        <div class="title">
+          <span class="fa fa-calendar-check" [routerLink]="'/client-created/assignments'"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-xs-12 header row">
+              <div class="col-xs-8">
+                <h1>
+                  {{ onBoardCount }}
+                  <small>new consultants</small>
+                </h1>
+              </div>
+              <div class="col-xs-4 text-right">
+                <button class="btn btn-primary btn-custom" [routerLink]="'/approval/freelancer-onboarding'">
+                  {{ "assignments.freelancer.buttons.overview" | translate }}
+                </button>
+              </div>
+            </div>
+            <table mat-table [dataSource]="onBoard" class="search-table">
+              <ng-container matColumnDef="Surname">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+              </ng-container>
+              <ng-container matColumnDef="Postcode">
+                <th mat-header-cell *matHeaderCellDef>Post Code</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element?.postcode }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date of Receipt</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element?.create_at | date: "mediumDate" }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="action">
+                  <a [routerLink]="
+                      '/approval/freelancer-onboarding/' + element?.value
+                    ">{{
+                    "approval.freelancer-changerequest.buttons.details"
+                    | translate
+                    }}</a>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedConsultants"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedConsultants"  (click)="navigateToNewConsultance(row)"></tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-xs-12 header row">
+              <div class="col-xs-8">
+                <h1>
+                  {{ changeList?.length }}
+                  <small>changes</small>
+                </h1>
+              </div>
+              <div class="col-xs-4 text-right">
+                <button class="btn btn-primary btn-custom" [routerLink]="'/approval/freelancer-changerequest'">
+                  {{ "assignments.freelancer.buttons.overview" | translate }}
+                </button>
+              </div>
+            </div>
+            <table mat-table [dataSource]="changeList" class="search-table">
+              <ng-container matColumnDef="Surname">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element">
+                  <span></span>{{ element.name }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="modification">
+                <th mat-header-cell *matHeaderCellDef>Modification</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.modification }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "approval.list.submissionDate" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.create_at | date: "mediumDate" }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="action">
+                  <a [routerLink]="
+                      '/approval/freelancer-changerequest/' + element?.value
+                    ">{{
+                    "approval.freelancer-changerequest.buttons.details"
+                    | translate
+                    }}</a>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedChanges"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedChanges" (click)="navigateToChanges(row)"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 header row">
+          <div class="col-xs-8">
+            <h1>
+              {{ totalTask }}
+              <small> {{ "todos.list.header" | translate }} </small>
+            </h1>
+          </div>
+          <div class="col-xs-4 text-right">
+            <button class="btn btn-primary btn-custom" [routerLink]="'/todos'">
+              {{ "assignments.freelancer.buttons.overview" | translate }}
+            </button>
+          </div>
+        </div>
+        <table mat-table [dataSource]="taskList" class="search-table">
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"></td>
+          </ng-container>
+          <ng-container matColumnDef="Task">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "todos.details.fields.subject" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" [ngClass]="element.id === id ? 'open-stripe' : ''">
+              {{ element.task }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="ToBeDoneBy">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "todos.details.fields.target-at" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" [ngClass]="
+                getDateDifference(element.date)
+                  ? 'completedDate'
+                  : '' || element.id === id
+                  ? 'open-stripe'
+                  : ''
+              ">
+              {{ element.date | date: 'mediumDate' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Done">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "todos.details.fields.state.done" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox [mat-dialog-close]="false" [disabled]="element.id === id" [checked]="element.id === id"
+                (click)="confirmModal(element)"></mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="action">
+              <a (click)="openModal(element)">{{
+                "assignments.presence.buttons.details" | translate
+                }}</a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedTasks"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedTasks"></tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 header row">
+          <div class="col-xs-8">
+            <h1>
+              {{ unconfirmedAttendance?.length }}
+              <small> {{ "assignments.presence.header" | translate }}</small>
+            </h1>
+          </div>
+          <div class="col-xs-4 text-right">
+            <button class="btn btn-primary btn-custom" [routerLink]="'/checkins'">
+              {{ "assignments.freelancer.buttons.overview" | translate }}
+            </button>
+          </div>
+        </div>
+        <table mat-table [dataSource]="unconfirmedAttendance" class="search-table">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef style="width: 50%">
+              {{ "assignments.presence.table.jobTitle" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%">
+              {{ "assignments.presence.table.freelancerName" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.firstName }} {{ element.lastName }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "assignments.presence.table.siteCity" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+          </ng-container>
+          <ng-container matColumnDef="startTime">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "assignments.presence.table.startDateTime" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.appointed_at }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="action">
+              <a [routerLink]="'/checkins'">{{ "assignments.presence.buttons.details" | translate }}
+              </a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToUnconfirmedAttendance(row)"></tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 header row">
+          <div class="col-xs-8">
+            <h1>
+              {{ offerListCount }}
+              <small>{{ "jobs.table.actions.offers" | translate }} </small>
+            </h1>
+          </div>
+          <div class="col-xs-4 text-right">
+            <button class="btn btn-primary btn-custom" [routerLink]="'/tenders/offers'">
+              {{ "assignments.freelancer.buttons.overview" | translate }}
+            </button>
+          </div>
+        </div>
+        <table mat-table [dataSource]="offerList" class="search-table">
+          <ng-container matColumnDef="job">
+            <th mat-header-cell *matHeaderCellDef style="width: 53%">
+              {{ "assignments.freelancer.table.jobTitle" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>
+              {{
+              "assignments.freelancer.table.startDateTimeLabel" | translate
+              }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.date | date: 'mediumDate' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="ExpiryDate">
+            <th mat-header-cell *matHeaderCellDef>
+              {{
+              "assignments.freelancer.table.startDateTime" | translate
+              }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.expiry }}</td>
+          </ng-container>
+          <ng-container matColumnDef="ExpertAdvisory">
+            <th mat-header-cell *matHeaderCellDef>
+              {{
+              "assignments.freelancer.table.staffMember" | translate
+              }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="action">
+              <a [routerLink]="['/tenders/offers', element.id]">{{
+                "offers.buttons.details" | translate
+                }}</a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedOffers"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedOffers" (click)="navigateToJobApplication(row)"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedRole === 'client'">
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="dashboard-tag">
+            <h1>dashboard</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ projectList?.length }}
+            <small> {{ "projects.list.title" | translate }} </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/projects'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="projectList" class="search-table">
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="Task">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.table.title" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="ToBeDoneBy">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.client.list.header" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.job }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Done">
+          <th mat-header-cell *matHeaderCellDef>Call</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Booked stakes">
+          <th mat-header-cell *matHeaderCellDef>Booked stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Completed missions">
+          <th mat-header-cell *matHeaderCellDef>Completed missions</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Total sales">
+          <th mat-header-cell *matHeaderCellDef>Total sales</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Average Turnover / day">
+          <th mat-header-cell *matHeaderCellDef>Average Turnover / day</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="'/projects/' + element?.value">{{ "assignments.presence.buttons.details" | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedProject"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedProject" (click)="navigateToProject(row)"></tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ jobsList?.length }}
+            <small> {{ "jobs.client.list.header" | translate }} </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/jobs'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="jobsList" class="search-table">
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="Task">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.table.title" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="ToBeDoneBy">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.client.list.header" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.pos }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Done">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.client.list.table.sitecity" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+        </ng-container>
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>category</th>
+          <td mat-cell *matCellDef="let element">{{ element.cat }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Calls">
+          <th mat-header-cell *matHeaderCellDef>Calls</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Open stakes">
+          <th mat-header-cell *matHeaderCellDef>Open stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.open }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Booked stakes">
+          <th mat-header-cell *matHeaderCellDef>Booked stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.booked }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Completed missions">
+          <th mat-header-cell *matHeaderCellDef>Booked stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.booked }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Total sales">
+          <th mat-header-cell *matHeaderCellDef>Total sales</th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="Average Turnover / day">
+          <th mat-header-cell *matHeaderCellDef>Average Turnover / day</th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="'/jobs/' + element?.value">{{ "assignments.presence.buttons.details" | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedJobs"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedJobs"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedRole === 'freelancer'">
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="dashboard-tag">
+            <h1>{{ loggedUser }}'S dashboard</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+        <div *ngFor="let data of message" class="panel">
+            <div class="row panel-heading between-xs between-md m-b-0">
+              <div>
+                <a [routerLink]="['/administration', 'freelancers', data.senderUserId]">{{ 'messages.details.header' |
+                  translate: {
+                  senderFullname: data.name,
+                  senderEmail: data.email,
+                  createdAt: data.created | date:"MMM d, y,h:mm a"
+                  } }}</a>
+              </div>
+              <div class="list-table-actions">
+                <div class="action" (click)="$event.stopPropagation()">
+                  <button mat-icon-button color="accent" (click)="OpenModal(data?.q_id)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <h4 class="mb-3">{{ 'messages.details.subject' | translate: {subject: data.subject} }}</h4>
+              <div class="styleTag">{{ 'messages.details.content2' | translate: {content: data.value} | titlecase }}</div>
+              <div class="styleTag">{{ 'messages.details.response' | translate: {response: data.response} | titlecase }}</div>
+              <!-- <ng-container *ngFor="let d of data.tender_date">
+                <a [routerLink]="['/tenders', d.id]">{{d.appointed_at | date: "mediumDate"}}</a>
+                <span>&nbsp;</span>
+              </ng-container> -->
+            </div>
+            <!-- <div class="panel-footer">
+              {{ 'messages.details.recipient' | translate: {recipientFullname: data.receiver} }}
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- This for Job Message display: End -->
+
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ totalAssignment }}
+            <small> {{'calls.title' | translate}} </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/my/assignments'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="assignmentList" class="search-table">
+        <ng-container matColumnDef="shortTitle">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.details.job" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.job }}</td>
+        </ng-container>
+        <ng-container matColumnDef="sitecity">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.not-matching.table.sitecity" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+        </ng-container>
+        <ng-container matColumnDef="numberOfTenders">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+            "jobs.freelancer.not-matching.table.remaining_term" | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.expired_at }}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="'/my/assignments/' + element?.value">{{ "assignments.presence.buttons.details"
+              | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedAssignment"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedAssignment" (click)="goToMyBookingDetails(row)"></tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ recommendJobsTotal }}
+            <small> {{ "jobs.freelancer.matching.header" | translate }} </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/jobs/freelancer/recommended'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="suitableJob" class="search-table">
+        <ng-container matColumnDef="shortTitle">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.shortTitle" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.jobName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="categoryName">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.categoryName" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+        </ng-container>
+        <ng-container matColumnDef="sitecity">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.sitecity" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.location }}</td>
+        </ng-container>
+        <ng-container matColumnDef="contractType">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.contractType" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.contractType }}</td>
+        </ng-container>
+        <ng-container matColumnDef="numberOfTenders">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.numberOfTenders" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{element.startdate | date: 'mediumDate' }} - {{element.finishdate | date: 'mediumDate'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="element?.link">{{ "assignments.presence.buttons.details"
+              | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displaySuitableJob"></tr>
+        <tr mat-row *matRowDef="let row; columns: displaySuitableJob" (click)="goToRcommendedJobsDetails(row)"></tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ inviteJobsTotal }}
+            <small> {{ "jobs.freelancer.matching.header-invite" | translate }} </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/jobs/freelancer/invite'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="invitedJob" class="search-table">
+        <ng-container matColumnDef="shortTitle">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.shortTitle" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.jobName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="categoryName">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.categoryName" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+        </ng-container>
+        <ng-container matColumnDef="sitecity">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.sitecity" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.location }}</td>
+        </ng-container>
+        <ng-container matColumnDef="contractType">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.contractType" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.contractType }}</td>
+        </ng-container>
+        <ng-container matColumnDef="numberOfTenders">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.freelancer.matching.table.numberOfTenders" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.dates }}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="'/jobs/freelancer/invite'">{{ "assignments.presence.buttons.details"
+              | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displaySuitableJob"></tr>
+        <tr mat-row *matRowDef="let row; columns: displaySuitableJob" (click)="goToInvitedJobsDetails(row)"></tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ certificateList?.length }}
+            <small>
+              {{ "certificates.my.training-certificated" | translate }}
+            </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/certificates/exclusive'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="certificateList" class="search-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "certificates.exclusive.table.name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="jobShortTitle">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "certificates.exclusive.table.jobShortTitle" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{element?.jobCount}}</td>
+        </ng-container>
+        <ng-container matColumnDef="startDateTime">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "certificates.exclusive.table.startDateTime" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{element?.type}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="'/certificates/my/' + element?.value">{{ "assignments.presence.buttons.details"
+              | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedCertificate"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedCertificate" (click)="navigateToCertificate(row)"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedRole === 'field'">
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="dashboard-tag">
+            <h1>dashboard</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 header row">
+        <div class="col-xs-8">
+          <h1>
+            {{ total }}
+            <small> {{ "jobs.client.list.header" | translate }} </small>
+          </h1>
+        </div>
+        <div class="col-xs-4 text-right">
+          <button class="btn btn-primary btn-custom" [routerLink]="'/jobs/client'">
+            {{ "assignments.freelancer.buttons.overview" | translate }}
+          </button>
+        </div>
+      </div>
+      <table mat-table [dataSource]="jobsList" class="search-table">
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="Task">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.table.title" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="ToBeDoneBy">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.client.list.header" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.pos }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Done">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "jobs.client.list.table.sitecity" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+        </ng-container>
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>category</th>
+          <td mat-cell *matCellDef="let element">{{ element.cat }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Calls">
+          <th mat-header-cell *matHeaderCellDef>Calls</th>
+          <td mat-cell *matCellDef="let element">{{ element.call }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Open stakes">
+          <th mat-header-cell *matHeaderCellDef>Open stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.open }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Booked stakes">
+          <th mat-header-cell *matHeaderCellDef>Booked stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.booked }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Completed missions">
+          <th mat-header-cell *matHeaderCellDef>Booked stakes</th>
+          <td mat-cell *matCellDef="let element">{{ element.booked }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Total sales">
+          <th mat-header-cell *matHeaderCellDef>Total sales</th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="Average Turnover / day">
+          <th mat-header-cell *matHeaderCellDef>Average Turnover / day</th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="action">
+            <a [routerLink]="'/jobs/' + element?.value">{{ "assignments.presence.buttons.details" | translate }}
+            </a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedJobs"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedJobs" (click)="navigateToJobs(row)"></tr>
+      </table>
+    </div>
+  </div>
+</div>

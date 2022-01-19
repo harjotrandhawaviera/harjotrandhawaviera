@@ -1,0 +1,19 @@
+<div class="popup" *ngFor="let data of message">
+  <div class="text-center">
+    <h2>{{ 'messages.jobs.table.answer.title' | translate }}</h2>
+  </div>
+  <div class="text-center">
+    <h4>{{ 'messages.jobs.table.answer.message' | translate : { subject:data.subject } }} </h4>
+  </div>
+  <div>
+    <form [formGroup]="messageAnswer">
+    <label>
+      <input matInput class="area" type="text" formControlName="content" #content placeholder="{{'messages.jobs.table.answer.placeholder' | translate }}" >
+    </label>
+    </form>
+  </div>
+  <div class="btn text-center">
+    <button class="abort" mat-flat-button >{{ 'messages.jobs.table.actions.remove' | translate }}</button>
+    <button class="tosave" mat-flat-button (click)="sendAnswer(data)">send message</button>
+  </div>
+</div>

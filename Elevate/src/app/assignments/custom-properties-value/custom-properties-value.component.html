@@ -1,0 +1,25 @@
+<fieldset>
+  <div class="row">
+    <div class="col-xs">
+      <label *ngIf="module">
+        {{'projects.fields.custom-properties.'+ module +'.label' | translate}}
+      </label>
+    </div>
+  </div>
+  <div class="row" *ngFor="let property of propertyList">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label data-ng-bind="key" data-ng-class="{highlight: customProperties.clientProperties.includes(key)}">
+        {{property.key}}
+      </label>
+      <p *ngIf="!currency">{{property.value || '-'}}</p>
+      <p *ngIf="currency">{{property.value ? (property.value | currency) : '-'}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="module && !hasProperties">
+    <div class="col-xs">
+      <p *ngIf="module">
+        {{'projects.inherited.fields.custom-properties.'+module+'.empty-list' | translate}}
+      </p>
+    </div>
+  </div>
+</fieldset>

@@ -1,0 +1,88 @@
+{
+  "common": {
+    "labels": {
+      "no": "Nein",
+      "yes": "Ja",
+      "unnamed": "Unbekannt",
+      "view": "Ansicht",
+      "since": "seit",
+      "from": "ab",
+      "user": {
+        "agent": "{{name}} (Agent)",
+        "admin": "Admin",
+        "freelancer": "Fachberater",
+        "system": "System"
+      }
+    },
+    "buttons": {
+      "search": "Suchen",
+      "cancel": "Abbrechen",
+      "delete": "Löschen",
+      "yes-delete": "Löschen",
+      "yes-remove": "Löschen",
+      "yes-disable": "Sperren",
+      "yes-enable": "Entsperren",
+      "yes-deactivate": "Deaktivieren",
+      "yes-reactivate": "Aktivieren",
+      "yes-close": "Schließen",
+      "yes-reject": "Ablehnen",
+      "yes-save": "Speichern",
+      "yes-submit": "Einsenden",
+      "yes-edit": "Bearbeiten",
+      "yes-accept": "Akzeptieren",
+      "yes-confirm": "Akzeptieren",
+      "back": "Zurück",
+      "yes-cancel-booking": "Absagen",
+      "yes-submit-offer": "Bestätigen",
+      "yes-create-record": "Buchen",
+      "yes-modifytime": "Ändern",
+      "yes-update-payment-target": "Speichern",
+      "yes-approve": "Bestätigen",
+      "yes-answer": "Antwort senden",
+      "yes-inquery": "Absenden",
+      "yes-export": "Export",
+      "yes-update-comment": "Speichern",
+      "yes-update-correction": "Speichern",
+      "yes-update-freelancer-costs-net": "Speichern",
+      "yes-set-state": "Ja, erledigt",
+      "yes-send-mail": "Senden",
+      "yes-preamble-decline": "Ablehnen",
+      "yes-update-hours": "Ändern",
+      "yes-generate": "Ja, erzeugen",
+      "yes-tender-assignments": "Ausschreiben",
+      "yes-reset-state": "Zurücksetzen"
+    },
+    "messages": {
+      "required": "Pflichtfeld."
+    },
+    "validation": {
+      "time": "Format der Uhrzeit ist nicht korrekt.",
+      "time-range": "Das Format der Zeitspanne ist nicht korrekt.",
+      "number": "Das Format des numerischen Wertes ist nicht korrekt.",
+      "positive-number": "Das Format des numerischen Wertes ist nicht korrekt.",
+      "min": "Die Eingabe darf den Wert {{min}} nicht unterschreiten.",
+      "max": "Die Eingabe darf den Wert {{max}} nicht überschreiten.",
+      "zip-range": "Das Format des Postleitzahlbereichs ist nicht korrekt."
+    },
+    "requests": {
+      "service-unavailable.error": "Service nicht verfügbar.",
+      "access-denied.error": "Zugriff verweigert"
+    },
+    "users": {
+      "system": "System",
+      "name-unavailable": "Unbekannt"
+    },
+    "salutation": {
+      "F": "Frau ",
+      "M": "Herr "
+    },
+    "approval-state": {
+      "accepted": "Akzeptiert",
+      "rejected": "Abgelehnt",
+      "pending": "In Arbeit",
+      "by": "von {{user}}",
+      "comment": "({{comment}})",
+      "comment-placeholder": "Kommentar"
+    }
+  }
+}

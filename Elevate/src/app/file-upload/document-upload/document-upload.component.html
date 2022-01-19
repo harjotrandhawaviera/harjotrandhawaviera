@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-xs-12 padding-none" *ngFor="let doc of documents; let i = index;">
+    <div class="row middle-xs" *ngIf="doc.original_filename">
+      <div class="col-xs-12 col-sm-6 padding-none">
+        <span class="document-mime" *ngIf="doc.mime">{{
+          doc.mime | shortMime
+        }}</span>
+        <span
+          class="document-original-filename"
+          *ngIf="doc.original_filename !== null"
+          >{{ doc.original_filename }}</span
+        >
+      </div>
+      <div class="col-xs-12 col-sm-6 end-xs padding-none">
+        <button
+          type="button"
+          mat-icon-button
+          *ngIf="multiple && !readonly"
+          (click)="removeDocument(doc)"
+        >
+        <i class="fas fa-trash"></i>
+      </button>
+        <button
+          type="button"
+          mat-icon-button
+          color="accent"
+          class="btn-download"
+          *ngIf="doc.url"
+          (click)="downloadDocument(doc)"
+        >
+          <i class="fas fa-file-download"></i>
+        </button>
+        <span class="document-size" *ngIf="doc.size !== null">{{
+          doc.size | fileSize
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 padding-none" *ngIf="!readonly">
+
+    <app-file-upload
+      (documentUploaded)="documentUploadedCallback($event)"
+      [text]="buttonText"
+      [type]="type"
+    >
+    </app-file-upload>
+  </div>
+</div>

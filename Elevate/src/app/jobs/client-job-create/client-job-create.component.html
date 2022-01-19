@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="acion-title-holder">
+        <a [routerLink]="['/jobs/client']">
+          {{ 'projects.jobs.bulk_create.buttons.back' | translate }}
+        </a>
+        <h1 translate="projects.jobs.bulk_create.title.new"></h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="alert alert-info" *ngIf="!(overwriteAllowed$ | async)">
+        <p translate="projects.jobs.bulk_create.explanation"></p>
+      </div>
+      <div class="alert alert-info" *ngIf="siteIdLength">
+        <p>{{'projects.jobs.bulk_create.result.success' | translate: {count: siteIdLength} }}</p>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="detailForm" *ngIf="detailForm">
+    <div class="row">
+      <div class="form-group col-md-8 col-xs-12">
+        <mat-form-field class="full-width">
+          <mat-label data-required>{{"projects.fields.project.label-new-job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="project" [clearSelection]="true" #project [options]="projectLK"
+            [error]="displayMessage.project">
+          </app-static-auto-complete>
+          <mat-error *ngIf="displayMessage.project">{{displayMessage.project}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="projectId && projectDetail">
+      <fieldset>
+        <div class="row">
+          <div class="form-group col-md-3 col-sm-6 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label required>{{"projects.fields.start_time.label" | translate}}</mat-label>
+              <input matInput formControlName="start_time" [ngxTimepicker]="start_time" [format]="24" readonly>
+              <ngx-material-timepicker #start_time [enableKeyboardInput]="true">
+              </ngx-material-timepicker>
+              <mat-error *ngIf="displayMessage.start_time">{{displayMessage.start_time}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-3 col-sm-6 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label required>{{"projects.fields.finish_time.label" | translate}}</mat-label>
+              <input matInput formControlName="finish_time" [ngxTimepicker]="finish_time" [format]="24"
+                [min]="startTime" readonly>
+              <ngx-material-timepicker #finish_time [enableKeyboardInput]="true" [editableHintTmpl]="dialHint">
+              </ngx-material-timepicker>
+              <ng-template #dialHint>
+                <small class="timepicker-dial__hint" translate="form.errors.timeafter"></small>
+              </ng-template>
+              <mat-error *ngIf="displayMessage.finish_time">{{displayMessage.finish_time}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6 col-xs-12">
+            <app-multi-select-auto-complete class="form-field" [required]="true"
+              label="{{'projects.jobs.bulk_create.fields.sites.label' | translate: {count: selectedSites || 0, total: totalSiteCount || '...'} }}"
+              [filteredOptions]="siteList" [static]="true" formControlName="site_ids">
+            </app-multi-select-auto-complete>
+          </div>
+        </div>
+      </fieldset>
+      <ng-container *ngTemplateOutlet="buttons"></ng-container>
+    </div>
+  </form>
+</div>
+
+<ng-template #buttons>
+  <div class="row">
+    <div class="col-xs">
+      <button mat-stroked-button type="button" color="primary" (click)="cancelEdit()"
+        translate="projects.details.buttons.cancel-edit"></button>
+      <button mat-flat-button type="submit" color="accent" [disabled]="!selectedSites" (click)="saveDetail()">
+        {{"projects.jobs.bulk_create.buttons.create" | translate}}
+      </button>
+    </div>
+  </div>
+</ng-template>

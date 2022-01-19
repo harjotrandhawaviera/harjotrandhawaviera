@@ -1,0 +1,158 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "profile": {
+       "group": "Mein Profil",
+            "user": "Account",
+            "master": "Persönliche Informationen",
+            "appearance": "Fotos & Größenangaben",
+            "qualifications": "Qualifikationen & Ausbildung",
+            "employment": "Beschäftigungsinformationen",
+            "contract_freelancer": "Arbeit über Gewerbeschein",
+            "contract_tax_card": "Arbeit über Lohnsteuerkarte",
+            "legal": "Rechtliche Daten",
+            "training": "Rechtliche Schulung",
+            "terms": "Rahmenvertrag",
+            "contract": "Vertrag"
+    },
+    "jobs_app.dates": {
+      "group": "Jobs"
+    },
+    "jobs": "Jobs",
+    "freelancer_jobs.all": "Alle Banen",
+    "freelancer_jobs.recommended": "Aanbevolen Banen",
+    "freelancer_jobs": "Empfohlen/Alle Jobs",
+    "dates": "Verschiebungen",
+    "assignments": {
+      "group": "Buchungen",
+      "list": "Buchungen",
+      "freelancer": "Meine Buchungen"
+    },
+    "client-created": {
+      "assignments": "Buchungen vom Kunden"
+    },
+    "checkins": "Check-In",
+    "projects": "Projekte",
+    "projects.client": "Projekte",
+    "jobs.client": "Jobs",
+    "approvals_app.administration.freelancers": {
+      "group": "Mitarbeiter",
+      "list": "Alle Mitarbeiter",
+      "onboarding": "Profile zur Überprüfung",
+      "register": "Registrierung durch Admin",
+      "update": "Änderungsanträge",
+      "logs": "Änderungslog"
+    },
+    "gallery": "Galerie melden",
+    "user": "Account Einstellungen",
+    "auth": {
+      "logout": "Ausloggen"
+    },
+    "onboarding": {
+      "registered": {
+        "step": "1. Registrierung",
+        "entry": "Registrierung erfolgreich bestätigt."
+      },
+      "profile": {
+        "step": "2. Dein Profil",
+        "description": "Vervollständigen Sie Ihr Profil und werden Sie Mitglied bei einer der größten Personalagenturen."
+      },
+      "approval": {
+        "step": "3. Review",
+        "description": "Nach dem Absenden Ihres Profils prüfen unsere Experten Ihre Daten und Fotos und schlagen ggf. Verbesserungen vor."
+      },
+      "certificates": {
+        "step": "Akademie",
+        "description": "Bereite dich hier auf neue Jobs vor. Beginne bereits jetzt mit dem Training. Viel Spass!"
+      }
+    },
+    "invoices": {
+      "group": "Arbeitsgeschichte (Rechnungen)",
+      "list": "Überblick",
+      "preparation": "Einsatzberichte, Umsatzmeldungen,\nStellungnahmen",
+      "create": "Neue Rechnung",
+      "generate": "Rechnungsgenerator"
+    },
+    "master": {
+      "group": "Meisterin",
+      "skills": "Fähigkeiten",
+      "roles": "Rollen"
+    },
+    "client": {
+      "group": "Kunden",
+      "clients": "Klientin",
+      "contacts": "Kontakt"
+    },
+    "reports": {
+      "group": "Reports",
+      "report": "Assignments",
+      "questionnaire": "Questionnaires",
+      "revenue": "Revenues"
+    },
+    "administration": {
+      "group": "Administration",
+      "users": "Benutzerverwaltung",
+      "budgets": "Budgets",
+      "clients": "Kunden",
+      "contacts": "Kontakte",
+      "sites": "Einsatzorte (POS)",
+      "orders": "Aufträge",
+      "jobs": "Jobs",
+      "tenders": "Ausschreibungen",
+      "dates": "Termine",
+      "assignments": "Einsätze",
+      "certificates": "Zertifikate",
+      "rights": "Rechte",
+      "incentives": "Pauschalen & Skonto",
+      "gtcs": "Rahmenvertrag",
+      "logs": "Logs",
+      "maillogs": "Maillogs",
+      "health-insurances": "Krankenversicherungen"
+    },
+    "certificates": {
+      "group": "Akademie",
+      "all": "Alle Zertifikate",
+      "my": "Meine Zertifikate",
+      "exclusive": "Ausbildung"
+    },
+    "tenders": {
+      "group": "Stellenbörse",
+      "list": "Alle Jobs",
+      "shortlist": "Auswahlliste",
+      "invite": "Sende Einladung",
+      "offers": "Angewandte Jobs",
+      "offer": "Eingereichte Jobs",
+      "freelancer": "Übersicht",
+      "booked": "Meine Jobs",
+      "invited_jobs": "Eingeladene Jobs"
+    },
+    "accounting": {
+      "group": "Buchhaltung",
+      "files": "SEPA und DATEV Dateien",
+      "export": "SEPA und DATEV Export",
+      "bills": {
+        "preparation": "Kundenrechnung vorbereiten",
+        "list": "Kundenrechnungen"
+      }
+    },
+    "revenues": "Umsatzmeldungen",
+    "revenues.freelancer": "Umsatzmeldungen",
+    "budgets": "Budgets",
+    "messages": {
+      "group": "Nachrichten",
+      "jobs": "Jobanfragen"
+    },
+    "operations": {
+      "group": "Betrieb",
+      "preDeployment": "Vorbereitstellung",
+      "deployment": "Einsatz",
+      "postDeployment": "Nach der Bereitstellung",
+      "performanceReview": "Leistungsbeurteilung",
+      "checkIn": "Check-In"
+    },
+    "todos": "Machen",
+    "mails": "E-Mail schreiben",
+    "sms": "SMS senden",
+    "postprocessing": "Nachbereitung (LSK)"
+  }
+}

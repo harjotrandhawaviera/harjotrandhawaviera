@@ -1,0 +1,20 @@
+<div class="row {{alignment}}" *ngIf="available">
+  <!-- <a class="onboarding btn btn-primary"
+     translate="profile.create-button"
+     (click)="submit()"
+  ></a> -->
+  <div>
+    <button
+    type="button"
+    mat-flat-button
+    color="accent"
+    (click)="submit()"
+    translate="profile.create-button"
+  ></button>
+  </div>
+</div>
+<div class="row" *ngIf="inreview">
+  <div class="col-xs-12 padding">
+    <div class="alert alert-info" translate="profile.onboarding.inreview"></div>
+  </div>
+</div>

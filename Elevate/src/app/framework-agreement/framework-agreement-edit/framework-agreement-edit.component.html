@@ -1,0 +1,413 @@
+<div class="container-fluid">
+  <div *ngIf="paramId" class="col-xs-12 col-md start-xs">
+    <h1 translate="administration.gtcs.edit.title.edit"></h1>
+  </div>
+  <div *ngIf="!paramId" class="col-xs-12 col-md start-xs">
+    <h1 translate="administration.gtcs.edit.title.new"></h1>
+  </div>
+  <form [formGroup]="gtcs">
+    <div class="row">
+      <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.identifier.label" required></label>
+        <mat-form-field class="full-width">
+          <input  matInput formControlName="identifier" readonly>
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.identifier.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="identifier">
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.table.contractType" required></label>
+        <mat-form-field class="full-width">
+          <input  matInput formControlName="contract_type" readonly>
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.table.contractType" required></label>
+        <mat-form-field class="full-width">
+          <mat-select formControlName="contract_type">
+            <mat-option *ngFor="let option of contractTypeLK" [value]="option.value"> {{option.text}}</mat-option>
+          </mat-select>
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.publishedAt.label" required></label>
+        <mat-form-field class="full-width">
+            <input  matInput [matDatepicker]="published_at" [disabled]="true"
+                 formControlName="published_at" name="published_at" [min]="selectDate">
+          <mat-datepicker-toggle matSuffix [for]="published_at"></mat-datepicker-toggle>
+          <mat-datepicker #published_at></mat-datepicker>
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.publishedAt.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="published_at" formControlName="published_at"
+                 name="published_at" [min]="selectDate">
+          <mat-datepicker-toggle matSuffix [for]="published_at">{{different()}}</mat-datepicker-toggle>
+          <mat-datepicker #published_at></mat-datepicker>
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.validAt.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="valid_at" [value]="result.valid_at" formControlName="valid_at"
+                 [disabled]="true" name="valid_at" [min]="selectDate" >
+          <mat-datepicker-toggle matSuffix [for]="valid_at" (invalid)="gtcs.reset()"></mat-datepicker-toggle>
+          <mat-datepicker #valid_at ></mat-datepicker>
+          <mat-error *ngIf="gtcs.value.valid_at.invalid">{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.validAt.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="valid_at" formControlName="valid_at" name="valid_at"  [min]="gtcs.value.published_at || selectDate">
+          <mat-datepicker-toggle matSuffix [for]="valid_at"></mat-datepicker-toggle>
+          <mat-datepicker #valid_at></mat-datepicker>
+          <mat-error >{{'form.errors.required' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.gtcs.fields.invalidAt.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="invalid_at"  formControlName="invalid_at"
+                 name="invalid_at">
+          <mat-datepicker-toggle matSuffix [for]="invalid_at"></mat-datepicker-toggle>
+          <mat-datepicker #invalid_at></mat-datepicker>
+          <mat-error >{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="paramId" class="col-xs-12">
+      <hr>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-4 col-xs-12" *ngIf="!paramId">
+        <label translate="administration.gtcs.documents.fields.docTypes.label"></label>
+        <mat-form-field class="full-width">
+          <mat-select formControlName="docTypes" [(ngModel)]="modeselect" [disabled]="true">
+            <mat-option  [value]="'terms and condition'">{{'administration.gtcs.documents.fields.docTypes.terms-and-conditions' | translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <label required translate="administration.gtcs.documents.fields.name.label"></label>
+        <mat-form-field class="full-width">
+          <input  matInput formControlName="name" >
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-group col-sm-8 col-xs-12" *ngIf="!paramId">
+      <label required translate="administration.gtcs.documents.fields.description.label"></label>
+      <mat-form-field class="full-width">
+        <input type="description" matInput formControlName="description">
+        <mat-error>{{'form.errors.required' | translate}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <mat-form-field class="full-width">
+          <mat-label required>{{'administration.gtcs.documents.fields.confirmationTypes.label' | translate}}</mat-label>
+          <mat-select disableRipple formControlName="confirmation_type">
+            <mat-option value="1" disabled>{{'administration.gtcs.documents.fields.confirmationTypes.none' | translate}}</mat-option>
+            <mat-option value="2">{{'administration.gtcs.documents.fields.confirmationTypes.upload-signed' | translate}}</mat-option>
+            <mat-option value="3">{{'administration.gtcs.documents.fields.confirmationTypes.checked' | translate}}</mat-option>
+          </mat-select>
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+        <mat-form-field class="full-width">
+          <mat-label
+            required>{{'administration.gtcs.documents.fields.reconfirmationTypes.label' | translate}}</mat-label>
+          <mat-select  disableRipple formControlName="reconfirmation_type"  [(ngModel)]="reconfirmation">
+            <mat-option value="1">{{'administration.gtcs.documents.fields.confirmationTypes.none' | translate}}</mat-option>
+            <mat-option value="2">{{'administration.gtcs.documents.fields.confirmationTypes.upload-signed' | translate}}</mat-option>
+            <mat-option value="3">{{'administration.gtcs.documents.fields.confirmationTypes.checked' | translate}}</mat-option>
+          </mat-select>
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId && reconfirmation && gtcs.value.reconfirmation_type !== '1'" class="form-group col-sm-4 col-xs-12">
+        <mat-form-field class="full-width" required>
+          <mat-label>{{'administration.gtcs.documents.fields.reconfirmationIndexes.label' | translate}}</mat-label>
+          <mat-select disableRipple formControlName="reassurance" [(ngModel)]="reassurance">
+            <mat-option
+              value="2">{{'administration.gtcs.documents.fields.reconfirmationIndexes.periodically' | translate}}</mat-option>
+            <mat-option
+              value="3">{{'administration.gtcs.documents.fields.reconfirmationIndexes.checkins-count' | translate}}</mat-option>
+          </mat-select>
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!paramId && reassurance" class="form-group col-sm-4 col-xs-12">
+        <mat-form-field class="full-width">
+          <mat-label required translate="administration.gtcs.documents.fields.reconfirmationInterval.label"></mat-label>
+          <input  matInput formControlName="reconfirmation_interval" >
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+          <mat-hint>{{'administration.gtcs.documents.fields.reconfirmationInterval.hint.periodically' | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div  *ngIf="!paramId">
+      <div class="col-xs-8">
+        <app-project-documents
+
+
+        ></app-project-documents>
+        <div>
+          <app-profile-document
+            [buttonText]="'buttons.upload-document' | translate"
+          >
+          </app-profile-document>
+        </div>
+      </div>
+    </div>
+    <div  class="col-xs-12" *ngIf="!paramId">
+      <hr>
+    </div>
+    <div *ngFor="let data of documents">
+      <div class="row">
+        <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12" >
+          <label translate="administration.gtcs.documents.fields.docTypes.label"></label>
+          <mat-form-field class="full-width">
+            <input  matInput formControlName="docTypes" readonly>
+          </mat-form-field>
+        </div>
+<!--        <div *ngIf="paramId === 123" class="form-group col-sm-4 col-xs-12" >-->
+<!--          <label translate="administration.gtcs.documents.fields.docTypes.label"></label>-->
+<!--          <mat-form-field class="full-width">-->
+<!--            <input  matInput formControlName="docTypes" readonly>{{data.type}}-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+        <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+          <label translate="administration.gtcs.documents.fields.name.label"></label>
+          <mat-form-field class="full-width">
+            <input  matInput formControlName="name" >
+          </mat-form-field>
+        </div>
+<!--        <div *ngIf="paramId === 123" class="form-group col-sm-4 col-xs-12">-->
+<!--          <label translate="administration.gtcs.documents.fields.name.label"></label>-->
+<!--          <mat-form-field class="full-width">-->
+<!--            <input matInput formControlName="name">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+      </div>
+      <div *ngIf="paramId" class="form-group col-sm-8 col-xs-12">
+        <label translate="administration.gtcs.documents.fields.description.label"></label>
+        <mat-form-field class="full-width">
+          <input type="description" matInput formControlName="description">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+          <label translate="administration.gtcs.documents.fields.confirmationTypes.label"></label>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="confirmation_type" readonly>{{data.confirmation_type}}
+          </mat-form-field>
+        </div>
+<!--        <div *ngIf="paramId === 123" class="form-group col-sm-4 col-xs-12">-->
+<!--          <label translate="administration.gtcs.documents.fields.confirmationTypes.label"></label>-->
+<!--          <mat-form-field class="full-width">-->
+<!--            <input matInput formControlName="confirmation_type">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+        <div *ngIf="paramId" class="form-group col-sm-4 col-xs-12">
+          <label translate="administration.gtcs.documents.fields.reconfirmationTypes.label"></label>
+          <mat-form-field class="full-width">
+            <input [value]="result.reconfirmation_type" matInput formControlName="reconfirmation_type" readonly>{{data.reconfirmation_type}}
+          </mat-form-field>
+        </div>
+<!--        <div *ngIf="paramId === 123" class="form-group col-sm-4 col-xs-12">-->
+<!--          <label translate="administration.gtcs.documents.fields.reconfirmationTypes.label"></label>-->
+<!--          <mat-form-field class="full-width">-->
+<!--            <input matInput formControlName="reconfirmation_type">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+
+<!--        <div class="row" *ngIf="paramId === 123">-->
+
+<!--          <div class="col-xs-8">-->
+<!--            <app-project-documents-->
+
+
+<!--            ></app-project-documents>-->
+<!--            <div>-->
+<!--              <app-file-upload-->
+
+<!--                text="Upload Document"-->
+<!--                type="document"-->
+<!--              >-->
+<!--              </app-file-upload>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+      <div class="row document-cont" *ngIf="paramId">
+        <div class="col-xs-12 col-sm-8 ">
+          <span class="box" >{{data.mime | shortMime}}</span>
+          <span class="document-original-filename" >
+          {{ data.original_filename }}
+        </span>
+        </div>
+        <div class="col-xs-12 col-sm-4 end-xs">
+          <button type="button" mat-icon-button color="accent" class="btn-download"
+                 (click)="download(data)">
+            <i class="fas fa-file-download"></i>
+          </button>
+          <span class="document-size" >{{data.size | fileSize}}</span>
+        </div>
+      </div>
+
+      <div *ngIf="paramId" class="col-xs-12">
+        <hr>
+      </div>
+    </div>
+    <div *ngIf="!paramId">
+      <div *ngIf="show">
+        <div class="row">
+          <div class="form-group col-sm-4 col-xs-12">
+            <label translate="administration.gtcs.documents.fields.docTypes.label"></label>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="docTypes">
+            </mat-form-field>
+          </div>
+          <div class="form-group col-sm-4 col-xs-12">
+            <label translate="administration.gtcs.documents.fields.name.label"></label>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="name">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group col-sm-8 col-xs-12">
+          <label translate="administration.gtcs.documents.fields.description.label"></label>
+          <mat-form-field class="full-width">
+            <input value="" matInput formControlName="description">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-4 col-xs-12">
+            <label translate="administration.gtcs.documents.fields.confirmationTypes.label"></label>
+            <mat-form-field class="full-width">
+              <mat-select disableRipple formControlName="confirmation_type">
+                <mat-option value="1" disabled>{{'administration.gtcs.documents.fields.confirmationTypes.none' | translate}}</mat-option>
+                <mat-option value="2">{{'administration.gtcs.documents.fields.confirmationTypes.upload-signed' | translate}}</mat-option>
+                <mat-option value="3">{{'administration.gtcs.documents.fields.confirmationTypes.checked' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="!paramId" class="form-group col-sm-4 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label>{{'administration.gtcs.documents.fields.reconfirmationTypes.label' | translate}}</mat-label>
+              <mat-select  disableRipple formControlName="reconfirmation_type"  [(ngModel)]="reconfirmation">
+                <mat-option value="1">{{'administration.gtcs.documents.fields.confirmationTypes.none' | translate}}</mat-option>
+                <mat-option value="2">{{'administration.gtcs.documents.fields.confirmationTypes.upload-signed' | translate}}</mat-option>
+                <mat-option value="3">{{'administration.gtcs.documents.fields.confirmationTypes.checked' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="!paramId && reconfirmation && gtcs.value.reconfirmation_type !== '1'" class="form-group col-sm-4 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label>{{'administration.gtcs.documents.fields.reconfirmationIndexes.label' | translate}}</mat-label>
+              <mat-select  disableRipple formControlName="reassurance" [(ngModel)]="reassurance">
+                <mat-option value="2">{{'administration.gtcs.documents.fields.reconfirmationIndexes.periodically' | translate}}</mat-option>
+                <mat-option value="3">{{'administration.gtcs.documents.fields.reconfirmationIndexes.checkins-count' | translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="!paramId  && reassurance " class="form-group col-sm-4 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label translate="administration.gtcs.documents.fields.reconfirmationInterval.label"></mat-label>
+              <input matInput formControlName="reconfirmation_interval">
+              <mat-hint>{{'administration.gtcs.documents.fields.reconfirmationInterval.hint.periodically' | translate}}</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <app-project-documents
+              [projectDocuments]="templateDocuments"
+
+            ></app-project-documents>
+            <div>
+              <app-file-upload
+                text="Upload Document"
+                type="document"
+              >
+              </app-file-upload>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="paramId" class="col-xs">
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md  text-right">
+            <a
+              *ngIf="show"
+              mat-stroked-button
+              color="primary"
+              (click)="addfield()"
+            >{{ "administration.gtcs.documents.buttons.remove-attachment" | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md start-xs" *ngIf="!paramId" style="margin-bottom: 20px">
+      <a
+        *ngIf="!show"
+        mat-stroked-button
+        color="primary"
+        (click)="addfield()"
+      >{{ "administration.gtcs.documents.buttons.add-attachment" | translate }}
+      </a>
+    </div>
+    <div *ngIf="!paramId" class="col-xs-12 col-md start-xs">
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="creategtcs(gtcs.value)"
+
+      >{{ "administration.gtcs.edit.buttons.create" | translate }}
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/administration/gtcs']"
+      >{{ "administration.gtcs.edit.buttons.cancel" | translate }}
+      </button>
+    </div>
+    <div *ngIf="paramId" class="col-xs-12 col-md start-xs">
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="saveDetail(gtcs.value)"
+      >{{ "administration.gtcs.edit.buttons.update" | translate }}
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/administration/gtcs']"
+      >{{ "administration.gtcs.edit.buttons.cancel" | translate }}
+      </button>
+    </div>
+  </form>
+</div>

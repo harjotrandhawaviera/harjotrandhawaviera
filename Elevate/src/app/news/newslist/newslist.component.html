@@ -1,0 +1,95 @@
+<app-search-container>
+  <app-search-panel>
+    <form class="news-form" [formGroup]="newsForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"messages.jobs.table.filters.agent" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="client" #client [options]="agentList"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"messages.jobs.table.filters.job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="jobs" #jobs [options]="jobList" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"messages.jobs.table.filters.sender" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="freelancer" [options]="freelancer" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="full-width">
+          <mat-label>{{"ui.side-option-menu.search" | translate}}</mat-label>
+          <input matInput formControlName="search" type="search"/>
+          <i matSuffix class="fas fa-search"></i>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="messages.jobs.title"></h1>
+    <ng-container *ngIf="hasFilter">
+      <div class="alert alert-info">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </ng-container>
+    <div *ngFor="let data of message">
+      <div class="panel" *ngIf="!hasFilter">
+        <div class="row panel-heading between-xs between-md m-b-0">
+          <div>
+            <a
+              [routerLink]="['/administration', 'freelancers', data.senderUserId]">{{ 'messages.details.header' | translate: {
+              senderFullname: data.name,
+              senderEmail: data.email,
+              createdAt: data.created | date:"MMM d, y,h:mm a"
+            } }}</a>
+          </div>
+          <div class="list-table-actions">
+            <div class="action" (click)="$event.stopPropagation()">
+              <button
+                mat-icon-button
+                color="accent"
+                [matMenuTriggerFor]="subMenu"
+              >
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+              <mat-menu #subMenu="matMenu" xPosition="before">
+                <mat-label><b>Action</b></mat-label>
+                <button mat-menu-item (click)="confirmModal(data?.subject, data?.jobId, data?.q_id, data?.tenders)">
+                  {{ "messages.jobs.table.actions.answer"  | translate }}
+                </button>
+                <button mat-menu-item (click)="OpenModal(data?.q_id)">
+                  {{ "messages.jobs.table.actions.remove"  | translate }}
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <h4 class="mb-3">{{ 'messages.details.subject' | translate: {subject: data.subject} }}</h4>
+          <div class="styleTag">{{ 'messages.details.content' | translate: {content: data.value} | titlecase }}</div>
+          <ng-container *ngFor="let d of data.tender_date">
+            <a [routerLink]="['/tenders', d.id]">{{d.appointed_at | date: "mediumDate"}}</a>
+            <span>&nbsp;</span>
+          </ng-container>
+        </div>
+        <div class="panel-footer">
+          {{ 'messages.details.recipient' | translate: {recipientFullname: data.receiver} }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!hasFilter">
+      <app-paginator
+        [disabled]="loading$ | async"
+        hidePageSize="true"
+        showFirstLastButtons="true"
+        [length]="paginator?.total"
+        [pageIndex]="paginator?.current_page - 1"
+        (page)="pageChange($event)"
+      ></app-paginator>
+    </div>
+  </app-search-list>
+</app-search-container>

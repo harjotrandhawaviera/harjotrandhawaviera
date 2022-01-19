@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/projects']"
+        >{{ "projects.details.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md start-xs">
+      <h1 translate="projects.details.title.details"></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs" *ngIf="(projectDetail$ | async) && checkFinish(projectDetail$ | async)">
+      <a
+        mat-stroked-button
+        color="primary"
+        (click)="navigateToCreateJobs()"
+        >{{ "projects.jobs.bulk_create.buttons.submit" | translate }}
+      </a>
+      <a
+        mat-flat-button
+        color="accent"
+        [routerLink]="['/projects/edit', id]"
+        [skipLocationChange]="true"
+        >{{ "projects.details.buttons.edit" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row" *ngIf="(projectDetail$ | async)">
+    <div class="col-xs-12 col-lg-8">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "projects.details.tab.general" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-project-detail-general
+            [project]="projectDetail$ | async"
+            [allowManageCustomer]="manageClientPermission$ | async"
+            [templateDocuments]="templateDocument$ | async"
+            [contractTypeLK]="contractTypeLK"
+            [allowManageOrder]="manageOrderPermission$ | async"
+          ></app-project-detail-general>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "projects.details.tab.briefing" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <fieldset>
+            <app-project-documents
+              [projectDocuments]="briefingDocument$ | async"
+              data-type="briefing"
+              data-belongs-to="{project_id: briefing.data.id}"
+              data-view="briefing.view"
+            ></app-project-documents>
+          </fieldset>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "projects.details.tab.reports" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-project-detail-report
+            [freelancerRatings]="projectFreelancerRating$ | async"
+            [feedbackQuestions]="projectFeedbackQuestion$ | async"
+            [salesSlots]="projectSalesSlots$ | async"
+          ></app-project-detail-report>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "projects.details.tab.revenues" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-project-revenue-summary
+            [projectId]="id"
+          ></app-project-revenue-summary>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "projects.details.tab.evaluation" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-project-detail-evaluation *ngIf="(projectName$ | async) as name" [id]="id" [name]="name"></app-project-detail-evaluation>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle class="primary" expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "projects.details.tab.summary" | translate | uppercase }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-project-detail-summary
+            [projectSummary]="projectSummary$ | async"
+          ></app-project-detail-summary>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle class="primary">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{
+                "projects.details.tab.accounting-summary"
+                  | translate
+                  | uppercase
+              }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-project-accounting-summary
+            [project]="projectDetail$ | async"
+          ></app-project-accounting-summary>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

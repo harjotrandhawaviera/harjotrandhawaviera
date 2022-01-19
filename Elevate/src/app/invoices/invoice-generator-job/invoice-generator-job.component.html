@@ -1,0 +1,73 @@
+<div *ngIf="detailGroup" [formGroup]="detailGroup">
+  <div class="row">
+    <div
+      class="col-md-12 description"
+      translate="invoices.generator.job.description"
+    ></div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-8">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "invoices.fields.job.label" | translate
+        }}</mat-label>
+        <app-static-auto-complete
+          formControlName="job_id"
+          [options]="jobList"
+          [error]="displayMessage.job_id"
+        >
+        </app-static-auto-complete>
+        <mat-error *ngIf="displayMessage.job_id">{{
+          displayMessage.job_id
+        }}</mat-error>
+      </mat-form-field>
+      <!-- <label translate="invoices.fields.job.label" data-required></label>
+      <div
+        data-required
+        data-selectize
+        data-options="generator.jobs"
+        data-config="{maxOptions: 10000, maxItems: 1, valueField: 'id', labelField: 'name', sortField: 'name', searchField: 'name', allowEmptyOption: true}"
+        data-select-description="name|filterdescription"
+        data-select-empty-option="ui.option.deselect"
+        data-ng-model="generator.data.job_id"
+      ></div> -->
+    </div>
+  </div>
+
+  <div class="row assignments" *ngIf="job_id">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.assignments.label"></h3>
+    </div>
+    <div
+      app-assignment-list
+      class="col-xs-12 padding-none"
+      *ngIf="assignments"
+      [assignments]="assignments"
+      [selection]="selection"
+      [assignmentColumns]="assignmentColumns"
+    ></div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <button
+        type="button"
+        class="section-button"
+        mat-flat-button
+        color="accent"
+        [disabled]="!(detailGroup && detailGroup.valid)"
+        style="width: 100%"
+        (click)="nextClick()"
+      >
+        {{ "invoices.generator.buttons.next-step" | translate }}
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
+      <!-- <button
+        type="button"
+        class="btn btn-block btn-primary"
+        data-ui-sref="^.details"
+        data-ng-disabled="generator.form.$invalid"
+      ></button> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,290 @@
+<div class="container-fluid" *ngIf="detailForm">
+  <form
+    [formGroup]="detailForm"
+    (ngSubmit)="saveDetail()"
+    data-ng-submit="qualifications.submit()"
+    data-ng-fab-form-options="{preventInvalidSubmit: !qualifications.isOnboarding || qualifications.data.requests['freelancer-onboarding']}"
+  >
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 translate="profile.qualifications.main.headline"></h3>
+      </div>
+    </div>
+    <div class="row" *ngIf="!readonly">
+      <div
+        class="col-xs-12"
+        [innerHtml]="'profile.qualifications.main.description' | translate"
+      ></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+          <legend
+            translate="profile.qualifications.aboutme.headline"
+          ></legend>
+          </div>
+      <div class="col-xs-12" [ngClass]=" aboutme?.value == '' ? 'rich-text-editor-wrapper' : ''">
+        <angular-editor [config]="config"  formControlName="about_me"></angular-editor>
+      </div>
+    </div>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend translate="profile.qualifications.education.headline"></legend>
+        </div>
+      </div>
+      <div class="row" *ngIf="!readonly">
+        <div
+          class="col-xs-12"
+          [innerHtml]="'profile.qualifications.education.description' | translate"
+        ></div>
+      </div>
+      <div class="row" formArrayName="qualifications" *ngIf="qualifications">
+        <ng-container
+          *ngFor="let userFormGroup of qualifications.controls; let i = index"
+        >
+        <div
+        class="col-xs-12 padding-none"
+        *ngIf="userFormGroup"
+        app-freelancer-qualification-item
+        [readonly]="readonly"
+        [displayMessage]="
+          qualificationsDisplayMessage[i]
+            ? qualificationsDisplayMessage[i]
+            : {}
+        "
+        (onChange)="onFormValueChange()"
+        [inFormGroup]="userFormGroup"
+      ></div>
+          <div class="col-xs-12 end-xs" *ngIf="!readonly">
+            <button
+              type="button"
+              class="section-button"
+              mat-stroked-button
+              color="primary"
+              (click)="removeQualifications(i)"
+              translate="profile.qualifications.delete"
+            ></button>
+          </div>
+        </ng-container>
+        <div class="col-xs-12">
+          <div
+            *ngIf="qualifications.invalid"
+            class="alert alert-info"
+            translate="profile.qualifications.add-qualification-disabled"
+          ></div>
+        </div>
+        <div class="col-xs-12" *ngIf="!readonly">
+          <button
+          *ngIf="qualifications.controls.length < 1"
+            [disabled]="qualifications.invalid"
+            type="button"
+            class="section-button"
+            mat-stroked-button
+            color="primary"
+            (click)="addQualifications()"
+            translate="profile.qualifications.add-qualification"
+          ></button>
+          <button
+          *ngIf="qualifications.controls.length>0"
+          [disabled]="qualifications.invalid"
+          type="button"
+          class="section-button"
+          mat-stroked-button
+          color="primary"
+          (click)="addQualifications()"
+          translate="profile.qualifications.add-more"
+        ></button>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend translate="profile.qualifications.training.headline"></legend>
+        </div>
+      </div>
+      <div class="row" *ngIf="!readonly">
+        <div
+          class="col-xs-12"
+          [innerHtml]="'profile.qualifications.training.description' | translate"
+        ></div>
+      </div>
+      <div class="row" formArrayName="training" *ngIf="training">
+        <ng-container
+          *ngFor="let userFormGroup of training.controls; let i = index"
+        >
+        <div
+        class="col-xs-12 padding-none"
+        *ngIf="userFormGroup"
+        app-freelancer-training
+        [readonly]="readonly"
+        [displayMessage]="
+        trainingDisplayMessage[i]
+            ? trainingDisplayMessage[i]
+            : {}
+        "
+        (onChange)="onFormValueChange()"
+        [inFormGroup]="userFormGroup"
+      ></div>
+          <div class="col-xs-12 end-xs" *ngIf="!readonly">
+            <button
+              type="button"
+              class="section-button"
+              mat-stroked-button
+              color="primary"
+              (click)="removeTrainingDetails(i)"
+              translate="profile.qualifications.delete"
+            ></button>
+          </div>
+        </ng-container>
+         <div class="col-xs-12">
+          <div
+            *ngIf="training.invalid"
+            class="alert alert-info"
+            translate="profile.qualifications.add-training-disabled"
+          ></div>
+        </div>
+        <div class="col-xs-12" *ngIf="!readonly">
+          <button
+          *ngIf="training.controls.length < 1"
+            type="button"
+            class="section-button"
+            mat-stroked-button
+            color="primary"
+            (click)="addTraining()"
+            translate="profile.qualifications.add-training"
+          ></button>
+          <button
+          *ngIf="training.controls.length >0"
+          type="button"
+          class="section-button"
+          mat-stroked-button
+          color="primary"
+          (click)="addTraining()"
+          translate="profile.qualifications.add-more"
+        ></button>
+
+        </div>
+      </div>
+    </fieldset>
+
+
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend
+            translate="profile.qualifications.languages.headline"
+          ></legend>
+        </div>
+      </div>
+      <div class="row" *ngIf="!readonly">
+        <div
+          class="col-xs-12 description"
+          [innerHtml]="
+            'profile.qualifications.languages.description' | translate
+          "
+        ></div>
+      </div>
+      <div class="row" formArrayName="languages" *ngIf="languages">
+        <div
+          class="col-xs-12 col-sm-6 col-md-3"
+          *ngFor="let alias of languages.controls; let i = index"
+        >
+          <mat-form-field style="width: calc(100% - 60px)">
+            <mat-label required *ngIf="i === 0">{{
+              "profile.fields.languages.native.label" | translate
+            }}</mat-label>
+            <mat-label *ngIf="i !== 0">{{
+              "profile.fields.languages.additional.label" | translate
+            }}</mat-label>
+            <mat-select [formControlName]="i">
+              <mat-option
+                *ngFor="let option of languageLK"
+                [value]="option.value"
+              >
+                {{ "profile.fields.languages." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="displayMessage.languages && displayMessage.languages[i]"
+              >{{ displayMessage.languages[i] }}</mat-error
+            >
+          </mat-form-field>
+          <button
+            *ngIf="i !== 0 && !readonly"
+            type="button"
+            mat-icon-button
+            color="accent"
+            (click)="removeLanguages(i)"
+          >
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3" *ngIf="!readonly">
+          <button
+            *ngIf="languages.controls.length <= 3"
+            type="button"
+            class="section-button"
+            mat-stroked-button
+            color="primary"
+            (click)="addLanguages()"
+            translate="profile.fields.languages.add"
+          ></button>
+        </div>
+      </div>
+    </fieldset>
+    <div class="">
+      <div class="row">
+        <div class="col-xs-12">
+          <legend
+            translate="profile.qualifications.uploadResume.headline"
+          ></legend>
+          <label
+        for="document"
+        translate="profile.qualifications.uploadResume.description"
+      ></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 legal-action-button" *ngIf="profile?.resume">
+      <i class="fas fa-file-download" (click)="downloadDocumentResume(profile?.resume)" mat-icon-button></i>
+    </div>
+    <div class="col-xs-12 resume-section">
+      <app-profile-document formControlName="resume" [buttonText]="'buttons.upload-document' | translate"></app-profile-document>
+    </div>
+    <div class="row qualification-footer-wrapper" *ngIf="!readonly">
+      <div class="col-xs-12">
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="isOnboarding"
+          translate="profile.submit.button-next"
+        ></button>
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="!isOnboarding"
+          translate="profile.submit.button-save"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="isOnboarding"
+          translate="profile.next-step"
+          (click)="next()"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="!isOnboarding"
+          translate="profile.cancel"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </div>
+  </form>
+</div>

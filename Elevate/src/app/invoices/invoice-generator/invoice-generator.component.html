@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 translate="invoices.generator.title"></h1>
+    </div>
+  </div>
+  <form *ngIf="detailForm" [formGroup]="detailForm">
+    <mat-tab-group
+      [selectedIndex]="currentTabIndex"
+      mat-align-tabs="center"
+      (selectedTabChange)="selectedTabChange($event)"
+    >
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span class="circled-number">1</span>
+          {{ "invoices.generator.states.job" | translate }}
+        </ng-template>
+        <div
+          class="tab-content"
+          app-invoice-generator-job
+          [displayMessage]="{}"
+          [jobList]="jobList"
+          [detailGroup]="jobDetail"
+          [assignments]="assignments"
+          (next)="next()"
+        ></div>
+      </mat-tab>
+      <mat-tab
+        [disabled]="
+          isGenerated ||
+          !(jobData.assignment_ids && jobData.assignment_ids.length)
+        "
+      >
+        <ng-template mat-tab-label>
+          <span class="circled-number">2</span>
+          {{ "invoices.generator.states.details" | translate }}
+        </ng-template>
+        <div
+          app-invoice-generator-assignment-detail
+          class="tab-content"
+          [displayMessage]="{}"
+          [detailGroup]="assignmentDetail"
+          [assignment_details]="assignment_details"
+          [total]="total"
+          (next)="next()"
+        ></div>
+      </mat-tab>
+      <mat-tab
+        [disabled]="
+          isGenerated ||
+          !(jobData.assignment_ids && jobData.assignment_ids.length)
+        "
+      >
+        <ng-template mat-tab-label>
+          <span class="circled-number">3</span>
+          {{ "invoices.generator.states.general" | translate }}
+        </ng-template>
+        <div
+          app-invoice-generator-general
+          class="tab-content"
+          [detailGroup]="generalDetail"
+          [freelancer]="freelancer"
+          [displayMessage]="generalDetailDisplayMessage"
+          [grandTotal]="gross_total"
+          (submit)="submit()"
+        ></div>
+      </mat-tab>
+      <mat-tab [disabled]="true">
+        <ng-template mat-tab-label>
+          <span class="circled-number">4</span>
+          {{ "invoices.generator.states.confirmation" | translate }}
+        </ng-template>
+        <div class="tab-content">
+          <div class="row">
+            <div
+              class="col-xs-12"
+              appLoadHtml="invoice.generator.confirmation"
+            ></div>
+            <div
+              class="col-md-12 text-center"
+              *ngIf="jobData.assignment_ids && jobData.assignment_ids.length"
+            >
+              <button
+                type="button"
+                mat-stroked-button
+                color="primary"
+                translate="invoices.generator.buttons.restart-generator"
+                (click)="restart()"
+              ></button>
+              <button
+                type="button"
+                mat-flat-button
+                color="accent"
+                translate="invoices.generator.buttons.create-invoice"
+                (click)="submitInvoice()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+@import 'variables';
+
+.flex { 
+    display: flex;
+}
+.client-container {
+    position: relative;
+
+    .add-tasks {
+        color: $brand-primary;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        right: -10px;
+        top: 8px;
+        padding: 5px;
+        cursor: pointer;
+    }
+}
+.editors-container {
+    > div {
+        margin-bottom: 20px;
+    }
+}
+.btn-cls {
+    display: flex;
+    .mat-icon-button {
+        width: 25px;
+    }
+}
+.currency-container {
+    display: flex;
+    align-items: center;
+    .copy {
+        margin-left: 20px;
+    }
+}

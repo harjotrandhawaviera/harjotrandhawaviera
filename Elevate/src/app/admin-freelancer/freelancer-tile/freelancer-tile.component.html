@@ -1,0 +1,87 @@
+<div class="freelancer-tile">
+  <div
+    [ngClass]="{'panel-lock': freelancer?.user?.status === 'deactivated' || freelancer?.user?.status === 'locked', 'panel': freelancer?.user?.status !== 'deactivated'}"
+    class="panel-default {{
+    freelancer.user ? freelancer.user.status : ''
+  }}" *ngIf="freelancer" (click)="gotoDetail()">
+    <div class="row between-xs center-xs freelancer-tile-detail-wrapper" *ngIf="freelancer.user">
+      <span class="data-value p-t-10" translate="administration.freelancers.entrance"
+        [translateParams]="{ createdAt: freelancer.user.created_at | date: 'mediumDate' }"></span>
+      <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation();">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <mat-menu #subMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="gotoDetail()">
+          {{ "administration.freelancers.table.actions.details" | translate }}
+        </button>
+        <button mat-menu-item *ngIf="!freelancer.is_approved && canDelete" (click)="deleteFreelancer()">
+          {{ "administration.freelancers.table.actions.remove" | translate }}
+        </button>
+      </mat-menu>
+    </div>
+    <div class="panel-body">
+      <div class="row center-xs middle-xs">
+        <div class="image-placeholder">
+          <div class="centered" *ngIf="freelancer?.user?.status === 'deactivated'  ">
+            {{ "administration.users.state.deactivated" | translate }}
+          </div>
+          <img appImageAvatar [imageId]="freelancer.face_picture_id" />
+        </div>
+      </div>
+
+      <div *ngIf="freelancer?.user?.status !== 'deactivated'" class="row center-xs middle-xs">
+        <h2 *ngIf="freelancer.lastname || freelancer.firstname">
+          {{ freelancer.lastname }} {{ freelancer.firstname }}
+        </h2>
+        <h2 *ngIf="!freelancer.lastname && !freelancer.firstname" translate="common.users.name-unavailable"></h2>
+      </div>
+      <div *ngIf="freelancer?.user?.status === 'deactivated'" class="row center-xs middle-xs">
+        <p *ngIf="freelancer.lastname || freelancer.firstname">
+          {{ freelancer.lastname }} {{ freelancer.firstname }}
+        </p>
+      </div>
+      <div class="row center-xs middle-xs">
+        <bar-rating [rate]="freelancer.avg_assignment_rating" [max]="5" [theme]="'fontawesome-o'" [readOnly]="true">
+        </bar-rating>
+      </div>
+
+      <div class="row center-xs middle-xs">
+        <i class="fas fa-map-marker"></i> &nbsp;
+        <div *ngIf="freelancer.zip || freelancer.city" class="data-value">
+          {{ freelancer.zip }} {{ freelancer.city }}
+        </div>
+        <div *ngIf="!freelancer.zip && !freelancer.city" translate="administration.freelancers.address-unavailable"
+          class="data-value"></div>
+      </div>
+
+      <div class="row center-xs middle-xs" *ngIf="freelancer.user">
+        <i class="far fa-envelope text-primary"></i> &nbsp;
+        <a [attr.href]="'mailto:' + freelancer.user.email" class="data-value ellipsis">{{
+          freelancer.user.email
+          }}</a>
+      </div>
+      <div class="row center-xs middle-xs p-t-20" *ngIf="!freelancer.user">
+      </div>
+
+      <div class="row center-xs middle-xs" *ngIf="freelancer.mobile">
+        <i class="fa fa-phone text-primary"></i> &nbsp;
+        <a class="mobile" class="data-value" [attr.href]="'tel:' + freelancer.mobile">{{ freelancer.mobile }}</a>
+      </div>
+      <div class="row center-xs middle-xs p-t-20" *ngIf="!freelancer.mobile">
+      </div>
+
+    </div>
+    <div class="panel-footer clearfix">
+      <div class="row between-xs middle-xs">
+        <div>
+          <div [ngClass]="{ online: freelancer.online, status: true }"
+            data-translate-attr="{title: 'administration.freelancers.last-action'}" data-translate-values="freelancer">
+          </div>
+        </div>
+        <div *ngIf="freelancer.user">
+          {{ "administration.users.state." + freelancer.user.status | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

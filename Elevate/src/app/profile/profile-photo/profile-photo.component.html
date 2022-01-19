@@ -1,0 +1,50 @@
+<div
+  [ngClass]="{ 'profile-photo': true, 'contains-pending': pictures.pending }"
+>
+  <i *ngIf="pictures.pending" class="fas fa-hourglass-half"></i>
+  <img
+    class="placeholder"
+    *ngIf="!photo && placeholder"
+    [attr.src]="placeholder"
+  />
+  <img
+    *ngIf="pictures && pictures.current && placeholder"
+    appImageAvatar
+    [path]="pictures.current"
+    [defaultPath]="placeholder"
+    class="current"
+  />
+  <img
+    *ngIf="pictures && pictures.pending && placeholder"
+    appImageAvatar
+    [path]="pictures.pending"
+    [defaultPath]="placeholder"
+    class="pending"
+  />
+  <!-- <img appImageAvatar *ngIf="pictureId" [imageId]="pictureId"> -->
+  <label
+    class="btn info-label sedcard"
+    *ngIf="type === 'body' || type === 'profile'"
+    translate="profile.fields.photos.sedcard"
+  ></label>
+  <div
+    data-ng-required="photo.required"
+    data-ng-class="{set: photo.data.saved, uploaded: photo.file.data, uploading: photo.uploading.progress && photo.uploading.progress < 100,
+     'glyphicon-hourglass': photo.pictures.pending}"
+    data-upload="picture"
+    data-type="picture"
+    data-ng-model="photo.file"
+    data-settings="photo.settings"
+    data-uploading="photo.uploading"
+  ></div>
+  <app-picture-upload
+    *ngIf="!readonly"
+    (pictureUploaded)="pictureUploadedCallback($event)"
+    text="{{
+      'buttons.' + (updateRequest ? 'request-change' : 'change') + '-picture'
+        | translate
+    }}"
+    type="image"
+  >
+  </app-picture-upload>
+</div>

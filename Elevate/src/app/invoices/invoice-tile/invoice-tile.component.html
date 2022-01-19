@@ -1,0 +1,69 @@
+<div
+  *ngIf="item"
+  class="panel panel-default invoice-tile {{ item.state }} {{
+    item.with_discount ? 'discount' : ''
+  }}"
+  (click)="cardClick()"
+>
+  <div class="panel-heading">
+    <div class="row between-xs middle-xs">
+      <div>
+        {{ item.issued_at | date: 'mediumDate' }}
+      </div>
+      <div>
+        <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation();">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <mat-menu #subMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="detailClick()">
+            {{ "invoices.table.actions.details" | translate }}
+          </button>
+          <button
+            mat-menu-item
+            *ngIf="!isFreelancer && item.state === 'issued'"
+            (click)="checkClick()"
+          >
+            {{ "invoices.table.actions.check" | translate }}
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="clearfix">
+      <h3 class="number line-ellipsis pull-left">{{ item.number }}</h3>
+      <h3 class="total pull-right">
+        <span>{{ item.total | currency }}</span>
+        <br />
+        <span
+          class="with_discount"
+          *ngIf="item.with_discount"
+          translate="invoices.tile.with_discount"
+        ></span>
+      </h3>
+    </div>
+    <h4 class="fullname">{{ item.freelancer_name }}</h4>
+    <div class="comment" ellipsis>{{ item.comment }}</div>
+    <div
+      class="summary line-ellipsis"
+      *ngIf="item.summary.number === 1"
+      [translate]="'invoices.tile.assignments-single'"
+      [translateParams]="{
+        from: item.summary.from | date,
+        to: item.summary.to | date
+      }"
+    ></div>
+    <div
+      class="summary line-ellipsis"
+      *ngIf="item.summary.number !== 1"
+      [translate]="'invoices.tile.assignments-multiple'"
+      [translateParams]="{
+        from: item.summary.from | date,
+        to: item.summary.to | date
+      }"
+    ></div>
+  </div>
+  <div class="panel-footer text-right">
+    {{ "invoices.fields.states." + item.state | translate }}
+  </div>
+</div>

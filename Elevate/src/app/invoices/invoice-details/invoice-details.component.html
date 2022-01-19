@@ -1,0 +1,323 @@
+<div class="container-fluid" *ngIf="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/invoices/list']">{{
+        "invoices.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12">
+      <h1 translate="invoices.title.details"></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs">
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="invoices.buttons.reset"
+        *ngIf="allowReset && invoice.id && invoice.state === 'approved'"
+        (click)="reset()"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        data-ng-click="invoice.goToPreparation()"
+        translate="invoices.buttons.preparation"
+        *ngIf="invoice.state === 'rejected'"
+        (click)="goToPreparation()"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="invoices.buttons.check"
+        *ngIf="isOnBehalf && invoice.id"
+        data-ng-click="!disabled.check && invoice.check()"
+        [disabled]="disabled.check"
+        (click)="check()"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="invoices.buttons.generate"
+        *ngIf="!isOnBehalf && invoice.id && invoice.state === 'rejected'"
+        (click)="generate()"
+        [disabled]="disabled.edit"
+      ></button>
+      <button
+        type="button"
+        mat-raised-button
+        color="accent"
+        translate="invoices.buttons.edit"
+        (click)="edit()"
+        [disabled]="disabled.edit"
+      ></button>
+      <!-- <a
+        mat-raised-button
+        color="accent"
+        [routerLink]="['/invoices/edit', invoiceId]"
+        [disabled]="disabled.edit"
+        [skipLocationChange]="true"
+        >{{ "invoices.buttons.edit" | translate }}
+      </a> -->
+    </div>
+  </div>
+  <div
+    class="row"
+    *ngIf="!isOnBehalf && invoice.id && invoice.state === 'rejected'"
+  >
+    <div class="col-xs-12">
+      <p
+        class="alert alert-warning"
+        translate="invoices.fields.states.hint"
+      ></p>
+    </div>
+  </div>
+  <div class="row" *ngIf="invoice.id">
+    <div class="form-group col-xs-12">
+      <label translate="invoices.fields.job.label"></label>
+      <div>
+        <strong>
+          {{ isOnBehalf ? invoice.jobTitle : invoice.jobTitleShort }}</strong
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label translate="invoices.fields.number.label"></label>
+      <p>
+        {{ invoice.number }}
+      </p>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label translate="invoices.fields.issued.label"></label>
+      <p>
+        {{ invoice.issued_at | date: 'mediumDate' }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label translate="invoices.fields.total.label"></label>
+      <p>
+        {{ invoice.total | currency }}
+      </p>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label translate="invoices.fields.taxes.label"></label>
+      <p>
+        {{
+          (invoice.includes_taxes ? "invoices.taxes.included" : "invoices.taxes.not-included") | translate
+        }}
+      </p>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label class="empty-label"></label>
+      <div>
+        <mat-checkbox
+          color="primary"
+          [disabled]="true"
+          [(ngModel)]="invoice.with_discount"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <mat-label
+            class="input-label"
+            translate="invoices.fields.payment-discount.label"
+          ></mat-label>
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label translate="invoices.fields.creator.label"></label>
+      <p>
+        {{ invoice.creatorName }}
+      </p>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <label translate="invoices.fields.states.label"></label>
+      <p>
+        {{ "invoices.fields.states." + invoice.state | translate }}
+      </p>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <label translate="invoices.fields.approval-state.label"></label>
+      <p
+        class="invoice-approval"
+        app-approval-state
+        [data]="invoice.approval"
+      ></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <label translate="invoices.fields.comment.label"></label>
+      <p>{{ invoice.comment }}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="isOnBehalf">
+    <div class="col-sm-6 col-xs-12">
+      <label translate="invoices.fields.fullname.label"></label>
+      <p>
+        {{ invoice.freelancer.fullname }}
+      </p>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+      <label translate="invoices.fields.bic.label"></label>
+      <p>
+        {{ invoice.freelancer.bic }}
+      </p>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      <label translate="invoices.fields.iban.label"></label>
+      <p>
+        {{ invoice.freelancer.iban }}
+      </p>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="invoice.payment_total">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.payment-data.label"></h3>
+    </div>
+
+    <div class="col-md-2 col-sm-2 payment-total-net">
+      <label translate="invoices.fields.total-net.label"></label>
+      <p *ngIf="invoice.paymentTotalNet === undefined">-</p>
+      <p
+        *ngIf="
+          invoice.paymentTotalNet !== undefined && !invoice.paymentTotalNetHint
+        "
+      >
+        {{ invoice.paymentTotalNet | currency }}
+      </p>
+      <p
+        *ngIf="
+          invoice.paymentTotalNet !== undefined &&
+          true === invoice.paymentTotalNetHint
+        "
+      >
+        <a
+          href="#"
+          [matTooltip]="'invoices.fields.payment-total.warning' | translate"
+          >{{ invoice.paymentTotalNet | currency }} <i class="fa fa-warning"></i
+        ></a>
+      </p>
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <label translate="invoices.fields.total-gross.label"></label>
+      <p>{{ invoice.total | currency }}</p>
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <label
+        for="payment-total-gross"
+        translate="invoices.fields.payment-total.gross.label"
+      ></label>
+      <p id="payment-total-gross">
+        {{ invoice.payment_total | currency }}
+      </p>
+    </div>
+    <div class="col-md-3 col-sm-4">
+      <label translate="invoices.fields.payment-target.label"></label>
+      <p *ngIf="invoice.payment_target">
+        {{ invoice.payment_target | date : 'mediumDate' }}
+      </p>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="invoice.payment_total">
+    <div class="col-md-6">
+      <label translate="invoices.fields.payment-comment.label"></label>
+      <p>{{ invoice.payment_comment ? invoice.payment_comment : '-' }}</p>
+    </div>
+  </div>
+
+  <div class="row document bottom-margin" style="margin-top: 30px;">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.document.label"></h3>
+      <app-document-upload
+        [readonly]="true"
+        [documents]="invoice.document ? [invoice.document] : []"
+      ></app-document-upload>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.assignments.label"></h3>
+    </div>
+    <div
+      app-assignment-list
+      class="col-xs-12 padding-none"
+      *ngIf="invoice.assignments"
+      [assignments]="invoice.assignments"
+      [assignmentColumns]="assignmentColumns"
+    ></div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-md-12">
+      <h3 translate="invoices.fields.additional-documents.label"></h3>
+
+      <!-- <div data-invoice-additional="invoice.data.additional" data-assignments="invoice.assignments"
+           data-on-behalf="invoice.freelancerId"></div> -->
+    </div>
+    <div class="col-xs-12">
+      <div
+        app-invoice-details-additional
+        [data]="invoice.additional"
+        [assignments]="assignments"
+        [onBehalf]="freelancerId"
+      ></div>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-md-12">
+      <h3 translate="invoices.fields.questionnaire.label"></h3>
+      <div *ngFor="let assignment of invoice.assignments">
+        <div
+          *ngIf="assignment.questionnaire_id"
+          app-survey-details-button
+          [assignment]="assignment"
+          [type]="'questionnaire'"
+          view="readonly"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-md-12">
+      <h3 translate="invoices.fields.feedback.label"></h3>
+      <div *ngFor="let assignment of invoice.assignments">
+        <div
+          *ngIf="assignment.feedback"
+          app-survey-details-button
+          [assignment]="assignment"
+          data-survey-instance-approval="assignment.feedbackApproval.approval"
+          [type]="'feedback'"
+          view="readonly"
+          data-approval-view="readonly"
+        ></div>
+        <div
+          *ngIf="!assignment.feedback"
+          [translate]="'invoices.fields.feedback.not-requested'"
+          [translateParams]="{ appointedAt: assignment.appointedAt }"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin" *ngIf="isOnBehalf && invoice.freelancerRatings">
+    <div class="col-md-12">
+      <h3 translate="assignments.ratings.label"></h3>
+    </div>
+    <div
+      class="col-md-12 padding-none"
+      app-assignments-ratings
+      [assignmentIds]="invoice.assignmentIds"
+      [criterias]="invoice.freelancerRatings"
+      [freelancerId]="invoice.freelancer_id"
+      viewType="readonly"
+    ></div>
+  </div>
+</div>

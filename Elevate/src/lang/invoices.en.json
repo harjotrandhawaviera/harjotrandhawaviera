@@ -1,0 +1,393 @@
+{
+    "invoices": {
+        "title": {
+            "list": "Overview",
+            "details": "Details",
+            "edit": "Edit Invoice",
+            "new": "Create Invoice"
+        },
+        "filters": {
+            "job": "Job",
+            "freelancer": "Staff Member",
+            "state": "Status",
+            "dates": "Invoice Date",
+            "attributes": "Discount Payment"
+        },
+        "download-as-zip": "Zip",
+        "fields": {
+            "number": {
+                "label": "Invoice Number"
+            },
+            "issued": {
+                "label": "Invoice Date"
+            },
+            "total": {
+                "label": "Invoice Total"
+            },
+            "total-net": {
+                "label": "Invoice Total (Net)"
+            },
+            "total-gross": {
+                "label": "Invoice Total"
+            },
+            "generator-total": {
+                "label": "Invoice Total"
+            },
+            "document": {
+                "label": "Invoice Document"
+            },
+            "assignments": {
+                "label": "List of Operations"
+            },
+            "comment": {
+                "label": "Comment"
+            },
+            "freelancer": {
+                "label": "Please select the Staff Member for whom the invoice should be uploaded and created:"
+            },
+            "job": {
+                "label": "Job"
+            },
+            "states": {
+                "label": "Status",
+                "issued": "In Process",
+                "approved": "Released",
+                "payment-authorized": "Payment Instructed",
+                "money-transfered": "Payment Processed",
+                "rejected": "Rejected",
+                "hint": "The invoice has been rejected.\nPlease check all mission related documents, e.g. mission report and revise them if necessary.\nThen revise your entries in the invoice form (button 'Edit'), upload a new invoice document if necessary and resubmit the invoice by clicking the button 'Submit'."
+            },
+            "approval-state": {
+                "label": "Approval Status"
+            },
+            "taxes": {
+                "label": "Subject to Sales Tax",
+                "included": "Yes",
+                "not-included": "No",
+                "hint": "When I am liable to pay Sales Tax?"
+            },
+            "creator": {
+                "label": "Saved from"
+            },
+            "additional-documents": {
+                "label": "Other Documents",
+                "not-available": "Not Available",
+                "report": {
+                    "label": "Operational Reports"
+                },
+                "questionnaire": {
+                    "label": "Statements"
+                },
+                "picture-documentation": {
+                    "label": "Photo Documentation"
+                },
+                "freelancer": {
+                    "report": {
+                        "label": "Mission Reports"
+                    },
+                    "questionnaire": {
+                        "label": "Comments"
+                    },
+                    "picture-documentation": {
+                        "label": "Photo Documentation"
+                    }
+                },
+                "tax_card": {
+                    "report": {
+                        "label": "Timesheets"
+                    },
+                    "questionnaire": {
+                        "label": "Statements"
+                    },
+                    "picture-documentation": {
+                        "label": "Photo Documentation"
+                    }
+                }
+            },
+            "appointments": {
+                "label": "{count, select, 1 {Day of Operation} other {Operating Days}}: {{dates}}",
+                "label-single": "Day of Operation: {{dates}}",
+                "label-multiple": "Operating Days: {{dates}}"
+            },
+            "questionnaire": {
+                "label": "Online Comments"
+            },
+            "feedback": {
+                "label": "Feedback",
+                "not-requested": "No feedback requested for {{appointedAt}}."
+            },
+            "revenues": {
+                "label": "Sales Report",
+                "label-multi": "Sales Reports"
+            },
+            "payment-data": {
+                "label": "Payment Information"
+            },
+            "payment-target": {
+                "label": "Payment Term",
+                "hint": "Payment Term in the Past"
+            },
+            "payment-total": {
+                "net": {
+                    "label": "Net"
+                },
+                "gross": {
+                    "label": "Payment Amount"
+                },
+                "warning": "The assignments have different VAT rates, the calculation of the net amount is based on the estimated or stated freelancer costs per assignment."
+            },
+            "payment-comment": {
+                "label": "Comment on Payment Term/Payment Amount"
+            },
+            "payment-discount": {
+                "label": "Discount Payment",
+                "hint": "4% deduction for a transfer within 7 days."
+            },
+            "iban": {
+                "label": "IBAN",
+                "placeholder": "IBAN"
+            },
+            "fullname": {
+                "label": "Staff Member",
+                "placeholder": ""
+            },
+            "bic": {
+                "label": "BIC",
+                "placeholder": "BIC"
+            },
+            "attributes": {
+                "only_with_sconto": "Only with Discount"
+            }
+        },
+        "submit": {
+            "title": "Send Invoice",
+            "message": "Do you want to send the invoice now?"
+        },
+        "update-payment-target": {
+            "title": "Save Payment Information",
+            "message": "Do you want to save the payment information now?"
+        },
+        "reset-state": {
+            "title": "Reset invoice status",
+            "message": "Reset the status of this invoice?",
+            "comment": "The invoice status has been reset."
+        },
+        "buttons": {
+            "create": "Create Invoice",
+            "back": "Back to the Overview",
+            "edit": "Edit",
+            "check": "Check",
+            "generate": "Generate Invoice",
+            "submit": "Submit",
+            "cancel": "Cancel",
+            "preparation": "Edit Documents for Invoicing",
+            "reset": "Reset Status"
+        },
+        "taxes": {
+            "label": "Subject to Sales Tax",
+            "included": "Yes",
+            "not-included": "No"
+        },
+        "check": {
+            "title": {
+                "new": "Check Invoice"
+            },
+            "buttons": {
+                "back": "Back",
+                "approve": "Approve",
+                "reject": "Reject"
+            },
+            "approve": {
+                "title": "Approve Invoice",
+                "message": "Do you really want to approve the invoice for <b> {{payment_total}} €</b>?"
+            },
+            "reject": {
+                "title": "Reject Invoice",
+                "message": "Do you really want to reject the invoice?",
+                "placeholder": "Enter the reason for Rejection."
+            },
+            "reject-connected": "The invoice is rejected because a mission report or statement was rejected."
+        },
+        "tile": {
+            "assignments": "{{number}} {number, select, 1{Appointment ({from})} other{Appointment ({from} - {to})}}",
+            "assignments-single": "Appointment ({{from}})",
+            "assignments-multiple": "Appointment ({{from}} - {{to}})",
+            "with_discount": "(Minus Discount)"
+        },
+        "preparation": {
+            "title": {
+                "new": "Deployment Report, Sales Report and Statement",
+                "list": "Preparations for invoicing\n(Operation Report, Sales Report and Statement)",
+                "details": "Preparations for invoicing\n(Operation Reports, Sales Report and Statement)"
+            },
+            "description": {
+                "assignments-list": "Please select here the operation for which you want to provide Operation Report and Sales Report.",
+                "revenues": "Please record your sales of this operation.",
+                "templates": "These are templates for the documents that you should upload here after the assignment is completed."
+            },
+            "status": "{{done}} from {{all}} Deployments Processed",
+            "onbehalf": "On behalf of {{fullname}}",
+            "assignments": "Operations",
+            "assignment-date": "Appointment: {{appointedAt}}",
+            "preparation-done-hint": "The information for this assignment is complete. The assignment can be invoiced.",
+            "document-not-saved": "The document has not been saved yet.",
+            "report": {
+                "title": "Deployment Report"
+            },
+            "picture-documentation": {
+                "title": "Photo Documentation"
+            },
+            "online-questionnaire": {
+                "title": "Statement"
+            },
+            "feedback": {
+                "title": "Feedback"
+            },
+            "questionnaire": {
+                "title": "Opinion"
+            },
+            "templates": {
+                "title": "Templates"
+            },
+            "revenue": {
+                "title": "Sales Report"
+            },
+            "freelancer": {
+                "label": "Please select the freelancer for whom the invoice preparation to be carried out:"
+            },
+            "buttons": {
+                "create": "Save",
+                "back": "Back to the Overview",
+                "save": "Save",
+                "cancel": "Cancel",
+                "add-document": "Add Document",
+                "remove-document": "Delete Document",
+                "add-revenue": "Add Sales Report"
+            },
+            "save-document": {
+                "title": "Save Document?",
+                "message": "Do you want to save the document now?",
+                "buttons": {
+                    "cancel": "Cancel",
+                    "confirm": "Save"
+                }
+            },
+            "table": {
+                "actions": {
+                    "label": "Actions",
+                    "details": "Details"
+                }
+            },
+            "checklist": {
+                "questionnaire": "Questionnaire",
+                "feedback": "Feedback",
+                "report": "Upload Mission Report",
+                "picture_documentation": "Upload photo ({{incentive}} premium)",
+                "sales_report": "Enter turnover ({{incentive}} premium)"
+            }
+        },
+        "documents": {
+            "type": {
+                "template-questionnaire": "Questionnaire",
+                "template-report": "Mission report",
+                "template": "Template"
+            },
+            "remove": {
+                "title": "Delete Document",
+                "message": "Do you really want to delete the document?"
+            },
+            "actions": {
+                "label": "Actions",
+                "edit": "Edit",
+                "remove": "Delete"
+            }
+        },
+        "table": {
+            "appointedAt": "Appointment",
+            "jobname": "Job Name",
+            "sitename": "Location",
+            "no-records": "No Jobs found.",
+            "checkinStart": "Start of Work (check-in)",
+            "checkinEnd": "End of Work (check-out)",
+            "checkinPerformer": "Recorded By",
+            "wage": "Hourly Rate",
+            "additionalCosts": "Remuneration",
+            "incentiveModel": "Lumpsum",
+            "number": "Invoice Number",
+            "total": "Invoice Total",
+            "comment": "Comment",
+            "issuedAt": "Submission Date",
+            "stateName": "Status",
+            "summaryFrom": "Start of Activity",
+            "summaryTo": "End of Activity",
+            "freelancerCostsNet": "Real Staff Member Fee (net)",
+            "assignmentBudget": "Customer Cost (Planned)",
+            "assignmentBudgetCorrection": "Correction",
+            "estimatedCosts": "Possible Staff Member Fee (without addition)",
+            "maxEstimatedCosts": "Possible Staff Member Fee",
+            "plannedCosts": "Customer Cost",
+            "paymentTarget": "Payment Term",
+            "withDiscount": "Discount",
+            "freelancer_name": "Staff Member",
+            "taxRate": "VAT",
+            "incentives": {
+                "checkin": "For Registration: {{checkin}}",
+                "sales_report": "Sales Report: {{sales_report}}",
+                "picture_documentation": "Photo Documentation: {{picture_documentation}}"
+            },
+            "actions": {
+                "details": "Details",
+                "check": "Check",
+                "update-freelancer-costs-net": "Record real input costs (net)",
+                "update-comment": "Add/change Comment",
+                "update-correction": "Correct Planned Budget",
+                "label": "Actions"
+            }
+        },
+        "generator": {
+            "title": "Invoice Generator",
+            "states": {
+                "job": "Job & Assignment",
+                "details": "Operation Details",
+                "general": "Further details",
+                "confirmation": "Confirmation"
+            },
+            "buttons": {
+                "next-step": "Next",
+                "submit": "Create Invoice Preview",
+                "create-invoice": "Submit Invoice",
+                "restart-generator": "Delete this invoice and create new one"
+            },
+            "job": {
+                "description": "Please select the job and the days for which you want to generate an invoice preview. Then you can enter more detailed information about the individual days."
+            },
+            "details": {
+                "description": "Please select for each day which compensation and bonuses you will be charged.\nIf an hourly rate has been set, please adjust the value according to the time you have worked."
+            },
+            "general": {
+                "description": "Almost done, there is still missing information about cash discount and sales tax. You also have to enter your invoice number, which will be used in the invoice document."
+            },
+            "incentives": {
+                "checkin": "Registration on the day of work",
+                "sales_report": "Sales Report submitted",
+                "picture_documentation": "Photo Documentation submitted"
+            },
+            "table": {
+                "appointed": "Day of Operation",
+                "costs_on_time": "Fee (on hourly basis)",
+                "additional_costs": "Remuneration",
+                "incentives": "Lumpsum",
+                "sum": "Total"
+            },
+            "personal": "Personal Data",
+            "addresses": {
+                "label": "Address",
+                "hint": "Please select the address you want to use as address in the invoice"
+            },
+            "generate": {
+                "title": "Create invoice preview?",
+                "message": "Do you want to generate the invoice preview with the number {{number}} over {{total}}?\nYou will receive a PDF to download."
+            }
+        }
+    }
+}

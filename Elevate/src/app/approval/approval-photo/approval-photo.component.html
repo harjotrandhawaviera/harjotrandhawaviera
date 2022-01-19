@@ -1,0 +1,14 @@
+<div class="row">
+  <ng-container *ngFor="let key of dataKeys">
+    <div class="col-xs-4" *ngIf="data[key]">
+      <label>{{ "approval.profile.change." + key + "-photo" | translate }}</label>
+      <div class="photo">
+        <img
+          appImageAvatar
+          [showDefault]="false"
+          [path]="data[key] && data[key].url && data[key].url.medium"
+        />
+      </div>
+    </div>
+  </ng-container>
+</div>

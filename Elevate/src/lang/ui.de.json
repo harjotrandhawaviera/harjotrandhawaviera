@@ -1,0 +1,67 @@
+{
+    "ui": {
+        "list-table": {
+            "default": {
+                "length": "Zeige _MENU_ Ergebnisse pro Seite",
+                "no-records": "Keine Übereinstimmungen gefunden.",
+                "info": "Seite {{start}} von {{end}} (Gesamt: {{length}} Einträge)",
+                "info-short": "Gesamt: {{length}} Einträge",
+                "info-empty": "",
+                "info-filtered": "(gefiltert aus _MAX_ Einträgen)",
+                "paginate-next": "Weiter",
+                "paginate-previous": "Zurück",
+                "tile": "Fliese",
+                "list": "Aufführen",
+                "download": "Herunterladen",
+                "email": "Email",
+                "sms": "SMS"
+            },
+            "project-jobs": {
+                "length": "Zeige _MENU_ Ergebnisse pro Seite",
+                "no-records": "Keine Übereinstimmungen.",
+                "info": "Seite _PAGE_ von _PAGES_",
+                "info-empty": "",
+                "info-filtered": "(filtered from _MAX_ total records)",
+                "paginate-next": "Weiter",
+                "paginate-previous": "Zurück"
+            },
+            "filter-required": "Bitte grenze die Suche durch Setzen eines oder mehrerer Filter ein."
+        },
+        "labels": {
+            "actions": "Aktionen",
+            "assignment-ratings": "Einsatzbewertungen"
+        },
+        "logs-table": {
+            "timestamp": "Datum",
+            "performer_name": "Benutzer",
+            "message": "Nachricht",
+            "no-records": "Keine Logs"
+        },
+        "filter": {
+            "range": {
+                "min": "von",
+                "max": "bis"
+            },
+            "dates": {
+                "min": "von",
+                "max": "bis"
+            },
+            "remove": {
+                "label": "Filter löschen"
+            }
+        },
+        "option": {
+            "deselect": "keine Auswahl"
+        },
+        "side-option-menu": {
+            "filter": "Filter",
+            "search": "Suche",
+            "placeholder": "mind. 3 Zeichen"
+        },
+        "advance-search": {
+            "label": "Erweiterte Suche",
+            "submit": "einreichen",
+            "clear": "Klar"
+        }
+    }
+}

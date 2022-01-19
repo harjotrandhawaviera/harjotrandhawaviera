@@ -1,0 +1,14 @@
+@import 'variables';
+.status {
+  border-left: 5px solid;
+
+  &.warn {
+    border-color: $brand-warning;
+  }
+  &.error {
+    border-color: $brand-danger;
+  }
+  &.ok {
+    border-color: $brand-success;
+  }
+}

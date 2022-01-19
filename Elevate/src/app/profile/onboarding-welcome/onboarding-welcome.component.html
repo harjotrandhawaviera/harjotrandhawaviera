@@ -1,0 +1,67 @@
+<div class="container-fluid" *ngIf="isLoaded">
+  <div class="row" *ngIf="isInReview === false">
+    <div
+      class="col-xs-12"
+      *ngIf="isDataEntered"
+      appLoadHtml="onboarding.submit-reminder"
+    ></div>
+    <div class="col-xs-12" *ngIf="isDataEntered">
+      <div app-on-boarding-button alignment="center-xs"></div>
+    </div>
+    <div
+      class="col-xs-12"
+      *ngIf="isDataEntered === false"
+      appLoadHtml="onboarding.welcome.1"
+    ></div>
+    <div class="col-xs-12" *ngIf="isDataEntered === false">
+      <div class="welcome-video" *ngIf="onboardingVideoUrl">
+        <iframe
+          src="{{ onboardingVideoUrl }}"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <div
+      class="col-xs-12"
+      *ngIf="isDataEntered === false && missingContractTypes === false"
+      appLoadHtml="onboarding.welcome.2"
+    ></div>
+    <div
+      class="col-xs-12"
+      *ngIf="isDataEntered === false && missingContractTypes === false"
+    >
+      <p>
+        <a mat-flat-button color="accent" [routerLink]="['/profile/master']"
+          >{{'profile.onboarding.start-data-entry' | translate}}</a
+        >
+      </p>
+    </div>
+    <div class="col-xs-12" *ngIf="missingContractTypes">
+      <div class="alert alert-warning">
+        <div translate="profile.onboarding.missing-contract-type"></div>
+
+        <p>
+          <a
+            mat-flat-button
+            [routerLink]="['/profile/legal']"
+            translate="contracts.identifier.freelancer"
+          ></a>
+          <a
+            mat-flat-button
+            [routerLink]="['/profile/legal']"
+            translate="contracts.identifier.tax_card"
+          ></a>
+        </p>
+      </div>
+    </div>
+    <div
+      class="col-xs-12"
+      *ngIf="isDataEntered === false"
+      appLoadHtml="onboarding.welcome.3"
+    ></div>
+  </div>
+  <div class="row" *ngIf="isInReview">
+    <div class="col-xs-12" appLoadHtml="onboarding.in-review"></div>
+  </div>
+</div>

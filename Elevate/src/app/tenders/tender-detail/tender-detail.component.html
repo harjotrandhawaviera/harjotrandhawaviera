@@ -1,0 +1,176 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a *ngIf="mode !== 'Job'" [routerLink]="['/tenders']">
+        {{ 'tenders.tender.buttons.back' | translate }}
+      </a>
+    </div>
+    <div class="col-xs-12">
+      <a *ngIf="mode === 'Job'" [routerLink]="['/tenders']">
+        {{ 'tenders.tender.buttons.back' | translate }}
+      </a>
+    </div>
+    <div class="col-xs-12">
+      <div class="acion-title-holder" *ngIf="(tenderDetail$ | async) as tender">
+        <h1 translate="tenders.tender.title.details"></h1>
+        <div class="action-btn-cont">
+          <a mat-stroked-button color="primary" *ngIf="tender.job_status !== 'expired'" (click)="deleteRecord(tender)">
+            {{ 'tenders.tender.buttons.remove' | translate }}
+          </a>
+          <!--<a mat-flat-button color="accent" [disabled]="tender.state === 'expired'" [routerLink]="['/tenders/edit', id]"
+            [skipLocationChange]="true">
+            {{ 'tenders.tender.buttons.edit' | translate }}
+          </a>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12" *ngIf="(tenderDetail$ | async) as tender">
+      <div class="alert alert-info" *ngIf="tender.state === 'expired'" translate="tenders.tender.hint-expired"></div>
+    </div>
+    <div class="col-xs-12 padding-none" *ngIf="(tenderDetail$ | async) as tender">
+      <fieldset>
+        <div class="row">
+          <div class="form-group col-xs-3">
+            <label translate="projects.fields.job.label"></label>
+            <div>{{tender.job_name}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="projects.fields.client.label"></label>
+            <div>{{tender.client_name}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="tenders.tender.fields.publishedAt.label"></label>
+            <div>{{publishedAt}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="tenders.tender.fields.invalid-at.label"></label>
+            <div>{{invalidAt}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="tenders.tender.fields.state.label"></label>
+            <div>{{tender.job_status}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="projects.jobs.job-location.label"></label>
+            <div>{{tender.job_location}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="projects.inherited.fields.account-manager.label"></label>
+            <div>{{tender?.job_info.data.agent.firstname + ' ' + tender?.job_info.data.agent.lastname}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="projects.inherited.fields.staffing-manager.label"></label>
+            <div>{{tender?.job_info.data.staff.firstname + ' ' + tender?.job_info.data.staff.lastname}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3 class="col-xs-12" translate="tenders.tender.title.info"></h3>
+          <div class="form-group col-xs-3">
+            <label translate="tenders.tender.fields.start.label"></label>
+            <div>{{tender.job_advert_start_date}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="tenders.tender.fields.end.label"></label>
+            <div>{{tender.job_advert_end_date}}</div>
+          </div>
+          <div class="form-group col-xs-3">
+            <label translate="tenders.tender.fields.days.label"></label>
+            <div>{{tender.days}}</div>
+          </div>
+        </div>
+
+        <app-teaminfo [info]="tender.job_info.data && tender.job_info.data.teaminfo"></app-teaminfo>
+
+      <div class="row">
+
+        <h3 class="col-xs-12" translate="tenders.tender.title.criteria"></h3>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.cities.label"></label>
+            <div *ngIf="tender.job_location">{{ tender.job_location }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.zip-min.label"></label>
+            <div>{{ tender.zip_min }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.zip-max.label"></label>
+            <div>{{ tender.zip_max }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.radius.label"></label>
+            <div>{{ tender.radius }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.gender.label"></label>
+            <div>{{ "profile.fields.gender." + tender.gender | translate }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.skills.label"></label>
+            <div>{{ tender.skill }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.certificates.label"></label>
+            <div>{{ tender.certificate }}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label translate="tenders.tender.fields.contract-type.label"></label>
+            <div>{{ 'contracts.identifier.' + tender.tenderContractType | translate }}</div>
+          </div>
+        </div>
+
+        <app-taskinfo [info]="tender.job_info.data && tender.job_info.data.taskinfo"></app-taskinfo>
+
+      </fieldset>
+      <fieldset class="tender-assignment-detail">
+        <h3 class="col-xs-12" translate="tenders.tender.title.assignment"></h3>
+        <app-assignment-job [assignment]="tender.tenders?.data[0].snapshots.assignment" [job]="tender.tenders?.data[0].snapshots.assignment?.date?.data?.job?.data"
+          [hasFullAccess]="hasFullAccess$ | async">
+        </app-assignment-job>
+        <!-- <div>
+          <a mat-flat-button color="accent" *ngIf="viewLogsPermission$ | async" (click)="showLogs()">
+            {{ 'tenders.tender.buttons.show-logs' | translate }}
+          </a>
+          <div *ngIf="isLogVisible" class="row">
+            <div class="form-group col-md-12 padding-none mt-10">
+              <label translate="tenders.tender.logs"></label>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="table-wrapper" *ngIf="(tenderDetailWithLogs$ | async) as tenderLogs">
+                <div class="table-inner-wrapper">
+                  <table mat-table [dataSource]="tenderLogs.logs" class="search-table" matSort matSortDisableClear
+                    matSortDirection="desc">
+                    <ng-container matColumnDef="timestamp">
+                      <th mat-header-cell *matHeaderCellDef class="long-col">{{ "ui.logs-table.timestamp" | translate }}
+                      </th>
+                      <td mat-cell *matCellDef="let row">{{ row.created_at }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="performer_name">
+                      <th mat-header-cell *matHeaderCellDef>{{ "ui.logs-table.performer_name" | translate }}</th>
+                      <td mat-cell *matCellDef="let row">{{ row.performer_name }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="message">
+                      <th mat-header-cell *matHeaderCellDef>{{ "ui.logs-table.message" | translate }}</th>
+                      <td mat-cell *matCellDef="let row">{{ row.message }}</td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                  </table>
+                </div>
+                <div class="row end-md center-xs">
+                  <button type="button" mat-stroked-button color="primary" (click)="downloadLogs()">
+                    Download
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="(tenderDetailWithLogs$ | async) as tenderLogs">
+                <span *ngIf="!tenderLogs.logs">{{ 'ui.logs-table.no-records' | translate }}</span>
+              </div>
+              <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+            </div>
+          </div>
+        </div> -->
+      </fieldset>
+    </div>
+  </div>
+</div>

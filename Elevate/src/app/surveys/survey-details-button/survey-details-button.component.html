@@ -1,0 +1,34 @@
+<p
+  *ngIf="!isUpdate && view === 'readonly' && assignment"
+  [translate]="'surveys.details.not-available-' + type"
+  [translateParams]="{ type: type, date: assignment.appointedAt }"
+></p>
+<p
+  *ngIf="!onBehalf && !isUpdate && view === 'set'"
+  [translate]="'surveys.' + type + '.hint-create'"
+></p>
+<button
+  type="button"
+  mat-raised-button
+  class="btn {{
+    warning ? 'btn-danger' : isUpdate ? 'btn-default' : 'btn-primary'
+  }}"
+  *ngIf="view !== 'readonly' || isUpdate"
+  [color]="warning ? 'warn' : isUpdate ? '' : 'accent'"
+  data-ng-click="survey.load()"
+  style="margin: 5px 0 10px 0"
+  (click)="loadData(true)"
+>
+  {{
+    "surveys.details." + (isUpdate ? "show" : "create") + "-" + type
+      | translate: { date: assignment.appointedAt }
+  }}
+</button>
+
+<div
+  *ngIf="surveyInstanceApproval && surveyInstanceApproval.id"
+  app-approval-state
+  [data]="surveyInstanceApproval"
+  (updated)="updated($event)"
+  [view]="approvalView"
+></div>

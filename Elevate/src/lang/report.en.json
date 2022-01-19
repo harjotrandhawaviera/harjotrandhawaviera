@@ -1,0 +1,51 @@
+{
+  "report": {
+    "profile_report": "Staff Member Profile Report",
+    "payroll_report": "Staff member Payroll Report",
+    "mail_report": "Staff member Mail Merge  Report",
+    "legal_data": "Staff Member Legal Data Report",
+    "new_report": "Build Your own Report",
+    "button": {
+      "start": "Start",
+      "export": "export",
+      "cancel": "cancel"
+    },
+    "state": {
+      "active": "Active",
+      "onboarding": "Onboarding",
+      "inactive": "Inactive",
+      "lock": "Locked",
+      "pending": "Pending Approval",
+      "not-active": "Inactive",
+      "disabled": "Locked",
+      "unconfirmed": "Not confirmed"
+    },
+    "fields": {
+      "state": "Status",
+      "city": "City",
+      "age_group": "Age Group",
+      "zip": "Post Code",
+      "language": "Language",
+      "license": "Driving License",
+      "hasOwnCar": "Has Own Car",
+      "pageSize": "Number of Records",
+      "licenses": {
+        "1": "Yes",
+        "0": "No"
+      },
+      "ownCar": {
+        "1": "Yes",
+        "0": "No"
+      }
+    },
+    "table": {
+      "fields": {
+        "profile_report": {
+          "name": "Name",
+            "city": "City",
+            "email": "Email"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+<div class="row" *ngIf="addressGroup" [formGroup]="addressGroup">
+  <mat-form-field class="col-xs-12 col-sm-6">
+    <mat-label required>{{
+      "profile.fields.address.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      formControlName="address"
+      name="address" 
+      placeholder="{{ 'profile.fields.address.placeholder' | translate }}"
+    />
+    <mat-error *ngIf="displayMessage.address">{{
+      displayMessage.address
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-xs-12 col-sm-6">
+    <mat-label required>{{
+      "profile.fields.locality.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      #locality 
+      class="locality"
+      formControlName="locality"
+      name="locality"
+      (keyup)="getSelectedAddressClass($event)"
+      (input)="onSearchChange()"
+      placeholder="{{
+        'profile.fields.locality.placeholder' | translate
+      }}"
+    />
+    <mat-error *ngIf="displayMessage.locality">{{
+      displayMessage.locality
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-xs-12 col-sm-6">
+    <mat-label required>{{ "profile.fields.zip.label" | translate }}</mat-label>
+    <input
+      matInput
+      formControlName="zip"
+      name="zip"
+      placeholder="{{ 'profile.fields.zip.placeholder' | translate }}"
+    />
+    <mat-error *ngIf="displayMessage.zip">{{ displayMessage.zip }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-xs-12 col-sm-6">
+    <mat-label required>{{
+      "profile.fields.city.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      [ngClass]="isLocationSelected ? 'input-disable' : ''"
+      [readonly]="isLocationSelected"
+      formControlName="city"
+      name="city"
+      placeholder="{{ 'profile.fields.city.placeholder' | translate }}"
+    />
+    <mat-error *ngIf="displayMessage.city">{{ displayMessage.city }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-xs-12 col-sm-6">
+    <mat-label required>{{
+      "profile.fields.country.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      formControlName="country"
+      name="country"
+      [ngClass]="isLocationSelected ? 'input-disable' : ''"
+      [readonly]="isLocationSelected"
+      placeholder="{{ 'profile.fields.country.placeholder' | translate }}"
+    />
+    <!-- <mat-select formControlName="country" name="country"  [disabled]="isLocationSelected"
+    [ngClass]="isLocationSelected ? 'input-disable' : ''"
+   >
+      <mat-option
+        *ngFor="let option of countryLK"
+        [value]="option.value"
+      >
+        {{ option.text }}
+      </mat-option>
+    </mat-select> -->
+    <mat-error *ngIf="displayMessage.country">{{
+      displayMessage.country
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-xs-12 col-sm-6">
+    <mat-label>{{
+      "profile.fields.near-to-city.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      id="near_to_city"
+      formControlName="near_to_city"
+      name="near_to_city"
+      class="near_to_city"
+      placeholder="{{ 'profile.fields.near-to-city.placeholder' | translate }}"
+    />
+    <mat-error *ngIf="displayMessage.near_to_city">{{
+      displayMessage.near_to_city
+    }}</mat-error>
+  </mat-form-field>
+</div>

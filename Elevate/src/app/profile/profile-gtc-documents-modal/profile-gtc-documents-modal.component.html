@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <!-- <h3 class="modal-title">{{ ::approval.subject.identifier }}</h3> -->
+</div>
+<div class="modal-body">
+  <!-- <ng-pdf template-url="/plugins/angular-pdf/viewer.html"></ng-pdf> -->
+  <!-- <pdf-viewer
+    [src]="pdfSrc"
+    [render-text]="true"
+    style="display: block"
+  ></pdf-viewer> -->
+  <!-- <div class="btn btn-default back" data-ng-click="goPrevious()">
+    <i class="fa fa-chevron-left"></i>
+  </div>
+  <div class="btn btn-default frwd" data-ng-click="goNext()">
+    <i class="fa fa-chevron-right"></i>
+  </div> -->
+</div>
+<mat-dialog-content>
+  <pdf-viewer
+    [src]="pdfBlobUrl"
+    [render-text]="true"
+    [stick-to-page]="true"
+    [show-all]="true"
+    style="display: block"
+  ></pdf-viewer>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-flat-button
+    color="accent"
+    type="button"
+    data-ng-click="download(gtcDoc.document.data)"
+    translate="profile.gtc.download"
+  ></button>
+  <button
+    mat-stroked-button
+    color="primary"
+    type="button"
+    data-ng-click="$close(false)"
+    translate="profile.gtc.cancel"
+    [mat-dialog-close]="false"
+  ></button>
+  <button
+    mat-flat-button
+    color="accent"
+    type="button"
+    translate="profile.gtc.approve"
+    data-confirm-action="confirm"
+    data-confirm-item="gtcDoc"
+    data-context="profile.gtc.documents"
+    (click)="accept()"
+  ></button>
+</mat-dialog-actions>

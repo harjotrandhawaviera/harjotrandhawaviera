@@ -1,0 +1,22 @@
+<h3>{{ training.data.name }}</h3>
+<div class="row exam">
+  <div class="col-md-10">
+    <p>{{ training.data.description }}</p>
+  </div>
+
+  <div class="col-md-12" data-training="training.data.content"></div>
+
+  <div class="col-md-12">
+    <button
+      class="btn btn-primary"
+      data-ng-click="training.startExam()"
+      data-translate-once="training.buttons.start-exam"
+    ></button>
+    <a
+      data-ui-sref="app.profile.terms"
+      class="btn btn-default"
+      data-ng-if="training.isLegal"
+      data-translate-once="training.buttons.next-step"
+    ></a>
+  </div>
+</div>

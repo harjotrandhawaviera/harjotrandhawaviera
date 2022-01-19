@@ -1,0 +1,52 @@
+@import "../../../styles/base/variables.scss";
+
+.required-proof-button {
+  border: 1px solid $link-color;
+  color: $link-color;
+}
+.required-proof-button-enable {
+  background-color: $brand-primary;
+  color: $p4y-color-white;
+}
+.upload-document-button {
+  border: 1px solid $link-color;
+  color: $link-color;
+}
+.upload-document-button-enable {
+  background-color: $p4y-color-black;
+  color: $p4y-color-white;
+}
+.disabled-button{
+  pointer-events: none;
+}
+.skill-action-button{
+  margin-left: -35px;
+  margin-top: 27px;
+.fas{
+  font-size: 14px !important;
+  margin-top: 10px;
+  &.fa-minus{
+    color: $p4y-color-status-error !important;
+    margin-left: 28px;
+  }
+  &.fa-file-download{
+    margin-left: 28px;
+    cursor: pointer;
+  }
+  &.fa-plus{
+    color:$brand-primary;
+  }
+
+}
+}
+.mt-3{
+  margin-top: 12px;
+}
+
+::ng-deep{
+  .freelancer-skills-wrapper{
+  .mat-form-field-flex{
+    margin-top: 10px;
+  }
+  }
+}

@@ -1,0 +1,22 @@
+.job-cont {
+  margin-top: 25px;
+  .lrg-txt {
+    font-size: 18px;
+  }
+  .has-hint {
+    margin-bottom: 0;
+  }
+  .hint {
+    margin-bottom: 10px;
+    font-size: 90%;
+    color: #999999;
+  }
+  .button {
+    cursor: pointer;
+  }
+  span {
+    & + .button {
+      margin-left: 10px;
+    }
+  }
+}

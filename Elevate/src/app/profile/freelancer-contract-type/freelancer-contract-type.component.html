@@ -1,0 +1,142 @@
+<div *ngIf="detailForm">
+  <form
+    [formGroup]="detailForm"
+    (ngSubmit)="type === 'freelancer' ? saveDetailFreelancer() : saveTaxCard()"
+    data-ng-submit="qualifications.submit()"
+    data-ng-fab-form-options="{preventInvalidSubmit: !qualifications.isOnboarding || qualifications.data.requests['freelancer-onboarding']}"
+  >
+  <ng-container *ngIf="!isShowGeneralContract">
+    <div class="row">
+      <div class="col-xs-12 padding-none">
+        <legend
+        [translate]="'profile.section.contract_' + type + '.heading'" data-required
+      ></legend>
+      </div>
+      <div
+        class="col-xs-12 alert alert-info inreview"
+        *ngIf="data.inreview || data.gtcreview"
+      >
+        <p translate="profile.onboarding.inreview"></p>
+      </div>
+      <!-- <div
+        class="col-xs-12 alert alert-warning missing-contract-type"
+        *ngIf="
+          isOnboarding &&
+          profile &&
+          profile.contract_type_ids &&
+          profile.contract_type_ids.length === 0
+        "
+      >
+        <p translate="profile.onboarding.missing-contract-type"></p>
+      </div> -->
+      <div class="alert alert-info pending-contract-type" *ngIf="!data.inreview && data.pending">
+        <p translate="profile.pending-contract-type"></p>
+      </div>
+    </div>
+    <fieldset class="selector">
+      <mat-radio-group
+        aria-label="Select an option"
+        class="row"
+        color="primary"
+        formControlName="enabled"
+        [disabled]="assignmentIdentifierCheck && enableDisableValue?.contractType"
+      >
+        <mat-radio-button
+          [value]="true"
+          class="col-xs-12 col-sm-6"
+          style="margin-top: 5px"
+        >
+          {{
+            "profile.section.contract_" + type + ".selector.label" | translate
+          }}</mat-radio-button
+        >
+        <mat-radio-button
+          [value]="false"
+          class="col-xs-12 col-sm-6"
+          style="margin-top: 5px"
+          >{{
+            "profile.section.contract_" + type + ".selector.inactive_label"
+              | translate
+          }}</mat-radio-button
+        >
+      </mat-radio-group>
+      <div class="row" style="margin-top: 20px" *ngIf="!readonly">
+        <div
+          class="col-xs-12"
+          [innerHtml]="
+            'profile.section.contract_' + type + '.description' | translate
+          "
+        ></div>
+      </div>
+    </fieldset>
+    <div *ngIf="freelancerForm && type === 'freelancer' && (data.enabled || isActive)">
+      <app-profile-contract-type-freelancer
+        [readonly]="readonly"
+        [freelancerFormGroup]="freelancerForm"
+        [displayMessage]="freelancerDisplayMessages"
+      ></app-profile-contract-type-freelancer>
+    </div>
+<!--    <span *ngFor="let data of Assignment; let i = index" >{{edit(data?.identifier[i])}}</span>-->
+    <div *ngIf="taxCardForm && type === 'tax_card' && (data.enabled || isActiveTaxCard) && assignmentIdentifierCheck !== true">
+      <app-profile-contract-type-tax-card
+        [contractType]="definition"
+        [displayMessage]="taxCardDisplayMessages"
+        [readonly]="readonly"
+        [taxCardFormGroup]="taxCardForm"
+      ></app-profile-contract-type-tax-card>
+    </div>
+    <div class="row">
+    </div>
+    <div class="alert">
+      <span id="message" *ngIf="assignmentIdentifierCheck === true && enableDisableValue?.enableDisable" >{{'profile.section.contract_tax_card.selector.message' | translate}}</span>
+    </div>
+  </ng-container>
+
+    <div
+      id="gtc-documents"
+      *ngIf="isShowGeneralContract"
+      app-profile-gtc-documents
+      class="app-profile-gtc-documents"
+      [readonly]="readonly"
+      [data]="profile"
+      [contractType]="definition"
+      [displayMessage]="gtcDisplayMessage"
+      (gtcUpdated)="gtcUpdated($event)"
+      (definitionUpdated)="definitionUpdated($event)"
+    ></div>
+    <!-- <div class="row" *ngIf="!readonly">
+      <div class="col-xs-12">
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="isOnboarding"
+          translate="profile.submit.button-next"
+        ></button>
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="!isOnboarding"
+          translate="profile.submit.button-save"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="isOnboarding"
+          translate="profile.next-step"
+          (click)="next()"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="!isOnboarding"
+          translate="profile.cancel"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </div> -->
+  </form>
+</div>

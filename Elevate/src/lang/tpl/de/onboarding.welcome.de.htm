@@ -1,0 +1,52 @@
+<h2>
+  Herzlich Willkommen!
+</h2>
+<div class="row">
+  <div class="col-md-10">
+    <p>Du hast die erste Hürde der Registrierung genommen.</p>
+    <p>
+      Der zweite Schritt ist nun dein Profil bei uns anzulegen.
+    </p>
+    <p>
+      Schritt für Schritt kannst du uns alles zur Verfügung stellen – von Referenzen und Ausbildungen bis hin zu Fotos für Deine Sedcard.
+      Je schneller dein Profil vollständig ist desto schneller können wir dich freischalten.
+    </p>
+
+    <div class="row welcome-video" data-ng-if="profile.onboardingVideoUrl">
+      <iframe data-ng-src="{{profile.onboardingVideoUrl}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div data-ng-if="profile.missingContractTypes === false">
+      <p>
+        Du hast es fast geschafft also lass uns beginnen damit wir dich mit tollen Jobs versorgen können.
+      </p>
+      <p>
+        <a class="btn btn-primary" data-ui-sref="app.profile.master">Zur Dateneingabe</a>
+      </p>
+    </div>
+
+    <div class="row" data-ng-if="profile.missingContractTypes" >
+      <div class="alert alert-warning">
+        <div data-translate-once="profile.onboarding.missing-contract-type"></div>
+
+        <p>
+          <a class="btn btn-primary" data-ui-sref="app.profile.contract_freelancer">Arbeit als Selbstständiger mit Gewerbeschein</a>
+          <a class="btn btn-primary" data-ui-sref="app.profile.contract_tax_card">Arbeit als Mitarbeiter auf Lohnsteuerbasis</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row symbol-legend">
+  <div class="col-md-12">
+    <h4>Symbollegende</h4>
+    <ul class="list-unstyled">
+      <li><i class="fa p4y p4y-pencil-circle black"></i>Aktuell in Bearbeitung.</li>
+      <li><i class="fa p4y p4y-check-sign-circle"></i>Daten erfolgreich gespeichert.</li>
+      <li><i class="fa p4y p4y-check-sign-circle success"></i>Daten durch Agent erfolgreich bestätigt.</li>
+      <li><i class="fa p4y p4y-exclamation-circle"></i>Daten wurden vom Agent abgelehnt, möglicherweise unvollständig.
+      </li>
+      <li><i class="fa p4y p4y-lock-circle gray-medium"></i>Eine Bearbeitung ist derzeit nicht möglich.</li>
+    </ul>
+  </div>
+</div>

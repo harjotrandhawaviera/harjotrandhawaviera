@@ -1,0 +1,17 @@
+.table-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+  table {
+    width: 100%;
+  }
+}
+
+.taskinfo-table {
+  margin: 0;
+  th {
+    font-variant: all-small-caps;
+    font-size: 14px;
+    font-weight: 300;
+    color: #999;
+  }
+}

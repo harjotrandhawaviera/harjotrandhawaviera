@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/administration/budgets']">{{
+        "administration.budgets.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12" *ngIf="mode === 'create'">
+      <h1 translate="administration.budgets.title.new"></h1>
+    </div>
+    <div class="col-xs-12" *ngIf="mode === 'edit'">
+      <h1 translate="administration.budgets.title.edit"></h1>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <form *ngIf="form" [formGroup]="form">
+        <div class="row">
+          <div
+            class="col-xs-12 padding-none"
+            app-budget-edit
+            [budgetFormGroup]="budgetFormGroup"
+            [displayMessage]="budgetDisplayMessage"
+            [isEdit]="mode === 'edit'"
+            [budget]="budget"
+            (availableParentBudgetUpdated)="availableParentBudgetUpdated($event)"
+            *ngIf="budgetFormGroup"
+          ></div>
+          <div class="col-xs-12">
+            <div class="action-button">
+              <button
+                type="button"
+                *ngIf="mode !== 'edit'"
+                mat-flat-button
+                color="accent"
+                (click)="saveBudget()"
+                translate="administration.budgets.buttons.create"
+              ></button>
+              <button
+                type="button"
+                *ngIf="mode === 'edit'"
+                mat-flat-button
+                color="accent"
+                (click)="saveBudget()"
+                translate="administration.budgets.buttons.update"
+              ></button>
+              <button
+                type="button"
+                mat-stroked-button
+                color="primary"
+                translate="administration.budgets.buttons.cancel"
+                (click)="cancelEdit()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

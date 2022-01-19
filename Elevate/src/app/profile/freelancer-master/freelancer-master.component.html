@@ -1,0 +1,366 @@
+<div class="container-fluid">
+  <form
+    *ngIf="detailForm"
+    [formGroup]="detailForm"
+    (ngSubmit)="saveDetail()"
+    data-ng-submit="master.submit()"
+    data-ng-fab-form-options="{preventInvalidSubmit: !master.isOnboarding || master.data.requests['freelancer-onboarding']}"
+  >
+    <div class="row start-xs">
+      <div class="col-xs-12">
+        <h3 translate="profile.section.master.title"></h3>
+      </div>
+      <div class="col-xs-12" *ngIf="!readonly">
+        {{ "profile.section.master.description" | translate }}
+      </div>
+    </div>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend translate="profile.section.master.subtitle"></legend>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="col-xs-12 col-sm-3 freelancer-master-title-field padding-none">
+            <mat-label>{{
+              "profile.fields.title.label" | translate
+            }}</mat-label>
+            <input
+              matInput
+              formControlName="title"
+              name="title"
+              placeholder="{{ 'profile.fields.title.placeholder' | translate }}"
+            />
+            <mat-error *ngIf="displayMessage.title">{{
+              displayMessage.title
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label required>{{
+            "profile.fields.firstname.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            formControlName="firstname"
+            name="firstname"
+            placeholder="{{
+              'profile.fields.firstname.placeholder' | translate
+            }}"
+          />
+          <mat-error *ngIf="displayMessage.firstname">{{
+            displayMessage.firstname
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label required>{{
+            "profile.fields.lastname.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            formControlName="lastname"
+            name="lastname"
+            placeholder="{{
+              'profile.fields.lastname.placeholder' | translate
+            }}"
+          />
+          <mat-error *ngIf="displayMessage.lastname">{{
+            displayMessage.lastname
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label required>{{
+            "profile.fields.birthdate.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            [matDatepicker]="birthdatePicker"
+            formControlName="birthdate"
+            name="birthdate"
+            [max]="selectDate"
+            (click)="birthdatePicker.open()"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="birthdatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #birthdatePicker></mat-datepicker>
+          <mat-error *ngIf="displayMessage.birthdate">{{
+            displayMessage.birthdate
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label required>{{
+            "profile.fields.gender.label" | translate
+          }}</mat-label>
+          <mat-select formControlName="gender" name="gender">
+            <mat-option  [disabled]="option.value ==''"  *ngFor="let option of genderLK" [value]="option.value">
+               {{ "profile.fields.gender." + option.value | translate }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.gender">{{
+            displayMessage.gender
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label>{{
+            "profile.fields.birthplace.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            formControlName="birthplace"
+            name="birthplace"
+            placeholder="{{
+              'profile.fields.birthplace.placeholder' | translate
+            }}"
+          />
+          <!-- <mat-error *ngIf="displayMessage.birthplace">{{
+            displayMessage.birthplace
+          }}</mat-error> -->
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label required>{{
+            "profile.fields.birthcountry.label" | translate
+          }}</mat-label>
+          <!-- <input
+            matInput
+            formControlName="birthcountry"
+            name="birthcountry"
+            placeholder="{{
+              'profile.fields.birthcountry.placeholder' | translate
+            }}"
+          /> -->
+          <mat-select formControlName="birthcountry" name="birthcountry">
+            <mat-option
+              *ngFor="let option of countryLK"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.birthcountry">{{
+            displayMessage.birthcountry
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label>{{
+            "profile.fields.hasDriversLicense.label" | translate
+          }}</mat-label>
+          <mat-select
+            formControlName="has_driverslicense"
+            name="has_driverslicense"
+          >
+            <mat-option
+              [disabled]="option.value ==''"
+              *ngFor="let option of driverLicenceLK"
+              [value]="option.value"
+            >
+              {{
+                "profile.fields.hasDriversLicense." + option.value | translate
+              }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.has_driverslicense">{{
+            displayMessage.has_driverslicense
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <ng-container *ngIf="driverLicenceTypeLK && detailForm.get('has_driverslicense')?.value === 'true'">
+        <div class="row bottom-space">
+          <div class="col-xs-3 col-sm-1" *ngFor="let option of driverLicenceTypeLK">
+            <mat-checkbox
+              color="primary"
+              [name]="option.value"
+              [checked]="selectedLicenses.indexOf(option.value) > -1"
+              (change)="onChange($event)"
+            >
+            {{"profile.fields.licenseTypes." + option.value | translate}}
+            </mat-checkbox>
+          </div>
+        </div>
+      </ng-container>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend translate="profile.section.contact"></legend>
+        </div>
+        <mat-form-field class="col-xs-12 col-sm-6 mobile-form-field-wrapper">
+          <mat-label required>{{
+            "profile.fields.mobile.label" | translate
+          }}</mat-label>
+          <input
+            hidden
+            matInput
+            required
+            formControlName="mobile"
+            name="mobile"
+            placeholder="{{ 'profile.fields.mobile.placeholder' | translate }}"
+          />
+          <ngx-intl-tel-input
+          required
+          [cssClass]="'custom mobile-input-wrapper'"
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="false"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+          [selectFirstCountry]="false"
+          [separateDialCode]="true"
+          [selectedCountryISO]="mobileCode || CountryISO.Austria"
+          [phoneValidation]="true"
+          [customPlaceholder]="mobilePlaceholder"
+          name="mobile1"
+          formControlName="mobile1"
+
+
+        ></ngx-intl-tel-input>
+          <mat-error *ngIf="displayMessage.mobile">{{
+            displayMessage.mobile
+          }}</mat-error>
+        </mat-form-field>
+        <div data-ng-if="master.role!=='freelancer'" class="phone">
+          <!-- <a
+          data-ng-href="tel:{{master.data.mobile | telnumber}}"
+          data-ng-bind-html="master.data.mobile"
+        ></a> -->
+        </div>
+        <mat-form-field class="col-xs-12 col-sm-6  mobile-form-field-wrapper">
+          <mat-label>{{
+            "profile.fields.alternativePhone.label" | translate
+          }}</mat-label>
+          <input
+          hidden
+            matInput
+            formControlName="alternative_phone"
+            name="alternative_phone"
+            placeholder="{{
+              'profile.fields.alternativePhone.placeholder' | translate
+            }}"
+          />
+          <ngx-intl-tel-input
+          [cssClass]="'custom mobile-input-wrapper'"
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="false"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+          [selectFirstCountry]="false"
+          [separateDialCode]="true"
+          [selectedCountryISO]="mobileCode2"
+          [phoneValidation]="true"
+          [customPlaceholder]="alternativeMobilePlaceholder"
+          name="alternative_phone1"
+          formControlName="alternative_phone1"
+
+        ></ngx-intl-tel-input>
+          <mat-error *ngIf="displayMessage.alternative_phone">{{
+            displayMessage.alternative_phone
+          }}</mat-error>
+        </mat-form-field>
+        <div data-ng-if="master.role!=='freelancer'" class="phone">
+          <!-- <a
+          data-ng-href="tel:{{master.data.alternative_phone | telnumber}}"
+          data-ng-bind-html="master.data.alternative_phone"
+        ></a> -->
+        </div>
+        <mat-form-field class="col-xs-12 col-sm-6">
+          <mat-label required>{{
+            "profile.fields.email.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            name="email"
+            placeholder="{{ 'profile.fields.email.placeholder' | translate }}"
+          />
+          <mat-error *ngIf="displayMessage.email">{{
+            displayMessage.email
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend translate="profile.section.address"></legend>
+        </div>
+        <div class="col-xs-12 padding-none primary-address">
+          <app-freelancer-address
+            [addressGroup]="addressGroup"
+            [displayMessage]="
+              displayMessage && displayMessage.address
+                ? displayMessage.address
+                : {}
+            "
+          ></app-freelancer-address>
+        </div>
+        <div class="col-xs-12" *ngIf="role === 'freelancer'">
+          <mat-checkbox
+            color="primary"
+            [checked]="secondAddressInUse"
+            (change)="useSecondAddress(!secondAddressInUse)"
+          >
+            {{ "profile.fields.second-address" | translate }}
+          </mat-checkbox>
+        </div>
+      </div>
+    </fieldset>
+    <div *ngIf="secondAddressInUse">
+      <fieldset>
+        <div class="row">
+          <div class="col-xs-12">
+            <legend
+              *ngIf="role !== 'freelancer'"
+              translate="profile.section.second-address"
+            ></legend>
+          </div>
+          <div class="col-xs-12 padding-none secondary-address">
+            <app-freelancer-address
+              [addressGroup]="alternateAddressGroup"
+              [displayMessage]="
+                displayMessage && displayMessage.alternateAddress
+                  ? displayMessage.alternateAddress
+                  : {}
+              "
+            ></app-freelancer-address>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="row" *ngIf="!readonly">
+      <div class="col-xs-12">
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="isOnboarding"
+          translate="profile.submit.button-next"
+        ></button>
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="!(isOnboarding)"
+          translate="profile.submit.button-save"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="isOnboarding"
+          translate="profile.next-step"
+          (click)="next()"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="!(isOnboarding)"
+          translate="profile.cancel"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </div>
+  </form>
+</div>

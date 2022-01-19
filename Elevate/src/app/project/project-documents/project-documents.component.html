@@ -1,0 +1,43 @@
+<div class="row" *ngIf="projectDocuments && projectDocuments.length">
+  <div class="col-xs-12 col-sm-4"><label>Name</label></div>
+  <div class="col-xs-12 col-sm-10">
+    <hr />
+  </div>
+</div>
+<div class="row" *ngFor="let doc of projectDocuments; let i = index">
+  <div class="col-xs-12 col-sm-12 padding-none">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <a (click)="download(doc)">
+          <div class="filename">{{ doc.name }}</div>
+          (<span>{{ doc.size | fileSize }}</span
+          >)
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <!-- <input type="text" class="form-control" *ngIf="mode !== 'readonly'" data-ng-model="document.data.description"
+          data-translate-once-placeholder="projects.fields.document.description-placeholder"> -->
+        <mat-form-field class="full-width" *ngIf="mode !== 'readonly'">
+          <mat-label>{{
+            "projects.fields.document.description-placeholder" | translate
+          }}</mat-label>
+          <input matInput [(ngModel)]="doc.description" />
+        </mat-form-field>
+        <p class="line-ellipsis" *ngIf="mode === 'readonly'">
+          {{ doc.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-1 col-sm-1">
+    <button
+      type="button"
+      *ngIf="mode !== 'readonly' && doc.id"
+      mat-icon-button
+      color="accent"
+      (click)="removeDocument(doc.id)"
+    >
+      <i class="far fa-trash-alt"></i>
+    </button>
+  </div>
+</div>

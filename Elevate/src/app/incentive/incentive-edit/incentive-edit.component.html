@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="col-xs-12 col-md start-xs">
+    <h1 translate="administration.incentives.details.title.edit"></h1>
+  </div>
+  <form [formGroup]="incentive">
+    <div class="form-group col-sm-4 col-xs-12">
+      <label translate="administration.incentives.fields.name.label" required></label>
+      <mat-form-field class="full-width">
+        <input matInput  formControlName="name" >
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.incentives.fields.checkin.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput  formControlName="checkin">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.incentives.fields.sales_report.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput  formControlName="sales_report">
+        </mat-form-field>
+      </div>
+      <div class="form-group col-sm-4 col-xs-12">
+        <label translate="administration.incentives.fields.picture_documentation.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput  formControlName="picture_documentation">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md start-xs">
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="saveDetail(incentive?.value)"
+
+      >{{ "administration.incentives.details.buttons.update" | translate }}
+      </button>
+      <a
+        mat-stroked-button
+        color="primary"
+        (click)="navigateToDetails()"
+      >{{ "administration.incentives.details.buttons.cancel" | translate }}
+      </a>
+    </div>
+  </form>
+</div>

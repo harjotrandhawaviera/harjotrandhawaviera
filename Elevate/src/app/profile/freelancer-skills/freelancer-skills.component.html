@@ -1,0 +1,46 @@
+
+<div
+  class="row freelancer-skills-wrapper"
+  *ngIf="inFormGroup"
+  [formGroup]="inFormGroup"
+>
+
+  <div class="col-xs-12 col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label>{{ "profile.fields.skills.category.label" | translate}}</mat-label>
+        <mat-select formControlName="skillcategory" name="category">
+          <mat-option *ngFor="let data of skills" [value]="data.name" (click)="onSkillCategorySelect(data)">
+            {{data.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-3">
+    <mat-form-field class="full-width">
+      <mat-label>{{ "profile.fields.skills.name.label" | translate}}</mat-label>
+      <mat-select formControlName="skillName" name="name">
+        <mat-option *ngFor="let data of selectedSkillCategory" [value]="data.title" (click)="onSkillSelect(data)">
+          {{data.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-3 mt-3">
+
+    <!-- <button class="btn required-proof-button"[ngClass]="selectedSkill?.required_proof || selectedSkill?.required_proof == 1 ? 'required-proof-button-enable' : ''" mat-button>{{ "profile.fields.skills.proof.label" | translate}}</button> -->
+    <button class="btn upload-document-button"mat-button (click)="onDocumentClick=true" *ngIf="selectedSkill?.required_proof == 1  " [ngClass]="selectedSkill?.required_proof || selectedSkill?.required_proof == 1  ? 'upload-document-button-enable' : 'disabled-button'">{{ "profile.fields.skills.document.label" | translate}}</button>
+  </div>
+  <div class="col-xs-12 col-sm-2 skill-action-button">
+    <i class="fas fa-plus" (click)="addNewSkill()"></i>
+    <i class="fas fa-minus" (click)="removeSkill($event)"></i>
+    <i class="fas fa-file-download" *ngIf="document?.value?.url"
+    (click)="downloadDocument(document)" mat-icon-button></i>
+  </div>
+</div>
+<div class="col-xs-12 padding-none">
+  <!-- <div class="col-xs-12" *ngFor="let doc of documents; let i = index;"> -->
+
+  <!-- <app-profile-document [readonly]="readonly" formControlName="document" [buttonText]="'buttons.upload-document' | translate"></app-profile-document> -->
+    <app-profile-document formControlName="document" *ngIf="onDocumentClick" [onDocumentClick]=true (documentUpdated)="onDocumentUpload($event)" [buttonText]="'buttons.upload-document' | translate">
+  </app-profile-document>
+</div>

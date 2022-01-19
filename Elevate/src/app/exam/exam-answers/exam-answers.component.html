@@ -1,0 +1,13 @@
+<div *ngIf="selection">
+  <div class="answer" *ngFor="let item of answers">
+    <mat-checkbox
+      color="primary"
+      [checked]="selection.isSelected(item.id || 0)"
+      (change)="toggleAnswer.emit(item.id)"
+    >
+      <span class="input-label">
+        {{ item.answer }}
+      </span>
+    </mat-checkbox>
+  </div>
+</div>

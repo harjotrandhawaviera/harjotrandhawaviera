@@ -1,0 +1,176 @@
+{
+    "approval": {
+        "freelancer-onboarding": {
+            "header": "New Freelancers",
+            "buttons": {
+                "details": "Check",
+                "overview": "Show All",
+                "back": "Back to On-Boarding"
+            },
+            "table": {
+                "fullname": "Name",
+                "zip": "Postal Code",
+                "submissionDate": "Date of Receipt",
+                "actions": {
+                    "details": "Details"
+                }
+            }
+        },
+        "freelancer-approval": {
+            "header": "New Freelancers",
+            "admin-header": "OVERVIEW OF ALL REGISTRATIONS BY ADMIN",
+            "email-success": "Email send successfully.",
+            "buttons": {
+              "new": "Add Staff Member",
+              "save": "Next",
+              "cancel": "Abort",
+              "create": "Create Staff Member"
+            },
+            "fields": {
+              "subject": "Enter the E-Mail Address",
+              "search-placeholder": "Enter  E-Mail Address"
+            },
+            "table": {
+              "fullname": "Name",
+              "gender": "Gender",
+              "age": "Age",
+              "mobile": "Mobile",
+              "status": "Status",
+              "city": "City",
+              "country": "Country",
+              "zip": "Post Code",
+              "created": "Created By",
+              "email": "Email",
+              "submissionDate": "Creation Date",
+              "actions": {
+                "detail": "details",
+                "email": "Send Email"
+              }
+            }
+        },
+        "freelancer-changerequest": {
+            "header": "Changes",
+            "buttons": {
+                "details": "Check",
+                "overview": "Show All"
+            },
+            "table": {
+                "fullname": "Name",
+                "submissionDate": "Date of Receipt",
+                "actionType": "Change",
+                "actions": {
+                    "details": "Details"
+                }
+            }
+        },
+        "buttons": {
+            "details": "Check"
+        },
+        "list": {
+            "freelancer-onboarding": "Overview of Staff Profiles for Review",
+            "freelancer-changerequest": "Overview of all change requests",
+            "fullname": "Name",
+            "email": "E-Mail",
+            "mobile": "Mobile",
+            "city": "city",
+            "postcode": "Post Code",
+            "zip": "ZIP Code",
+            "submissionDate": "Creation Date",
+            "status": "status",
+            "actionType": "Change",
+            "actions": {
+                "details": "details",
+                "verify_email": "Send E-mail",
+                "resend": "ReSend"
+            }
+        },
+        "accept-button": "Complete check & Send",
+        "comment-placeholder": "Write a comment if you want to reject the data",
+        "comment-required": "Please provide a reason for the rejection",
+        "profile": {
+            "headline": "{{fullname}}'s Profile",
+            "step": {
+                "accept-button": "Accept Data",
+                "submit-decline-button": "Reject Data"
+            },
+            "summary": {
+                "all-done": "You have checked all data. Please complete the request now."
+            },
+            "training": {
+                "heading": "Legal training and Test",
+                "success": "The legal training has been completed and the test has been passed successfully.",
+                "open": "The legal training has either not yet been completed or the test has not yet been passed."
+            },
+            "change": {
+                "accept-button": "Accept changes",
+                "decline-button": "Reject changes",
+                "pending-photo": "New Photo",
+                "current-photo": "Previous Photo",
+                "pending-document": "New Document",
+                "current-document": "Previous Document",
+                "current-data": "New information",
+                "previous-data": "Previous Information"
+            },
+            "duplicates": {
+                "heading": "There is already an account exist for this Staff Member.",
+                "columns": {
+                    "fullname": "Name",
+                    "personal": "Personal Data",
+                    "tax_number": "Tax Number",
+                    "iban": "IBAN"
+                }
+            },
+            "missing": {
+                "heading": "Due to the system changeover, some mandatory data is still missing in the profile of this freelancer.\nPlease point out the missing information to the freelancer.",
+                "master": {
+                    "heading": "Profile area: Master Data",
+                    "birthplace": "Place of Birth",
+                    "birthcountry": "Country of Birth"
+                },
+                "legal": {
+                    "heading": "Profile area: Legal Data",
+                    "workpermit": "Work Permit"
+                }
+            }
+        },
+        "action-type": {
+            "replace-freelancer-portraitpicture": "Portrait Photo",
+            "replace-freelancer-bodypicture": "Full-body Photo",
+            "replace-freelancer-tradelicence": "Trade License",
+            "replace-freelancer-workpermit": "Work Permit",
+            "replace-freelancer-evidence": "Proof",
+            "approve-freelancer-onboarding": "Onboarding",
+            "approve-freelancer-contract": "Contract Type",
+            "approve-freelancer-data-change": "Data Change",
+            "approve-freelancer-gtc": "General Terms & Conditions",
+            "replace-freelancer-gtc-document": "GTC-Document"
+        },
+        "message": {
+            "required": "Please give a reason.",
+            "sender-info": "{{fullname}}, {{date}}",
+            "subject": {
+                "label": "Subject",
+                "placeholder": "Reason for the message",
+                "action": {
+                    "replace-freelancer-bodypicture": "Comment on updating the Full-body Photo",
+                    "replace-freelancer-portraitpicture": "Comment on updating the Portrait Photo",
+                    "replace-freelancer-tradelicence": "Comment on updating the Trade License",
+                    "approve-freelancer-contract": "Comment on updating the Profile"
+                }
+            },
+            "content": {
+                "placeholder": "..."
+            }
+        },
+        "logs": {
+            "data-changed": {
+                "list": {
+                    "message": "Details",
+                    "performer_name": "User",
+                    "createdAt": "Date"
+                },
+                "title": "Overview of all changes"
+            }
+        }
+    }
+}

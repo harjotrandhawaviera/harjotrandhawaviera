@@ -1,0 +1,75 @@
+<fieldset *ngIf="assignment">
+  <!--<div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.inherited.fields.responsible.label"></label>
+      <div>{{ assignment.agent?.fullname }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.fields.contract_type.label"></label>
+      <div>{{ ('contracts.identifier.'+assignment.contract_type_identifier) | translate }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.inherited.fields.state.label"></label>
+      <div>{{ ('assignments.fields.states.' +assignment.state) | translate }}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.inherited.fields.budget.label"></label>
+      <div *ngIf="(budgetDetail$ | async) as budget">
+        <div *ngIf="budget.data && budget.data[0].name">
+          {{budget.data[0].name}}
+          ({{'administration.budgets.label.available' | translate}}: {{budget.data[0].available | currency}})
+        </div>
+        <ng-container *ngIf="budgetContactNames; else elseTemplate">
+          <small>
+            {{budgetContactNames}}
+          </small>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <small>-</small>
+        </ng-template>
+      </div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.inherited.fields.assignment_budget.label"></label>
+      <div>{{ assignment.assignment_budget | currency:'EUR' }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12" *ngIf="mode !== 'clientJob'">
+      <label required translate="projects.inherited.fields.wage.label"></label>
+      <div>{{ assignment.wage | currency:'EUR' }}</div>
+    </div>
+  </div>
+  <div class="row" *ngIf="mode !== 'clientJob'">
+    <div class="form-group col-xs-12 additional_costs">
+      <label translate="projects.additional-costs.label"></label>
+      <app-additional-cost [additionalCosts]="assignment.additional_costs"></app-additional-cost>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.inherited.fields.category.label"></label>
+      <div>{{ 'projects.inherited.fields.category.' +assignment.category | translate }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.inherited.fields.certificates.label"></label>
+      <div class="certificate" *ngFor="let cert of assignment.certificates">
+        <span [ngClass]="{'exclusive': cert.is_exclusive}">{{ cert.name }}</span>
+      </div>
+    </div>
+  </div>
+  <app-custom-properties-value [module]="'client'" [assignment]="assignment"></app-custom-properties-value>-->
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <label translate="administration.client.section.freelancer-ratings"></label>
+      <app-load-html *ngIf="mode === 'clientJob' && !(job.freelancer_ratings && job.freelancer_ratings.length)"
+        template="administration.client.freelancer-ratings.hint">
+      </app-load-html>
+      <ng-container *ngIf="job && job.freelancer_ratings && job.freelancer_ratings.length">
+        <div class="rating" *ngFor="let rating of job.freelancer_ratings">
+          {{rating}}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</fieldset>

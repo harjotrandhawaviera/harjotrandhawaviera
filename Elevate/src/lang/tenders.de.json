@@ -1,0 +1,356 @@
+{
+  "tenders": {
+    "tenders": {
+      "title": "Übersicht aller Ausschreibungen",
+      "search-placeholder": "Name der Ausschreibung",
+      "search-job-placeholder": "Name des Jobs oder Einsatzortes",
+      "table": {
+        "id": "ID",
+        "appointedAt": "Datum",
+        "start_time": "Start",
+        "finish_time": "Ende",
+        "jobTitle": "Job",
+        "siteName": "Filiale",
+        "sitePlace": "PLZ Ort",
+        "siteCity": "Ort",
+        "publishedAt": "Veröffentlicht von",
+        "startDateTimeLabel": "Datum",
+        "invalidAt": "Veröffentlicht bis",
+        "projectName": "Projekt",
+        "clientName": "Kunde",
+        "status": "Status",
+        "actions": {
+          "details": "Details",
+          "close": "Schließen",
+          "delete": "Löschen"
+        },
+        "dailyRateMin": "Tagessatz",
+        "dailyRateMax": "Inkl. Prämien",
+        "close": {
+          "title": "Stellenausschreibungen schließen",
+          "message": "Möchten Sie die Stellenausschreibungen wirklich schließen?"
+        },
+        "start_date": "Start Date",
+        "finish_date": "Endtermin",
+        "role": "Rolle",
+        "staff_count": "Mitarbeiterzahl",
+        "days": "# Tage",
+        "staff_manager": "Personalmanager"
+      },
+      "filters": {
+        "status": "Status der Ausschreibung",
+        "job": "Jobname",
+        "type": "Klasse der Ausschreibung",
+        "dates": "Termine",
+        "postcodes": "Postleitzahl des Einsatzortes",
+        "agent": "Verantwortlicher",
+        "contractType": "Vertragstyp"
+      },
+      "fields": {
+        "staff": "Mitarbeiter",
+        "start": "Anfang",
+        "end": "Ende",
+        "days": "Tage",
+        "contract_type": "Vertragstyp",
+        "matching": {
+          "all": "Alle Ausschreibungen",
+          "matched": "Meine Angebote",
+          "mismatched": "Weitere Angebote"
+        }
+      },
+      "buttons": {
+        "invite": "Einladen"
+      }
+    },
+    "bookedTenders": {
+      "title": "Meine Jobs",
+      "table": {
+        "actions": {
+          "details": "Details"
+        },
+        "search-placeholder": "Nach Job suchen (mind. 3 Zeichen)",
+        "jobTitle": "Job",
+        "siteCity": "Ort",
+        "startDateTimeLabel": "Datum"
+      }
+    },
+    "tender": {
+      "title": {
+        "details": "Ausschreibungsdetails",
+        "new": "Neue Ausschreibung",
+        "edit": "Ausschreibung bearbeiten",
+        "assignment": "Einsatzdetails",
+        "criteria": "KRITERIEN FÜR STELLENAUSSCHREIBUNGEN",
+        "info": "DETAILS DER STELLENAUSSCHREIBUNG",
+        "freelancer": "Ausschreibung",
+        "date": "Termin: {{appointedAt}}",
+        "time": "{{start_time}} - {{finish_time}}"
+      },
+      "fields": {
+        "published-at": {
+          "label": "Veröffentlicht von",
+          "placeholder": ""
+        },
+        "invalid-at": {
+          "label": "Veröffentlicht bis",
+          "placeholder": ""
+        },
+        "expired-at": {
+          "label": "Gültig bis"
+        },
+        "state": {
+          "label": "Status"
+        },
+        "client-name": "Kunde",
+        "project-title": "Projekt",
+        "site-name": "Name",
+        "job-name": "Job",
+        "site-place": "Adresse",
+        "federal-state": {
+          "label": "Bundesland"
+        },
+        "zip-min": {
+          "label": "PLZ-Bereich von"
+        },
+        "gender": {
+          "label": "Gender"
+        },
+        "radius": {
+          "label": "Radius (in miles)"
+        },
+        "zip-max": {
+          "label": "PLZ-Bereich bis"
+        },
+        "cities": {
+          "label": "Städte"
+        },
+        "certificates": {
+          "label": "Benötigte Zertifikate"
+        },
+        "start": {
+          "label": "STARTDATUM VERSCHIEBEN"
+        },
+        "end": {
+          "label": "ENDE DATUM VERSCHIEBEN"
+        },
+        "days": {
+          "label": "# Tage"
+        },
+        "wage": {
+          "label": "Stundensatz",
+          "none": "-"
+        },
+        "category": {
+          "label": "Kategorie"
+        },
+        "start-time": {
+          "label": "Start um"
+        },
+        "finish-time": {
+          "label": "Ende um"
+        },
+        "previous-tender": {
+          "label": "Ursprüngliche Ausschreibung"
+        },
+        "deleted-at": {
+          "label": "Gelöscht am"
+        },
+        "daily-rate-min": {
+          "label": "Tagessatz"
+        },
+        "daily-rate-max": {
+          "label": "Mögliches Honorar"
+        },
+        "max-incentives": "Inkl. Prämien",
+        "max-additionals": "Inkl. Vergütung",
+        "incentives": {
+          "label": "Prämien",
+          "none": "-"
+        },
+        "additional-costs": {
+          "label": "Vergütung",
+          "none": "-"
+        },
+        "responsible": {
+          "label": "Verantwortlicher"
+        }
+      },
+      "buttons": {
+        "create": "Ausschreibung hinzufügen",
+        "edit": "Bearbeiten",
+        "update": "Änderungen speichern",
+        "cancel": "Abbrechen",
+        "cancel-edit": "Abbrechen",
+        "back": "Zur Übersicht der Ausschreibungen",
+        "overview": "Alle anzeigen",
+        "remove": "Aufruf für Stellenausschreibung schließen",
+        "details": "Details",
+        "show-logs": "Logs anzeigen"
+      },
+      "state": {
+        "expired": "Abgeschlossen",
+        "scheduled": "Geplant",
+        "draft": "Geplant",
+        "active": "Veröffentlicht",
+        "undefined": "-"
+      },
+      "hint-expired": "Diese Ausschreibung ist bereits geschlossen. Das Bearbeiten der Ausschreibung ist deshalb nicht mehr möglich.",
+      "logs": "Logs",
+      "table": {
+        "jobTitle": "Job",
+        "jobShortTitle": "Job",
+        "siteCity": "Ort",
+        "startDateTime": "Restlaufzeit",
+        "startDateTimeLabel": "Datum",
+        "details": ""
+      },
+      "close": {
+        "title": "Ausschreibung löschen",
+        "message": "Möchtest du die Ausschreibung wirklich löschen?"
+      },
+      "delete": {
+        "title": "Ausschreibung löschen",
+        "message": "Möchtest du die Ausschreibung wirklich löschen?"
+      },
+      "submit-offer": {
+        "title": "Verbindliches Angebot abgeben",
+        "message": "Fast geschafft:\nSobald du bestätigst, gibst du uns ein verbindliches Angebot für diesen Einsatz ab. Nachdem wir zugestimmt haben, ist ein verbindlicher Vertrag geschlossen."
+      },
+      "reject": {
+        "title": "Ausschreibung ablehnen",
+        "message": "Bist du sicher, dass du das Angebot ablehnen möchtest?",
+        "placeholder": "Gib hier einen Grund an."
+      },
+      "header-recommended": "Aanbevolen Banen",
+      "header-all": "Alle Banen",
+      "more-information": "Mehr Informationen",
+      "less-information": "Zurück",
+      "confirm": {
+        "edit": {
+          "title": "Bist du sicher, dass du die Ausschreibung ändern möchtest?",
+          "message": "[offers_count] Angebote von Fachberatern werden damit abgelehnt."
+        }
+      }
+    },
+    "offers": {
+      "submitJob": "Eingereichter Job",
+      "title": "Abgegebene Angebote",
+      "header": "Angebote",
+      "table": {
+        "search-placeholder": "In Angeboten nach Fachberater suchen (mind. 3 Zeichen)",
+        "jobTitle": "Job",
+        "sitePlace": "PLZ Ort",
+        "roleName": "Role",
+        "shiftName": "Shift",
+        "appointedAt": "Datum",
+        "expired_at": "Gültig bis",
+        "expiredAt": "Gültig bis",
+        "freelancerName": "Fachberater",
+        "actions": {
+          "details": "Details"
+        },
+        "filter": {
+          "job": "Job"
+        },
+        "details": "",
+        "filters": {
+          "state": "Status des Angebots",
+          "job": "Job",
+          "project": "Projekt",
+          "site": "POS",
+          "client": "Kunde",
+          "agent": "Agent",
+          "dates": "Ausschreibungen (von - bis)",
+          "contractType": "Vertragstyp",
+          "freelancer": "Fachberater"
+        }
+      },
+      "search-placeholder": "Fachberater",
+      "freelancer.table": {
+        "jobTitle": "Job",
+        "jobShortTitle": "Job",
+        "sitePlace": "PLZ Ort",
+        "dailyRateMax": "Vergütung",
+        "appointedAt": "Datum",
+        "expired_at": "Gültig bis",
+        "expiredAt": "Gültig bis",
+        "actions": {
+          "details": "Details"
+        },
+        "details": "",
+        "search-placeholder": "Job oder Einsatzort"
+      },
+      "buttons": {
+        "overview": "Zeige alle",
+        "accept": "Angebot annehmen",
+        "reject": "Angebot ablehnen",
+        "details": "Details"
+      },
+      "fields": {
+        "name": "Fachberater",
+        "mobile": "Telefon (mobil)",
+        "email": "E-Mail",
+        "state": {
+          "pending": "In Arbeit",
+          "rejected": "Abgelehnt"
+        }
+      },
+      "accept": {
+        "title": "Angebot annehmen",
+        "message": "Möchtest du das Angebot von <b>{{fullname}}</b> wirklich annehmen?"
+      },
+      "reject": {
+        "title": "Angebot ablehnen",
+        "message": "Möchtest du das Angebot von <b>{{fullname}}</b> wirklich ablehnen?"
+      },
+      "state": {
+        "pending": "In Arbeit",
+        "rejected": "Abgelehnt"
+      }
+    },
+    "freelancer-tender": {
+      "title": {
+        "details": "Jobangebote"
+      },
+      "buttons": {
+        "cancel": "Abbrechen",
+        "create": "Angebot erstellen",
+        "submit-offer": "Verbindliches Angebot abgeben",
+        "reject-offer": "Ausschreibung ablehnen"
+      },
+      "deactivated-info": "Du kannst keine Angebote abgeben, da dein Konto deaktiviert ist."
+    },
+    "booked-tender": {
+      "header": "Meine aktuellen Jobs",
+      "buttons": {
+        "overview": "Alle anzeigen",
+        "details": "Details"
+      },
+      "table": {
+        "jobTitle": "Job",
+        "jobShortTitle": "Job",
+        "siteCity": "Ort",
+        "startDateTime": "Restlaufzeit",
+        "startDateTimeLabel": "Datum",
+        "details": ""
+      }
+    },
+    "not-matching-tender": {
+      "header": "Weitere Angebote",
+      "buttons": {
+        "overview": "Alle anzeigen"
+      },
+      "table": {
+        "jobTitle": "Angebot",
+        "jobShortTitle": "Job",
+        "siteCity": "Ort",
+        "missingCertificates": "Fehlende Zertifikate",
+        "countMissingCertificates": "Fehlende Zertifikate: {{count}}",
+        "missingLocation": "Einsatzort nicht übereinstimmend.",
+        "missingContractType": "Vertragstyp nicht übereinstimmend",
+        "startDateTimeLabel": "Datum",
+        "details": ""
+      }
+    }
+  }
+}

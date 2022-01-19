@@ -1,0 +1,32 @@
+<div class="doc-cont">
+  <div class="row" *ngIf="documents && documents.length">
+    <div class="col-xs-12">
+      <div class="header" translate="projects.fields.document.label"></div>
+    </div>
+    <div class="col-xs-12 start-xs" *ngFor="let doc of documents; let i = index">
+      <div class="row document">
+        <div class="name col-sm-4 col-xs-12">
+          <a (click)="download(doc)">
+            <div class="filename">{{doc.name}}</div>
+            (<span>{{doc.size | fileSize }}</span>)
+          </a>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" *ngIf="mode !== 'readonly'">
+            <mat-label>{{"projects.fields.document.description-placeholder" | translate}}</mat-label>
+            <input matInput [(ngModel)]="doc.description" />
+          </mat-form-field>
+          <p class="" *ngIf="mode === 'readonly'">
+            {{ doc.description }}
+          </p>
+        </div>
+        <div class="end-xs col-sm-2">
+          <button type="button" *ngIf="mode !== 'readonly' && doc.id" mat-icon-button color="accent"
+            (click)="removeDocument(doc.id)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

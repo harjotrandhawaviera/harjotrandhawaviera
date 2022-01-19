@@ -1,0 +1,883 @@
+
+{
+  "profile": {
+    "Work_preference": {
+      "I have no wishes and am open to all offers": "I have no wishes and am open to all offers",
+      "I would like to work independently": "I would like to work independently",
+      "I would like to be busy on a case-by-case basis": "I would like to be busy on a case-by-case basis",
+      "I am looking for a permanent job": "I am looking for a permanent job",
+      "I want / have to stay below the marginal income limit": "I want / have to stay below the marginal income limit",
+      "I have another job where I am permanently employed": "I have another job where I am permanently employed",
+      "I have another job that I work for occasionally": "I have another job that I work for occasionally",
+      "This is my first time working in Austria": "This is my first time working in Austria",
+      "Other": "Other"
+    },
+    "country": {
+      "Austria": "AT",
+      "Belgium": "BE",
+      "Bulgaria": "BG",
+      "Croatia": "HR",
+      "Cyprus": "CY",
+      "Czech Republic": "CZ",
+      "Denmark": "DK",
+      "Estonia": "EE",
+      "Finland": "FI",
+      "France": "FR",
+      "Germany": "DE",
+      "Greece": "GR",
+      "Hungary": "HU",
+      "Ireland, Republic of (EIRE)": "IE",
+      "Italy": "IT",
+      "Latvia": "LV",
+      "Lithuania": "LT",
+      "Luxembourg": "LU",
+      "Malta": "MT",
+      "Netherlands": "NL",
+      "Poland": "PL",
+      "Portugal": "PT",
+      "Romania": "RO",
+      "Slovakia": "SK",
+      "Slovenia": "SI",
+      "Spain": "ES",
+      "Sweden": "SE",
+      "United Kingdom": "GB"
+    },
+    "headline": "My Profile",
+    "section": {
+      "master": {
+        "title": "Personal Information",
+        "description": "Please enter your personal data like name and address here.",
+        "subtitle": "Personal Data"
+      },
+      "contact": "Contact Details",
+      "address": "Primary Address",
+      "second-address": "Second Address",
+      "summary": {
+        "text": "You have entered all the data. Please complete the form by submitting the profile.",
+        "title": "Congratulation!"
+      },
+      "confirmation": {
+        "title": "Thank you very much!",
+        "text": "We have received your profile and are now checking your information. You will receive an e-mail when you have been successfully enrolled."
+      },
+      "legal": {
+        "heading": "Legal Data",
+        "description": "Please enter your bank details, as well as your identity card details.",
+        "account": "Bank Details",
+        "business": "Tax and Business Details",
+        "license": "Identity Card",
+        "personal": "Personal Data",
+        "add_identity_card":"Add identity card",
+        "add_legal_docuemnt":"Add Legal Document",
+        "add_more": "Add More",
+        "upload_legal_document": "Upload Legal Documents",
+        "documents": {
+          "heading": {
+            "single-doc": "Attachment to the Framework Contract",
+            "more-docs": "Annexes to the Framework Agreement"
+          },
+          "description": {
+            "single-doc": "Please download the following document and upload the completed and signed document here.",
+            "more-docs": "Please download the following documents.\nAfterwards please upload the completed and signed documents again here."
+          }
+        }
+      },
+      "contract_freelancer": {
+        "heading": "Work as a Freelancer",
+        "selector": {
+          "label": "I would like to work as a Freelancer",
+          "inactive_label": "I do not want to work as a Freelancer",
+          "description": "Please activate if you want to work with a freelance"
+        },
+        "description": "You take on assignments as a Freelancer on the basis of work contracts.\nFor this, a freelance and a tax number are required. The billing is done by invoices based on services rendered.",
+        "business": "Information on Tax and Trade"
+      },
+      "contract_tax_card": {
+        "heading": "Work as a Temporary Employee",
+        "selector": {
+          "label": "I would like to work as a Temporary Employee",
+          "inactive_label": "I do not want to work as a Temporary Employee",
+          "description": "Please activate the button if you want to work via your temporary employee.",
+          "message": "There are job application and/or active assignment linked to this contract Type , you can't change it, please contact staff admin"
+        },
+        "description": "You will be hired as an employee for the duration of your working days. As an employer, we will automatically pay you monthly wages based on the hours worked. You don't need a freelance and you don't have to keep your own book-keeping/invoices.",
+        "tax": "Tax Information",
+        "insurance": "Social information"
+      },
+      "terms": {
+        "heading": "General Terms and Conditions (GTC)",
+        "description": "Here you will find the framework agreement and other documents that are important.\nSome of these documents you will have to download and upload post signing those documents, for other documents it is enough to confirm that you have read them."
+      }
+    },
+    "contract":{
+      "main":{
+        "headline":"Contract",
+        "description":"Contract Description"
+      },
+      "method-of-engagement":{
+        "headline":"Method of engagement"
+      }
+    },
+    "qualifications": {
+      "main": {
+        "headline": "Qualification & Training",
+        "description": "Please provide references for your current and previous jobs. You can also upload your references and certificates here."
+      },
+      "languages": {
+        "headline": "Languages",
+        "description": "Only enter languages that you speak fluently."
+      },
+      "training": {
+        "headline": "Training & External Certification",
+        "description": "If you have attend any training and/or completed any professional certification, that would be of interest to us, please enter the details here and upload the relevant certificates"
+      },
+      "uploadResume": {
+        "headline": "Upload Resume",
+        "description": "Please Upload Resume here."
+      },
+      "aboutme": {
+        "headline": "About You / Personal Statement"
+      },
+      "references": {
+        "headline": "References",
+        "description": "If you think that reference from previous jobs could be helpful for us, please add them here. This will make your profile more meaningful.</br> Please enter the details here and upload the relevant documents (if any)"
+      },
+      "list": {
+        "headline": "Education",
+        "description": "If you have attended training courses or obtained certificates that could be of interest to us, please enter the information here and upload the relevant certificates."
+      },
+      "education": {
+        "headline": "Education",
+        "description": "If you have attended formal education that could be of interest to us, please enter the <b> <u>highest level of education </u> </b> here and upload the relevant certificates."
+      },
+      "add-qualification": "Add Education",
+      "add-training": "Add Training",
+      "add-employment": "Add Employment",
+      "add-more": "Add More",
+      "add-qualification-disabled": "Please complete your information about previous education, then you can add further education.",
+      "add-training-disabled": "Please complete your information about previous training, then you can add further training.",
+      "add-reference": "Add Reference",
+      "add-reference-disabled": "Please complete your information on previous references, then you can add more references.",
+      "delete": "Delete",
+      "add-skill":"Add Skill",
+      "add-role":"Add Role"
+    },
+    "employment_info": {
+      "main": {
+        "headline": "Employment Information",
+        "description": "Please provide Employment Information for your current and previous jobs. You can also upload your Employment Information here."
+      },
+      "work-history": {
+        "headline": "Employment History",
+        "description": "Please provide your employment details (to start with the most recent / current one first) and upload relevant certificates"
+      },
+      "skill":{
+        "headline":"Skill",
+        "description":"Please provid your skills(select all the appropriate skills from the drop-down). Please note there are few skills where you need to provide <br> proof/certificate of acquiring the respective skills."
+      },
+      "role":{
+        "headline":"Role",
+        "description":"Please Provide your role details (select <b><u>one primary role </u></b>from the drop-down)"
+      },
+      "work_preferences":{
+        "headline":"Work Preferences",
+        "description":"Please choose everything that applies to you"
+      },
+      "delete": "Delete"
+    },
+    "work_conditions": {
+      "1": "I have no wishes and am open to all offers",
+      "2": "I would like to work independently",
+      "3": "I would like to be busy on a case-by-case basis",
+      "4": "I'm looking for a permanent job",
+      "5": "I want / have to stay below the marginal income limit",
+      "6": "I have another job where I am permanently employed",
+      "7": "I have another job that I work for occasionally",
+      "8": "This is my first time working in Austria",
+      "9": "Other"
+    },
+    "skill_list": {
+      "1": "Alcohol Promotion",
+      "2": "Automotive Industry",
+      "3": "Beauty Products",
+      "4": "Clothing And Fashion",
+      "5": "Data Acquisition",
+      "6": "Event Manager",
+      "7": "Gaming",
+      "8": "Guest Relations",
+      "9": "Hotel Industry",
+      "10": "Influecer / Social Media Promoter",
+      "11": "Childcare",
+      "12": "Driving A Truck",
+      "13": "Catwalk Model / Photo Model",
+      "14": "Delivery Activity",
+      "15": "Market Research",
+      "16": "Stand Construction",
+      "17": "Trade Fair Appearances",
+      "18": "Cellular And Tablet PCs",
+      "19": "Folder / Security Service",
+      "20": "Sample Distribution",
+      "21": "Roadshows / Tours",
+      "22": "Sport And Fitness",
+      "23": "Tobacco / Cigarette Promotion",
+      "24": "Teaching / Coaching",
+      "25": "Team Leader / Supervisor",
+      "26": "Holiday Animation",
+      "27": "Tasting Promotion",
+      "28": "Sales In The Field",
+      "29": "Retail Sales",
+      "30": "Distribution Of Advertising Material"
+    },
+    "create-button": "Create Profile & Send",
+    "pictures-sedcard": {
+      "headline": "Photos & Sizing Info",
+      "good-photo": "Good Photo Example",
+      "description": "Please make sure your photos have a minimum resolution of 150dpi and are in portrait format. The minimum resolution is 600 x 400 pixels. The maximum file size is 32MB.\n\nYou cannot change the images for your sedcard after we have selected them."
+    },
+    "overall-appearance": {
+      "headline": "Sizing Information",
+      "description": ""
+    },
+    "fields": {
+      "second-address": "Add 2nd Address",
+      "firstname": {
+        "label": "First Name",
+        "placeholder": ""
+      },
+      "lastname": {
+        "label": "Last Name",
+        "placeholder": ""
+      },
+      "salutation": {
+        "label": "Title",
+        "": "Choose",
+        "F": "Mrs.",
+        "M": "Mr.",
+        "-": "-"
+      },
+      "gender": {
+        "label": "Gender",
+        "": "Choose",
+        "D":"Diverse",
+        "F": "Female",
+        "M": "Male",
+        "O": "Other",
+        "null": ""
+      },
+      "title": {
+        "label": "Title",
+        "placeholder": ""
+      },
+      "nationality": {
+        "label": "Nationality"
+      },
+      "birthdate": {
+        "label": "Date of Birth",
+        "placeholder": "dd.MM.yyyy, e.g., 15.10.1978",
+        "": "Choose"
+      },
+      "birthplace": {
+        "label": "Place of Birth",
+        "placeholder": ""
+      },
+      "birthcountry": {
+        "label": "Country of Birth",
+        "placeholder": ""
+      },
+      "hasDriversLicense": {
+        "label": "Driving License",
+        "": "Choose",
+        "true": "Yes",
+        "false": "No"
+      },
+      "licenseTypes": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F"
+      },
+      "profession": {
+        "label": "Current professional status",
+        "placeholder": "e.g. Employed, Student, Pensioner"
+      },
+      "mobile": {
+        "label": "Telephone (mobile)*",
+        "placeholder": "Telephone (mobile)*"
+      },
+      "alternativePhone": {
+        "label": "Telephone (alternative)",
+        "placeholder": "Telephone (alternative)"
+      },
+      "email": {
+        "label": "E-Mail Address",
+        "placeholder": "E-Mail-Address"
+      },
+      "address": {
+        "label": "House Number",
+        "placeholder": "House Number"
+      },
+      "addressaddition": {
+        "label": "Additional Address",
+        "placeholder": "Additional Address"
+      },
+      "locality": {
+        "label": "Street Name",
+        "placeholder": "Street Name"
+      },
+      "zip": {
+        "label": "Postal Code",
+        "placeholder": "Postal Code"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "City"
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Country"
+      },
+      "document_name": {
+        "label": "Document Name",
+        "placeholder": "Document Name"
+      },
+      "document_number": {
+        "label": "Document Number",
+        "placeholder": "Document Number"
+      },
+      "near-to-city": {
+        "label": "Nearest major City",
+        "placeholder": "Nearest major City"
+      },
+      "photos": {
+        "profile": "Portrait Photo",
+        "body": "Full body Photo",
+        "additional": "Other Photo",
+        "sedcard": "SedCard Photo",
+        "hints": "Photo Hints",
+        "download": "Download SedCard"
+      },
+      "height": {
+        "label": "Height",
+        "placeholder": "cm"
+      },
+      "chest": {
+        "label": "Chest",
+        "label-with-size": "Chest: {{chest}} ",
+        "placeholder": "cm"
+      },
+      "waist": {
+        "label": "Waist",
+        "label-with-size": "Waist: {{waist}} ",
+        "placeholder": "cm"
+      },
+      "hip": {
+        "label": "Hip",
+        "label-with-size": "Hip: {{hip}} ",
+        "placeholder": "cm"
+      },
+      "shirtsize": {
+        "label": "T-Shirt",
+        "": "Select",
+        "XXS": "XXS",
+        "XS": "XS",
+        "S": "S",
+        "M": "M",
+        "L": "L",
+        "XL": "XL",
+        "XXL": "XXL"
+      },
+      "pantsize": {
+        "label": "Pant",
+        "": "Select",
+        "XS": "XS",
+        "S": "S",
+        "M": "M",
+        "L": "L",
+        "XL": "XL",
+        "XXL": "XXL",
+        "XXXL": "XXXL"
+      },
+      "shoesize": {
+        "label": "Shoe",
+        "": "Select",
+        "36": "36",
+        "37": "37",
+        "38": "38",
+        "39": "39",
+        "40": "40",
+        "41": "41",
+        "42": "42",
+        "43": "43",
+        "44": "44",
+        "45": "45",
+        "46": "46",
+        "47": "47",
+        "48": "48",
+        "49": "49",
+        "50": "50",
+        "51": "51",
+        "52": "52",
+        "53": "53",
+        "54": "54",
+        "55": "55",
+        "56": "56"
+      },
+      "pant": {
+        "label": "Pant",
+        "placeholder": ""
+      },
+      "haircolor": {
+        "label": "Hair Color",
+        "placeholder": ""
+      },
+      "shoe": {
+        "label": "Shoe Size",
+        "placeholder": "",
+        "shoe-reference":"Shoe Size Reference"
+      },
+      "type": {
+        "label": "General type",
+        "caucasian": "Caucasian"
+      },
+      "bankaccount_holder": {
+        "label": "Account Holder",
+        "placeholder": "Account Holder Name"
+      },
+      "account_number": {
+        "label": "Account Number",
+        "placeholder": "Account Number"
+      },
+      "iban": {
+        "label": "IBAN",
+        "placeholder": "IBAN"
+      },
+      "bic": {
+        "label": "BIC",
+        "placeholder": "BIC"
+      },
+      "bankname": {
+        "label": "Bank Name",
+        "placeholder": "Bank Name"
+      },
+      "reference": {
+        "title": {
+          "label": "Title",
+          "placeholder": "e.g. beautician, promoter"
+        },
+        "name": {
+          "label": "Name of the Person"
+        },
+        "relationship": {
+          "label": "Relationship",
+          "The person managed you directly":"The person managed you directly",
+          "The person reported you directly":"The person reported you directly",
+          "The person was senior to you but didn't manage directly":"The person was senior to you but didn't manage directly",
+          "You were senior to the person but didn't manage directly":"You were senior to the person but didn't manage directly",
+          "You worked with the person in same group":"You worked with the person in same group",
+          "The person worked with you but in different group":"The person worked with you but in different group",
+          "you were a client to the person":"You were a client to the person",
+          "The person was your client":"The person was your client",
+          "The person mentored you":"The person mentored you",
+          "You mentored the person":"You mentored the person"
+        },
+        "email": {
+          "label": "Email Address of the Referral"
+        },
+        "contactNo": {
+          "label": "Contact number of the referral"
+        },
+        "current": {
+          "label": "Current Title",
+          "placeholder": ""
+        },
+        "company": {
+          "label": "Client (Brand)",
+          "placeholder": ""
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": ""
+        },
+        "startDate": {
+          "label": "Start Date",
+          "placeholder": "dd.mm.yyyy"
+        },
+        "endDate": {
+          "label": "End Date",
+          "placeholder": "dd.mm.yyyy"
+        },
+        "document": {
+          "label": "Upload Document (e.g. certificate, job reference)"
+        },
+        "isVerification":{
+          "label": "Please click the check-box as your consent, to contact the referal for verification by our team"
+
+        }
+      },
+      "qualification": {
+        "title": {
+          "label": "Educational Qualification",
+          "placeholder": "e.g. beautician, promoter"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": ""
+        },
+        "date": {
+          "label": "Completed On",
+          "placeholder": "dd.mm.yyyy"
+        },
+        "document": {
+          "label": "Upload Document (e.g. Certificate)"
+        },
+        "school":{
+          "label":"School / College / University Name"
+        },
+        "degree":{
+          "label":"Degree"
+        },
+        "field":{
+          "label":"Field of Study"
+        },
+        "grade":{
+          "label":"Grade / %age"
+        },
+        "startDate":{
+          "label":"Start Date (Month / Year)"
+        },
+        "endDate":{
+          "label":"End Date or Expected(Month / Year)"
+        }
+
+      },
+      "training":{
+        "name":{
+          "label":"Name of the training / certification"
+        },
+        "organization":{
+          "label":"Issuing Organization"
+        },
+        "issueDate":{
+          "label":"Issue Date (Month/Year)"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "document":{"label":"UPLOAD DOCUMENTS (E.G CERTIFICATE) Add documents,photos,sites,videos and presentations "}
+      },
+      "work-history":{
+        "title": {
+          "label":"Job Title/Designation"
+        },
+        "comapny-name":{
+          "label":"Company Name"
+        },
+        "current-company":{
+          "label":"Is this your current company"
+        },
+        "description":{
+          "label":"Description"
+        },
+        "document":{
+          "label":"UPLOAD DOCUMENT (Add documents,photos,sites,videos and presentations)"
+        },
+        "started":{
+          "label":"Started working from"
+        },
+        "select-year":{
+          "label":"Select Year"
+        },
+        "month":{
+          "label":"Month"
+        },
+        "worked-till":{
+          "label":"Worked Till"
+        }
+      },
+      "skills":{
+        "category":{
+          "label":"Skill Category"
+        },
+        "name":{
+          "label":"Skill Name"
+        },
+        "proof":{
+          "label":"Required Proof"
+        },
+        "document":{
+          "label":"Upload Document"
+        }
+      },
+      "roles":{
+        "primaryRole":{
+          "label":"Primary Role"
+        },
+        "secondaryRole":{
+          "label":"Secondary Role"
+        },
+       "roleLabel":{
+         "label":"Role Label"
+       },
+       "description":{
+        "label":"Role Description"
+      }
+      },
+      "languages": {
+        "add": "Add Language",
+        "native": {
+          "label": "Primary Language"
+        },
+        "additional": {
+          "label": "Other Language"
+        },
+        "label": "Language",
+        "": "Select",
+        "german": "German",
+        "english": "English",
+        "french": "French",
+        "turkish": "Turkish",
+        "arabic": "Arabic",
+        "italian": "Italian",
+        "spanish": "Spanish",
+        "dutch": "Dutch",
+        "polish": "Polish",
+        "czech": "Czech",
+        "other": "Other"
+      },
+      "industryExposure": {
+        "add": "Add Industry",
+        "additional": {
+          "label": "Industry"
+        },
+        "label": "Industry Exposure",
+        "": "Select",
+        "Advertising agencies": "Advertising agencies",
+        "Autombiles": "Automobiles",
+        "Banking and Financial Services": "Banking and Financial Services",
+        "E-commerce": "E-commerce",
+        "description":"Please provide your industry exposure as part of your professional  engagement with different client/global brands",
+        "Education": "Education",
+        "Event Management": "Event Management",
+        "Govt. & Public Utilites": "Govt. & Public Utilites",
+        "Healthcare": "Healthcare",
+        "Health & Beauty Products": "Health & Beauty Products",
+        "Logistics": "Logistics",
+        "Media & Entertainment": "Media & Entertainment",
+        "NGOs": "NGOs",
+        "Real Estate": "Real Estate",
+        "Recuritment": "Recuritment",
+        "Restaurants & takeways": "Restaurants & takeways",
+        "Retail": "Retail",
+        "Technology": "Technology",
+        "Travel & Tourism": "Travel & Tourism"
+      },
+      "role": {
+        "label": "Role"
+      },
+      "lastAssignments": {
+        "label": "Last Assignment"
+      },
+      "health_insurance_types": {
+        "": "Select",
+        "statutory": "Statutory",
+        "private": "Private"
+      },
+      "legal-certificate": {
+        "required": "Completion of the test is a prerequisite for full registration."
+      },
+      "tax_classes": {
+        "": "Please Select",
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6"
+      }
+    },
+    "filterdescriptions": {
+      "tax_classes": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": ""
+      }
+    },
+
+    "submit": {
+      "button-next": "Save & Continue",
+      "button-save": "Save"
+    },
+    "next-step": "Continue (without saving)",
+    "cancel": "Cancel",
+    "onboarding": {
+      "inreview": "Your data is currently being checked by us.",
+      "start-data-entry": "Create Profile",
+      "missing-contract-type": "To start with us, you have to choose at least one contract type.\nYou can also sign up for both contract types at once, or choose another contract type later on."
+    },
+    "pending-contract-type": "Your profile has not been activated yet. Please update and save your data again.\nOnly after activation, you can submit offers for this contract type again.",
+    "pending-contract-type-approval": "(The details have not yet been checked or have been rejected!)",
+    "disabled-info": "Your account has been Locked.",
+    "deactivated-info": "Your account has been Deactivated.",
+    "languages": {
+      "native": {
+        "label": "Primary Language"
+      },
+      "additional": {
+        "label": "Other Language"
+      }
+    },
+    "reference": {
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "title": "Title",
+      "company": "Client (Brand)",
+      "description": "Description",
+      "document": "Document"
+    },
+    "qualification": {
+      "title": "Educational Qualification",
+      "description": "Description",
+      "date": "Completed On",
+      "document": "Document"
+    },
+    "address": {
+      "address": "Street and Number",
+      "addressaddition": "Add Address",
+      "zip": "Postal Code",
+      "city": "City",
+      "country": "Country",
+      "near-to-city": "Nearest major City",
+      "application-area": "Area"
+    },
+    "identity": {
+      "personal": "Personla Data",
+      "license": "Identity Card",
+      "license-id": "Identity Card Number",
+      "outdate": "Valid until",
+      "account": "Bank Details",
+      "bankaccount_holder": "Account Holder Name",
+      "iban": "IBAN",
+      "bic": "BIC",
+      "bankname": "Bank Name",
+      "profession": "Current Profession Status",
+      "birth_place": "Place of Birth",
+      "birth_country": "Country of Birth"
+    },
+    "contracts": {
+      "freelancer": "Contract Type: Freelance",
+      "tax_card": "Contract Type: Temporary Employee",
+      "tax_number": "Tax Number",
+      "vat_tax_id": "Sales Tax ID",
+      "tax_id": {
+        "label": "Tax ID",
+        "hint": "Notes on Tax ID"
+      },
+      "tax_class": {
+        "label": "Tax Class",
+        "hint": "Which tax class should be used for the settlement of your expenses?"
+      },
+      "child_tax_allowance": "Child Allowance",
+      "socialsecurity_number": {
+        "label": "Social Security Number",
+        "hint": "Notes on the Social Security Number"
+      },
+      "denomination": "Religious Denomination",
+      "health_insurance_type": "Health Insurance Type",
+      "health_insurance_name": "Health Insurance Name",
+      "vat_tax_liable": {
+        "label": "Subject to Sales Tax",
+        "hint": "subject to Sales Tax?"
+      }
+    },
+    "gtc": {
+      "upcoming": "We updated our terms and conditions for work {contract_type_identifier, select, freelancer { via freelance} other{ via temporary employee}} on {publishedDate}.\nTo continue working for us, we need your confirmation of the new master agreement by {validDate}.",
+      "upcoming-tax_card": "We updated our terms and conditions for work via temporary employee on {{publishedDate}}.\nTo continue working for us, we need your confirmation of the new master agreement by {{validDate}}.",
+      "upcoming-freelancer": "We updated our terms and conditions for work via freelance on {{publishedDate}}.\nTo continue working for us, we need your confirmation of the new master agreement by {{validDate}}.",
+      "pending": "Your changes in the area of work {contract_type_identifier, select, freelancer { via freelance} other{ via wage tax card}} are still being checked by us.",
+      "pending-tax_card": "Your changes in the area of work via wage tax card are still being checked by us.",
+      "pending-freelancer": "Your changes in the area of work via freelance are still being checked by us.",
+      "missing": "Since {{validDate}} our new terms and conditions for work {contract_type_identifier, select, freelancer { via Freelance} other{ via Temporary Employee}} are valid .\nTo continue working for us, we still need your confirmation of the new master agreement.",
+      "missing-tax_card": "Since {{validDate}} our new terms and conditions for work via Temporary Employee are valid .\nTo continue working for us, we still need your confirmation of the new master agreement.",
+      "missing-freelancer": "Since {{validDate}} our new terms and conditions for work via Freelance are valid .\nTo continue working for us, we still need your confirmation of the new master agreement.",
+      "todo-hint": "Please go to the appropriate section in your profile and open the documents, read them carefully and confirm the content by clicking the 'Accept' button and upload them again after getting them signed.",
+      "open": "Open Document",
+      "profile": "Profile",
+      "download": "Download Document",
+      "approve": "Accept",
+      "cancel": "Cancel",
+      "confirm": {
+        "title": "Accept Framework Agreement",
+        "message": " hereby confirm that I have read and understood {{identifier}}."
+      },
+      "reconfirm": {
+        "title": "Reconfirm",
+        "message": "Do you want to save your changes?",
+        "buttons": {
+          "cancel": "No",
+          "confirm": "Yes"
+        }
+      },
+      "table": {
+        "identifier": "Name",
+        "publishedAt": "Published on",
+        "validAt": "Valid from",
+        "acceptedAt": "Accepted on",
+        "actions": {
+          "download": "Download Document",
+          "details": "Details"
+        },
+        "title": "Accepted T&C versions"
+      },
+      "documents": {
+        "type": {
+          "terms-and-conditions": "Framework Agreement",
+          "attachment": "{{index}}. Annexure to the Framework Agreement",
+          "signed-terms-and-conditions": "Framework Agreement (Confirmation)",
+          "signed-attachment": "Anlage zum Rahmenvertrag (Bestätigung)"
+        },
+        "name": " ({{name}})",
+        "checked": {
+          "action": "Open Document.",
+          "hint": "You have to read and confirm this document!",
+          "state": {
+            "confirmed": "The content of this document has been confirmed.",
+            "unconfirmed": "The content of this document has not been confirmed yet."
+          }
+        },
+        "upload-signed": {
+          "action": "Download Document.",
+          "hint": "You have to download this document, sign it and upload it here!"
+        },
+        "confirm": {
+          "title": "Accept Document",
+          "message": "I hereby confirm that I have read and understood {{name}}."
+        },
+        "reconfirmation-hint": "The following documents need to be confirmed again."
+      }
+    },
+    "dashboard": {
+      "contract_types": {
+        "header": "Method of Engagement",
+        "table": {
+          "label": "Contract Type",
+          "enabled": "Registered (Yes/No)",
+          "state": "Status",
+          "pending": "Currently submitted for Review (Yes/No)"
+        },
+        "states": {
+          "not-registered": "Not Registered",
+          "pending": "Currently Under Review",
+          "active": "Active"
+        },
+        "buttons": {
+          "details": "Details"
+        }
+      }
+    }
+  }
+}

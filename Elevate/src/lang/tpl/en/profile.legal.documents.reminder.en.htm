@@ -1,0 +1,27 @@
+<div data-ng-if="reminder.openContractTypes.length">
+  For the preparation of further offers to us we still need some documents from you.
+  <p></p>
+  DYou can find the documents in your profile section
+  <p></p>
+  <p data-ng-repeat="state in reminder.openContractTypes">
+    <a data-ui-sref="app.profile.contract_{{state}}({'#':'gtc-documents'})">
+      {{'menu.profile.contract_' + state | translate}}
+    </a>
+  </p>
+  <br/>
+  Please upload the missing documents after getting filled out and signed.
+  <p>
+    Thank you very much!
+  </p>
+</div>
+<div data-ng-if="reminder.pendingContractTypes.length">
+  We are currently checking your Documents
+  <span data-ng-if="reminder.pendingContractTypes.length > 1"> The Profile Areas</span>
+  <span data-ng-if="reminder.pendingContractTypes.length === 1"> The Profile Area</span>
+  <p></p>
+  <p data-ng-repeat="state in reminder.pendingContractTypes">
+    <a data-ui-sref="app.profile.contract_{{state}}({'#':'gtc-documents'})">
+      {{'menu.profile.contract_' + state | translate}}
+    </a>
+  </p>
+</div>

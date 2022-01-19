@@ -1,0 +1,60 @@
+<div class="row" *ngIf="!onDocumentClick">
+
+  <div class="col-xs-12" *ngFor="let doc of documents; let i = index;">
+    <div class="row middle-xs">
+      <div class="col-xs-12 col-sm-6" *ngIf="doc.original_filename">
+        <!-- <span class="document-mime" *ngIf="doc.mime !== null">{{
+          doc.mime | shortMime
+        }}</span> -->
+        <span
+          class="document-original-filename"
+          *ngIf="doc.original_filename !== null"
+          >{{ doc.original_filename }}</span
+        >
+      </div>
+      <div class="col-xs-12 col-sm-6 end-xs">
+        <button
+          type="button"
+          mat-icon-button
+          *ngIf="multiple && !readonly"
+          (click)="removeDocument(doc)"
+        >
+        <i class="fas fa-trash"></i>
+      </button>
+        <button
+          type="button"
+          mat-icon-button
+          color="accent"
+          class="btn-download"
+          *ngIf="doc.url"
+          (click)="downloadDocument(doc)"
+        >
+          <i class="fas fa-file-download"></i>
+        </button>
+        <span class="document-size" *ngIf="doc.size !== null">{{
+          doc.size | fileSize
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12" *ngIf="!readonly">
+
+    <app-file-upload
+      (documentUploaded)="documentUploadedCallback($event)"
+      [text]="buttonText"
+      type="document"
+    >
+    </app-file-upload>
+  </div>
+</div>
+
+<div *ngIf="onDocumentClick">
+
+  <app-file-upload
+  [onDocumentClick]="true"
+  (documentUploaded)="documentUploadedCallback($event)"
+  [text]="buttonText"
+  type="document"
+>
+</app-file-upload>
+</div>

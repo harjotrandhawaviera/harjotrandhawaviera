@@ -1,0 +1,74 @@
+@import "variables";
+@import "mixins";
+.document-mime {
+  @include document-mime;
+  padding: 5px !important;
+  text-align: center;
+}
+.fh-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    span:first-child {
+      margin-left: 8px;
+    }
+    .rating-cont {
+      display: flex;
+      align-items: center;
+      padding-top: 4px;
+      margin-left: 10px;
+      small {
+        margin-left: 6px;
+      }
+    }
+  }
+  .sedcard {
+    display: flex;
+    align-items: center;
+    color: $brand-primary;
+    cursor: pointer;
+    span {
+      margin-right: 8px;
+    }
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      content: "";
+      background-color: #000;
+      text-decoration: none;
+      border-radius: 3px;
+      color: #fff;
+      font-style: normal;
+    }
+  }
+}
+
+@include user-status;
+
+.container-fluid {
+  box-sizing: border-box;
+  height: calc(100vh - (100px + 1rem));
+  .under-cons-cont {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    img {
+      border: 1px solid $brand-primary;
+      border-radius: 10px;
+      box-shadow: 0 0 10px $gray-light;
+    }
+  }
+}
+h3 {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+

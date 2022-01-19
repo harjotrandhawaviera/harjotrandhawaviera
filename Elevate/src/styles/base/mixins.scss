@@ -1,0 +1,320 @@
+@import "variables";
+// @import './../../../../node_modules/bootstrap/scss/_mixins'; TODO
+
+@mixin fa-icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+}
+
+@mixin form-readonly {
+  .form-control {
+    color: $p4y-color-gray-dark;
+  }
+  label {
+    pointer-events: none;
+  }
+  select,
+  input,
+  textarea,
+  .selectize-input {
+    border-radius: 0;
+    border: none !important;
+    border-bottom: 1px solid $gray-light !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding-left: 0;
+    -webkit-appearance: none; // temporary
+    pointer-events: none;
+    &.ng-invalid-required {
+      border-bottom: solid red 1px !important;
+    }
+  }
+  .ng-valid-currencyformat {
+    padding-left: 22px;
+  }
+
+  .validation,
+  .selectize-input:after {
+    display: none !important;
+  }
+  // rather temporary to keep the same view as another form fields
+  .email,
+  .phone {
+    border-bottom: 1px solid #d0d0d1 !important;
+    padding: 6px 0 9px 0;
+  }
+}
+
+// @mixin circled-background(
+//   $icon,
+//   $size: 38px,
+//   $font-size: 22px,
+//   $color: $p4y-color-white,
+//   $background-color: $brand-primary,
+//   $position: absolute
+// ) {
+//   font-family: "FontAwesome";
+//   content: $icon;
+//   width: $size;
+//   height: $size;
+//   font-size: $font-size;
+//   padding-top: 0.5 * ($size - $font-size) + 2px;
+//   padding-left: 0.5 * ($size - $font-size);
+//   color: $color;
+//   background-color: $background-color;
+//   overflow: hidden;
+//   position: $position;
+//   display: inline-block;
+//   border-radius: 50%;
+// }
+
+// @mixin menu-entry-current {
+//   cursor: pointer;
+//   color: $p4y-color-white;
+//   background-color: $brand-primary;
+//   transition: all 0.3s ease-in-out;
+//   &:after {
+//     @include circled-background($p4y-icon-pencil, 23px, 16px);
+//     transition: color 0.3s ease-in-out;
+//     color: $brand-primary;
+//     background-color: $p4y-color-white;
+//     padding-top: 2px;
+//     padding-left: 4px;
+//     top: 10px;
+//     right: 48px;
+//   }
+@mixin circled-background (
+        $icon, $size: 38px, $font-size: 22px, $color: $p4y-color-white,
+        $background-color: $brand-primary, $position: absolute) {
+    font-family: 'Font Awesome 5 Free';
+    content: $icon;
+    width: $size;
+    height: $size;
+    font-size: $font-size;
+    padding-top: 0.5 * ($size - $font-size) + 2px ;
+    padding-left: 0.5 * ($size - $font-size);
+    color: $color;
+    background-color: $background-color;
+    overflow: hidden;
+    position: $position;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+@mixin menu-entry-current {
+    cursor: pointer;
+    color: $p4y-color-white;
+    background-color: $brand-primary;
+    transition: all 0.3s ease-in-out;
+    // &:after {
+    //     @include circled-background($p4y-icon-pencil, 23px, 16px);
+    //     transition: color 0.3s ease-in-out;
+    //     color: $brand-primary;
+    //     background-color: $p4y-color-white;
+    //     padding-top: 2px;
+    //     padding-left: 4px;
+    //     top: 10px;
+    //     right: 48px;
+    // }
+}
+
+@mixin data-uib-tabset-preview {
+  [data-uib-tabset] .nav-tabs > li {
+    font-size: 14px;
+    padding: 5px 3px;
+    font-variant: normal;
+  }
+}
+
+@mixin pf4y-box-shadow(
+  $offsetX: 0,
+  $offsetY: 2px,
+  $blur: 4px,
+  $spread: 0,
+  $color: rgba(0, 0, 0, 0.5)
+) {
+  box-shadow: $offsetX $offsetY $blur $spread $color;
+}
+
+@mixin flipper-container {
+  .flipper-container {
+    perspective: 1000;
+    position: relative;
+    .flipper {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      position: relative;
+      .front,
+      .back {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+      .front {
+        z-index: 2;
+        transform: rotateY(0deg);
+      }
+      .back {
+        transform: rotateY(180deg);
+      }
+    }
+    &:hover {
+      .flipper {
+        transform: rotateY(180deg);
+      }
+    }
+  }
+}
+
+@mixin user-status {
+  .status {
+    display: inline-block;
+    margin-top: 12px;
+    min-width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: $gray-light;
+    margin-right: 8px;
+    &.online {
+      background-color: $brand-success;
+    }
+  }
+}
+
+@mixin form-padding {
+  form {
+    margin: 4rem 0 8rem;
+    padding: 0;
+  }
+}
+
+@mixin document-mime(
+  $width: 50px,
+  $backgroundColor: $p4y-color-gray-dark,
+  $borderRadius: 3px,
+  $padding: 0 8px
+) {
+  color: white;
+  background-color: $info-label;
+  padding: $padding;
+  border-radius: $borderRadius;
+  display: inline-block;
+  text-transform: uppercase;
+  margin-left: 0;
+  width: $width;
+  float: left;
+}
+
+@mixin download-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  content: "";
+  background-color: $btn-primary-bg;
+  text-decoration: none;
+  padding: 5px 5px 5px 13px;
+  border-radius: 3px;
+  color: $btn-primary-color;
+  &:before {
+    font-family: FontAwesome;
+    font-weight: normal;
+    content: "\f019";
+    margin: 0 40px 15px -5px;
+  }
+  &:hover {
+    color: $btn-primary-hover-color !important;
+  }
+  &:active {
+    color: $btn-primary-active-color !important;
+  }
+}
+
+/* for multiline increase line count*/
+@mixin textEllipsis(
+  $lineCount: 1,
+  $fontSize: $font-size-base,
+  $lineHeight: $line-height-base,
+  $bgColor: $body-background-color
+) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: $fontSize * $lineHeight * $lineCount; /* Fallback for non-webkit */
+  margin: 0;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  -webkit-line-clamp: $lineCount;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**
+ * Mixin for creating tile panel state properties
+ * @param {string} state State name
+ * @param {expression} color Color
+ *
+ * @example:
+ * .some-tile {
+ *     .panel {
+ *         @include tile-state('draft', $brand-warning);
+ *     }
+ * }
+ */
+@mixin tile-state($state, $color) {
+  &.#{$state} {
+    border-bottom-color: $color;
+    .panel-footer {
+      color: $color;
+    }
+  }
+}
+
+@mixin edit-icon {
+  cursor: pointer;
+  pointer-events: auto;
+  &:before {
+    padding: 4px;
+    margin-right: 3px;
+    color: $btn-primary-color;
+    background-color: $btn-primary-bg;
+    border-color: darken($btn-primary-bg, $hover-darken-amount);
+    font-family: $font-family-icon;
+    content: $p4y-icon-pencil;
+    border-radius: 3px;
+  }
+  &:hover {
+    &:before {
+      color: $btn-primary-hover-color;
+    }
+  }
+  &:active {
+    &:before {
+      color: $btn-primary-active-color;
+    }
+  }
+}
+@mixin make-container($padding-x: $container-padding-x) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* for multiline increase line count*/
+@mixin textEllipsis($lineCount: 1, $fontSize: 14px, $lineHeight: 1.428571429, $bgColor: $p4y-color-white){
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: $fontSize*$lineHeight*$lineCount; /* Fallback for non-webkit */
+  margin: 0;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  -webkit-line-clamp: $lineCount;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

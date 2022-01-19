@@ -1,0 +1,11 @@
+{
+    "contracts": {
+        "identifier": {
+            "freelancer" : "Freelance",
+            "tax_card": "Temporary Employee",
+            "1" : "Freelance",
+            "2": "Temporary Employee",
+            "null": ""
+        }
+    }
+}

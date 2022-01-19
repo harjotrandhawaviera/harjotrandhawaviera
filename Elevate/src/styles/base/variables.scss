@@ -1,0 +1,82 @@
+/* Colors */
+$p4y-alt-row-gray:                          #f9f9f9;
+$p4y-row-gray-hover:                        #f5f5f5;
+$link-color:                                #9b9ba0 !default;
+
+$brand-primary:                             #21B4B0 !default;
+$brand-success:                             #8ae2e0 !default;
+$brand-info:                                #edf7f7 !default;
+$brand-warning:                             #fde9be !default;
+$brand-danger:                              #dd4444 !default;
+
+$p4y-color-black:                           #000;
+$p4y-color-white:                           #fff;
+$p4y-color-gray-medium:                     #999999;
+$p4y-color-gray-dark:                       #4a4a4a;
+$p4y-color-gray-light:                      rgb(204,204,204);
+$p4y-color-gray-lightest:                   rgba(204,204,204,0.1);
+
+$p4y-color-chalky-lighter:                  #BCEDE8;
+$p4y-color-chalky-light:                    $brand-primary;
+$p4y-color-chalky-dark:                     darken($brand-primary, 15%);
+
+$p4y-color-status-completed:                $p4y-color-chalky-dark;
+$p4y-color-status-active:                   $p4y-color-chalky-light; // brand-primary
+$p4y-color-status-draft:                    $p4y-color-chalky-lighter;
+$p4y-color-status-default:          #999999;
+$p4y-color-status-error:            #dd4444;  // brand-error
+$p4y-color-status-warning:                  #FBB829;  // brand-warning
+
+$gray-base:                                 #58595b !default;
+$gray-base-alpha-5:                         rgba(88, 89, 91, 0.05) !default;
+$gray-text:                                 rgb(68, 69, 73) !default;
+$gray-darker:                               lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:                                 lighten($gray-base, 20%) !default;   // #333
+$gray:                                      lighten($gray-base, 33.5%) !default; // #555
+$gray-light:                                lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter:                              lighten($gray-base, 95%) !default; // #eee
+
+$info-label:                                #4FAEC7 !default;
+$body-text-color:                           #000;
+
+$expansion-panel-background-color:          #f5f5f5;
+$expansion-panel-color:                     #8b8c8e;
+$expansion-panel-border-color:              #ddd;
+$expansion-panel-primary-background-color:  #edf7f7;
+$expansion-panel-primary-color:             #000;
+$expansion-panel-primary-border-color:      #d4ece8;
+
+/* Sizes (Height, Width, Padding) */
+$auth-header-height:                        90px;
+$auth-footer-height:                        5vh;
+
+$p4y-form-padding-base:                     15px !default;
+
+
+/* Breakpoints */
+$screen-md-max:                             991px !default;
+$screen-md-min:                             992px !default;
+$screen-sm-max:                             767px !default;
+$screen-xs-max:                             599px !default;
+
+/*Icons*/
+$p4y-icon-check:                            '\f00c'; // fa-check
+$p4y-icon-pencil:                           '\f303'; // fa-pencil
+$p4y-icon-lock:                             '\f023'; // fa-lock
+$p4y-icon-exclamation:                      '\f12a'; // fa-exclamation
+$p4y-icon-approval-open:                    '\f06e';
+$p4y-icon-approval-submitted:               '\f017';
+$p4y-icon-approval-saved:                   '\f0f6';
+$p4y-icon-approval-approved:                '\f00c';
+$p4y-icon-approval-rejected:                '\f12a';
+
+$p4y-icon-step-approved:                    $p4y-icon-check;
+$p4y-icon-step-active:                      $p4y-icon-pencil;
+$p4y-icon-step-inactive:                    $p4y-icon-lock;
+$p4y-avatar-placeholder:            "/assets/images/avatar.png";
+
+$certificate-tile-image-max-height: 150px !default;
+
+$p4y-tile-inner-padding:            10px !default;
+$p4y-input-inner-padding:           10px !default;
+$p4y-control-distance-default:      30px !default;

@@ -1,0 +1,46 @@
+{
+    "sms": {
+        "title": {
+            "details": "Create SMS"
+        },
+        "buttons": {
+            "create": "Send SMS",
+            "reset": "Reset",
+            "show" : "show"
+        },
+        "campaign": {
+            "label": "Campaign Name",
+            "placeholder": ""
+        },
+        "purpose": {
+            "label": "Purpose",
+            "placeholder": ""
+        },
+        "message": {
+            "label": "Message",
+            "placeholder": "Please enter your message here"
+        },
+        "recipient": {
+            "label": "Recipient",
+            "description": "{count, select, 0{Please select one or more recipients}} other{{count}/{total} recipients selected}}",
+            "description-0": "Please select one or more recipients",
+            "description-1": "{{count}}/{{total}} recipients selected",
+            "freelancer-filter-hint": "Please select one or more filters for the recipient list or change your search query.",
+            "table": {
+                "recipient": "Recipient",
+                "status": "Status",
+                "postcodes": "Residence",
+                "certificates": "Certificate",
+                "mobile": "Mobile"
+            }
+        },
+        "send-sms": {
+            "title": "Send SMS",
+            "message": "Do you really want to send this sms to {{count}} recipients?"
+        },
+        "toggle-view": {
+            "show": "Show List",
+            "hide": "Close List"
+        }
+    }
+}

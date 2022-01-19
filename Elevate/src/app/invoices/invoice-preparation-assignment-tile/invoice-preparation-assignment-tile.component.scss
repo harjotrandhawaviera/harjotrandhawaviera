@@ -1,0 +1,190 @@
+@import "variables";
+@import "mixins";
+
+[data-date-card] {
+  width: 80px;
+  height: 80px;
+  padding: 12px 10px;
+  border: 2px solid $gray-light;
+  text-align: center;
+  box-sizing: border-box;
+
+  .date {
+    display: block;
+    span {
+      display: block;
+    }
+  }
+
+  .day {
+    font-size: 24px;
+  }
+  .month {
+    font-size: 14px;
+  }
+  .year {
+    font-size: 12px;
+  }
+}
+
+.text-danger {
+  color: $brand-danger;
+}
+.flipper-container {
+  perspective: 1000;
+  position: relative;
+}
+
+.flipper-container .flipper {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flipper-container .flipper .front,
+.flipper-container .flipper .back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.flipper-container .flipper .front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.flipper-container .flipper .back {
+  transform: rotateY(180deg);
+}
+
+.flipper-container.back .flipper,
+.flipper-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+[data-hover-delegate] {
+  position: absolute;
+  cursor: pointer;
+  bottom: 7.5px;
+  right: 15px;
+}
+.panel-heading {
+  height: 40px;
+  background-color: transparent;
+  border-bottom: none;
+  color: #999999;
+  font-variant: all-small-caps;
+  font-variant-numeric: oldstyle-nums;
+  padding: 10px 15px;
+}
+
+.panel-footer {
+  background-color: transparent;
+  border-top: none;
+  font-size: smaller;
+  padding: 10px 15px;
+  border-top: none;
+  position: relative;
+}
+
+.panel-body .header.date-card {
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 10px 10px 10px;
+}
+
+.panel-body .header.date-card [data-date-card] {
+  min-width: 80px;
+  margin-right: 10px;
+}
+
+.panel-body .header.date-card .title {
+  max-height: 50px;
+  height: 50px;
+  overflow: hidden;
+  font-size: 20px;
+  line-height: 25px;
+}
+.panel-body .header.date-card .subtitle {
+  line-height: 25px;
+}
+
+[data-hover-delegate] {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  cursor: pointer;
+}
+
+[data-hover-delegate] .fa {
+  font-size: 23px;
+}
+
+[data-hover-delegate] .fa-exclamation-triangle {
+  color: #dd4444;
+}
+
+[data-hover-delegate]:hover {
+  color: #cccccc;
+}
+
+[data-hover-delegate].text-info:hover {
+  color: #157371;
+}
+
+[data-hover-delegate].text-primary:hover {
+  color: #157371;
+}
+
+[data-hover-delegate].text-danger:hover {
+  color: #ab1f1f;
+}
+
+.preparation-assignment-tile {
+  margin: 15px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #ddd;
+  border-bottom: solid 3px #cccccc;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  // .panel-heading {
+  //   margin-right: 30px;
+  // }
+  .panel-body {
+    min-height: 250px;
+    padding: 0;
+  }
+  .panel-footer {
+    min-height: 38px;
+  }
+  .documents {
+    .warn {
+      color: $brand-danger;
+    }
+  }
+
+  .invoice {
+    &-issued {
+      color: $brand-info;
+    }
+    &-approved,
+    &-payment-authorized {
+      color: $brand-warning;
+    }
+    &-money-transfered {
+      color: #4faec7;
+    }
+    &-rejected {
+      color: $brand-danger;
+    }
+  }
+  [data-hover-delegate] {
+    bottom: 0;
+  }
+  [data-site-info] {
+    margin-top: 10px;
+  }
+}

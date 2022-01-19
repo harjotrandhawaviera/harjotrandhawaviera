@@ -1,0 +1,111 @@
+<mat-form-field class="full-width">
+  <mat-label [attr.data-required-field]="required">
+    {{ label }}
+  </mat-label>
+  <mat-chip-list #selectedList>
+    <ng-template ngFor let-item [ngForOf]="selected" let-i="index">
+      <mat-chip
+        (removed)="removeItem(item)"
+        [ngClass]="{'app-chip': true, 'app-inactive-chip': false, 'exclusive': item.data?.is_exclusive}"
+      >
+        <span>
+          {{ item ? item.text : "" }}
+          <!-- <span>{{ item && item.info ? item.info : "" }}</span> -->
+        </span>
+        <i class="fas fa-times" matChipRemove></i>
+      </mat-chip>
+    </ng-template>
+    <input
+      matInput
+      type="text"
+      autocomplete="noFill"
+      [formControl]="multiPick"
+      #filterText
+      [matAutocomplete]="autoComplete"
+      matInput
+      [matChipInputFor]="selectedList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="false"
+      name="{{ uniqueId }}"
+    />
+  </mat-chip-list>
+</mat-form-field>
+<mat-autocomplete
+  #autoComplete="matAutocomplete"
+  (optionSelected)="onSelected($event)"
+  multiple
+  name="matAutocomplete"
+  [displayWith]="displayFn"
+>
+  <ng-container *ngIf="!static">
+    <ng-template
+      [ngIf]="
+        filteredOptions && filteredOptions.length === 0 && filterText.value
+      "
+    >
+      <mat-option
+        Class="inactive-item"
+        disabled="true"
+        [attr.protractor-name]="
+          (uniqueId ? uniqueId : 'auto_complete') + '_no_record_found'
+        "
+      >
+        No records found.
+      </mat-option>
+    </ng-template>
+    <ng-template ngFor let-item [ngForOf]="filteredOptions" let-i="index">
+      <mat-option
+        [value]="item"
+        [ngClass]="{ 'inactive-item': false, 'wild-card-text': item.isWild }"
+        [attr.protractor-name]="
+          (uniqueId ? uniqueId : 'auto_complete') + '_' + i
+        "
+      >
+        {{ item ? item.text : "" }}
+        <ng-container *ngIf="item && item.info">
+          <i
+            ><b>{{ item && item.info ? item.info : "" }}</b></i
+          >
+        </ng-container>
+      </mat-option>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="static">
+    <ng-template
+      [ngIf]="
+        (filteredOptionsObservable | async) &&
+        (filteredOptionsObservable | async)?.length === 0 &&
+        filterText.value
+      "
+    >
+      <mat-option
+        Class="inactive-item"
+        disabled="true"
+        [attr.protractor-name]="
+          (uniqueId ? uniqueId : 'auto_complete') + '_no_record_found'
+        "
+      >
+        No records found.
+      </mat-option>
+    </ng-template>
+    <ng-template
+      ngFor
+      let-item
+      [ngForOf]="filteredOptionsObservable | async"
+      let-i="index"
+    >
+      <mat-option
+        [value]="item"
+        [ngClass]="{ 'inactive-item': false, 'wild-card-text': item.isWild, 'multi-line': true }"
+        [attr.protractor-name]="
+          (uniqueId ? uniqueId : 'auto_complete') + '_' + i
+        "
+      >
+        <span [ngClass]="{ 'line-1': !!item.info }">{{ item.text }}</span>
+        <div [ngClass]="{ 'line-2': !!item.info }" *ngIf="item.info">
+          <small>{{ item.info }}</small>
+        </div>
+      </mat-option>
+    </ng-template>
+  </ng-container>
+</mat-autocomplete>

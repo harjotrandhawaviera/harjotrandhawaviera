@@ -1,0 +1,23 @@
+@import "variables";
+
+.form-group {
+  .content {
+    margin-bottom: 8px;
+    line-height: 24px;
+    letter-spacing: 0.25px;
+  }
+}
+.doc-cont {
+  padding: 10px 0 30px;
+  .document {
+    padding: 10px 0;
+    border-bottom: 1px solid $p4y-color-gray-light;
+    .name {
+      padding-left: 0;
+      padding-right: 1rem;
+      a {
+        cursor: pointer;
+      }
+    }
+  }
+}

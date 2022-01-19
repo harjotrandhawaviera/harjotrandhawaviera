@@ -1,0 +1,162 @@
+<div class="shortlist">
+  <app-search-container>
+    <app-search-panel>
+      <form class="search-form" [formGroup]="offers">
+        <div class="row">
+          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.agent" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="agent" [options]="agentLK"  [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.client" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="client" [options]="clientLK" [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.contractType" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="contractType"
+                                     [options]="contractTypeLK" [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.project" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="project" [options]="projectLK"  [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.site" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="site"  [options]="siteLK" [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.job" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="job" [options]="jobLK"  [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{"tenders.offers.table.filters.freelancer" | translate}}</mat-label>
+            <app-static-auto-complete formControlName="freelancer"
+                                     [options]="freelancerLK"  [clearSelection]="true">
+            </app-static-auto-complete>
+          </mat-form-field>
+
+        </div>
+        <div class="row">
+          <label>{{"tenders.offers.table.filters.dates" | translate}}</label>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="start" formControlName="start" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="end" formControlName="end" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-label>{{
+            "ui.side-option-menu.search" | translate
+            }}</mat-label>
+        </div>
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "tenders.offers.table.filters.freelancer" | translate
+              }}</mat-label>
+            <input matInput formControlName="search" type="search" />
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "tenders.offers.table.search-placeholder" | translate
+              }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </form>
+    </app-search-panel>
+    <app-search-list>
+      <div class="col-sm-8 col-xs-12">
+        <h1 translate="jobs.shortlist.title"></h1>
+      </div>
+      <div class="row">
+        <div [ngClass]="{ 'col-xs': true, 'table-wrapper': true }" >
+          <div class="table-inner-wrapper col-xs">
+            <table mat-table class="search-table" [dataSource]="shortlistOffer" *ngIf="shortlistOffer?.length !== 0">
+              <ng-container matColumnDef="jobTitle">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.shortlist.table.jobTitle" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row?.job}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="sitePlace">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.shortlist.table.sitePlace" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row?.site_place}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="appointedAt">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.shortlist.table.appointedAt" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row?.appointed_at | date: 'MMM d, y , HH:mm:ss'}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="freelancerName">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "jobs.shortlist.table.freelancerName" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{row?.freelancer_name}}
+              </td>
+            </ng-container>
+              <ng-container matColumnDef="expiredAt">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.shortlist.table.expired_at" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row?.expired_at | date: 'MMM d, y , HH:mm:ss'}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row" class="action">
+                  <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu"
+                          (click)="$event.stopPropagation()">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <mat-menu #subMenu="matMenu" xPosition="before">
+                    <button mat-menu-item [routerLink]="'../shortlist/' + row?.id">
+                      {{ "administration.health-insurances.table.actions.details" | translate }}
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedAdminColumns;"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedAdminColumns" (click)="navigateToDetail(row)"></tr>
+            </table>
+          </div>
+          <div class="col-xs" *ngIf="!shortlistOffer?.length">
+            <div class="alert alert-info text-center">
+              {{ "ui.list-table.default.no-records" | translate }}
+            </div>
+          </div>
+          <app-paginator *ngIf="shortlistOffer?.length !== 0"
+            [length]="paginator?.total"
+            [pageIndex]="paginator?.current_page - 1"></app-paginator>
+          <div class="row end-md center-xs">
+            <button type="button" mat-stroked-button color="primary" (click)="download()">
+              {{'ui.list-table.default.download' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </app-search-list>
+  </app-search-container>
+</div>

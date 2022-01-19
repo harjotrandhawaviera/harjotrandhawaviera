@@ -1,0 +1,19 @@
+.acion-title-holder {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    margin: 20px 0 10px;
+  }
+}
+.team-info {
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.btn-cls {
+  display: flex;
+  justify-content: center;
+  .mat-icon-button {
+      width: 25px;
+  }
+}

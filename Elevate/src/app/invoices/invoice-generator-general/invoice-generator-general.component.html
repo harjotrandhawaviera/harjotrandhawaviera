@@ -1,0 +1,233 @@
+<div *ngIf="detailGroup && freelancer" [formGroup]="detailGroup">
+  <div class="row">
+    <div
+      class="col-md-12 description"
+      translate="invoices.generator.general.description"
+    ></div>
+  </div>
+
+  <div class="row" style="margin-top: 15px;">
+    <div class="form-group col-md-6">
+      <label translate="invoices.generator.personal" data-required></label>
+      <p data-ng-bind="generator.freelancer.fullname" *ngIf="freelancer">
+        {{ freelancer.fullname }}
+      </p>
+    </div>
+    <div class="form-group col-md-4 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "invoices.fields.number.label" | translate
+        }}</mat-label>
+        <input matInput formControlName="number" />
+        <mat-error *ngIf="displayMessage.number">{{
+          displayMessage.number
+        }}</mat-error>
+      </mat-form-field>
+      <!-- <label
+        for="number"
+        translate="invoices.fields.number.label"
+        data-required
+      ></label>
+      <input
+        id="number"
+        type="text"
+        class="form-control"
+        data-ng-model="generator.data.number"
+        required
+      /> -->
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-md-12 freelancer-address-hint"
+      translate="invoices.generator.addresses.hint"
+    ></div>
+    <div class="col-md-12">
+      <mat-radio-group
+        aria-label="Select an option"
+        class="row top-xs"
+        color="primary"
+        formControlName="freelancer_address_index"
+      >
+        <mat-radio-button
+          class="col-xs-12 col-sm-6 col-md-3"
+          style="margin-top: 5px"
+          *ngFor="let address of freelancer.addresses; let i = index"
+          [value]="i"
+        >
+          <address>
+            <div>
+              <span data-ng-bind="::address.address">{{ address.address }}</span
+              ><br />
+              <span *ngIf="address.addressaddition">
+                <span data-ng-bind="::address.addressaddition">{{
+                  address.addressaddition
+                }}</span
+                ><br />
+              </span>
+              <span data-ng-bind="::address.zip">{{ address.zip }}</span>
+              <span data-ng-bind="::address.city">{{ address.city }}</span>
+            </div>
+          </address>
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="displayMessage.freelancer_address_index">{{
+        displayMessage.freelancer_address_index
+      }}</mat-error>
+    </div>
+    <!-- <div
+      class="col-md-6 freelancer-address"
+      data-ng-repeat="address in generator.freelancer.addresses"
+    >
+      <label class="input-label">
+        <input
+          type="radio"
+          name="address"
+          data-brand-radio
+          data-ng-model="generator.data.freelancer_address_index"
+          data-ng-value="$index"
+        />
+        <address>
+          <div>
+            <span data-ng-bind="::address.address"></span><br />
+            <span data-ng-if="address.addressaddition">
+              <span data-ng-bind="::address.addressaddition"></span><br />
+            </span>
+            <span data-ng-bind="::address.zip"></span>
+            <span data-ng-bind="::address.city"></span>
+          </div>
+        </address>
+      </label>
+    </div> -->
+  </div>
+
+  <div class="row" style="margin-top: 15px;">
+    <div class="form-group col-md-4 col-sm-6 total">
+      <label translate="invoices.fields.generator-total.label"></label>
+      <div data-ng-bind="generator.data.gross_total | currency:'€'">
+        <b style="font-size: 20px">{{ grandTotal | currency }}</b>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+      <div class="taxes">
+        <label translate="invoices.fields.taxes.label" data-required></label>
+        <mat-radio-group
+          aria-label="Select an option"
+          class="row middle-xs"
+          color="primary"
+          formControlName="includes_taxes"
+        >
+          <mat-radio-button
+            value="included"
+            class="col-xs-12 col-sm-6 col-md-3"
+            style="margin-top: 5px"
+          >
+            {{ "invoices.fields.taxes.included" | translate }}</mat-radio-button
+          >
+          <mat-radio-button
+            value="not-included"
+            class="col-xs-12 col-sm-6 col-md-3"
+            style="margin-top: 5px"
+            >{{
+              "invoices.fields.taxes.not-included" | translate
+            }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="displayMessage.includes_taxes">{{
+          displayMessage.includes_taxes
+        }}</mat-error>
+        <a
+          (click)="openHint('invoice.taxes.hint')"
+          style="color: #999999; cursor: pointer"
+        >
+          <i class="fas fa-info-circle"></i>
+          {{ "invoices.fields.taxes.hint" | translate }}
+        </a>
+        <!-- <label
+          class="input-label"
+          data-ng-repeat="type in ['included', 'not-included']"
+        >
+          <input
+            type="radio"
+            name="tax"
+            data-brand-radio
+            data-ng-model="generator.data.includes_taxes"
+            data-ng-value="type === 'included'"
+          />
+          <span translate="invoices.fields.taxes.{{ type }}"></span>
+        </label> -->
+        <!-- <input
+          class="hide"
+          data-ng-model="dummy"
+          data-ng-if="generator.data.includes_taxes === undefined"
+          required
+        />
+        <div
+          class="hint taxes-hint"
+          translate="invoices.fields.taxes.hint"
+          data-uib-popover-template="'taxesHintTemplate.html'"
+          data-popover-trigger="'mouseenter'"
+          translate="invoices.fields.taxes.hint"
+        ></div> -->
+      </div>
+    </div>
+    <div class="form-group col-md-4 col-sm-6 discount">
+      <mat-checkbox
+        color="primary"
+        #with_discount
+        formControlName="with_discount"
+      >
+        <mat-label
+          class="input-label"
+          translate="invoices.fields.payment-discount.label"
+        ></mat-label>
+      </mat-checkbox>
+      <label class="empty-label"></label>
+      <!-- <div>
+        <input
+          type="checkbox"
+          id="discount"
+          data-brand-checkbox
+          data-ng-model="generator.data.with_discount"
+        />
+        <label
+          for="discount"
+          class="input-label"
+          translate="invoices.fields.payment-discount.label"
+        ></label>
+      </div> -->
+      <div
+        class="hint"
+        style="color: #999999"
+        translate="invoices.fields.payment-discount.hint"
+      ></div>
+    </div>
+  </div>
+
+  <div class="text-center" style="margin-top: 15px;">
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-ng-disabled="generator.form.$invalid"
+      translate="invoices.generator.buttons.submit"
+      data-confirm-action="generate"
+      data-confirm-item="{number: generator.data.number, total: (generator.data.gross_total | currency : '€')}"
+      data-context="invoices.generator"
+      data-on-confirm="generator.submit()"
+    ></button> -->
+    <button
+      type="button"
+      class="section-button"
+      mat-flat-button
+      color="accent"
+      [disabled]="!(detailGroup && detailGroup.valid)"
+      (click)="submitClick()"
+    >
+      {{ "invoices.generator.buttons.submit" | translate }}
+    </button>
+  </div>
+
+  <!-- <script type="text/ng-template" id="taxesHintTemplate.html">
+    <div data-ng-include="'lang/tpl/invoice.taxes.hint.de.htm'"></div>
+  </script> -->
+</div>

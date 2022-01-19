@@ -1,0 +1,258 @@
+<app-search-container>
+  <app-search-panel
+    [actions]="[
+      {
+        key: 'new_project',
+        link: '/projects/create',
+        text: ('projects.list.buttons.create' | translate),
+        permission: true
+      }
+    ]"
+  >
+    <form [formGroup]="searchForm" (ngSubmit)="searchChange()">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.list.filters.agent" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              formControlName="agent"
+              [clearSelection]="true"
+              #agent
+              [options]="agentLK"
+            >
+            </app-static-auto-complete>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!agent.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="agent.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.list.filters.client" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              #client
+              [clearSelection]="true"
+              formControlName="client"
+              [options]="clientLK"
+            >
+            </app-static-auto-complete>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!client.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="client.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.list.search.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="search" type="search" />
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "projects.list.search.placeholder" | translate
+            }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="row">
+      <div class="col-xs">
+        <h1 translate="projects.list.title"></h1>
+      </div>
+    </div>
+    <div class="row center-xs" *ngIf="noRecords$ | async">
+      <div class="col-xs">
+        <div class="alert alert-info text-center">
+          {{ "ui.list-table.default.no-records" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        [ngClass]="{ 'col-xs': true, 'table-wrapper': true }"
+        *ngIf="!(noRecords$ | async)"
+      >
+        <div class="table-inner-wrapper">
+          <table
+            mat-table
+            [dataSource]="result$"
+            class="search-table"
+            matSort="created_at"
+            matSortDisableClear
+            matSortDirection="desc"
+          >
+            <ng-container matColumnDef="accountingSummaryState">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.accountingSummaryState" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <i
+                  [ngClass]="{ 'summary-state': true, danger: row.isDanger }"
+                ></i>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.name" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.id" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.status" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ "projects.state." + row.state | translate }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="customer">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.customer" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.client ? row.client.name : "" }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="jobsNumber">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.jobsNumber" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.number_of_jobs }}</td>
+            </ng-container>
+<!--            <ng-container matColumnDef="orderName">-->
+<!--              <th mat-header-cell *matHeaderCellDef>-->
+<!--                {{ "projects.list.table.orderName" | translate }}-->
+<!--              </th>-->
+<!--              <td mat-cell *matCellDef="let row">-->
+<!--                {{ row.order ? row.order.name : "" }}-->
+<!--              </td>-->
+<!--            </ng-container>-->
+            <ng-container matColumnDef="sumPlannedCosts">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.sumPlannedCosts" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.sum_planned_costs | currency }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="sumMaxEstimatedCosts">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.staffCost" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.sum_max_estimated_costs | currency }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="createdDate">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "projects.list.table.createdAt" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">
+                {{ row?.created_at | date: 'mediumDate'}}
+              </td>
+            </ng-container>
+<!--            <ng-container matColumnDef="createdBy">-->
+<!--              <th mat-header-cell *matHeaderCellDef>-->
+<!--                {{ "projects.list.table.createdBy" | translate }}-->
+<!--              </th>-->
+<!--              <td mat-cell *matCellDef="let row">-->
+<!--                {{ row.contract_type_id}}-->
+<!--              </td>-->
+<!--            </ng-container>-->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" class="action">
+                <button
+                  mat-icon-button
+                  color="accent"
+                  [matMenuTriggerFor]="subMenu"
+                  (click)="$event.stopPropagation()"
+                >
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <mat-menu #subMenu="matMenu" xPosition="before">
+                  <button mat-menu-item (click)="navigateToDetail(row)">
+                    {{ "projects.list.table.actions.edit" | translate }}
+                  </button>
+                  <button mat-menu-item (click)="navigateToCopy(row)">
+                    {{ "projects.list.table.actions.copy" | translate }}
+                  </button>
+                  <button mat-menu-item *ngIf="row.state !== 'closed'" (click)="navigateToCreateJobs(row)">
+                    {{ "projects.list.table.actions.bulk" | translate }}
+                  </button>
+                  <button
+                    *ngIf="(deletePermission$ | async) && !row.number_of_jobs"
+                    mat-menu-item
+                    (click)="deleteRecord(row)"
+                  >
+                    {{ "projects.list.table.actions.remove" | translate }}
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns;"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetail(row)"></tr>
+          </table>
+        </div>
+        <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+        <app-paginator
+          [disabled]="loading$ | async"
+          hidePageSize="true"
+          showFirstLastButtons="true"
+          [length]="totalRecords$ | async"
+          [pageIndex]="currentPage$ | async"
+          [pageSize]="pageSize$ | async"
+          (page)="pageChange($event)"
+        ></app-paginator>
+        <div class="row end-md center-xs">
+          <button
+            type="button"
+            [disabled]="loading$ | async"
+            mat-stroked-button
+            color="primary"
+            (click)="download()"
+          >
+          {{'ui.list-table.default.download' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </app-search-list>
+</app-search-container>

@@ -1,0 +1,408 @@
+<div class="invite-search" *ngIf="loggedRole !== 'freelancer'">
+      <!--      <h1 translate="tenders.tenders.title"></h1>-->
+      <div class="row between-xs">
+        <div class="col-xs">
+          <h1>
+            {{"jobs.job-invite.header" | translate}}
+          </h1>
+        </div>
+      </div>
+      <div class="container-fluid advance-search" [formGroup]="inviteJob">
+        <div class="row">
+          <mat-form-field class="col-xs-12 col-sm-4" appearance="outline">
+            <mat-label>{{ 'performance-review.search.client' | translate}}</mat-label>
+            <mat-select formControlName="client" (selectionChange)="loadJobList($event.value)">
+              <mat-option [value]="client.value" *ngFor="let client of clientList">
+                {{ client.text }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-4" appearance="outline">
+            <mat-label>{{"jobs.job-invite.fields.job" | translate}}</mat-label>
+            <mat-select formControlName="job" (selectionChange)="loadPublishJobList($event.value)">
+              <mat-option [value]="job.value" *ngFor="let job of jobLK">
+                {{job.text}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-4" appearance="outline">
+            <mat-label required>{{"jobs.job-invite.fields.publishedJob" | translate}}</mat-label>
+            <mat-select  formControlName="publishJob">
+              <mat-option [value]="publishJob.value" *ngFor="let publishJob of jobAdvertise" (click)="selectJob(publishJob)">
+                {{publishJob.text}}</mat-option>
+              <mat-error *ngIf="displayMessage.publishJob"></mat-error>
+            </mat-select>
+            <mat-error>{{'form.errors.required' | translate}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{'jobs.job-invite.fields.city' | translate}}</mat-label>
+            <mat-select formControlName="city" multiple>
+              <mat-option *ngFor="let option of cityLK" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{'jobs.job-invite.fields.postcode' | translate}}</mat-label>
+            <mat-select formControlName="postcode" multiple>
+              <mat-option *ngFor="let option of postcodeLK" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class=" col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{
+              "jobs.job-invite.fields.gender.title" | translate
+              }}</mat-label>
+            <mat-select formControlName="gender" multiple>
+              <mat-option *ngFor="let option of genderLK" [value]="option.value">
+                {{ "jobs.job-invite.fields.gender." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class=" col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{'jobs.job-invite.fields.age' | translate}}</mat-label>
+            <mat-select formControlName="age_group" multiple>
+              <mat-option *ngFor="let option of ageLK" [value]="option.value">
+                {{option.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{
+              "jobs.job-invite.fields.skills" | translate
+              }}</mat-label>
+            <mat-select formControlName="skill" multiple>
+              <mat-option *ngFor="let option of skillsLk" [value]="option.value">
+                {{  option.text }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{
+              "jobs.job-invite.fields.certificates" | translate
+              }}</mat-label>
+            <mat-select formControlName="certificates" multiple>
+              <mat-option *ngFor="let option of certificatesLK" [value]="option.value" disabled>
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{'jobs.job-invite.fields.languages.title' | translate}}</mat-label>
+            <mat-select formControlName="language" class="menu-size" multiple>
+              <mat-option *ngFor="let option of languageLK" [value]="option.value">
+                {{ "jobs.job-invite.fields.languages." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+            <mat-label>{{'jobs.job-invite.fields.status.title' | translate}}</mat-label>
+            <mat-select formControlName="status" class="menu-size" multiple>
+              <mat-option *ngFor="let option of stateLK" [value]="option.value">
+                {{option.text}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row end-xs col-xs-12">
+        <button
+          type="button"
+          mat-flat-button
+          color="accent"
+          (click)="submit()"
+          translate="ui.advance-search.submit"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="inviteJob.reset()"
+          translate="ui.advance-search.clear"
+        ></button>
+      </div>
+      <div class="row advance-search">
+        <mat-form-field class=" col-xs-12 col-sm-3" appearance="outline">
+          <mat-label>{{'report.fields.pageSize' | translate}}</mat-label>
+          <mat-select [formControl]="pageSize">
+            <mat-option *ngFor="let option of pageLK" [value]="option.value">
+              {{option.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col-xs table-wrapper">
+          <div class="table-inner-wrapper">
+            <table
+              mat-table
+              class="search-table"
+              [dataSource]="userList"
+            >
+              <!-- Checkbox Column -->
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="name"><th mat-header-cell *matHeaderCellDef>
+                {{ "jobs.job-invite.table.name" | translate }}
+              </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.fullname}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.gender" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{"profile.fields.gender."  + row.gender | translate}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="age">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.age" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.age | age}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="mobile">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.mobile" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.mobile}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.email" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.email}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.city" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.city}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="postcode">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.postcode" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.zip}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.date" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.created_at}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "jobs.job-invite.table.status" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.status}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row" class="action">
+                  <button
+                    mat-icon-button
+                    color="accent"
+                    [matMenuTriggerFor]="subMenu"
+                    (click)="$event.stopPropagation()"
+                  >
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <mat-menu #subMenu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="navigateTooDetail(row)">
+                      {{ "approval.freelancer-approval.table.actions.detail" | translate }}
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateTooDetail(row)"></tr>
+            </table>
+          </div>
+          <app-paginator
+            [length]="pagination?.total"
+            [pageIndex]="pagination?.current_page - 1"
+            [pageSize]="pagination?.per_page"
+            (page)="pageChange($event)"
+          ></app-paginator>
+        </div>
+      </div>
+      <div class="col-xs-12"   >
+        <button
+          [disabled]="!selection?.selected?.length"
+          mat-flat-button
+          color="accent"
+          translate="jobs.job-invite.button.send"
+          (click)="sendInvite()"
+        ></button>
+        <button
+          mat-stroked-button
+          color="primary"
+          translate="jobs.job-invite.button.cancel"></button>
+      </div>
+</div>
+<div class="invite-search" *ngIf="loggedRole === 'freelancer'">
+<app-search-container>
+  <app-search-panel>
+    <form class="search-form" [formGroup]="inviteJob">
+      <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+      <mat-form-field class="full-width">
+        <mat-label>{{"jobs.freelancer.filters.contractType" | translate}}</mat-label>
+        <app-static-auto-complete formControlName="inviteContractType" #inviteContractType [options]="contractTypeLK"
+                                  [clearSelection]="true">
+        </app-static-auto-complete>
+      </mat-form-field>
+      <div class="row">
+        <label>{{"jobs.freelancer.filters.dates" | translate}}</label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="start" formControlName="inviteStart">
+          <mat-placeholder>{{"ui.filter.range.min" | translate}}</mat-placeholder>
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="end" formControlName="inviteEnd">
+          <mat-placeholder>{{"ui.filter.range.max" | translate}}</mat-placeholder>
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="row post-code-cont">
+        <label>{{"jobs.freelancer.filters.postcodes" | translate}}</label>
+        <mat-form-field class="col-sm-6 col-xs-12">
+          <mat-label>{{ "ui.filter.range.min" | translate }}</mat-label>
+          <input matInput formControlName="inviteZip_from" type="text"/>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6 col-xs-12">
+          <mat-label>{{ "ui.filter.range.max" | translate }}</mat-label>
+          <input matInput formControlName="inviteZip_to" type="text"/>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="full-width">
+        <mat-label>{{"jobs.freelancer.filters.certificate" | translate}}</mat-label>
+        <app-static-auto-complete formControlName="inviteCertificate" #certificate [options]="certificateLK"
+                                  [clearSelection]="true">
+        </app-static-auto-complete>
+      </mat-form-field>
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.search.placeholder" | translate}}</mat-label>
+          <input matInput formControlName="search" type="search"/>
+          <i matSuffix class="fas fa-search"></i>
+          <mat-hint>{{"jobs.freelancer.search-job-placeholder" | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="row">
+      <div class="col-xs">
+        <h1 [translate]="'tenders.tender.header-invited'"></h1>
+      </div>
+    </div>
+    <ng-container *ngIf="viewing == 'Tile'">
+      <div class="table-wrapper">
+        <div class="row">
+          <div class="freelancer-offer-tile col-md-6" *ngFor="let data of inviteList" (click)="setid(data)"
+               [ngClass]="{ 'matched': data?.is_matched }">
+            <div class="panel panel-default tender CustomePanel" *ngIf="!(noRecords$ | async)">
+              <div class="panel-heading" *ngIf="data">
+                <div class="smallPWidth">
+                  <h3 class="title "> {{data.job_name}} </h3>
+                  <span class="subtitle">{{data.client_name}}</span>
+                </div>
+                <div class="boxId">
+                  <span class="jobId">{{data.job_code}}</span>
+                  <a aria-haspopup="true" color="accent" class="mat-menu-trigger" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation()">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </a>
+                  <mat-menu #subMenu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="setid(data)">
+                      {{'tenders.tenders.table.actions.details' | translate}}
+                    </button>
+                  </mat-menu>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="panelBodyDetil">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="addressB">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span >{{data.job_location}}</span>
+                      </p>
+                      <p class="staffP">Staff Manager</p>
+                      <p class="stafName">{{data.staff_manager}}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <ul class="detilList">
+                        <li><strong>Role </strong>: {{data.role_name}}</li>
+                        <li><strong>Start Date </strong>: {{data.job_advert_start_date | date: 'mediumDate'}}</li>
+                        <li><strong>End Date </strong>: {{data.job_advert_end_date | date: 'mediumDate'}}</li>
+                        <li><strong># Days </strong>: {{data.days}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div  class="row panel-footer between-xs">
+                <div class="col-md-6">
+                  <span class="dateTitle">Job Expiry Date</span>
+                  <span  class="date">{{data.job_advert_end_date_time | date: 'MMM d, y HH:mm'}}</span>
+                </div>
+                <div class="col-md-6">
+                  <span class="dateTitle">Contract Type</span>
+                  <span  class=" state">{{data.contract_type}}</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <app-paginator
+       [length]="pagination?.total"
+       [pageIndex]="pagination?.currentPage - 1"
+       [pageSize]="pagination?.total_page"
+       (page)="inviteJobpageChange($event)"></app-paginator>
+  </app-search-list>
+</app-search-container>
+</div>

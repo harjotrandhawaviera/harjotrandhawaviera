@@ -1,0 +1,113 @@
+<div class="col-md-offset-4 col-md-8 logo-brand">
+  <div data-logo-brand data-logo-link="app.dashboard"></div>
+</div>
+<ul class="list-unstyled menu-wrapper">
+  <li class="step approved">
+    <div class="step step-title">
+      <span class="main" translate="menu.onboarding.registered.step"></span>
+      <span class="sub" translate="menu.onboarding.registered.entry"></span>
+    </div>
+    <i class="fas fa-check"></i>
+  </li>
+  <li class="step" [ngClass]="requestOpen ? 'inactive' : 'active'">
+    <div class="step step-title">
+      <span class="main" translate="menu.onboarding.profile.step"></span>
+      <span class="sub" translate="menu.onboarding.profile.description"></span>
+    </div>
+    <i *ngIf="!requestOpen" class="fas fa-pencil-alt"></i>
+    <i *ngIf="requestOpen" class="fas fa-lock"></i>
+    <ul class="list-unstyled">
+      <li
+        class=""
+        *ngFor="
+          let step of [
+            'master',
+            'appearance',
+            'qualifications',
+            'employment',
+            'legal',
+          ]
+        "
+      >
+        <a
+          class="entry approval {{
+            approvals[step] ? approvals[step].state : ''
+          }}"
+          [routerLink]="['/profile/' + step]"
+          routerLinkActive="current"
+        >
+          {{ "menu.profile." + step | translate }}
+          <container-element [ngSwitch]="approvals[step] ? approvals[step].state : ''">
+            <!-- the same view can be shown in more than one case -->
+            <i *ngSwitchCase="'saved'" class="fas fa-check"></i>
+            <i *ngSwitchCase="'submitted'" class="fas fa-check"></i>
+            <i *ngSwitchCase="'approved'" class="fas fa-check success"></i>
+            <i *ngSwitchCase="'rejected'" class="fas fa-exclamation"></i>
+            <i *ngSwitchDefault class="fas fa-pencil-alt"></i>
+          </container-element>
+          <!-- <i
+            *ngIf="approvals[step] && approvals[step].state == 'saved'"
+            class="fas fas fa-check"
+          ></i>
+          <i
+            *ngIf="!(approvals[step] && approvals[step].state == 'saved')"
+            class="fas fa-pencil-alt"
+          ></i> -->
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="step" [ngClass]="requestOpen ? 'active' : 'inactive'">
+    <div class="step step-title">
+      <span class="main" translate="menu.onboarding.approval.step"></span>
+      <span class="sub" translate="menu.onboarding.approval.description"></span>
+    </div>
+    <i *ngIf="requestOpen" class="fas fa-pencil-alt success"></i>
+    <i *ngIf="!requestOpen" class="fas fa-lock"></i>
+  </li>
+  <li class="step certificates active" *ngIf="enableCertificates">
+    <div class="step step-title">
+      <span class="main" translate="menu.onboarding.certificates.step"></span>
+      <span
+        class="sub"
+        translate="menu.onboarding.certificates.description"
+      ></span>
+    </div>
+    <ul class="list-unstyled">
+      <li>
+        <a
+          class="entry"
+          data-ui-sref-active="current"
+          data-ui-sref="app.certificates.all"
+          translate="menu.certificates.all"
+        >
+        </a>
+      </li>
+      <li>
+        <a
+          class="entry"
+          data-ui-sref-active="current"
+          data-ui-sref="app.certificates.my"
+          translate="menu.certificates.my"
+        >
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div id="logout">
+  <!-- <a
+    class="btn btn-block btn-default"
+    data-ui-sref="auth.logout"
+    translate="menu.auth.logout"
+    (click)="logOut()"
+  ></a> -->
+  <button
+    type="button"
+    mat-stroked-button
+    color="primary"
+    (click)="logOut()"
+    translate="menu.auth.logout"
+  ></button>
+</div>

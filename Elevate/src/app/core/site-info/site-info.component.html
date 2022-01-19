@@ -1,0 +1,26 @@
+<strong class="site-group line-ellipsis" *ngIf="data && data.group">
+  <span class="far fa-building"></span>&nbsp;
+  <span>{{ data.group }}</span
+  ><br />
+</strong>
+<address *ngIf="data">
+  <div class="line-ellipsis">
+    <span>{{ data.name }}</span
+    ><span *ngIf="data.number"> | {{ data.number }}</span>
+  </div>
+  <div class="line-ellipsis">
+    <span>{{ data.address }}</span
+    >,
+    <span>{{ data.zip }}</span>
+    <span>{{ data.city }}</span>
+  </div>
+  <div *ngIf="showPhone && data.phone">
+    <a
+      [attr.href]="'tel:' + data.phone | telNumber"
+      (click)="$event.stopPropagation()"
+    >
+      <i class="fa fa-phone" aria-hidden="true"></i>
+      {{ data.phone | telNumber }}
+    </a>
+  </div>
+</address>

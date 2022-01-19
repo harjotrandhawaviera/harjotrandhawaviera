@@ -1,0 +1,72 @@
+<div class="container-fluid details exam-container" *ngIf="certificate">
+  <div class="row">
+    <div class="col-xs-12 header">
+      <p
+        class="text-right"
+        *ngIf="certificate.state === 'passed' && certificate.invalid_at"
+        [translate]="'certificates.my.valid-until'"
+        [translateParams]="{invalid_at: certificate.invalid_at | date}"
+      ></p>
+      <h1 class="title">{{ certificate.name }}</h1>
+
+      <p
+        class="alert alert-success"
+        *ngIf="certificate.state === 'passed'"
+        [translate]="'certificates.my.passed'"
+        [translateParams]="{passed_at: certificate.passed_at | date}"
+      ></p>
+      <p
+        class="alert alert-danger"
+        *ngIf="certificate.state === 'invalid'"
+        [translate]="'certificates.my.invalid'"
+        [translateParams]="{invalid_at: certificate.invalid_at | date}"
+      ></p>
+      <h2>{{ certificate.teaser }}</h2>
+      <p>{{ certificate.description }}</p>
+    </div>
+
+    <div class="col-xs-12">
+      <!-- put certificate nice content here -->
+      <a mat-flat-button color="accent" [routerLink]="['/certificates/my']">
+        {{ "certificates.buttons.back-to-my-certificates" | translate }}
+      </a>
+    </div>
+  </div>
+
+  <div class="row training">
+    <div class="col-xs-12 header">
+      <h2 translate="certificates.my.training-headline"></h2>
+    </div>
+
+    <div
+      class="col-xs-12"
+      *ngIf="certificate.training && certificate.training.is_enabled"
+      data-training="certificate.training.content"
+    ></div>
+
+    <div
+      class="col-xs-12 start-test"
+      *ngIf="
+        certificate.state === 'invalid' &&
+        certificate.is_enabled &&
+        certificate.exam &&
+        certificate.exam.is_enabled
+      "
+    >
+      <div translate="certificates.description"></div>
+      <!-- <a
+        class="btn btn-primary"
+        translate="certificates.buttons.start-exam"
+        data-ui-sref="app.exam({examId: certificate.exam.id})"
+      >
+      </a> -->
+      <a
+        mat-flat-button
+        color="accent"
+        [routerLink]="['exam', certificate.exam.id]"
+      >
+        {{ "certificates.buttons.start-exam" | translate }}
+      </a>
+    </div>
+  </div>
+</div>

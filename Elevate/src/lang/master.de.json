@@ -1,0 +1,143 @@
+{
+  "master": {
+    "skills": {
+      "title": {
+        "name": "Fähigkeiten",
+        "edit": "Fertigkeit bearbeiten",
+        "new": "Neue Fertigkeit",
+        "detail": "Fertigkeitsdetails"
+      },
+      "list": {
+        "buttons": {
+          "create": "Neue Fähigkeit erstellen"
+        },
+        "filters": {
+          "category": "Kategorie",
+          "region": "Region",
+          "dates": "(Von bis)"
+        },
+        "search": {
+          "placeholder": "Mindest. 3 Zeichen",
+          "label": "Suche nach Fähigkeit"
+        }
+      },
+      "state": {
+        "active": "Aktiv",
+        "draft": "Luftzug",
+        "closed": "Abgeschlossen",
+        "undefined": "Nicht definiert"
+      },
+      "table": {
+        "category": "Fertigkeitskategorie",
+        "name": "Fertigkeitsname",
+        "region": "Zutreffende Region",
+        "createdBy": "Erstellt von",
+        "createdDate": "Erstellungsdatum",
+        "search-placeholder": "Suche nach Skillname (mind. 3 Zeichen)",
+        "actions": {
+          "details": "Einzelheiten",
+          "remove": "Löschen",
+          "edit": "Bearbeiten"
+        },
+        "remove": {
+          "title": "Fertigkeit löschen?",
+          "message": "Möchten Sie diesen Skill wirklich löschen?"
+        }
+      },
+      "buttons": {
+        "create": "Neue Fähigkeit erstellen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "save": "Speichern",
+        "update": "Änderungen speichern",
+        "back": "Zur Skill-Übersicht"
+      },
+      "fields": {
+        "category": {
+          "label": "Fertigkeitskategorie"
+        },
+        "name": {
+          "label": "Fertigkeitsname"
+        },
+        "region": {
+          "label": "Zutreffende Region"
+        },
+        "proof": {
+          "label": "Erforderlicher Nachweis (Zertifikat)"
+        }
+      }
+    },
+    "roles": {
+      "title": {
+        "name": "Rollenmeister",
+        "edit": "Rolle bearbeiten",
+        "new": "Neue Rolle",
+        "detail": "Rollendetails"
+      },
+      "list": {
+        "buttons": {
+          "create": "Neue Rolle erstellen"
+        },
+        "filters": {
+          "category": "Kategorie",
+          "region": "Region",
+          "dates": "(Von bis)"
+        },
+        "search": {
+          "placeholder": "Mindest. 3 Zeichen",
+          "label": "Rolle suchen"
+        }
+      },
+      "state": {
+        "active": "Aktiv",
+        "draft": "Luftzug",
+        "closed": "Abgeschlossen",
+        "undefined": "Nicht definiert"
+      },
+      "table": {
+        "identifier": "Rollenname",
+        "label": "Rollenbezeichnung",
+        "region": "Zutreffende Region",
+        "createdBy": "Erstellt von",
+        "createdDate": "Erstellungsdatum",
+        "search-placeholder": "Suche nach Rollennamen (mind. 3 Zeichen)",
+        "actions": {
+          "details": "Einzelheiten",
+          "remove": "Löschen",
+          "edit": "Bearbeiten"
+        },
+        "remove": {
+          "title": "Rolle löschen?",
+          "message": "Möchten Sie diese Rolle wirklich löschen?"
+        }
+      },
+      "buttons": {
+        "create": "Neue Rolle erstellen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "save": "Speichern",
+        "update": "Änderungen speichern",
+        "back": "Zur Rollenübersicht"
+      },
+      "fields": {
+        "label": {
+          "label": "Rollenbezeichnung"
+        },
+        "identifier": {
+          "label": "Rollenname"
+        },
+        "region": {
+          "label": "Zutreffende Region"
+        },
+        "description": {
+          "label": "Rollenbeschreibung"
+        },
+        "skills": {
+          "label": "Anwendbare Fähigkeit"
+        }
+      }
+    }
+  }
+}

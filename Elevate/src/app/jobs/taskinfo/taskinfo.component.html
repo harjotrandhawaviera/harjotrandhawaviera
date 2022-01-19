@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="form-group col-sm-12 col-xs-12">
+    <label translate="administration.client.section.taskinfo"></label>
+    
+      <div class="col-xs table-wrapper taskinfo-table" *ngIf="(info && info.length)">
+        <div class="table-inner-wrapper">
+          <table class="search-table" mat-table [dataSource]="dataSource">
+            <!-- Name Column -->
+            <ng-container matColumnDef="task_name">
+              <th mat-header-cell *matHeaderCellDef> {{'administration.client.fields.taskinfo.table.task_name' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.task_name}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef> {{'administration.client.fields.taskinfo.table.role' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.role_name}} </td>
+            </ng-container>
+  
+            
+            <!--<ng-container matColumnDef="shift">
+              <th mat-header-cell *matHeaderCellDef> {{'administration.client.fields.taskinfo.table.shift' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.shift}} </td>
+            </ng-container>
+  
+            
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef> {{'administration.client.fields.taskinfo.table.type' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>-->
+  
+            
+            <ng-container matColumnDef="remarks">
+              <th mat-header-cell *matHeaderCellDef> {{'administration.client.fields.taskinfo.table.remarks' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+            </ng-container>
+  
+            
+            <!-- <ng-container matColumnDef="files">
+              <th mat-header-cell *matHeaderCellDef> {{'administration.client.fields.taskinfo.table.files' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.files}} </td>
+            </ng-container> -->
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+  
+        <app-paginator [onlyCount]="true" [pageSize]="info.length" [length]="info.length">
+        </app-paginator>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.freelancer-master-title-field {
+  width: 90px;
+}
+
+::ng-deep {
+  .date-picker-wrapper {
+    .mat-form-field-flex {
+      padding-left: 0;
+    }
+  }
+  .mobile-form-field-wrapper {
+    .mobile-input-wrapper {
+      border: none;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+    .mat-form-field-label-wrapper {
+      display: none;
+    }
+  }
+}

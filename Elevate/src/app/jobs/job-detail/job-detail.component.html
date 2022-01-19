@@ -1,0 +1,534 @@
+<div *ngIf="loggedRole !== 'freelancer'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <a *ngIf="mode !== 'clientJob'" [routerLink]="['/jobs']">
+          {{ 'job.buttons.back' | translate }}
+        </a>
+        <a *ngIf="mode === 'clientJob'" [routerLink]="['/jobs/client']">
+          {{ 'job.buttons.back' | translate }}
+        </a>
+      </div>
+      <div class="col-xs-12">
+        <div class="acion-title-holder">
+          <h1 translate="job.title.details"></h1>
+          <div class="action-btn-cont">
+            <ng-container *ngIf="mode !== 'clientJob'">
+              <a mat-stroked-button color="primary" routerLink="/jobs/{{id}}/offers">
+                {{ 'job.buttons.pending-offers' | translate }}
+              </a>
+              <a mat-stroked-button color="primary" routerLink="/jobs/{{id}}/tenders/create">
+                {{ 'job.buttons.create-tenders' | translate }}
+              </a>
+              <a mat-flat-button color="accent" [routerLink]="['/jobs/edit', id]" [skipLocationChange]="true">
+                {{ 'job.buttons.edit' | translate }}
+              </a>
+            </ng-container>
+            <!--<a mat-stroked-button color="primary" *ngIf="mode === 'clientJob'" (click)="NavigateTojobDetails()">
+              {{ 'job.buttons.create-tenders' | translate }}
+            </a>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 padding-none" *ngIf="(jobDetail$ | async)">
+        <app-job-detail-general [job]="jobDetail$ | async" [budget]="budgetDetail$ | async"
+                                [budgetContactNames]="budgetContactNames" [mode]="mode">
+        </app-job-detail-general>
+        <app-teaminfo [info]="teamInfo$ | async"></app-teaminfo>
+        <app-taskinfo [info]="taskInfo$ | async"></app-taskinfo>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label translate="projects.inherited.fields.certificates.label"></label>
+          <div class="certificate" *ngFor="let cert of certificates">
+            <span [ngClass]="{'exclusive': cert.is_exclusive}">{{ cert.name }}</span>
+          </div>
+        </div>
+        <app-job-detail-products [salesSlot]="salesSlot$ | async">
+        </app-job-detail-products>
+        <app-job-detail-feedback [feedback]="feedback$ | async">
+        </app-job-detail-feedback>
+        <!--<app-job-detail-info-document [job]="jobDetail$ | async">
+        </app-job-detail-info-document>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedRole === 'freelancer'">
+  <app-search-container>
+    <app-search-panel *ngIf="show">
+      <form class="search-form" [formGroup]="freelancerJob">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.freelancer.filters.contractType" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <div class="row">
+          <label>{{"jobs.freelancer.filters.dates" | translate}}</label>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="start" formControlName="start">
+            <mat-placeholder>{{"ui.filter.range.min" | translate}}</mat-placeholder>
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="end" formControlName="end">
+            <mat-placeholder>{{"ui.filter.range.max" | translate}}</mat-placeholder>
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row post-code-cont">
+          <label>{{"jobs.freelancer.filters.postcodes" | translate}}</label>
+          <mat-form-field class="col-sm-6 col-xs-12">
+            <mat-label>{{ "ui.filter.range.min" | translate }}</mat-label>
+            <input matInput formControlName="zip_from" type="text"/>
+          </mat-form-field>
+          <mat-form-field class="col-sm-6 col-xs-12">
+            <mat-label>{{ "ui.filter.range.max" | translate }}</mat-label>
+            <input matInput formControlName="zip_to" type="text"/>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.freelancer.filters.certificate" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="certificate" #certificate [options]="certificateLK"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <div class="row">
+          <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+          <mat-form-field class="full-width">
+            <mat-label>{{"jobs.search.placeholder" | translate}}</mat-label>
+            <input matInput formControlName="search" type="search"/>
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{"jobs.freelancer.search-job-placeholder" | translate}}</mat-hint>
+          </mat-form-field>
+        </div>
+      </form>
+    </app-search-panel>
+    <app-search-panel *ngIf="!show">
+      <form class="search-form" [formGroup]="inviteJob">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.freelancer.filters.contractType" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="inviteContractType" #inviteContractType [options]="contractTypeLK"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <div class="row">
+          <label>{{"jobs.freelancer.filters.dates" | translate}}</label>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="start" formControlName="inviteStart">
+            <mat-placeholder>{{"ui.filter.range.min" | translate}}</mat-placeholder>
+            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="end" formControlName="inviteEnd">
+            <mat-placeholder>{{"ui.filter.range.max" | translate}}</mat-placeholder>
+            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="row post-code-cont">
+          <label>{{"jobs.freelancer.filters.postcodes" | translate}}</label>
+          <mat-form-field class="col-sm-6 col-xs-12">
+            <mat-label>{{ "ui.filter.range.min" | translate }}</mat-label>
+            <input matInput formControlName="inviteZip_from" type="text"/>
+          </mat-form-field>
+          <mat-form-field class="col-sm-6 col-xs-12">
+            <mat-label>{{ "ui.filter.range.max" | translate }}</mat-label>
+            <input matInput formControlName="inviteZip_to" type="text"/>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.freelancer.filters.certificate" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="inviteCertificate" #certificate [options]="certificateLK"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <div class="row">
+          <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+          <mat-form-field class="full-width">
+            <mat-label>{{"jobs.search.placeholder" | translate}}</mat-label>
+            <input matInput formControlName="search" type="search"/>
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{"jobs.freelancer.search-job-placeholder" | translate}}</mat-hint>
+          </mat-form-field>
+        </div>
+      </form>
+    </app-search-panel>
+    <app-search-list>
+      <div class="row">
+        <div class="col-xs">
+          <h1 [translate]="'tenders.tender.' + setPageTitle"></h1>
+        </div>
+      </div>
+      <div class="row center-xs" *ngIf="freelancerJobOfferList.length == 0">
+        <div class="col-xs">
+          <div class="alert alert-info text-center">
+            {{ "ui.list-table.default.no-records" | translate }}
+          </div>
+        </div>
+      </div>
+      <!--<div class="job-view--type">
+        <div
+          class="btn-group text-right"
+          role="group"
+          aria-label="Viewing"
+          btnRadioGroup
+        >
+          <button
+            (click)="viewing='Tile'"
+            [ngClass]="viewing=='Tile'?'active':''"
+            type="button"
+            btnRadio="categories"
+          >
+            Tile
+          </button>
+          <button
+            (click)="viewing='List'"
+            type="button"
+            [ngClass]="viewing=='List'?'active':''"
+            btnRadio="services"
+          >
+            List
+          </button>
+        </div>
+      </div>-->
+      <ng-container *ngIf="viewing == 'Tile' && show">
+        <div class="table-wrapper">
+          <div class="row">
+            <div class="freelancer-offer-tile col-md-6" *ngFor="let freelanceData of freelancerJobOfferList" (click)="setid(freelanceData)"
+             [ngClass]="{ 'matched': freelanceData?.is_matched }">
+              <div class="panel panel-default tender CustomePanel" *ngIf="!(noRecords$ | async)">
+                <span [ngClass]="{'tag': freelanceData?.is_matched && setPageTitle == 'header-all' }"></span>
+                  <!-- <div class="panel-header">
+                    <div class="row panel-heading">
+                      <div class="job-title">
+                        <div class="row header">
+                          <div><strong>{{ freelanceData?.title + 'adadasd' }}</strong></div>
+                          <div *ngIf="(freelanceData?.tender?.data?.length > 0 && freelanceData?.tender?.data[0].is_matching)">
+                            <a color="accent" [matMenuTriggerFor]="subMenu">
+                              <i class="fas fa-ellipsis-h freelance_jobs_wrapper"></i>
+                            </a>
+                            <mat-menu #subMenu="matMenu" xPosition="before">
+                              <button mat-menu-item (click)="setid(freelanceData.id)">
+                                {{'tenders.tenders.table.actions.details' | translate}}
+                              </button>
+                            </mat-menu>
+                          </div>
+                        </div>
+                        <div class="category-contractType">
+                          <span style="text-transform: uppercase">{{ freelanceData?.category }}</span>
+                          <span class="jobcategory pull-right">{{freelanceData?.contractType}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class=" col-xs-12">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                    <div class="freelance_jobs_data">
+                      <address *ngIf="freelanceData.location.length < 5">
+                        <mat-icon> business</mat-icon>
+                        {{ freelanceData?.addName }}, {{freelanceData?.addZip}} {{freelanceData?.addCity}}
+                      </address>
+                      <address *ngIf="freelanceData.location.length > 4">
+                        <span><mat-icon> business</mat-icon></span> <span><b
+                        *ngIf="freelanceData.location.length > 4">{{freelanceData?.group}}</b></span>
+                        <br>  {{ freelanceData?.addName }} | {{freelanceData?.number}}
+                        <br> {{freelanceData?.address}} {{freelanceData?.addZip}} {{freelanceData?.addCity}}
+                      </address>
+                    </div>
+                    <div *ngFor="let dateData of freelanceData?.date; let i = index">
+                      <div class="row">
+                        <span *ngIf="i === 0 ">
+                        {{freelanceData?.date?.length}}
+                          Termin(e) am {{dateData?.snapshots?.date?.appointed_at | date: 'dd.MM.YYYY'}} -
+                        </span>
+                        <span *ngIf="i === 4">
+                        {{dateData?.snapshots?.date?.appointed_at | date: 'dd.MM.YYYY'}}
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <span *ngIf="!(freelanceData?.tender?.data?.length > 0 && freelanceData?.tender?.data[0].is_matching)">
+                          {{'job.details.fields.location_not_match' | translate}}
+                      </span>
+                    </div>
+                    <div class="file">
+                      <span *ngIf="freelanceData.ContractType !== 'freelancer'" class="row">
+                        <mat-icon> insert_drive_file</mat-icon> {{'job.details.fields.contract_mismatched' | translate}}
+                      </span>
+                    </div>
+                  </div> -->
+                    <div class="panel-heading" *ngIf="freelanceData">
+                      <div class="smallPWidth">
+                        <h3 class="title line-clamp"> {{freelanceData.job_name}} </h3>
+                        <span class="subtitle">{{freelanceData.client_name}}</span>
+                      </div>
+                      <div class="boxId">
+                        <span class="jobId">{{freelanceData.job_code}}</span>
+                        <!-- <a aria-haspopup="true" color="accent" class="mat-menu-trigger">
+                          <i class="fas fa-ellipsis-h"></i>
+                        </a> -->
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <div class="panelBodyDetil">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p class="addressB">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <span >{{freelanceData.job_location}}</span>
+                            </p>
+                            <p class="staffP">Staff Manager</p>
+                            <p class="stafName">{{freelanceData.staff_manager}}</p>
+                          </div>
+                          <div class="col-md-6">
+                            <ul class="detilList">
+                              <li><strong>Role</strong>: {{freelanceData.role_name}}</li>
+                              <li><strong>Start</strong>: {{freelanceData.job_advert_start_date | date: 'mediumDate'}}</li>
+                              <li><strong>End</strong>: {{freelanceData.job_advert_end_date | date: 'mediumDate'}}</li>
+                              <li><strong>Days</strong>: {{freelanceData.days}}</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div  class="row panel-footer between-xs">
+                      <div class="col-md-6">
+                        <span class="dateTitle">Job Expiry Date</span>
+                        <span  class="date dateValue">{{freelanceData.job_advert_end_date_time  | date: 'MMM d, y HH:mm'}}</span>
+                      </div>
+                      <div class="col-md-6">
+                        <span class="dateTitle">Contract Type</span>
+                        <span  class=" state dateValue">{{freelanceData.contract_type}}</span>
+                      </div>
+                    </div>
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="viewing == 'List'">
+        <div
+            [ngClass]="{ 'col-xs': true, 'table-wrapper': true }"
+            *ngIf="!(noRecords$ | async)"
+          >
+            <div class="table-inner-wrapper">
+              <table
+                mat-table
+                class="search-table"
+                [dataSource]="freelancerJobOfferList"
+              >
+                <ng-container matColumnDef="Name">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "jobs.freelancer.matching.tables.job" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.title}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Role">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "jobs.freelancer.matching.tables.role" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="POS">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "jobs.freelancer.matching.tables.location" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.addName}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="City">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "jobs.freelancer.matching.tables.city" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.addCity}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Street and House Number">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "jobs.freelancer.matching.tables.postcode" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.addZip}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Postal Code">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "jobs.freelancer.matching.tables.date" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.startDate | date:'mediumDate'}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let row" class="action">
+                    <button
+                      mat-icon-button
+                      color="accent"
+                      [matMenuTriggerFor]="subMenu"
+                      (click)="$event.stopPropagation()"
+                    >
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <mat-menu #subMenu="matMenu" xPosition="before">
+                      <button mat-menu-item [routerLink]="'../../freelancers/'+row?.id">
+                        {{ "administration.health-insurances.table.actions.details" | translate }}
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+                <tr
+                  mat-header-row
+                  *matHeaderRowDef="freelancerJobsColumns;"
+                ></tr>
+                <tr mat-row *matRowDef="let row; columns: freelancerJobsColumns"></tr>
+              </table>
+            </div>
+          </div>
+      </ng-container>
+<!--      <ng-container *ngIf="viewing == 'Tile' && !show">-->
+<!--        <div class="table-wrapper">-->
+<!--          <div class="row">-->
+<!--            <div class="freelancer-offer-tile col-md-6" *ngFor="let data of inviteList">-->
+<!--              <div class="panel panel-default tender CustomePanel" *ngIf="!(noRecords$ | async)">-->
+<!--                &lt;!&ndash; <div class="panel-header">-->
+<!--                  <div class="row panel-heading">-->
+<!--                    <div class="job-title">-->
+<!--                      <div class="row header">-->
+<!--                        <div><strong>{{ freelanceData?.title + 'adadasd' }}</strong></div>-->
+<!--                        <div *ngIf="(freelanceData?.tender?.data?.length > 0 && freelanceData?.tender?.data[0].is_matching)">-->
+<!--                          <a color="accent" [matMenuTriggerFor]="subMenu">-->
+<!--                            <i class="fas fa-ellipsis-h freelance_jobs_wrapper"></i>-->
+<!--                          </a>-->
+<!--                          <mat-menu #subMenu="matMenu" xPosition="before">-->
+<!--                            <button mat-menu-item (click)="setid(freelanceData.id)">-->
+<!--                              {{'tenders.tenders.table.actions.details' | translate}}-->
+<!--                            </button>-->
+<!--                          </mat-menu>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="category-contractType">-->
+<!--                        <span style="text-transform: uppercase">{{ freelanceData?.category }}</span>-->
+<!--                        <span class="jobcategory pull-right">{{freelanceData?.contractType}}</span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                      <div class=" col-xs-12">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="panel-body">-->
+<!--                  <div class="freelance_jobs_data">-->
+<!--                    <address *ngIf="freelanceData.location.length < 5">-->
+<!--                      <mat-icon> business</mat-icon>-->
+<!--                      {{ freelanceData?.addName }}, {{freelanceData?.addZip}} {{freelanceData?.addCity}}-->
+<!--                    </address>-->
+<!--                    <address *ngIf="freelanceData.location.length > 4">-->
+<!--                      <span><mat-icon> business</mat-icon></span> <span><b-->
+<!--                      *ngIf="freelanceData.location.length > 4">{{freelanceData?.group}}</b></span>-->
+<!--                      <br>  {{ freelanceData?.addName }} | {{freelanceData?.number}}-->
+<!--                      <br> {{freelanceData?.address}} {{freelanceData?.addZip}} {{freelanceData?.addCity}}-->
+<!--                    </address>-->
+<!--                  </div>-->
+<!--                  <div *ngFor="let dateData of freelanceData?.date; let i = index">-->
+<!--                    <div class="row">-->
+<!--                      <span *ngIf="i === 0 ">-->
+<!--                      {{freelanceData?.date?.length}}-->
+<!--                        Termin(e) am {{dateData?.snapshots?.date?.appointed_at | date: 'dd.MM.YYYY'}} - -->
+<!--                      </span>-->
+<!--                      <span *ngIf="i === 4">-->
+<!--                      {{dateData?.snapshots?.date?.appointed_at | date: 'dd.MM.YYYY'}}-->
+<!--                      </span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div>-->
+<!--                    <span *ngIf="!(freelanceData?.tender?.data?.length > 0 && freelanceData?.tender?.data[0].is_matching)">-->
+<!--                        {{'job.details.fields.location_not_match' | translate}}-->
+<!--                    </span>-->
+<!--                  </div>-->
+<!--                  <div class="file">-->
+<!--                    <span *ngIf="freelanceData.ContractType !== 'freelancer'" class="row">-->
+<!--                      <mat-icon> insert_drive_file</mat-icon> {{'job.details.fields.contract_mismatched' | translate}}-->
+<!--                    </span>-->
+<!--                  </div>-->
+<!--                </div> &ndash;&gt;-->
+<!--                <div class="panel-heading" *ngIf="data">-->
+<!--                  <div class="smallPWidth">-->
+<!--                    <h3 class="title "> {{data.job_name}} </h3>-->
+<!--                    <span class="subtitle">{{data.client_name}}</span>-->
+<!--                  </div>-->
+<!--                  <div class="boxId">-->
+<!--                    <span class="jobId">{{data.job_code}}</span>-->
+<!--                    &lt;!&ndash; <a aria-haspopup="true" color="accent" class="mat-menu-trigger">-->
+<!--                      <i class="fas fa-ellipsis-h"></i>-->
+<!--                    </a> &ndash;&gt;-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="panel-body">-->
+<!--                  <div class="panelBodyDetil">-->
+<!--                    <div class="row">-->
+<!--                      <div class="col-md-6">-->
+<!--                        <p class="addressB">-->
+<!--                          <i class="fas fa-map-marker-alt"></i>-->
+<!--                          <span >{{data.job_location}}</span>-->
+<!--                        </p>-->
+<!--                        <p class="staffP">Staff Manager</p>-->
+<!--                        <p class="stafName">{{data.staff_manager}}</p>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <ul class="detilList">-->
+<!--                          <li><strong>Role </strong>: {{data.role_name}}</li>-->
+<!--                          <li><strong>Start Date </strong>: {{data.job_advert_start_date}}</li>-->
+<!--                          <li><strong>End Date </strong>: {{data.job_advert_end_date}}</li>-->
+<!--                          <li><strong># Days </strong>: {{data.days}}</li>-->
+<!--                        </ul>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div  class="row panel-footer between-xs">-->
+<!--                  <div class="col-md-6">-->
+<!--                    <span class="dateTitle">Job Expiry Date</span>-->
+<!--                    <span  class="date">{{data.job_advert_end_date_time}}</span>-->
+<!--                  </div>-->
+<!--                  <div class="col-md-6">-->
+<!--                    <span class="dateTitle">Contract Type</span>-->
+<!--                    <span  class=" state">{{data.contract_type}}</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </ng-container>-->
+      <app-paginator *ngIf="freelancerJobOfferList.length !== 0 && show"
+                     [length]="totalRecord"
+                     [pageIndex]="currentPage - 1"
+                     [pageSize]="totalPage"
+                     (page)="pageChangeFreelancer($event)"></app-paginator>
+      <app-paginator *ngIf="!show"
+                     [length]="pagination?.total"
+                     [pageIndex]="pagination?.currentPage - 1"
+                     [pageSize]="pagination?.total_page"
+                     (page)="inviteJobpageChange($event)"></app-paginator>
+    </app-search-list>
+  </app-search-container>
+</div>

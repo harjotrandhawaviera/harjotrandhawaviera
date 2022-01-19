@@ -1,0 +1,178 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 translate="user.titles.group"></h1>
+    </div>
+  </div>
+  <form
+    role="form"
+    *ngIf="profileForm"
+    [formGroup]="profileForm"
+    (ngSubmit)="profileSubmit()"
+  >
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 translate="auth.password.change"></h3>
+      </div>
+      <div class="col-xs-12">
+        <div style="margin: 10px 0 20px 0">
+          <button
+            type="button"
+            (click)="toggleChangePassword()"
+            style="cursor: pointer"
+            mat-flat-button
+            color="accent"
+            translate="auth.password.change"
+          ></button>
+        </div>
+      </div>
+      <div *ngIf="changePassword && passwordForm" class="col-xs-12 padding-none">
+        <div class="row" formGroupName="password">
+          <div class="col-xs-12 col-sm-6 padding-none">
+            <div class="row">
+              <mat-form-field class="col-xs-12">
+                <mat-label required>{{ "auth.password.current" | translate }}</mat-label>
+                <input matInput formControlName="current" type="password" />
+                <mat-error *ngIf="passwordDisplayMessage.current">{{
+                  passwordDisplayMessage.current
+                }}</mat-error>
+              </mat-form-field>
+              <div class="col-xs-12">
+                <mat-form-field class="full-width">
+                  <mat-label required>{{ "auth.password.new" | translate }}</mat-label>
+                  <input matInput formControlName="new" type="password" #pass />
+
+                </mat-form-field>
+                <mat-error style="font-size: 10.5px; font-weight: normal; line-height: 13.125px;" *ngIf="passwordDisplayMessage.new">{{
+                  passwordDisplayMessage.new
+                }}</mat-error>
+                <app-password-strength-bar
+                  [passwordToCheck]="pass.value"
+                ></app-password-strength-bar>
+              </div>
+              <mat-form-field class="col-xs-12">
+                <mat-label required>{{
+                  "auth.password.new-confirm" | translate
+                }}</mat-label>
+                <input matInput formControlName="confirmed" type="password" />
+                <mat-error *ngIf="passwordDisplayMessage.confirmed"
+                  >{{ passwordDisplayMessage.confirmed }}
+                </mat-error>
+              </mat-form-field>
+              <!-- <div class="col-md-4">
+                <label
+                  for="current"
+                  translate="auth.password.current"
+                  data-required
+                ></label>
+                <input
+                  type="password"
+                  id="current"
+                  class="form-control"
+                  data-ng-model="data.password.current"
+                  required
+                />
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="data" class="col-xs-12 padding-none" data-user-account="data">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="title" translate="user.titles.account"></h3>
+          </div>
+          <mat-form-field class="col-xs-12 col-sm-6">
+            <mat-label required>{{
+              "profile.fields.email.label" | translate
+            }}</mat-label>
+            <input readonly matInput formControlName="email" type="email" />
+            <mat-error *ngIf="displayMessage.email">{{
+              displayMessage.email
+            }}</mat-error>
+          </mat-form-field>
+          <div
+            *ngIf="pendingEmail"
+            class="pending alert alert-info col-xs-12 col-sm-6"
+            [translate]="'user.fields.email.pending'"
+            [translateParams]="{ pending: pendingEmail }"
+          ></div>
+        </div>
+      </div>
+       <div
+        *ngIf="agentForm"
+        class="col-xs-12 padding-none"
+        [personalFormGroup]="agentForm"
+        [displayMessage]="agentDisplayMessage"
+        app-user-personal
+      ></div>
+      <!-- <div
+        *ngIf="data.admin"
+        class="col-xs-12 padding-none"
+        app-user-personal="data.admin"
+      ></div> -->
+      <!-- <div class="col-xs-12 padding-none">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="title" translate="user.titles.preferences"></h3>
+          </div>
+          <mat-form-field class="col-xs-12 col-sm-6 col-md-6">
+            <mat-label required>{{
+              "user.fields.languages.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="language" name="language">
+              <mat-option
+              *ngFor="let option of languageLK"
+              [value]="option.value"
+            >
+              {{ "profile.fields.languages." + option.value | translate }}
+            </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.language">{{
+              displayMessage.language
+            }}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-xs-12 col-sm-6 col-md-6">
+            <mat-label required>{{
+              "user.fields.timezones.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="timezone" name="timezone">
+              <mat-option
+                *ngFor="let option of timezoneLK"
+                [value]="option.value"
+              >
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.timezone">{{
+              displayMessage.timezone
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="col-xs-12">
+        <div style="margin-bottom: 20px">
+          <button
+            type="submit"
+            mat-flat-button
+            color="accent"
+            translate="user.buttons.update"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="role === 'freelancer'">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="title" translate="user.delete-account.title"></h3>
+      </div>
+      <div class="col-xs-12">
+        <span
+          class="description"
+          translate="user.delete-account.description"
+        ></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+@import "variables";
+@import "mixins";
+
+.acion-title-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  .action-btn-cont {
+    a {
+      &[disabled] {
+        pointer-events: none;
+        border-color: $gray-light;
+      }
+    }
+  }
+}
+
+.activeName {
+  min-width: 250px;
+}
+.table-unprocessed {
+  margin-top: 110px;
+}
+.freelance_fullname {
+  min-width: 250px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.button-padding {
+  padding: 8px;
+}
+.offer {
+  width: 30px;
+  border: 1px solid #ddd;
+}
+.offers-table {
+  border-spacing: 0;
+}
+.daterotate {
+  height: 20px;
+  white-space: nowrap;
+  border: none;
+  padding: 8px;
+  div {
+    transform: translate(14px, 2px) rotate(315deg);
+    width: 20px;
+    span {
+      border-bottom: 1px solid #d0d0d1;
+      padding: 5px 10px;
+    }
+  }
+}
+
+.pending-offer-header {
+  margin: 10px 0 20px;
+}

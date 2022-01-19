@@ -1,0 +1,101 @@
+<div class="staffPerformanceSec">
+    <div class="row headerDes">
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            <div class="col-md-12">
+                <h2>{{ 'performance-review.title' | translate}}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <mat-form-field class="full-width">
+                        <mat-label>{{ 'performance-review.search.client' | translate}}</mat-label>
+                        <mat-select formControlName="client" (selectionChange)="loadProjectList($event.value)">
+                            <mat-option [value]="client.value" *ngFor="let client of clientList">
+                                {{ client.text }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field class="full-width">
+                        <mat-label>{{ 'performance-review.search.project' | translate}}</mat-label>
+                        <mat-select formControlName="project" (selectionChange)="loadJobList($event.value)">
+                            <mat-option [value]="project.value" *ngFor="let project of projectLK">
+                                {{ project.text }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field class="full-width">
+                        <mat-label>{{ 'performance-review.search.job' | translate}}</mat-label>
+                        <mat-select formControlName="job" (selectionChange)="onSelectJob()">
+                            <mat-option [value]="job.value" *ngFor="let job of jobList">
+                                {{ job.text }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+              <div class="col-md-2">
+                <mat-form-field class="full-width">
+                  <mat-label>{{ 'performance-review.search.time_period' | translate}}</mat-label>
+                  <mat-select formControlName="timePeriod">
+                    <mat-option [value]="value.id" *ngFor="let value of data">
+                      {{value.year}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+                <div class="col-md-4">
+                    <button type="submit" class="section-button" mat-flat-button color="accent" [disabled]="searchButtonDisable">{{ 'performance-review.buttons.search' | translate}}</button>
+                    <button type="button" class="section-button" mat-stroked-button color="primary" (click)="onClear()">{{ 'performance-review.buttons.clear' | translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12 fieldBox" *ngFor="let performaceReview of result$">
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview(performaceReview)">
+                <div class="row">
+                    <div class="col-md-3 border">
+                        <div class="userPic">
+                            <img [src]="performaceReview.pictures.url">
+                        </div>
+                        <div class="userDetais">
+                            <h3>{{ performaceReview.name }}</h3>
+                            <p class="red">{{ performaceReview.address }}</p>
+                            <p class="black">{{ 'performance-review.label.job_hours' | translate}} {{ performaceReview.project_hours }}</p>
+                            <p class="black">{{ 'performance-review.label.total_shift' | translate}} {{ performaceReview.total_shifts }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border">
+                        <h4>{{ 'performance-review.fields.overall_rating.label' | translate}}</h4>
+                        <bar-rating [max]="5" [theme]="'fontawesome-o'" [readOnly]="false" formControlName="rating">
+                        </bar-rating>
+                    </div>
+                    <div class="col-md-3 border">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <textarea matInput placeholder="{{ 'performance-review.fields.comment.placeholder' | translate}}"
+                                formControlName="comment"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2 border">
+                        <h4>{{ 'performance-review.fields.review_status.label' | translate}}</h4>
+                        <mat-form-field class="full-width">
+                            <mat-label>{{ 'performance-review.fields.review_status.label' | translate}}</mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option value="1">Completed</mat-option>
+                                <mat-option value="2">Pending</mat-option>
+                                <mat-option value="3">Recommended</mat-option>
+                                <mat-option value="4">Unfit</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="section-button full-width" mat-flat-button
+                            color="accent">{{ 'performance-review.buttons.update' | translate}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/jobs']">
+        {{ 'job.offers.buttons.back' | translate }}
+      </a>
+    </div>
+    <div class="col-xs-12">
+      <div class="acion-title-holder">
+        <h1 translate="job.offers.title.edit"></h1>
+        <h3 translate="job.offers.section.job"></h3>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-none" *ngIf="(jobDetail$ | async) as job">
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label translate="projects.fields.job.label"></label>
+          <div>{{ job.title }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label translate="projects.fields.site.label"></label>
+          <div *ngIf="job.site">
+            <strong class="trim-text" *ngIf="job.site.group">
+              <i class="far fa-building"></i>
+              {{ job.site.group }}
+            </strong>
+            <address>
+              <div class="trim-text">
+                <span>{{ job.site.name }}</span>
+                <span *ngIf="job.site.number"> | {{ job.site.number }}</span>
+              </div>
+              <div class="trim-text">
+                <span>{{ job.site.address }}, {{ job.site.zip }} {{ job.site.city }}</span>
+              </div>
+            </address>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label translate="projects.fields.siteClientContact.label"></label>
+          <div>{{ job.site_client_contact }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <h3 class="col-xs pending-offer-header" translate="job.offers.section.pending-offers"></h3>
+      </div>
+      <div class="row table-unprocessed" *ngIf="(jobOffer$ | async) as jobOffer">
+        <div class="col-xs-12" *ngIf="!jobOffer.length || jobOffer.length === 0" translate="job.offers.no-pending">
+        </div>
+        <div class="col-xs-12" *ngIf="tenderAvailable()">
+          <table class="table table-bordered offers-table">
+            <thead>
+            <tr>
+              <th class="no-border"></th>
+              <th class="rotate daterotate" *ngFor="let data of offers">
+                <div><span>{{data.value | date: 'dd.MM.YYYY'}} {{data?.start_endTime}}</span></div>
+              </th>
+              <th class="no-border"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tender of tendersByFreelancer | keyvalue">
+              <td class="name freelance_fullname" *ngIf="tender?.key">
+                <span>
+                  <a [routerLink]="['/administration/freelancers/' + idReturn(tender)]">{{ nameTender(tender) }}</a>
+                </span>
+              </td>
+              <td class="offer text-center" *ngFor="let data of offers; let i = index">
+                  <div *ngIf="isOffered(data?.id, tender?.key)" (click)="acceptOffer(data?.id, tender.key, i)">
+                    <span class="fas fa-circle pending" *ngIf="!isAccepted(data?.id, tender.key)"></span>
+                    <span class="fas" [ngClass]="{'fa-times rejected': !isAccepted(data?.id, tender.key), 'fa-check accepted': isAccepted(data?.id, tender.key)}" *ngIf="isAccepted(data?.id, tender.key)"></span>
+                  </div>
+              </td>
+              <td>
+                <div>
+                  <button
+                    mat-stroked-button
+                    color="primary"
+                    (click)="acceptAllOffer(tender?.key)"
+                    translate="job.offers.buttons.accept-all"
+                  ></button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+<!--        <div class="col-xs-12" *ngIf="!tenderAvailable()">-->
+<!--          No Record Found-->
+<!--        </div>-->
+        <div class="row col-xs button-padding">
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="submitOffers()"
+            [disabled]="!statusCheck"
+            translate="job.offers.buttons.update"
+          ></button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="reset()"
+            translate="job.offers.buttons.reset"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

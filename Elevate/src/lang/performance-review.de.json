@@ -1,0 +1,32 @@
+{
+    "performance-review": {
+        "title": "Mitarbeiterin Leistung",
+        "search": {
+            "client": "Kunde",
+            "project": "Projekt",
+            "job": "Job",
+            "time_period": "Zeit Zeitraum"
+        },
+        "fields" :{
+            "overall_rating": {
+                "label": "Gesamt Bewertung",
+                "placeholder": ""
+            },
+            "comment": {
+                "placeholder": "Geben Sie hier einen Bewertungskommentar ein.."
+            },
+            "review_status": {
+                "label": "Rezension Status"
+            }
+        },
+        "label" : {
+            "job_hours": "Job Std:",
+            "total_shift": "Gesamt Schicht:"
+        },
+        "buttons":  {
+            "search": "Suche",
+            "clear": "Klar",
+            "update": "Aktualisieren"
+        }
+    }
+}

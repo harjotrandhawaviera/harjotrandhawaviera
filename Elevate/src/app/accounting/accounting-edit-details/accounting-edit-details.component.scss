@@ -1,0 +1,14 @@
+.sb{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mat-icon-align {
+  display: flex;
+  .download_icon {
+    cursor: pointer;
+  }
+}

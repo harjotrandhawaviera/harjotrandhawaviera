@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="">
+        <div class="acion-title-holder">
+          <a [routerLink]="['/accounting/revenues']">
+            {{ 'revenue.buttons.back' | translate }}
+          </a>
+          <h1>{{'revenues.title.list' | translate}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-label class="lable">{{'revenues.filters.job' | translate}}</mat-label>
+        <h5>{{revenuesDetails?.title}}</h5>
+      </div>
+      <div class="col-md-6">
+        <mat-label class="lable">{{'revenue.label.freelancer' | translate}}</mat-label>
+        <h5>{{revenuesDetails?.name}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-label class="lable">{{'revenues.table.creatorName' | translate}}</mat-label>
+        <h5>{{"revenue.label.freelancer" | translate}}</h5>
+      </div>
+      <div class="col-md-6">
+        <mat-label class="lable">{{'revenues.table.createdAt' | translate}}</mat-label>
+        <h5>{{revenuesDetails?.c_date | date:'mediumDate'}}</h5>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h5 class="lable">calls</h5>
+    </div>
+    <div class="header date-card">
+      <span class="date">
+        <span class="day">{{revenuesDetails?.a_date | date:"d"}}</span>
+        <span class="month">{{revenuesDetails?.a_date | date:"MMM"}}</span>
+        <span class="year">{{revenuesDetails?.a_date | date:"yyyy"}}</span>
+      </span>
+    </div>
+    <div class="col-md-6">
+      <h5 class="lable">{{'revenues.table.comment' | translate}}</h5>
+    </div>
+    <div class="col-xs-12 lable">
+      {{'revenue.label.sales-volume' | translate}}
+    </div>
+    <div class="row" *ngFor="let s of revenuesDetails?.sales">
+      <div class="col-xs-8">
+        {{s?.saleslot}}
+      </div>
+      <div>
+        {{s?.value | currency}}
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-8 lable" >
+        {{'revenues.tile.total' | translate}}
+      </div>
+      <div>
+        {{revenuesDetails?.total | currency}}
+      </div>
+    </div>
+    <div class="row">
+      <div class=" col-md-offset-8  text-right">
+        {{revenuesDetails.average | currency}}
+      </div>
+    </div>
+  </div>
+</div>

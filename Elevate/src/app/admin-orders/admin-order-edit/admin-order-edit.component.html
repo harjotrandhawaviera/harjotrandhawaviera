@@ -1,0 +1,335 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1
+        *ngIf="mode === 'edit'"
+        translate="administration.orders.details.title.edit"
+      ></h1>
+      <h1
+        *ngIf="mode === 'create'"
+        translate="administration.orders.details.title.new"
+      ></h1>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <form *ngIf="form" [formGroup]="form">
+        <fieldset>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <mat-form-field class="full-width">
+                <mat-label required>{{
+                  "administration.orders.fields.client.label" | translate
+                }}</mat-label>
+                <app-static-auto-complete
+                  formControlName="client_id"
+                  [options]="clientLK"
+                  [error]="displayMessage.client_id"
+                >
+                </app-static-auto-complete>
+                <mat-error *ngIf="displayMessage.client_id">{{
+                  displayMessage.client_id
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <mat-form-field class="full-width">
+                <mat-label required
+                  >{{ "administration.orders.fields.name.label" | translate }}
+                </mat-label>
+                <input matInput formControlName="name" />
+                <mat-error *ngIf="displayMessage.name">{{
+                  displayMessage.name
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-3">
+              <mat-form-field class="full-width">
+                <mat-label
+                  >{{ "administration.orders.fields.number.label" | translate }}
+                </mat-label>
+                <input matInput formControlName="number" />
+                <mat-error *ngIf="displayMessage.number">{{
+                  displayMessage.number
+                }}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-3">
+              <mat-form-field class="full-width">
+                <mat-label>{{
+                  "administration.orders.fields.date.label" | translate
+                }}</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="ordered_atPicker"
+                  formControlName="ordered_at"
+                  name="ordered_at"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="ordered_atPicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #ordered_atPicker></mat-datepicker>
+                <mat-error *ngIf="displayMessage.ordered_at">{{
+                  displayMessage.ordered_at
+                }}</mat-error>
+              </mat-form-field>
+              <!-- <label
+                for="date"
+                translate="administration.orders.fields.date.label"
+              ></label>
+              <input
+                type="text"
+                class="form-control"
+                id="date"
+                data-dateformat
+                data-ng-model="order.data.ordered_at"
+                translate-placeholder="form.format.date"
+              /> -->
+            </div>
+          </div>
+          <div *ngIf="mode === 'create'">
+            <mat-radio-group
+              aria-label="Select an option"
+              class="row"
+              color="primary"
+              formControlName="budgetMode"
+            >
+              <mat-radio-button
+                [value]="modes.NO_BUDGET"
+                class="col-xs-12 col-sm-6 col-md-3"
+                style="margin-top: 5px"
+              >
+                {{
+                  "administration.orders.fields.budget.no-budget" | translate
+                }}</mat-radio-button
+              >
+              <mat-radio-button
+                [value]="modes.CREATE_BUDGET"
+                class="col-xs-12 col-sm-6 col-md-3"
+                style="margin-top: 5px"
+                >{{
+                  "administration.orders.fields.budget.create-budget"
+                    | translate
+                }}</mat-radio-button
+              >
+            </mat-radio-group>
+            <!-- <div class="row">
+              <div class="col-md-6 form-group btn-group">
+                 <div class="row">
+                  <label class="col-md-6">
+                    <input
+                      type="radio"
+                      data-brand-checkbox
+                      data-ng-model="order.budgetMode"
+                      data-ng-value="order.modes.NO_BUDGET"
+                    />
+                    {{
+                      "administration.orders.fields.budget.no-budget"
+                        | translate
+                    }}
+                  </label>
+                  <label class="col-md-6">
+                    <input
+                      type="radio"
+                      data-brand-checkbox
+                      data-ng-model="order.budgetMode"
+                      data-ng-value="order.modes.CREATE_BUDGET"
+                    />
+                    {{
+                      "administration.orders.fields.budget.create-budget"
+                        | translate
+                    }}
+                  </label>
+                </div>
+              </div>
+            </div> -->
+            <div
+              class="row"
+              *ngIf="budgetMode === modes.CREATE_BUDGET && budgetFormGroup"
+              formGroupName="budget"
+            >
+              <div class="form-group col-md-3">
+                <mat-form-field class="full-width">
+                  <mat-label required
+                    >{{
+                      "administration.orders.fields.budget.value.label"
+                        | translate
+                    }}
+                  </mat-label>
+                  <input matInput formControlName="value" />
+                  <mat-error *ngIf="budgetDisplayMessage.value">{{
+                    budgetDisplayMessage.value
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group col-md-9">
+                <mat-form-field class="full-width">
+                  <mat-label>{{
+                    "administration.orders.fields.budget.remarks.label"
+                      | translate
+                  }}</mat-label>
+                  <textarea
+                    matInput
+                    formControlName="remarks"
+                    name="remarks"
+                    rows="1"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              <mat-form-field class="full-width">
+                <mat-label required *ngIf="budgetMode === modes.NO_BUDGET"
+                  >{{
+                    "administration.orders.fields.assignments.label" | translate
+                  }}
+                </mat-label>
+                <mat-label *ngIf="budgetMode !== modes.NO_BUDGET"
+                  >{{
+                    "administration.orders.fields.assignments.label" | translate
+                  }}
+                </mat-label>
+                <input
+                  type="number"
+                  matInput
+                  formControlName="required_assignments"
+                />
+                <mat-error *ngIf="displayMessage.required_assignments">{{
+                  displayMessage.required_assignments
+                }}</mat-error>
+              </mat-form-field>
+              <!-- <label
+                for="assignments"
+                translate="administration.orders.fields.assignments.label"
+                data-ng-required="order.budgetMode === order.modes.NO_BUDGET"
+              ></label>
+              <input
+                type="number"
+                class="form-control"
+                id="assignments"
+                min="0"
+                step="1"
+                data-ng-required="order.budgetMode === order.modes.NO_BUDGET"
+                data-ng-model="order.data.required_assignments"
+                translate-placeholder="administration.orders.fields.assignments.placeholder"
+              /> -->
+            </div>
+            <div class="form-group col-md-3">
+              <mat-form-field class="full-width">
+                <mat-label
+                  >{{
+                    "administration.orders.fields.assignment-budget.label"
+                      | translate
+                  }}
+                </mat-label>
+                <input matInput formControlName="assignment_budget" />
+                <mat-error *ngIf="displayMessage.assignment_budget">{{
+                  displayMessage.assignment_budget
+                }}</mat-error>
+              </mat-form-field>
+              <!-- <label
+                for="assignment-budget"
+                translate="administration.orders.fields.assignment-budget.label"
+              ></label>
+              <input
+                type="text"
+                class="form-control"
+                id="assignment-budget"
+                data-currencyformat="€"
+                data-ng-model="order.data.assignment_budget"
+                translate-placeholder="administration.orders.fields.assignment-budget.placeholder"
+              /> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-9">
+              <mat-form-field class="full-width">
+                <mat-label>{{
+                  "administration.orders.fields.remarks.label" | translate
+                }}</mat-label>
+                <textarea
+                  matInput
+                  formControlName="remarks"
+                  name="remarks"
+                  rows="3"
+                ></textarea>
+              </mat-form-field>
+              <!-- <label
+                for="remarks"
+                translate="administration.orders.fields.remarks.label"
+              ></label>
+              <textarea
+                type="text"
+                class="form-control"
+                id="remarks"
+                data-ng-model="order.data.remarks"
+                translate-placeholder="administration.orders.fields.remarks.placeholder"
+              >
+              </textarea> -->
+            </div>
+          </div>
+          <div
+            *ngIf="dataFormGroup && customProperties.length"
+            [formGroup]="dataFormGroup"
+          >
+            <div class="row">
+              <div class="col-xs">
+                <label>
+                  {{
+                    "administration.orders.fields.custom-properties.label"
+                      | translate
+                  }}
+                </label>
+              </div>
+            </div>
+            <div
+              class="row"
+              *ngFor="let prop of customProperties; let i = index"
+            >
+              <div class="col-xs-12 col-sm-6">
+                <mat-form-field class="full-width">
+                  <mat-label>{{ prop }} </mat-label>
+                  <input matInput [formControlName]="prop" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="order && order.budget_id && order.budget">
+            <h3 translate="administration.orders.details.budget"></h3>
+            <div app-budget-detail-view [budget]="order.budget"></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="action-button">
+                <button
+                  type="button"
+                  mat-flat-button
+                  color="accent"
+                  (click)="save()"
+                >
+                  {{
+                    (mode === "create"
+                      ? "administration.orders.buttons.create"
+                      : "administration.orders.buttons.update"
+                    ) | translate
+                  }}
+                </button>
+                <button
+                  type="button"
+                  mat-stroked-button
+                  color="primary"
+                  translate="administration.orders.buttons.cancel"
+                  (click)="cancelEdit()"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

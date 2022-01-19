@@ -1,0 +1,34 @@
+<div class="container-fluid rights-list">
+  <div class="col-xs-12">
+    <h1 translate="administration.rights.title"></h1>
+  </div>
+  <div class="col-xs-12">
+    <label>{{ 'administration.users.table.roleName' | translate }}</label>
+  </div>
+  <form [formGroup]="RoleData">
+    <div class="col-xs">
+      <mat-form-field>
+        <mat-select formControlName="agentName">
+          <mat-option *ngFor="let data of RoleList" value="{{data?.value}}">{{data?.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <fieldset class="row" >
+      <ng-container *ngFor="let right of Rights; let i = index">
+        <mat-checkbox    class="col-md-4 col-sm-6 col-xs-12 " [checked]="isCheckboxSelected(right?.id)"  color="primary"
+                      (change)="onChange($event)" value="{{right.text}}" >
+         {{'rights.fields.rights.' + right.text | translate }}
+        </mat-checkbox>
+      </ng-container>
+    </fieldset>
+    <div class="col-xs">
+      <button
+        (click)="save(this.RoleData.value)"
+        color="accent"
+        mat-flat-button
+        translate="administration.site-client.buttons.update"></button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,79 @@
+<div class="panel panel-default checkin" *ngIf="checkin"  (click)="goToDetails(checkin)">
+  <div class="panel-heading">
+    <div class="action-title-cont">
+      <strong> {{ checkin.date.data.job.data.title }} </strong>
+      <a color="accent" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation();">
+        <i class="fas fa-ellipsis-h"></i>
+      </a>
+      <mat-menu #subMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="goToDetails(checkin)">
+          {{'checkins.table.actions.details' | translate}}
+        </button>
+        <button mat-menu-item (click)="modifyTime(checkin)">
+          {{'checkins.table.actions.confirm' | translate}}
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="header date-card">
+      <span class="date">
+        <span class="day">{{ checkin.date.data?.appointed_at | date: 'd'}}</span>
+        <span class="month">{{ checkin.date.data?.appointed_at | date: 'MMM'}}</span>
+        <span class="year">{{ checkin.date.data?.appointed_at | date: 'YYYY'}}</span>
+      </span>
+      <div>
+        <div class="title">{{ bookedFreelancer.fullname }}</div>
+        <div class="subtitle start-time">
+          <i class="far fa-clock"></i>
+          <span>{{checkin.start_time}}</span> -
+          <span>{{checkin.finish_time}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 booked-freelancer" *ngIf="bookedFreelancer">
+      <a *ngIf="bookedFreelancer.mobile" href="tel:{{bookedFreelancer.mobile}}">
+        <i class="fas fa-phone"></i>
+        <span>{{bookedFreelancer.mobile}}</span>
+      </a>
+      <a *ngIf="bookedFreelancer.user.data.email" href="mailto:{{bookedFreelancer.user.data.email}}">
+        <i class="far fa-envelope"></i>
+        <span>{{bookedFreelancer.user.data.email}}</span>
+      </a>
+    </div>
+    <div class="col-md-12 site">
+      <div class="site-group line-ellipsis" *ngIf="checkin.date.data?.job?.data?.site?.data?.group">
+        <span class="far fa-building"></span>
+        <span>{{checkin.date.data?.job?.data?.site?.data?.group}}</span>
+      </div>
+      <address>
+        <div class="line-ellipsis">
+          <span>{{ checkin.date.data?.job?.data?.site?.data?.name }}</span>
+          <span *ngIf="checkin.date.data?.job?.data?.site?.data?.number"> |
+            {{checkin.date.data?.job?.data?.site?.data?.number}}</span>
+        </div>
+        <div class="line-ellipsis">
+          <span>{{checkin.date.data?.job?.data?.site?.data?.address}}</span>,
+          <span>{{checkin.date.data?.job?.data?.site?.data?.zip}}</span>
+          <span>{{checkin.date.data?.job?.data?.site?.data?.city}}</span>
+        </div>
+        <div class="site-phone" *ngIf="checkin.date.data?.job?.data?.site?.data?.phone">
+          <a href="tel:{{checkin.date.data?.job?.data?.site?.data?.phone}}">
+            <i class="fas fa-phone"></i>
+            {{checkin.date.data?.job?.data?.site?.data?.phone}}</a>
+        </div>
+      </address>
+    </div>
+    <div class="col-md-12 site-client-contact" *ngIf="checkin.date.data?.job?.data?.siteClientContact">
+      <label data-translate-once="checkins.table.siteClientContact"></label>
+      <p>
+        <a *ngIf="checkin.date.data?.job?.data?.siteClientContact.phone"
+          href="tel:{{checkin.date.data?.job?.data?.siteClientContact.phone}}">
+          <i class="fas fa-phone"></i>
+          <span>{{checkin.date.data?.job?.data?.siteClientContact.phone}}</span>
+        </a>
+        <span>{{checkin.date.data?.job?.data?.siteClientContact.fullname}}</span>
+      </p>
+    </div>
+  </div>
+</div>

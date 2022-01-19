@@ -1,0 +1,116 @@
+@import "mixins";
+
+.freelancer-tile{
+  .panel {
+    padding: 5px 10px 10px 10px;
+    border: 1px solid $brand-primary;
+    margin: 15px;
+    cursor: pointer;
+    border-bottom: solid $brand-danger 3px;
+    @include tile-state("onboarding", $p4y-color-status-error);
+    @include tile-state("deactivated", $p4y-color-status-default);
+    @include tile-state("active", $p4y-color-status-active);
+    i {
+      color: $p4y-color-gray-medium;
+    }
+    //.data-value {
+    //  margin: 5px;
+    //  color: $p4y-color-gray-medium;
+    //}
+    //&:hover {
+    //  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    //}
+  }
+  .panel-lock {
+    padding: 15px;
+    border: 1px solid grey;
+    background-color: rgba(128, 128, 128, 0.20);
+    margin: 15px;
+    opacity: 0.7;
+    cursor: not-allowed;
+    border-bottom: solid $brand-danger 3px;
+    @include tile-state("onboarding", $p4y-color-status-error);
+    @include tile-state("deactivated", $p4y-color-status-default);
+    @include tile-state("active", $p4y-color-status-active);
+    i {
+      color: $p4y-color-gray-medium;
+    }
+    .data-value {
+      margin: 5px;
+      color: $p4y-color-gray-medium;
+    }
+    &:hover {
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+  .panel-body {
+    padding: 0;
+    height: calc(100% - 80px);
+    text-align: center;
+    [data-profile-avatar] > div {
+      margin: 20px auto 10px;
+    }
+    h2,
+    .city,
+    .email {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: 20px;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+    h2 {
+      height: 34px;
+      margin-bottom: $p4y-form-padding-base / 2;
+    }
+  }
+  .panel-footer {
+    margin-top: 15px;
+    color: $brand-danger;
+    @include user-status;
+  }
+  .image-placeholder {
+    .centered {
+      position: absolute;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: rgb(46, 46, 46);
+      font-size: 28px;
+      top: 40%;
+    }
+    border: #f8f8f8;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 132px;
+    height: 132px;
+    img {
+      width: 132px;
+      min-height: 132px;
+      background: center no-repeat;
+      background-size: cover;
+      margin-bottom: 0;
+      background-image: url(#{$p4y-avatar-placeholder});
+    }
+  }
+
+  .freelancer-tile-detail-wrapper{
+    flex-wrap: nowrap;
+  }
+
+}
+
+.p-t-10{
+  padding: 10px 0px 0px 0px;
+}
+.p-t-20{
+  padding: 20px 0px 0px 0px;
+}
+.ellipsis {
+  max-width: 90%;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

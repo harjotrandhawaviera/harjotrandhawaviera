@@ -1,0 +1,188 @@
+<div class="row gtc-section">
+  <div class="col-xs-12">
+    <legend
+      translate="profile.section.terms.heading"
+      *ngIf="definition"
+    ></legend>
+
+    <!-- <div class="inreview alert alert-info" *ngIf="inreview">
+      <p translate="profile.onboarding.inreview"></p>
+    </div> -->
+
+    <div class="row" *ngIf="isOnboarding === false && !isAgentReview">
+      <div
+        class="col-xs-12"
+        data-profile-gtc-check
+        data-use-contract-type="gtc.contractType"
+      ></div>
+    </div>
+
+    <div *ngIf="definition" class="gtc_document_container">
+      <div class="row" *ngIf="isOnboarding === true && !readonly">
+        <div
+          class="col-xs-12 description"
+          [innerHtml]="'profile.section.terms.description' | translate"
+        ></div>
+      </div>
+      <div
+        class="alert alert-info"
+        *ngIf="isReconfirmation && !isReconfirmationReview"
+      >
+        <p translate="profile.gtc.documents.reconfirmation-hint"></p>
+      </div>
+      <div
+        *ngFor="let template of definition.documents"
+        class="row gtc_document"
+        [ngClass]="template.type"
+      >
+        <div class="col-xs-12 padding-none">
+          <fieldset *ngIf="template.confirmation_type !== 'none'">
+            <div class="row">
+              <div class="col-xs-12">
+                <h4>
+                  <span
+                    [translate]="'profile.gtc.documents.type.' + template.type"
+                    [translateParams]="{ index: template.order_index }"
+                  ></span>
+                  <span
+                    [translate]="'profile.gtc.documents.name'"
+                    [translateParams]="template"
+                    [ngClass]="{
+                      'pending-document': gtcDocs[template.id].inReview
+                    }"
+                  ></span>
+                </h4>
+                <p class="template-description" *ngIf="template.description">
+                  {{ template.description }}
+                </p>
+                <p class="hint" *ngIf="!readonly">
+                  {{
+                    "profile.gtc.documents." +
+                      template.confirmation_type +
+                      ".hint" | translate
+                  }}
+                </p>
+                <div
+                  class="alert alert-info"
+                  *ngIf="gtcDocs[template.id].inReview"
+                  translate="profile.onboarding.inreview"
+                ></div>
+                <div class="row">
+                  <div class="col-xs-12" *ngIf="!readonly">
+                    <a (click)="onAction(template)" style="cursor: pointer">{{
+                      "profile.gtc.documents." +
+                        template.confirmation_type +
+                        ".action" | translate
+                    }}</a>
+                  </div>
+                </div>
+
+                <div
+                  class="row checked"
+                  *ngIf="template.confirmation_type === 'checked'"
+                >
+                  <div
+                    class="form-group col-xs-12 checked-state"
+                    *ngIf="gtcDocs[template.id].is_checked === true"
+                  >
+                    <i class="fa fa-check"></i
+                    ><span
+                      translate="profile.gtc.documents.checked.state.confirmed"
+                    ></span>
+                  </div>
+                  <div
+                    class="form-group col-xs-12 checked-state"
+                    *ngIf="gtcDocs[template.id].is_checked === false"
+                  >
+                    <i class="fa fa-exclamation"></i
+                    ><span
+                      translate="profile.gtc.documents.checked.state.unconfirmed"
+                    ></span>
+                  </div>
+                  <div
+                    class="form-group col-xs-12"
+                    *ngIf="displayMessage && displayMessage[template.id]"
+                  >
+                    <!-- <input
+                  class="hide form-control"
+                  data-ng-model="gtc.dummy"
+                  data-ng-required="!gtc.data.gtcDocs[template.id].is_checked"
+                /> -->
+                    <mat-error>{{ displayMessage[template.id] }}</mat-error>
+                  </div>
+                </div>
+                <div
+                  class="row signed"
+                  *ngIf="template.confirmation_type === 'upload-signed'"
+                >
+                  <div
+                    class="col-xs-12"
+                    *ngFor="
+                      let freelancerDoc of gtcDocs[template.id]
+                        .freelancer_documents;
+                      let i = index
+                    "
+                  >
+                    <app-profile-document
+                      [collectionId]="
+                        gtcDocs[template.id].freelancer_documents[i] &&
+                        gtcDocs[template.id].freelancer_documents[i].document
+                          .document_id
+                      "
+                      [documents]="
+                        gtcDocs[template.id].freelancer_documents[i] &&
+                        gtcDocs[template.id].freelancer_documents[i].document &&
+                        gtcDocs[template.id].freelancer_documents[i].document
+                          .documents
+                          ? gtcDocs[template.id].freelancer_documents[i]
+                              .document.documents
+                          : []
+                      "
+                      [multiple]="true"
+                      [readonly]="readonly"
+                      (documentUpdated)="
+                        documentUpdated($event, template.id, i)
+                      "
+                      [buttonText]="'buttons.upload-document' | translate"
+                    ></app-profile-document>
+
+                    <!-- <div
+      class="profile"
+      data-profile-document="gtc.data.gtcDocs[template.id].freelancer_documents[$index]"
+      data-pending="gtc.data.gtcDocs[template.id].pending"
+      data-type="document"
+      data-required="true"
+      data-document-type="{{ 'signed-' + template.type }}"
+      data-profile-view="gtc.profileView"
+      data-multiple="true"
+    ></div> -->
+                  </div>
+                  <div
+                    class="form-group col-xs-12"
+                    *ngIf="displayMessage && displayMessage[template.id]"
+                  >
+                    <!-- <input
+                  class="hide form-control"
+                  data-ng-model="gtc.dummy"
+                  data-ng-required="!gtc.data.gtcDocs[template.id].is_checked"
+                /> -->
+                    <mat-error>{{ displayMessage[template.id] }}</mat-error>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="isOnboarding === false"
+    class="col-xs-12 app-profile-gtc-table"
+    app-profile-gtc-table
+    [items]="data.gtcs"
+    [contractType]="contractType"
+    [documents]="freelancerGtcDocs"
+    data-documents="gtc.freelancerGtcDocs"
+  ></div>
+</div>

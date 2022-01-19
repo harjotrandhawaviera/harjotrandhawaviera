@@ -1,0 +1,1316 @@
+{
+  "administration": {
+    "users": {
+      "title": {
+        "group": "Benutzer Administration",
+        "new": "Neuer Benutzer",
+        "details": "Benutzerdetails",
+        "edit": "Benutzer bearbeiten"
+      },
+      "table": {
+        "user": "Benutzer",
+        "createdBy": "Angelegt von",
+        "roleName": "Rolle",
+        "lastAction": "Zuletzt aktiv",
+        "stateName": "Status",
+        "fullname": "Name",
+        "email": "E-mail",
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "remove": {
+          "title": "Benutzer löschen",
+          "message": "Bist du sicher, dass du den Benutzer löschen möchtest?"
+        }
+      },
+      "state": {
+        "active": "Aktiv",
+        "unconfirmed": "Nicht bestätigt",
+        "pending": "Genehmigung ausstehend",
+        "onboarding": "Onboarding",
+        "deactivated": "Deaktiviert",
+        "disabled": "Gesperrt",
+        "locked": "Gesperrt",
+        "deleted": "Gelöscht",
+        "requested-password": "Neues Passwort angefordert",
+        "requested-account-delete": "Löschung des Kontos beantragt"
+      },
+      "actions": {
+        "details": "Details anzeigen"
+      },
+      "fields": {
+        "firstname": {
+          "label": "Vorname",
+          "placeholder": "Vorname"
+        },
+        "lastname": {
+          "label": "Nachname",
+          "placeholder": "Nachname"
+        },
+        "role": {
+          "label": "Rolle",
+          "": "Wählen",
+          "freelancer": "Fachberater",
+          "admin": "Admin",
+          "agent": "Agent",
+          "client": "Kunde",
+          "field": "Außendienst"
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": "E-Mail"
+        },
+        "birthdate": {
+          "label": "Geburtsdatum",
+          "placeholder": "dd.MM.yyyy",
+          "": "Wählen"
+        },
+        "salutation": {
+          "label": "Anrede",
+          "": "Wählen",
+          "F": "Frau",
+          "M": "Herr"
+        }
+      },
+      "buttons": {
+        "edit": "Benutzer bearbeiten",
+        "create": "Benutzer anlegen",
+        "update": "Benutzer aktualisieren",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "back": "Zurück"
+      },
+      "filters": {
+        "role": "Rolle",
+        "required": "Bitte grenze die Suche durch Setzen eines oder mehrerer Filter ein."
+      },
+      "search-placeholder": "Name oder E-Mail",
+      "search": {
+        "placeholder": "Name oder E-Mail",
+        "hint": "mind. 3 Zeichen"
+      },
+      "details": {
+        "title": "Benutzerdetails",
+        "summary": "ID {{id}} – {{nationality_name}} – {{birthDate}} – {{count_checkins_last_year}}{count_checkins_last_year, select, 1 { Einsatz}  other{ Einsätze}} im letzten Jahr – ",
+        "summary-single": "ID {{id}} – {{nationality_name}} – {{birthDate}} – {{count_checkins_last_year}} Einsatz im letzten Jahr – ",
+        "summary-multiple": "ID {{id}} – {{nationality_name}} – {{birthDate}} – {{count_checkins_last_year}} Einsätze im letzten Jahr – ",
+        "freelancer": "Fachberater Profil",
+        "sedcard": "Sedcard",
+        "languages": {
+          "title": "Sprachen"
+        },
+        "work-condition": {
+          "title": "Arbeitsbedingungen",
+          "none": "Keine Angaben."
+        },
+        "identity": {
+          "title": "Rechtliche Daten"
+        },
+        "contracts": {
+          "title": "Vertragsarten"
+        },
+        "references": {
+          "title": "Referenzen",
+          "none": "Keine Angaben."
+        },
+        "qualifications": {
+          "title": "Qualifikationen",
+          "none": "Keine Angaben."
+        },
+        "industries": {
+          "title": "Branchenpräsenz",
+          "none": "Keine Angaben.",
+          "label": "Industrie"
+        },
+        "skills": {
+          "title": "Fähigkeiten",
+          "none": "Keine Angaben.",
+          "skill_name": "Skill Name"
+        },
+        "work-preference": {
+          "title": "Arbeitspräferenz",
+          "none": "Keine Angaben."
+        },
+        "address": {
+          "title": "Adresse",
+          "area": "(+ {{areaRadius}} km)"
+        },
+        "secondary-address": {
+          "title": "Zweiter Wohnsitz"
+        },
+        "documents": {
+          "title": "Dokumente",
+          "table": {
+            "documents": "Dateityp",
+            "name": "Name",
+            "size": "Grösse",
+            "type": "Dokumenttyp",
+            "empty": "",
+            "no-records": "Keine Dokumente vorhanden.",
+            "view": "View"
+          },
+          "type": {
+            "signed-terms-and-conditions": "Unterschriebene AGB",
+            "trade-licence": "Gewerbeschein",
+            "questionnaire": "Fragebogen",
+            "work-permit": "Arbeitserlaubnis",
+            "upload-bank-photo": "Bankfoto hochladen",
+            "evidence": "Nachweis",
+            "picture-documentation": "Fotodokumentation",
+            "signed-attachment": "Unterschriebene Anlage"
+          }
+        },
+        "certificates": {
+          "title": "Zertifikate",
+          "table": {
+            "certificate": "Zertifikate",
+            "passedAt": "Erhalten am",
+            "no-records": "Keine Zertifikate"
+          }
+        },
+        "gtcs": {
+          "title": "AGBs"
+        }
+      },
+      "create": {
+        "title": "Neuen Benutzer anlegen"
+      },
+      "disable": {
+        "button": "Sperren",
+        "title": "Benutzer sperren",
+        "message": "Bist du sicher, dass du den Benutzer <b>{{fullname}}</b> sperren möchtest?",
+        "fieldLabel": "Grund",
+        "placeholder": "Dieser Kommentar ist für den Nutzer sichtbar!",
+        "info": "Benutzer gesperrt."
+      },
+      "enable": {
+        "button": "Entsperren",
+        "title": "Benutzer entsperren",
+        "message": "Bist du sicher, dass du den Benutzer <b>{{fullname}}</b> entsperren möchtest?"
+      },
+      "deactivate": {
+        "button": "Deaktivieren",
+        "title": "Benutzer deaktivieren",
+        "message": "Bist du sicher, dass du den Benutzer <b>{{fullname}}</b> deaktivieren möchtest?",
+        "fieldLabel": "Grund",
+        "placeholder": "Dieser Kommentar ist für den Nutzer sichtbar!"
+      },
+      "reactivate": {
+        "button": "Reaktivieren",
+        "title": "Benutzer reaktivieren",
+        "message": "Bist du sicher, dass du den Benutzer <b>{{fullname}}</b> reaktivieren möchtest?"
+      },
+      "disabled-info": "Benutzer gesperrt.",
+      "deactivated-info": "Benutzer deaktiviert."
+    },
+    "clients": {
+      "title": "Kunden",
+      "table": {
+        "name": "Kunde",
+        "id": "Kundennummer",
+        "phone": "Telefonnummer",
+        "email": "E-Mail",
+        "partner": "Ansprechpartner",
+        "position": "Position",
+        "search-placeholder": "Nach Kundenname suchen (mind. 3 Zeichen)",
+        "filter": {
+          "parent": "Zugeordnet zu"
+        },
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "partnerName": "Partner",
+        "partnerEmail": "E-mail",
+        "client": "Client",
+        "remove": {
+          "title": "Kunde löschen?",
+          "message": "Der Kunde <b>{{name}}</b> kann nicht wieder hergestellt werden."
+        }
+      }
+    },
+    "client": {
+      "title": {
+        "details": "Kundendetails",
+        "new": "Neuer Kunde",
+        "edit": "Kunden bearbeiten"
+      },
+      "section": {
+        "contact": "Kontakt",
+        "contacts": "Ansprechpartner",
+        "custom-properties": "Kundenspezifische Eigenschaften",
+        "freelancer-ratings": "Bewertungskriterien",
+        "saleslots": "Produkte",
+        "teaminfo": "Informationen zu Team und Schicht",
+        "taskinfo": "ROLLEN UND AUFGABEN",
+        "basicinfo": "Grundinformation",
+        "otherinfo": "Andere Informationen",
+        "additionalinfo": "zusätzliche Information"
+      },
+      "buttons": {
+        "create": "Neuen Kunden anlegen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "back": "Zurück zur Übersicht",
+        "save": "Speichern",
+        "update": "Änderungen speichern",
+        "add-contact": "Neuen Ansprechpartner hinzufügen",
+        "save-contact": "Ansprechpartner speichern",
+        "delete-contact": "Ansprechpartner löschen",
+        "add-property": "Neue Eigenschaft hinzufügen",
+        "delete-property": "Eigenschaft löschen",
+        "add-criteria": "Neues Bewertungskriterium hinzufügen",
+        "delete-criteria": "Bewertungskriterium löschen",
+        "add-slot": "Neues Produkt hinzufügen",
+        "delete-slot": "Produkt löschen",
+        "save-slot": "Produkt speichern",
+        "cancel-slot": "Verwerfen"
+      },
+      "fields": {
+        "name": {
+          "label": "Kundenname",
+          "placeholder": ""
+        },
+        "clientid": {
+          "label": "Kundennummer"
+        },
+        "debitorid": {
+          "label": "Debitor-Id",
+          "placeholder": ""
+        },
+        "address": {
+          "label": "Straße und Hausnummer",
+          "placeholder": ""
+        },
+        "addressaddition": {
+          "label": "Addresszusatz",
+          "placeholder": ""
+        },
+        "zip": {
+          "label": "Postleitzahl",
+          "placeholder": ""
+        },
+        "city": {
+          "label": "Stadt",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Land",
+          "placeholder": ""
+        },
+        "phone": {
+          "label": "Telefonnummer",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": ""
+        },
+        "client-user": {
+          "label": "Mit Kundenzugang"
+        },
+        "field-user": {
+          "label": "Mit Außendienstzugang"
+        },
+        "no-user": {
+          "label": "Kein Zugang"
+        },
+        "custom-properties": {
+          "placeholder": "z.B. Theke, FUP",
+          "empty-list": "Keine Eigenschaften angegeben."
+        },
+        "parent": {
+          "label": "Zugeordnet zu"
+        },
+        "children": {
+          "label": "Zugeordnet zu",
+          "hint": "Dieser Kunde ist {{count}} Kunden übergeordnet."
+        },
+        "freelancer-ratings": {
+          "placeholder": "z.B. Pünktlichkeit",
+          "empty-list": "Keine Bewertungskriterien angegeben."
+        },
+        "saleslots": {
+          "table": {
+            "name": "Produktname",
+            "price": "Preis in €",
+            "formattedPrice": "Preis",
+            "description": "Kommentar",
+            "actions": {
+              "edit": "Bearbeiten",
+              "remove": "Löschen"
+            },
+            "remove": {
+              "title": "Produkt löschen",
+              "message": "Möchtest du dieses Produkt wirklich löschen?"
+            }
+          },
+          "name": {
+            "placeholder": "",
+            "label": "Produktname"
+          },
+          "price": {
+            "label": "Preis in €"
+          },
+          "description": {
+            "placeholder": "...",
+            "label": "Kommentar"
+          },
+          "update-hint": "Die Produktliste wurde aktualisiert. Bitte vergiss nicht, die Änderungen zu speichern!"
+        },
+        "teaminfo": {
+          "table": {
+            "name": "Name",
+            "checkin_location": "Check-in-Standort",
+            "role": "Rolle",
+            "staff_count": "Mitarbeiterzahl",
+            "rate": "Rate",
+            "rate_type": "Tarifart",
+            "shift_name": "Schichtname",
+            "shift_start_time": "Schichtstartzeit",
+            "shift_end_time": "Schichtbeginn Ende",
+            "break_durtion": "Pausenzeit (Min.)",
+            "actions": {
+              "edit": "Bearbeiten",
+              "remove": "Löschen"
+            },
+            "remove": {
+              "title": "Team löschen",
+              "message": "DMöchten Sie dieses Team wirklich löschen?"
+            }
+          },
+          "name": {
+            "placeholder": "",
+            "label": "Name"
+          },
+          "checkin_location": {
+            "placeholder": "",
+            "label": "Check-In-Standort"
+          },
+          "role": {
+            "placeholder": "",
+            "label": "Rolle"
+          },
+          "staff_count": {
+            "placeholder": "",
+            "label": "Mitarbeiterzahl"
+          },
+          "rate": {
+            "placeholder": "",
+            "label": "Rate"
+          },
+          "rate-type": {
+            "placeholder": "",
+            "label": "Tarifart"
+          },
+          "shift_name": {
+            "placeholder": "",
+            "label": "Schichtname"
+          },
+          "shift_start_time": {
+            "placeholder": "",
+            "label": "Startzeit"
+          },
+          "shift_end_time": {
+            "placeholder": "",
+            "label": "Endzeit"
+          },
+          "break_durtion": {
+            "placeholder": "",
+            "label": "Pausenzeit (Min.)"
+          },
+          "shift_durtion": {
+            "placeholder": "",
+            "label": "Schichtdauer"
+          },
+          "update-hint": "Die Produktliste wurde aktualisiert. Bitte vergessen Sie nicht, die Änderungen zu speichern!!"
+        },
+        "taskinfo": {
+          "table": {
+            "task_name": "Aufgabennname",
+            "role": "Rolle",
+            "shift": "Schicht",
+            "type": "Typ",
+            "remarks": "Bemerkungen",
+            "files": "Dateien",
+            "actions": {
+              "edit": "Bearbeiten",
+              "remove": "Löschen"
+            },
+            "remove": {
+              "title": "Team löschen",
+              "message": "Möchten Sie dieses Team wirklich löschen?"
+            }
+          },
+          "task_name": {
+            "placeholder": "",
+            "label": "Aufgabennname"
+          },
+          "role": {
+            "placeholder": "",
+            "label": "Rolle"
+          },
+          "shift": {
+            "placeholder": "",
+            "label": "Schicht"
+          },
+          "type": {
+            "placeholder": "",
+            "label": "Typ"
+          },
+          "remarks": {
+            "placeholder": "",
+            "label": "Bemerkungen"
+          },
+          "files": {
+            "placeholder": "",
+            "label": "Dateien"
+          },
+          "update-hint": "Die Produktliste wurde aktualisiert. Bitte vergessen Sie nicht, die Änderungen zu speichern!"
+        }
+      },
+      "contacts": {
+        "table": {
+          "displayName": "Name",
+          "parent": "Zugeordnet zu",
+          "phone": "Telefonnummer",
+          "email": "E-Mail",
+          "position": "Position",
+          "department": "Abteilung",
+          "role": "Zugang",
+          "actions": {
+            "edit": "Bearbeiten",
+            "details": "Details",
+            "remove": "Löschen"
+          },
+          "remove": {
+            "title": "Kontakt löschen?",
+            "message": "Möchtest Du den Kontakt wirklich löschen?"
+          }
+        }
+      }
+    },
+    "contacts": {
+      "title": "Kontakte",
+      "vcard": {
+        "email": "E-Mail:",
+        "phone": "Telefon:",
+        "fax": "Fax:",
+        "site": "Einsatzort (POS)",
+        "client": "Kunde"
+      },
+      "filters": {
+        "sites": "Einsatzort (POS)",
+        "clients": "Kundenname"
+      },
+      "fields": {
+        "search": {
+          "placeholder": "Name oder Telefonnummer",
+          "hint": "mind. 3 Zeichen"
+        },
+        "categories": {
+          "clients": "Kunden",
+          "site": "POS"
+        }
+      },
+      "fullname": "Name",
+      "position": "Position",
+      "department": "Abteilung",
+      "email": "E-Mail",
+      "phone": "Telefon"
+    },
+    "contact": {
+      "buttons": {
+        "add-contact": "Neuen Ansprechpartner hinzufügen",
+        "delete-contact": "Ansprechpartner löschen"
+      },
+      "fields": {
+        "salutation": {
+          "label": "Anrede",
+          "": "Wählen",
+          "F": "Frau",
+          "M": "Herr"
+        },
+        "parent": {
+          "label": "Zugeordnet zu",
+          "placeholder": ""
+        },
+        "firstname": {
+          "label": "Vorname",
+          "placeholder": ""
+        },
+        "lastname": {
+          "label": "Nachname",
+          "placeholder": ""
+        },
+        "address": {
+          "label": "Straße und Hausnummer",
+          "placeholder": ""
+        },
+        "addressaddition": {
+          "label": "Addresszusatz",
+          "placeholder": ""
+        },
+        "zip": {
+          "label": "Postleitzahl",
+          "placeholder": ""
+        },
+        "city": {
+          "label": "Stadt",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Land",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": ""
+        },
+        "phone": {
+          "label": "Telefonnummer",
+          "placeholder": ""
+        },
+        "position": {
+          "label": "Position",
+          "placeholder": ""
+        },
+        "department": {
+          "label": "Abteilung",
+          "placeholder": ""
+        },
+        "data": {
+          "label": "Weitere Informationen",
+          "placeholder": ""
+        }
+      }
+    },
+    "sites": {
+      "title": {
+        "list": "Einsatzorte (POS)"
+      },
+      "table": {
+        "name": "POS Name",
+        "number": "POS Nummer",
+        "fulladdress": "Adresse",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "fax": "Faxnummer",
+        "group": "Gruppe",
+        "categoryName": "Kategory",
+        "id": "ID",
+        "contactSalutation": "Ansprechpartner: Anrede",
+        "contactFullname": "Ansprechpartner: Name",
+        "contactPosition": "Ansprechpartner: Position",
+        "contactDepartment": "Ansprechpartner: Abteilung",
+        "contactEmail": "Ansprechpartner: E-Mail",
+        "contactPhone": "Ansprechpartner: Telefonnummer",
+        "contactData": "Ansprechpartner: Weitere Informationen",
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "remove": {
+          "title": "POS löschen",
+          "message": "Möchtest du den Einsatzort wirklich löschen?"
+        }
+      },
+      "buttons": {
+        "create": "Einsatzort (POS) anlegen"
+      },
+      "filters": {
+        "postcodes": "Postleitzahl des Einsatzortes"
+      },
+      "search-placeholder": "Name, Nummer oder Adresse"
+    },
+    "site": {
+      "title": {
+        "new": "Neuer Einsatzort (POS)",
+        "details": "Einsatzort (POS)",
+        "edit": "Einsatzort (POS) bearbeiten"
+      },
+      "section": {
+        "contact": "Ansprechpartner",
+        "client-contact": "Außendienste",
+        "tender-preset": "Standardeinstellungen für Ausschreibungen"
+      },
+      "buttons": {
+        "create": "Neuen POS anlegen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "back": "Zurück zur Übersicht",
+        "update": "Änderungen speichern",
+        "add-contact": "Ansprechpartner hinzufügen",
+        "delete-contact": "Ansprechpartner löschen"
+      },
+      "fields": {
+        "name": {
+          "label": "POS Name",
+          "placeholder": ""
+        },
+        "number": {
+          "label": "POS Nummer",
+          "placeholder": ""
+        },
+        "group": {
+          "label": "Gruppe",
+          "placeholder": ""
+        },
+        "category": {
+          "label": "Kategorie",
+          "none": "Keine",
+          "head-quarter": "Zentrale",
+          "office": "Zweigstelle"
+        },
+        "address": {
+          "label": "Straße und Hausnummer",
+          "placeholder": ""
+        },
+        "addressaddition": {
+          "label": "Addresszusatz",
+          "placeholder": ""
+        },
+        "zip": {
+          "label": "Postleitzahl",
+          "placeholder": ""
+        },
+        "city": {
+          "label": "Stadt",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Land",
+          "placeholder": ""
+        },
+        "phone": {
+          "label": "Telefonnummer",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": ""
+        },
+        "fax": {
+          "label": "Fax",
+          "placeholder": ""
+        }
+      }
+    },
+    "site-clients": {
+      "table": {
+        "name": "Kunde",
+        "contactName": "Außendienst",
+        "client_site_remarks": "Informationen",
+        "client_site_data": "JSON-Daten",
+        "contactSalutation": "Anrede",
+        "contactPosition": "Position",
+        "contactDepartment": "Abteilung",
+        "contactEmail": "E-Mail",
+        "contactPhone": "Telefonnummer",
+        "remove": {
+          "title": "Außendienst löschen",
+          "message": "Willst du diesen Außendienst wirklich löschen?"
+        },
+        "actions": {
+          "edit": "Bearbeiten",
+          "remove": "Entfernen"
+        }
+      },
+      "buttons": {
+        "add": "Außendienst hinzufügen"
+      }
+    },
+    "site-client": {
+      "fields": {
+        "client": {
+          "label": "Kunde",
+          "placeholder": "Kunde wählen"
+        },
+        "contact": {
+          "label": "Außendienst-Ansprechpartner",
+          "placeholder": "Außendienst wählen"
+        },
+        "description": {
+          "label": "Weitere Informationen",
+          "placeholder": ""
+        },
+        "data": {
+          "label": "Daten im JSON-Format",
+          "placeholder": ""
+        }
+      },
+      "buttons": {
+        "update": "Änderungen speichern",
+        "save": "Speichern",
+        "abort": "Abbrechen"
+      }
+    },
+    "orders": {
+      "title": "Aufträge",
+      "state": {
+        "active": "Aktiv",
+        "draft": "Entwurf",
+        "closed": "Geschlossen",
+        "undefined": "Nicht definiert"
+      },
+      "budget-default-name": "Default",
+      "budgets": {
+        "list": "Budgets, die zu diesem Auftrag gehören"
+      },
+      "details": {
+        "title": {
+          "new": "Neuer Auftrag",
+          "details": "Auftragsdetails",
+          "edit": "Auftrag bearbeiten"
+        },
+        "budget": "Budgetdetails",
+        "buttons": {
+          "create": "Auftrag anlegen",
+          "update": "Änderungen speichern",
+          "cancel": "Abbrechen",
+          "edit": "Bearbeiten",
+          "back": "Zurück zur Übersicht"
+        }
+      },
+      "create": {
+        "title": "Neuer Auftrag"
+      },
+      "fields": {
+        "name": {
+          "label": "Auftragsname",
+          "placeholder": "Auftragsname"
+        },
+        "number": {
+          "label": "PO-Nummer",
+          "placeholder": "PO-Nummer"
+        },
+        "client": {
+          "label": "Kunde",
+          "placeholder": "Kundenname"
+        },
+        "state": {
+          "label": "Status",
+          "active": "Aktiv",
+          "draft": "Entwurf",
+          "closed": "Geschlossen",
+          "": "Bitte wählen"
+        },
+        "date": {
+          "label": "Auftragsdatum"
+        },
+        "budget": {
+          "label": "Basis-Budget",
+          "select-label": "{{name}} - Gesamt: {{formattedValue}}",
+          "no-budget": "Kein Budget",
+          "create-budget": "Neues Budget erstellen",
+          "remarks": {
+            "label": "Budget-Hinweis",
+            "placeholder": ""
+          },
+          "value": {
+            "label": "Gesamtbudget",
+            "placeholder": ""
+          }
+        },
+        "assignments": {
+          "label": "Menge der Einsätze",
+          "placeholder": ""
+        },
+        "assignment-budget": {
+          "label": "Budget pro Einsatz",
+          "placeholder": "Budget pro Einsatz"
+        },
+        "remarks": {
+          "label": "Weitere Kundenwünsche",
+          "placeholder": "Weitere Kundenwünsche"
+        },
+        "custom-properties": {
+          "label": "Kundenspezifische Eigenschaften"
+        }
+      },
+      "table": {
+        "name": "Auftragsname",
+        "stateName": "Status",
+        "clientName": "Kunde",
+        "orderedAt": "Auftragsdatum",
+        "search-placeholder": "Nach Auftragsname suchen (mind. 3 Zeichen)",
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "remove": {
+          "title": "Auftrag löschen?",
+          "message": "Der Auftrag <b>{{name}}</b> kann nicht wieder hergestellt werden."
+        }
+      },
+      "buttons": {
+        "create": "Neuen Auftrag anlegen",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "save": "Speichern",
+        "update": "Änderungen speichern"
+      }
+    },
+    "freelancers": {
+      "title": {
+        "list": "Überblick über alle Mitarbeiter"
+      },
+      "search-placeholder": "Name, Stadt oder E-Mail-Adresse",
+      "entrance": "Eingangsdatum {{createdAt}}",
+      "created_at": " {{createdAt}}",
+      "last-action": "Zuletzt aktiv: {{lastAction}}",
+      "assignments": "Anzahl der Einsätze",
+      "address-unavailable": "Unbekannt",
+      "filters": {
+        "postcodes": "Postleitzahlbereich",
+        "status": "Status",
+        "certificates": "Zertifikate",
+        "freelancer_rating": "Interne Bewertung",
+        "assignment_rating": "Einsatzbewertung",
+        "project": "Projekt",
+        "contractType": "Vertragstyp"
+      },
+      "table": {
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "remove": {
+          "title": "Fachberater löschen",
+          "message": "Bist du sicher, dass du den Fachberater löschen möchtest?"
+        },
+        "id": "ID",
+        "e-mail": "Email",
+        "mobilenum": "Mobil",
+        "postcode": "Postleitzahl",
+        "receiptdate": "Eingangsdatum",
+        "status": "Status",
+        "firstname": "Vorname",
+        "lastname": "Nachname",
+        "fullname": "Name",
+        "gender": "Geschlecht",
+        "nationality": "Staatsangehörigkeit",
+        "birthdate": "Geburtsdatum",
+        "profession": "Berufsstand",
+        "mobile": "Telefon (mobil)",
+        "alternative_phone": "Telefon",
+        "email": "E-Mail-Adresse",
+        "address": "Straße und Hausnummer",
+        "zip": "Postleitzahl",
+        "city": "Ort",
+        "height": "Größe",
+        "chest": "Brust",
+        "waist": "Taille",
+        "hip": "Hüfte",
+        "shirtsize": "T-Shirt",
+        "stateName": "Status",
+        "haircolor": "Haarfarbe"
+      },
+      "fields": {
+        "statuses": {
+          "active": "Aktiv",
+          "onboarding": "Onboarding",
+          "inactive": "Deaktiviert",
+          "pending": "Onboarding",
+          "not_registered": "Nicht registriert",
+          "unconfirmed": "Ausstehende Genehmigung",
+          "locked": "Gesperrt"
+        },
+        "assignmentStates": {
+          "only_upcoming": "mit anstehenden Einsätzen"
+        }
+      },
+      "rating": {
+        "title": "Bewertungen",
+        "description": "Diese Bewertungen sind nur für den internen Gebrauch!",
+        "buttons": {
+          "add": "Bewertung abgeben",
+          "edit": "Bearbeiten",
+          "cancel": "Abbrechen",
+          "save": "Speichern",
+          "update": "Speichern"
+        }
+      },
+      "onboarding-profile": {
+        "title": "{fullname, select, 0{Unbekanntes Profil}  other{{fullname}}'s Profil}}",
+        "title-unknown": "Unbekanntes Profil",
+        "title-fullname": "{{fullname}}'s Profil",
+        "comment": "Anmerkung/Kommentar",
+        "buttons": {
+          "back": "Zurück zur Übersicht",
+          "approval": "Zum Onboarding-Antrag"
+        }
+      }
+    },
+    "rights": {
+      "title": "Rechte"
+    },
+    "incentives": {
+      "title": "Pauschalen & Skonto",
+      "table": {
+        "name": "Name",
+        "checkin": "Bei Anmeldung",
+        "sales_report": "Umsatzmeldung",
+        "picture_documentation": "Foto-Dokumentation",
+        "search-placeholder": "Nach Pauschalen und Skonti suchen (mind. 3 Zeichen)",
+        "actions": {
+          "details": "Details"
+        }
+      },
+      "details": {
+        "buttons": {
+          "edit": "Pauschalen bearbeiten",
+          "update": "Pauschalen aktualisieren",
+          "cancel": "Abbrechen",
+          "back": "Zurück zur Übersicht"
+        },
+        "title": {
+          "details": "Pauschalen & Skonto Details",
+          "edit": "Pauschalen & Skonto bearbeiten"
+        }
+      },
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": ""
+        },
+        "checkin": {
+          "label": "Bei Anmeldung",
+          "placeholder": ""
+        },
+        "sales_report": {
+          "label": "Umsatzmeldung",
+          "placeholder": ""
+        },
+        "picture_documentation": {
+          "label": "Foto-Dokumentation",
+          "placeholder": ""
+        }
+      }
+    },
+    "budgets": {
+      "delete-success": "Budget erfolgreich gelöscht",
+      "title": {
+        "list": "Budgets",
+        "details": "Budgetdetails",
+        "new": "Neues Budget",
+        "edit": "Budget bearbeiten"
+      },
+      "table": {
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "remove": {
+          "title": "Budget löschen?",
+          "message": "Das Budget <b>{{name}}</b> kann nicht wieder hergestellt werden."
+        },
+        "clientName": "Kunde",
+        "name": "Name",
+        "available": "Verfügbar",
+        "consumed": "Verbraucht",
+        "planned": "Geplant",
+        "value": "Gesamt",
+        "count_assignments": "Einsätze",
+        "count_orders": "Aufträge",
+        "creatorName": "Angelegt von",
+        "orderName": "Auftrag",
+        "orderedAt": "Auftragsdatum",
+        "filters": {
+          "client": "Kunde"
+        },
+        "buttons": {
+          "create": "Neues Budget"
+        }
+      },
+      "label": {
+        "available": "Verfügbar",
+        "value": "Gesamt",
+        "planned": "Geplant",
+        "consumed": "Verbraucht",
+        "count-assignments": "{{count_assignments}}{count_assignments, select, 1 { Einsatz}  other{ Einsätze}}",
+        "count-assignments-single": "{{count_assignments}} Einsatz",
+        "count-assignments-multiple": "{{count_assignments}} Einsätze",
+        "count-orders": "{{count_orders}}{count_orders, select, 1 { Auftrag}  other{ Aufträge}}",
+        "name": "Name",
+        "client": "Kunde",
+        "contacts": "Außendienst",
+        "remarks": "Hinweis",
+        "assignments": "Einsätze auf diesem Budget",
+        "record-value": "+/- Betrag",
+        "order": "Übergeordneter Auftrag zu diesem Budget",
+        "creatorName": "Angelegt von {{creatorName}}",
+        "budget": {
+          "create": "Budget aus dem dieses Budget erzeugt werden soll.",
+          "edit": "Budget aus dem dieses Budget erzeugt wurde."
+        },
+        "record-comment": "Kommentar"
+      },
+      "name-available": "{{name}} ({{available}})",
+      "states": {
+        "ok": "",
+        "warn": "",
+        "error": ""
+      },
+      "fields": {
+        "placeholder": {
+          "name": "",
+          "value": "",
+          "remarks": "",
+          "record-value": "+/- 100€",
+          "record-comment": ""
+        }
+      },
+      "description": {
+        "record-value": "Bitte gib hier den Differenzbetrag ein, um den das Budget erhöht oder verringert werden soll."
+      },
+      "buttons": {
+        "create": "Budget hinzufügen",
+        "create-record": "Neuen Betrag buchen",
+        "edit": "Bearbeiten",
+        "update": "Änderungen speichern",
+        "cancel": "Abbrechen",
+        "cancel-edit": "Abbrechen",
+        "back": "Zur Übersicht der Budgets",
+        "details": "Details"
+      },
+      "records": {
+        "title": "Einträge",
+        "table": {
+          "type": "Typ",
+          "identifier": "Aktion",
+          "formattedValue": "Wert",
+          "comment": "Kommentar",
+          "creatorName": "Angelegt von",
+          "sourceTitle": "Quelle",
+          "referenceTitle": "Referenz"
+        },
+        "recordReferenceTitle": "{{id}} ({{type}})"
+      },
+      "create-record": {
+        "title": "Betrag buchen?",
+        "message": "Möchtest Du den Betrag von <b>{{recordValue}}</b> € auf das Budget auf- bzw. abbuchen?"
+      },
+      "search-placeholder": "Nach Name suchen"
+    },
+    "budget-record": {
+      "title": {
+        "edit": "Budgetbetrag aktualisieren"
+      },
+      "buttons": {
+        "back": "Zur Übersicht der Budgets"
+      }
+    },
+    "certificates": {
+      "title": {
+        "list": "Zertifikate"
+      }
+    },
+    "gtcs": {
+      "title": "AGB Liste",
+      "table": {
+        "search-placeholder": "Nach AGB suchen (mind. 3 Zeichen)",
+        "identifier": "Kennung",
+        "publishedAt": "Veröffentlicht am",
+        "validAt": "Gültig ab",
+        "invalidAt": "Gültig bis",
+        "contractType": "Vertragstyp",
+        "actions": {
+          "edit": "Bearbeiten",
+          "download": "Herunterladen"
+        }
+      },
+      "fields": {
+        "identifier": {
+          "label": "Kennung",
+          "placeholder": "Kennung"
+        },
+        "publishedAt": {
+          "label": "Veröffentlicht am",
+          "placeholder": ""
+        },
+        "validAt": {
+          "label": "Gültig ab",
+          "placeholder": ""
+        },
+        "invalidAt": {
+          "label": "Gültig bis",
+          "placeholder": ""
+        },
+        "document": {
+          "label": "Dokument"
+        }
+      },
+      "edit": {
+        "title": {
+          "new": "AGB Erstellen",
+          "edit": "AGB Bearbeiten"
+        },
+        "buttons": {
+          "new": "AGB Erstellen",
+          "create": "AGB Erstellen",
+          "update": "AGB Aktualisieren",
+          "cancel": "Abbrechen"
+        }
+      },
+      "documents": {
+        "buttons": {
+          "add-attachment": "Neue Anlage hinzufügen",
+          "remove-attachment": "Anlage entfernen"
+        },
+        "fields": {
+          "docTypes": {
+            "label": "Typ des Dokuments",
+            "terms-and-conditions": "Rahmenvertrag",
+            "attachment": "Anlage zum Rahmenvertrag"
+          },
+          "name": {
+            "label": "Name des Dokuments",
+            "placeholder": ""
+          },
+          "description": {
+            "label": "Beschreibung",
+            "placeholder": "Kurze Beschreibung oder Erläuterung"
+          },
+          "confirmationTypes": {
+            "label": "Bestätigung",
+            "none": "Keine Bestätigung nötig",
+            "upload-signed": "Unterschrieben hochladen",
+            "checked": "Gelesen"
+          },
+          "reconfirmationTypes": {
+            "label": "Wiederbestätigung"
+          },
+          "reconfirmationIndexes": {
+            "label": "Wiederbestätigungsperiode",
+            "periodically": "periodisch",
+            "checkins-count": "Nach Anzahl von x Einsätzen"
+          },
+          "reconfirmationInterval": {
+            "label": "Wiederbestätigungsinterval",
+            "hint": {
+              "checkins-count": "Nach wievielen Arbeitseinsätzen (Fachberater hat sich eingecheckt) soll das Dokument wiederbestätigt werden?\nDie Zahl muß größer als der Warnungszeitraum von derzeit 5 Einsätzen sein.",
+              "periodically": "Bitte ein Datumsinterval eingeben (z.B xD = xTage oder xM = xMonate).\nDas Intervall muß größer als der Warnungszeitraum von derzeit 14 Tagen (14D) sein."
+            }
+          }
+        }
+      }
+    },
+    "logs": {
+      "title": "Logs",
+      "filters": {
+        "type": "Typ",
+        "agent": "Agent"
+      },
+      "search-placeholder": "Nach ReferenceID suchen",
+      "table": {
+        "message": "Details",
+        "performer_name": "Benutzer",
+        "createdAt": "Datum",
+        "referenceName": "Referenz"
+      },
+      "fields": {
+        "type": {
+          "BudgetCreatedEvent": "Budget erzeugt",
+          "OfferPlacedEvent": "Angebot erstellt",
+          "OfferDeclinedEvent": "Angebot abgelehnt",
+          "TenderDeclinedEvent": "Ausschreibung abgelehnt",
+          "FreelancerBookedEvent": "Fachberater gebucht",
+          "FreelancerUnbookedEvent": "Einsatz abgesagt",
+          "DataChangedEvent": "Datenänderung",
+          "TenderCreatedEvent": "Ausschreibung erzeugt",
+          "TenderClosedEvent": "Ausschreibung geschlossen",
+          "UserRequestProcessedEvent": "Benutzeranfrage angenommen",
+          "UserRequestDeclinedEvent": "Benutzeranfrage abgelehnt",
+          "CheckinUpdatedEvent": "Checkin aktualisiert",
+          "CheckinCreatedEvent": "Checkin erzeugt",
+          "InvoiceAcceptedEvent": "Rechnung akzeptiert",
+          "InvoiceRejectedEvent": "Rechnung abgelehnt",
+          "JobMessageCreatedEvent": "Frage zum Job erzeugt",
+          "TenderExpiredEvent": "Ausschreibung abgelaufen",
+          "UserDeletedEvent": "Benutzer gelöscht",
+          "FreelancerDeletedEvent": "Fachberater gelöscht"
+        }
+      }
+    },
+    "maillogs": {
+      "title": "Maillogs",
+      "filters": {
+        "freelancer": "Empfänger (Fachberater)",
+        "dates": "Einträge (von - bis)"
+      },
+      "table": {
+        "sentAt": "Datum",
+        "fromEmail": "Absender",
+        "toEmail": "Empfänger",
+        "subject": "Betreff",
+        "content": "Inhalt",
+        "downloadableContent": "Inhalt",
+        "is_sent": "Gesendet",
+        "reference": "Referenz"
+      },
+      "search-placeholder": "Betreff oder Inhalt"
+    },
+    "health-insurances": {
+      "title": {
+        "list": "Krankenversicherungen",
+        "new": "Neue Krankenversicherung",
+        "edit": "Krankeversicherung bearbeiten",
+        "details": "Krankenversicherungsdetails"
+      },
+      "buttons": {
+        "create": "Neue Krankenversicherung speichern",
+        "create-insurance": "Neue Versicherung",
+        "edit": "Bearbeiten",
+        "cancel": "Abbrechen",
+        "back": "Zurück zur Übersicht",
+        "update": "Speichern",
+        "remove": "Löschen"
+      },
+      "filters": {
+        "type": "Typ"
+      },
+      "search-placeholder": "Nach Name, externerID oder Beschreibung suchen",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "external_identifier": "Externe ID",
+        "insuranceType": "Typ",
+        "description": "Zusätzliche Informationen",
+        "actions": {
+          "details": "Details",
+          "remove": "Löschen"
+        },
+        "remove": {
+          "title": "Krankenversicherung löschen?",
+          "message": "Bist du sicher, dass du diese Krankenversicherung löschen möchtest?"
+        }
+      },
+      "fields": {
+        "types": {
+          "": "Wählen",
+          "statutory": "gesetzlich",
+          "private": "privat"
+        },
+        "name": {
+          "label": "Name der Krankenversicherung",
+          "placeholder": ""
+        },
+        "type": {
+          "label": "Typ"
+        },
+        "external-identifier": {
+          "label": "Externe ID",
+          "placeholder": "Eindeutige ID eines externen Systems, z.B. ADAG"
+        },
+        "description": {
+          "label": "Zusätzliche Informationen",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

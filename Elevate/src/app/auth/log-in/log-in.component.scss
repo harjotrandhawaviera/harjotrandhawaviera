@@ -1,0 +1,68 @@
+@import "variables";
+
+.login {
+  display: flex;
+  .slogan-container {
+    padding-right: 104px;
+    @media (max-width: 1180px) {
+      padding-right: 40px;
+    }
+    @media (max-width: $screen-md-max) {
+      padding-right: 0px;
+    }
+  }
+  .form-wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 340px;
+    transition-duration: 0.6s;
+    @media (max-width: $screen-md-max) {
+      width: 300px;
+    }
+    h3 {
+      text-transform: none;
+      font-weight: 600;
+      margin-bottom: 50px;
+    }
+    .form-body {
+      form {
+        .mat-form-field {
+          .error {
+            color: #f44336;
+          }
+        }
+        button {
+          margin: 15px 0;
+          line-height: 42px;
+        }
+        .warning-link-cont {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          margin: 15px 0;
+          span {
+            margin: 5px 0
+          }
+          a {
+            color: $link-color;
+            &:hover {
+              color: $p4y-color-chalky-dark
+            }
+          }
+          &.text-error {
+            color: $brand-danger;
+          }
+        }
+      }
+    }
+    .register-link {
+      display: flex;
+      margin: 15px 0 25px;
+      color: $link-color;
+      a {
+        margin-left: 5px;
+      }
+    }
+  }
+}

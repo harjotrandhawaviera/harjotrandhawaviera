@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="col-xs-12 padding-none">
+    <div class="row">
+      <h1 class="col-md-10 col-xs-12" translate="administration.gtcs.title"></h1>
+    <div class="col-md-2 col-xs-12">
+      <a
+        [routerLink]="['/administration/gtcs/create',]"
+        mat-flat-button
+        color="accent"
+      >{{ "administration.gtcs.edit.buttons.new" | translate }}
+      </a>
+    </div>
+    </div>
+  </div>
+  <div class="table-inner-wrapper col-xs">
+    <table
+      mat-table
+      class="search-table"
+      [dataSource]="FrameworkList"
+    >
+      <ng-container matColumnDef="identifier">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.gtcs.table.identifier" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{row.identifier}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="contractType">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.gtcs.table.contractType" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{row.ide}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="publishedAt">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.gtcs.table.publishedAt" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{row.register | date: 'MMM d, y , h:MM'}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="validAt">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.gtcs.table.validAt" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{row.value | date: 'MMM d, y ,h:MM' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="invalidAt">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.gtcs.table.invalidAt" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <span *ngIf="row.invalid">{{row.invalid}}</span>
+          <span *ngIf="!row.invalid">-</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row" class="action">
+          <button
+            mat-icon-button
+            color="accent"
+            [matMenuTriggerFor]="subMenu"
+            (click)="$event.stopPropagation()"
+          >
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <mat-menu #subMenu="matMenu" xPosition="before">
+            <button mat-menu-item [routerLink]="['/administration/gtcs/edit',row.id]">
+              {{ "administration.gtcs.table.actions.edit" | translate }}
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns;"
+      ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="['/administration/gtcs/edit',row.id]"></tr>
+    </table>
+    <app-paginator
+      [disabled]="loading$ | async"
+      hidePageSize="true"
+      showFirstLastButtons="true"
+      [length]="paginator?.total"
+      [pageIndex]="paginator?.current_page - 1"
+      (page)="pageChange($event)"
+    ></app-paginator>
+  </div>
+</div>

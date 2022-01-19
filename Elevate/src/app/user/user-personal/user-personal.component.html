@@ -1,0 +1,111 @@
+<div class="form-group" [formGroup]="personalFormGroup">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="title" translate="user.titles.personal"></h3>
+    </div>
+    <div class="col-xs-12">
+      <mat-form-field>
+        <mat-label>{{
+          "profile.fields.salutation.label" | translate
+        }}</mat-label>
+        <mat-select formControlName="gender" name="gender">
+          <mat-option *ngFor="let option of salutationLK" [value]="option.value">
+            {{ "profile.fields.salutation." + option.value | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="displayMessage.title">{{
+          displayMessage.title
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <mat-label required>{{
+        "profile.fields.firstname.label" | translate
+      }}</mat-label>
+      <input
+        matInput
+        formControlName="firstname"
+        name="firstname"
+        placeholder="{{ 'profile.fields.firstname.placeholder' | translate }}"
+      />
+      <mat-error *ngIf="displayMessage.firstname">{{
+        displayMessage.firstname
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <mat-label required>{{
+        "profile.fields.lastname.label" | translate
+      }}</mat-label>
+      <input
+        matInput
+        formControlName="lastname"
+        name="lastname"
+        placeholder="{{ 'profile.fields.lastname.placeholder' | translate }}"
+      />
+      <mat-error *ngIf="displayMessage.lastname">{{
+        displayMessage.lastname
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <mat-label required>{{
+        "profile.fields.birthdate.label" | translate
+      }}</mat-label>
+      <input
+        matInput
+        [matDatepicker]="birthdatePicker"
+        formControlName="birthdate"
+        name="birthdate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="birthdatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #birthdatePicker></mat-datepicker>
+      <mat-error *ngIf="displayMessage.birthdate">{{
+        displayMessage.birthdate
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-6">
+      <mat-label required>{{
+        "profile.fields.mobile.label" | translate
+      }}</mat-label>
+      <input
+        matInput
+        formControlName="mobile"
+        name="mobile"
+        placeholder="{{ 'profile.fields.mobile.placeholder' | translate }}"
+      />
+      <mat-error *ngIf="displayMessage.mobile">{{
+        displayMessage.mobile
+      }}</mat-error>
+    </mat-form-field>
+    <!-- <div class="form-group col-xs-4">
+      <label
+        translate="profile.fields.birthdate.label"
+        for="birthdate"
+        data-required
+      ></label>
+      <input
+        type="text"
+        class="form-control"
+        id="birthdate"
+        required
+        data-ng-model="personal.data.birthdate"
+        data-dateformat
+        data-validate-age="18"
+      />
+    </div>
+    <div class="form-group col-md-4">
+      <label for="phone" translate="profile.fields.mobile.label"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="phone"
+        data-validate-phonenumber
+        data-ng-model="personal.data.mobile"
+      />
+    </div> -->
+  </div>
+</div>

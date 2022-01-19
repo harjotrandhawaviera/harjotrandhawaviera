@@ -1,0 +1,76 @@
+<div
+  class="row"
+  *ngIf="inFormGroup"
+  [formGroup]="inFormGroup"
+  style="margin-bottom: 20px"
+>
+<div class="col-xs-12 col-sm-3">
+  <mat-form-field class="full-width">
+    <mat-label required>{{
+      "form.field.business.license-name.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      formControlName="id_name"
+      name="id_name"
+      (blur)="onIdentityCardFieldChange()"
+    />
+    <mat-error *ngIf="displayMessage.id_name">{{
+      displayMessage.id_name
+    }}</mat-error>
+  </mat-form-field>
+</div>
+<div class="col-xs-12 col-sm-3">
+  <mat-form-field class="full-width">
+    <mat-label required>{{
+      "form.field.business.license-id.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      formControlName="id_number"
+      name="id_number"
+      (blur)="onIdentityCardFieldChange()"
+    />
+    <mat-error *ngIf="displayMessage.id_number">{{
+      displayMessage.id_number
+    }}</mat-error>
+  </mat-form-field>
+</div>
+<div class="col-xs-12 col-sm-2">
+  <mat-form-field class="full-width">
+    <mat-label>{{
+      "form.field.business.expiryDate.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      [matDatepicker]="idcard_invalid_atPicker"
+      formControlName="expiry_date"
+      name="expiry_date"
+      (click)="idcard_invalid_atPicker.open()"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="idcard_invalid_atPicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #idcard_invalid_atPicker></mat-datepicker>
+    <mat-error *ngIf="displayMessage.idcard_invalid_at">{{
+      displayMessage.idcard_invalid_at
+    }}</mat-error>
+  </mat-form-field>
+</div>
+<div class="col-xs-12 col-sm-3 identycard">
+  <app-profile-document formControlName="document" (documentUpdated)="onDocumentUpload($event)" [buttonText]="'profile.fields.skills.document.label' | translate">
+  </app-profile-document>
+</div>
+<div class="col-xs-12 col-sm-1 legal-action-button">
+  <i class="fas fa-plus" (click)="addNewIdentity()"></i>
+  <i class="fas fa-minus" (click)="removeIdentity($event)"></i>
+  <i class="fas fa-file-download" *ngIf="document && document.value && document?.value.url"
+  (click)="downloadDocument(document.value)" mat-icon-button></i>
+</div>
+<div class="col-xs-12 padding-none">
+    <app-profile-document formControlName="document" *ngIf="onDocumentClick" [onDocumentClick]=true (documentUpdated)="onDocumentUpload($event)" [buttonText]="'buttons.upload-document' | translate">
+  </app-profile-document>
+</div>
+
+</div>

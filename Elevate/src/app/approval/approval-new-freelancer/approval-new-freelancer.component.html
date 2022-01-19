@@ -1,0 +1,185 @@
+<app-search-container>
+  <app-search-panel>
+    <form [formGroup]="Form">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.freelancers.filters.contractType" | translate
+              }}</mat-label>
+            <app-static-auto-complete
+              #contractType
+              [clearSelection]="true"
+              formControlName="contractType"
+              [options]="contractTypeLK"
+            >
+            </app-static-auto-complete>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!contractType.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="contractType.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.freelancers.filters.postcodes" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ "ui.filter.range.min" | translate }}</mat-label>
+            <input matInput formControlName="postcodesMin" type="text" />
+          </mat-form-field>
+        </div>
+        <div class="col-xs-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ "ui.filter.range.max" | translate }}</mat-label>
+            <input matInput formControlName="postcodesMax" type="text" />
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.freelancers.search-placeholder" | translate
+              }}</mat-label>
+            <input matInput formControlName="search" type="search" />
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "ui.side-option-menu.placeholder" | translate
+              }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="container-fluid">
+      <div class="row between-xs">
+        <div class="col-xs">
+          <h1>
+            {{'approval.freelancer-approval.admin-header' | translate}}
+          </h1>
+        </div>
+        <div class="end-xs add_freelancer">
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="open()"
+          >
+            {{'approval.freelancer-approval.buttons.new' | translate}}</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs table-wrapper">
+          <div class="table-inner-wrapper">
+            <table
+              mat-table
+              class="search-table"
+              [dataSource]="userList"
+            >
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "approval.freelancer-approval.table.email" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.email}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "approval.freelancer-approval.table.fullname" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <img class="avatar" appImageAvatar [imageId]="row?.avatarId" />
+                  {{row.fullname}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "approval.freelancer-approval.table.city" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.city}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="zip">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "approval.freelancer-approval.table.zip" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.zip}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ "approval.freelancer-approval.table.submissionDate" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.created_at | date:'mediumDate'}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="button">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row" class="action">
+                  <button *ngIf="row.ready_for_active === 1" mat-flat-button
+                          color="primary"
+                          (click)="send(row); $event.stopPropagation()"
+                          translate="approval.list.actions.verify_email">
+                  </button>
+                  <button *ngIf="!row.ready_for_active" mat-flat-button disabled
+                          color="primary"
+                          translate="approval.list.actions.verify_email">
+                  </button>
+                  <button *ngIf="row.ready_for_active === 2" mat-flat-button
+                          color="primary"
+                          translate="approval.list.actions.resend">
+                  </button>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row" class="action">
+                  <button
+                    mat-icon-button
+                    color="accent"
+                    [matMenuTriggerFor]="subMenu"
+                    (click)="$event.stopPropagation()"
+                  >
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <mat-menu #subMenu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="navigateToDetail(row)">
+                      {{ "approval.freelancer-approval.table.actions.detail" | translate }}
+                    </button>
+                  </mat-menu>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetail(row)"></tr>
+            </table>
+          </div>
+          <app-paginator
+            [length]="pagination?.total"
+            [pageIndex]="pagination?.current_page - 1"
+            [pageSize]="pagination?.per_page"
+            (page)="pageChange($event)"
+          ></app-paginator>
+        </div>
+      </div>
+    </div>
+
+  </app-search-list>
+</app-search-container>

@@ -1,0 +1,111 @@
+<div class="container-fluid" *ngIf="order">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/administration/orders']">{{
+        "administration.orders.details.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12">
+      <h1 translate="administration.orders.details.title.details"></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs">
+      <a
+        mat-flat-button
+        color="accent"
+        [routerLink]="['/administration/orders/edit', orderId]"
+        [skipLocationChange]="true"
+        >{{ "administration.orders.buttons.edit" | translate }}
+      </a>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <fieldset class="readonly">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label
+              translate="administration.orders.fields.client.label"
+            ></label>
+            <p>{{ order.clientName }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label translate="administration.orders.fields.name.label"></label>
+            <p>{{ order.name }}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label
+              translate="administration.orders.fields.number.label"
+            ></label>
+            <p>{{ order.number }}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label translate="administration.orders.fields.date.label"></label>
+            <p>{{ order.ordered_at | date: 'mediumDate' }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-8">
+            <label
+              translate="administration.orders.fields.budget.label"
+            ></label>
+            <p *ngIf="order.budget" [translate]="'administration.orders.fields.budget.select-label'" [translateParams]="{
+              name: order.budget.name, formattedValue: order.budget.formattedValue
+            }">
+            </p>
+            <p *ngIf="!order.budget">
+              {{ "---" }}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label
+              translate="administration.orders.fields.assignments.label"
+            ></label>
+            <p>{{ order.required_assignments }}</p>
+          </div>
+          <div class="form-group col-md-3">
+            <label
+              translate="administration.orders.fields.assignment-budget.label"
+            ></label>
+            <p>{{ order.assignment_budget | currency }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-9">
+            <label
+              translate="administration.orders.fields.remarks.label"
+            ></label>
+            <p>{{ order.remarks }}</p>
+          </div>
+        </div>
+        <div *ngIf="order.data">
+          <div
+            data-custom-properties-values="order.data"
+            data-properties="order.customProperties"
+            data-view="readonly"
+            data-context="client"
+          ></div>
+          <div class="row">
+            <div class="col-xs">
+              <label>
+                {{'administration.orders.fields.custom-properties.label' | translate}}
+              </label>
+            </div>
+          </div>
+          <div class="row" *ngFor="let property of custom_properties">
+            <div class="form-group col-xs-12 col-sm-6">
+              <label data-ng-bind="key" data-ng-class="{highlight: customProperties.clientProperties.includes(key)}">
+                {{property}}
+              </label>
+              <p>
+                {{order.data[property] || '---'}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="orderId" app-admin-order-budgets [orderId]="orderId"></div>
+      </fieldset>
+    </div>
+  </div>
+</div>

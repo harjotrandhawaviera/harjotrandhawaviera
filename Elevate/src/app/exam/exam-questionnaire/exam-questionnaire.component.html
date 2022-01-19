@@ -1,0 +1,36 @@
+<div class="questionnaire" *ngIf="exam">
+  <div class="intro">{{ exam.description }}</div>
+
+  <div
+    app-exam-carousel
+    [isPrevDisabled]="isPrevDisabled"
+    [isActiveSummaryBtn]="isActiveSummaryBtn"
+    (prev)="prev.emit()"
+    (next)="next.emit()"
+    (showSummary)="showSummary.emit()"
+  >
+    <div
+      *ngFor="let question of exam.questions; let index = index"
+      app-exam-slide
+    >
+      <div *ngIf="activeQuestion === index">
+        <div
+          class="question-counter"
+          [translate]="'exams.questionnaire.question'"
+          [translateParams]="{
+            index: index + 1,
+            questions: exam.questions && exam.questions.length
+          }"
+        >
+        </div>
+        <div class="question">{{ question.question }}</div>
+        <div
+          app-exam-answers
+          [answers]="question.answers ? question.answers : []"
+          [selection]="selection"
+          (toggleAnswer)="toggleAnswer.emit($event)"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

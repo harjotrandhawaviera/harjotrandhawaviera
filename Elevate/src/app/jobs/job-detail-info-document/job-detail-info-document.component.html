@@ -1,0 +1,131 @@
+<fieldset *ngIf="job">
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <label required translate="projects.fields.description.label"></label>
+      <div class="content" [innerHtml]="job.description | newlines"></div>
+    </div>
+    <div class="form-group col-xs-12">
+      <label translate="projects.inherited.fields.information.label"></label>
+      <div class="content" [innerHtml]="job.information | newlines"></div>
+    </div>
+    <div class="form-group col-xs-12">
+      <label translate="projects.inherited.fields.briefing.label"></label>
+      <div class="content" [innerHtml]="job.briefing | newlines"></div>
+    </div>
+  </div>
+
+  <!-- Briefing Documents -->
+  <div class="doc-cont">
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label translate="projects.inherited.fields.document.briefing.label"></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" *ngIf="job.documents && job.documents.length">
+        <div class="header" translate="projects.fields.document.label"></div>
+      </div>
+      <div class="col-xs-12 start-xs" *ngFor="let document of job.documents; let i = index">
+        <div class="row document" *ngIf="document.type === 'briefing'">
+          <div class="name col-sm-4 col-xs-12">
+            <a (click)="download(document)">
+              <div class="filename">{{document.name}}</div>
+              (<span>{{document.size | fileSize }}</span>)
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field class="full-width" *ngIf="mode !== 'readonly'">
+              <mat-label>{{"projects.fields.document.description-placeholder" | translate}}</mat-label>
+              <input matInput [(ngModel)]="document.description" />
+            </mat-form-field>
+            <p class="" *ngIf="mode === 'readonly'">
+              {{ document.description }}
+            </p>
+          </div>
+          <div class="end-xs col-sm-2">
+            <button type="button" *ngIf="mode !== 'readonly' && document.id" mat-icon-button color="accent"
+              (click)="removeDocument(document.id)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Questionnaire Documents -->
+<!--  <div class="doc-cont">-->
+<!--    <div class="row">-->
+<!--      <div class="form-group col-xs-12">-->
+<!--        <label required translate="projects.inherited.fields.document.questionnaire.label"></label>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-xs-12" *ngIf="job.documents && job.documents.length">-->
+<!--        <div class="header" translate="projects.fields.document.label"></div>-->
+<!--      </div>-->
+<!--      <div class="col-xs-12 start-xs" *ngFor="let document of job.documents; let i = index">-->
+<!--        <div class="row document" *ngIf="document.type === 'template-questionnaire'">-->
+<!--          <div class="name col-sm-4">-->
+<!--            <a (click)="download(document)">-->
+<!--              <div class="filename">{{document.name}}</div>-->
+<!--              (<span>{{document.size | fileSize }}</span>)-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="col-sm-4">-->
+<!--            <mat-form-field class="full-width" *ngIf="mode !== 'readonly'">-->
+<!--              <mat-label>{{"projects.fields.document.description-placeholder" | translate}}</mat-label>-->
+<!--              <input matInput [(ngModel)]="document.description" />-->
+<!--            </mat-form-field>-->
+<!--            <p class="" *ngIf="mode === 'readonly'">-->
+<!--              {{ document.description }}-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div class="end-xs col-sm-2">-->
+<!--            <button type="button" *ngIf="mode !== 'readonly' && document.id" mat-icon-button color="accent"-->
+<!--              (click)="removeDocument(document.id)">-->
+<!--              <i class="far fa-trash-alt"></i>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <!-- Report Documents -->
+  <div class="doc-cont">
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label required translate="projects.inherited.fields.document.report.label"></label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" *ngIf="job.documents && job.documents.length">
+        <div class="header" data-translate-once="projects.fields.document.label">Name</div>
+      </div>
+      <div class="col-xs-12 start-xs" *ngFor="let document of job.documents; let i = index">
+        <div class="row document" *ngIf="document.type === 'template-report'">
+          <div class="name col-sm-4">
+            <a (click)="download(document)">
+              <div class="filename">{{document.name}}</div>
+              (<span>{{document.size | fileSize }}</span>)
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field class="full-width" *ngIf="mode !== 'readonly'">
+              <mat-label>{{"projects.fields.document.description-placeholder" | translate}}</mat-label>
+              <input matInput [(ngModel)]="document.description" />
+            </mat-form-field>
+            <p class="" *ngIf="mode === 'readonly'">
+              {{ document.description }}
+            </p>
+          </div>
+          <div class="end-xs col-sm-2">
+            <button type="button" *ngIf="mode !== 'readonly' && document.id" mat-icon-button color="accent"
+              (click)="removeDocument(document.id)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

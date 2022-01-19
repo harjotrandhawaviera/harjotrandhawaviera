@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 translate="administration.users.title.new"></h1>
+      <form [formGroup]="addUserForm" *ngIf="addUserForm" (ngSubmit)="saveUser()">
+        <div class="avatar-cont">
+          <img data-src="avatar.src" />
+        </div>
+        <div class="fields-cont">
+          <fieldset class="row">
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.users.fields.role.label' | translate }}</mat-label>
+              <mat-select formControlName="role" (selectionChange)="onRoleChange($event.value)">
+                <mat-option *ngFor="let option of availableRolesLK" [value]="option.value">
+                  {{ option.text }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="displayMessage.role">{{displayMessage.role}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.users.fields.email.label' | translate }}</mat-label>
+              <input matInput formControlName="email" name="email">
+              <mat-error *ngIf="displayMessage.email">{{displayMessage.email}}</mat-error>
+            </mat-form-field>
+          </fieldset>
+          <fieldset class="row">
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.users.fields.salutation.label' | translate }}</mat-label>
+              <mat-select formControlName="salutation">
+                <mat-option *ngFor="let option of salutationOptions" [value]="option">
+                  {{'administration.users.fields.salutation.'+option | translate}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="displayMessage.salutation">{{displayMessage.salutation}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.users.fields.firstname.label' | translate }}</mat-label>
+              <input matInput formControlName="firstName" name="firstName">
+              <mat-error *ngIf="displayMessage.firstName">{{displayMessage.firstName}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.users.fields.lastname.label' | translate }}</mat-label>
+              <input matInput formControlName="lastName" name="lastName">
+              <mat-error *ngIf="displayMessage.lastName">{{displayMessage.lastName}}</mat-error>
+            </mat-form-field>
+          </fieldset>
+          <fieldset class="row">
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.users.fields.birthdate.label' | translate }}</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="birthdate" name="birthdate" [min]="minDate"
+                [max]="maxDate" (focus)="picker.open()" (click)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="displayMessage.birthdate">{{displayMessage.birthdate}}</mat-error>
+              <mat-hint>{{ 'form.errors.validateage' | translate }}</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label data-required="true">{{ 'administration.client.fields.phone.label' | translate }}</mat-label>
+              <input matInput formControlName="phone" name="phone">
+              <mat-error *ngIf="displayMessage.phone">{{displayMessage.phone}}</mat-error>
+            </mat-form-field>
+          </fieldset>
+          <fieldset class="row">
+            <ng-container *ngFor="let right of rights">
+              <mat-checkbox class="col-md-4 col-sm-6 col-xs-12" [disabled]="true" [checked]="isCheckboxSelected(right.id)"
+                value="right.id">
+                {{'rights.fields.rights.' +right.identifier | translate}}
+              </mat-checkbox>
+            </ng-container>
+          </fieldset>
+          <div class="row">
+            <div class="col-xs-12 btn-cont">
+              <button type="submit" mat-flat-button color="accent" translate="administration.users.buttons.create"></button>
+              <button type="button" mat-stroked-button color="primary" (click)="cancel()"
+                translate="administration.users.buttons.cancel"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

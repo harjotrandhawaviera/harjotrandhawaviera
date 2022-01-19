@@ -1,0 +1,4 @@
+<a *ngIf="link" [attr.href]="link">
+  <img [attr.src]="logoPath" />
+</a>
+<img *ngIf="!link" [attr.src]="logoPath">

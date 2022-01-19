@@ -1,0 +1,73 @@
+<div class="auth register" *ngIf="!showPreamble">
+  <div class="form-wrapper">
+    <h3 translate="auth.register.title"></h3>
+    <div class="form-body">
+      <form name="register" [formGroup]="registrationForm" role="form" (ngSubmit)="confirmPreamble()">
+        <div class="row">
+          <div class="col-xs-12">
+            <app-form-notification type="danger" [notifications]="formValidate.errors ? [formValidate.errors] : []">
+            </app-form-notification>
+          </div>
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'auth.email.short' | translate }}</mat-label>
+              <input matInput formControlName="email" type="email">
+              <mat-error *ngIf="displayMessage.email">{{ displayMessage.email }}</mat-error>
+            </mat-form-field>
+
+          </div>
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'auth.email.confirm' | translate }}</mat-label>
+              <input matInput formControlName="email_confirmation" type="email">
+              <mat-error *ngIf="displayMessage.email_confirmation">{{ displayMessage.email_confirmation }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'auth.password.label' | translate }}</mat-label>
+              <input matInput formControlName="password" type="password" #pass>
+              <mat-error *ngIf="displayMessage.password">{{ displayMessage.password }}</mat-error>
+            </mat-form-field>
+            <app-password-strength-bar [passwordToCheck]="pass.value"></app-password-strength-bar>
+          </div>
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'auth.password.confirm' | translate }}</mat-label>
+              <input matInput formControlName="password_confirmation" type="password">
+              <mat-error *ngIf="displayMessage.password_confirmation">{{ displayMessage.password_confirmation }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12">
+            <button class="full-width" type="submit" mat-raised-button color="primary" translate="auth.button.register">
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <span class="login-link">
+      <a [routerLink]="['/login']" translate="auth.label.login"></a>
+    </span>
+  </div>
+</div>
+
+<div class="auth preamble" *ngIf="showPreamble">
+  <div class="privacy col-md-12">
+    <div class="drop-shadow temp-body">
+      <div class="form-body">
+        <app-load-html template="auth.preamble"></app-load-html>
+      </div>
+    </div>
+    <form name="register" role="form" class="clearfix" (ngSubmit)="signUp()">
+      <div class="form-footer drop-shadow">
+        <div role="group">
+          <button type="button" mat-stroked-button color="primary" (click)="declinePreamble()"
+            translate="auth.button.decline"></button>
+          <button type="submit" mat-raised-button color="primary" translate="auth.button.accept"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

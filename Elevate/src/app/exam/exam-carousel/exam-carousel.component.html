@@ -1,0 +1,27 @@
+<div class="carousel">
+  <div class="carousel-inner">
+    <ng-content></ng-content>
+  </div>
+  <div class="carousel-controls">
+    <div class="carousel-control clearfix">
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        (click)="prev.emit()"
+        [disabled]="isPrevDisabled"
+        [ngClass]="{ disabled: isPrevDisabled }"
+        *ngIf="slides && slides.length > 1"
+        translate="exams.buttons.previous"
+      ></button>
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="isActiveSummaryBtn ? showSummary.emit() : next.emit()"
+        *ngIf="slides && slides.length > 1"
+        translate="exams.buttons.next"
+      ></button>
+    </div>
+  </div>
+</div>

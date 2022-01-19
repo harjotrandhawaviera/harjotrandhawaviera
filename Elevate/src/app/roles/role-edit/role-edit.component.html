@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/master/roles']"
+        >{{ "master.roles.buttons.back" | translate }}
+      </a>
+    </div>
+    <div *ngIf="paramId" class="col-xs-12 col-md start-xs">
+      <h1 translate="master.roles.title.edit"></h1>
+    </div>
+    <div *ngIf="!paramId" class="col-xs-12 col-md start-xs">
+      <h1 translate="master.roles.title.new"></h1>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <form [formGroup]="role">
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <label
+                  translate="master.roles.fields.identifier.label"
+                  required
+                ></label>
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="identifier" />
+                </mat-form-field>
+                <mat-error *ngIf="displayMessage.identifier">
+                  {{displayMessage.identifier}}
+                </mat-error>
+              </div>
+            </div>
+
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <label
+                  translate="master.roles.fields.label.label"
+                  required
+                ></label>
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="label" />
+                </mat-form-field>
+                <mat-error *ngIf="displayMessage.label">
+                  {{displayMessage.label}}
+                </mat-error>
+              </div>
+            </div>
+
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <label
+                  translate="master.roles.fields.description.label"
+                  required
+                ></label>
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="description" />
+                </mat-form-field>
+                <mat-error *ngIf="displayMessage.description">
+                  {{displayMessage.description}}
+                </mat-error>
+              </div>
+            </div>
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <app-multi-select-auto-complete
+                  [required]="true"
+                  formControlName="region"
+                  [filteredOptions]="regionsLK"
+                  [static]="true"
+                  label="{{ 'master.roles.fields.region.label' | translate }}"
+                >
+                </app-multi-select-auto-complete>
+                <mat-error *ngIf="displayMessage.region">
+                  {{displayMessage.region}}
+                </mat-error>
+              </div>
+            </div>
+
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <app-multi-select-auto-complete
+                  formControlName="skills"
+                  [filteredOptions]="skillsLK"
+                  [static]="true"
+                  label="{{ 'master.roles.fields.skills.label' | translate }}"
+                >
+                </app-multi-select-auto-complete>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="col-xs-12 col-md start-xs">
+          <a mat-flat-button color="accent" (click)="add()"
+            >{{ "master.roles.buttons.create" | translate }}
+          </a>
+          <a
+            mat-stroked-button
+            color="primary"
+            [routerLink]="['/master/roles']"
+            >{{ "master.roles.buttons.cancel" | translate }}
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+@import "variables";
+@import "mixins";
+.panel.certificate {
+  margin: 15px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #ddd;
+  border-bottom: solid 3px #cccccc;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+
+  @include tile-state("recommended", $brand-primary);
+  @include tile-state("passed", darken($brand-primary, 15%));
+  @include tile-state("invalid", #dd4444);
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: $certificate-tile-image-max-height;
+    object-fit: cover;
+    opacity: 0;
+    &[src^="blob"] {
+      opacity: 1;
+    }
+  }
+
+  .panel-heading,
+  .panel-body {
+    padding: $p4y-tile-inner-padding;
+  }
+
+  .panel-body {
+    min-height: 100px;
+  }
+
+  .panel-footer {
+    background-color: transparent;
+    border-top: none;
+    font-size: smaller;
+    padding: 10px 15px;
+    border-top: none;
+    position: relative;
+    clear: both;
+    padding-bottom: $p4y-tile-inner-padding;
+    .valid-until {
+      margin-top: 10px;
+    }
+  }
+
+  .count-jobs {
+    right: $p4y-tile-inner-padding;
+    top: $p4y-tile-inner-padding;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .teaser {
+    @include textEllipsis(2, 14px); // 2 = line count
+  }
+
+  .category {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+  }
+}
+.certificate.legal img {
+  display: none;
+}
+
+.certificate.legal .legal-icon {
+  width: 100%;
+  max-width: 100%;
+  height: 100px;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 50px;
+  border-bottom: 1px solid #d0d0d1;
+}
+
+.certificate.legal .list-table-actions .dropdown-menu .action.action-unrecommend {
+  display: none;
+}
+
+.certificate.legal .list-table-actions .dropdown-menu .action.action-disable {
+  display: none;
+}
+
+.certificate.legal .icon {
+  pointer-events: none;
+  cursor: auto;
+}
+
+.certificate {
+  .icon {
+    position: relative;
+    top: 7px;
+    line-height: 1;
+    color: #cccccc;
+    &:hover{
+      color: $brand-primary;
+    }
+  }
+
+  &.recommended {
+    .icon {
+      color: $brand-primary;
+    }
+  }
+}
+.certificate:not(.enabled) .panel-body {
+  color: rgba(0, 0, 0, 0.3);
+}

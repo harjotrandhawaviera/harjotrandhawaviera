@@ -1,0 +1,6 @@
+<div class="drag-drop-cont container" [ngClass]="{'display-none' : onDocumentClick, 'button-only': buttonOnly}">
+  <input type="file" #fileDropRef id="fileDropRef" [attr.accept]="accept" (change)="fileBrowseHandler($event)" />
+  <div class="drop-uploading" *ngIf="uploading && uploading.progress" [translate]="'notification.file.uploading'"
+    [translateParams]="{ file: uploading.file, progress: uploading.progress }"></div>
+  <a mat-flat-button color="accent" (click)="fileDropRef.click()">{{ text }}</a>
+</div>

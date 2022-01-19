@@ -1,0 +1,81 @@
+@import "variables";
+@import "mixins";
+.freelancer-view--type{
+  .btn-group{
+    margin-right: 15px;
+    button{
+      border-radius: 0px !important;
+      border: 1px solid $brand-primary;
+      background-color: transparent;
+      width: auto;
+      padding: 0 10px !important;
+      line-height: 36px;
+      &.active{
+        background-color: $p4y-color-black;
+        color:$p4y-color-white;
+      }
+      &:first-child{
+        border-top-left-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
+        margin-left: 0px !important;
+      }
+      &:last-child{
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        margin-left: 0px !important;
+      }
+    }
+  }
+}
+.freelancer--list-table-name-wrapper{
+  min-width: 170px;
+  white-space: nowrap;
+  width: 170px;
+  display: block;
+  height: 48px;
+  .table-list-name-wrapper{
+    display: block;
+    margin-top: 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+ .freelancer-img {
+    min-width: 36px;
+    height: 36px;
+    background: center no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+    margin-right: 4px;
+    border: #f8f8f8;
+    border-radius: 50%;
+    background-image: url(#{$p4y-avatar-placeholder});
+  }
+
+
+  .app-paginator-navigation {
+    color: $p4y-color-black !important;
+    border: 1px solid $brand-primary !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    margin-left: -1px !important;
+    min-width: 40px !important;
+    padding: 0 10px !important;
+    &:disabled {
+      background-color: white !important;
+    }
+    &:first-child {
+      border-top-left-radius: 10px !important;
+      border-bottom-left-radius: 10px !important;
+      margin-left: 0px !important;
+    }
+    &:last-child {
+      border-top-right-radius: 10px !important;
+      border-bottom-right-radius: 10px !important;
+    }
+    &.active-page {
+      background-color: $p4y-color-black !important;
+      color: white !important;
+    }
+  }

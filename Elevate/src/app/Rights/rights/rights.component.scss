@@ -1,0 +1,9 @@
+.rights-list {
+ .mat-checkbox {
+   ::ng-deep label {
+     font-variant: normal;
+     font-weight: normal;
+   }
+ }
+}
+

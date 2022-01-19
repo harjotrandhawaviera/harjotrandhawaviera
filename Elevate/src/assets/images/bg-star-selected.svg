@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0.00046613851%" y1="50.0011092%" x2="100.003098%" y2="50.0011092%" id="linearGradient-1">
+            <stop stop-color="#4FAEC7" offset="0%"></stop>
+            <stop stop-color="#BCEDE8" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="t-r-o-o-h_-AMPLOI_rein_black" transform="translate(-555.000000, -318.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="bg-star" transform="translate(520.000000, 317.000000)">
+                <path d="M45.1440726,5.937 L50.2180726,6.371 C50.5700726,6.402 50.7140726,6.844 50.4450726,7.074 L46.5970726,10.41 L47.7490726,15.371 C47.8310726,15.715 47.4560726,15.988 47.1550726,15.805 L42.7930726,13.172 L38.4300726,15.805 C38.1290726,15.985 37.7540726,15.715 37.8360726,15.371 L38.9880726,10.41 L35.1370726,7.074 C34.8710726,6.84 35.0160726,6.402 35.3670726,6.371 L40.4410726,5.937 L42.4260726,1.246 C42.5620726,0.918 43.0230726,0.918 43.1600726,1.246 L45.1440726,5.937 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

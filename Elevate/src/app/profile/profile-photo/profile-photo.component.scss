@@ -1,0 +1,124 @@
+.profile-photo {
+  background-color: #fff;
+  padding-bottom: 133%;
+  border: dashed 1px #21b4b0;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  margin: 5px 0 15px 0;
+  .fas {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    color: red;
+  }
+  .pending {
+    display: none;
+  }
+
+  &.contains-pending:hover .pending {
+    display: block;
+  }
+
+  &.contains-pending:hover .current {
+    display: none;
+  }
+
+  app-picture-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    .drag-drop-cont {
+      height: 100% !important;
+    }
+  }
+
+  [data-upload].set .btn,
+  [data-upload].uploaded .btn {
+    display: none;
+  }
+
+  [data-upload].uploading .drop-uploading {
+    display: block;
+  }
+
+  [data-upload] .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  [data-upload] .drop.update .btn-primary {
+    color: #000;
+    background-color: #fff;
+    border-color: #21b4b0;
+    font-size: 14px;
+  }
+
+  [data-upload] .drop.update .btn-primary:hover {
+    color: #333 !important;
+    background-color: #edf7f7;
+  }
+
+  [data-upload] .drop.update .btn-primary:active {
+    color: #333 !important;
+    background-color: #b1dcdc !important;
+  }
+
+  [data-upload] .drop-uploading {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+  }
+
+  [data-profile-photo]:hover [data-upload] .btn {
+    display: block;
+  }
+
+  .sedcard {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    pointer-events: none;
+    color: #fff;
+    background-color: #4faec7;
+    border-color: #4faec7;
+    padding: 6px 12px;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  img.placeholder {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+  }
+
+  .validation {
+    position: absolute;
+    bottom: -10px;
+  }
+
+  .upload-validation {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .upload-validation.text-warning {
+    background-color: #fde9be;
+  }
+}

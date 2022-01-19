@@ -1,0 +1,32 @@
+@import '../../../styles/base/variables.scss';
+::ng-deep{
+  .mat-form-field-wrapper{
+    padding-top: 10px;
+}
+  .current-company{
+    .current-company-radio{
+      .current-company-title{
+        // font-weight: bolder;
+        color: $p4y-color-black;
+        padding-right: 10px;
+      }
+        mat-radio-group{
+          mat-radio-button {
+            margin-left: 10px;
+            .mat-radio-label{
+              .mat-radio-container{
+                .mat-radio-outer-circle{
+                  border: 1px solid $brand-primary;
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+  .month-dropdown{
+    .mat-form-field-wrapper{
+      margin-top: 17px;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="auth login">
+  <div class="form-wrapper">
+    <h3 translate="auth.login.title"></h3>
+    <div class="form-body">
+      <form name="login" [formGroup]="loginForm" (ngSubmit)="login()" role="form">
+
+        <app-form-notification type="warning" [notifications]="formValidate.warning ? [formValidate.warning] : []">
+        </app-form-notification>
+        <app-form-notification type="info" [notifications]="formValidate.info ? [formValidate.info] : []">
+        </app-form-notification>
+        <app-form-notification type="danger" [notifications]="formValidate.errors ? formValidate.errors : []">
+        </app-form-notification>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'auth.email.short' | translate }}</mat-label>
+          <input matInput formControlName="email" type="email" autocomplete="off">
+          <mat-error *ngIf="displayMessage.email">{{displayMessage.email}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'auth.password.label' | translate }}</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="displayMessage.password">{{displayMessage.password}}</mat-error>
+          <mat-hint class="error" translate="auth.label.invalid_credentials" *ngIf="warning === 'invalid_credentials'">
+          </mat-hint>
+        </mat-form-field>
+
+        <button class="full-width" type="submit" mat-raised-button color="primary" translate="auth.button.login">
+        </button>
+
+        <div class="form-group bg-warning text-dark" *ngIf="warning === 'not_confirmed_registration'">
+          <span translate="auth.label.not_confirmed_registration"></span>
+          <a class="btn btn-link" (click)="resendConfirmation()" translate="auth.label.resend-confirmation"></a>
+        </div>
+
+        <div [ngClass]="{'warning-link-cont': true, 'text-error': warning === 'invalid_credentials'}">
+          <a [routerLink]="['/forgot-password']" translate="auth.label.forgot-password"></a>
+        </div>
+      </form>
+    </div>
+
+    <span class="register-link" >
+      <a [routerLink]="['/register']" translate="auth.label.not-registered"></a>
+    </span>
+    <app-store-badges></app-store-badges>
+  </div>
+
+</div>

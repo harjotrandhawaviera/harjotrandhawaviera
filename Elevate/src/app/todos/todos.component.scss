@@ -1,0 +1,93 @@
+.todos-form {
+  padding: 20px;
+}
+app-search-list {
+  .panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-bottom: solid 3px #cccccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    position: relative;
+    .panel-body {
+      padding: 15px 0;
+      padding: 15px 0;
+    }
+    .todo-state {
+      float: right;
+    }
+    .list-table-actions {
+      text-align: right;
+      button {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+  .open-stripe {
+    text-decoration: line-through;
+  }
+  .exclam-red {
+    color: red;
+  }
+  .exclam-gray {
+    color: gray;
+  }
+  .panel.overdue {
+    border-bottom-color: #dd4444 !important;
+  }
+  .todo-state.overdue {
+    color: #dd4444 !important;
+  }
+  .todo-state.open {
+    color: #21B4B0;
+  }
+  .panel.open {
+    border-bottom-color: #21B4B0;
+  }
+  .panel-default {
+    border-color: #ddd;
+  }
+  .panel-heading {
+    height: 40px;
+    background-color: transparent;
+    border-bottom: none;
+    border-color: #ddd;
+    color: #999999;
+    font-variant: all-small-caps;
+    font-variant-numeric: oldstyle-nums;
+    padding: 10px 15px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+  .abc{
+    text-align: right;
+    margin-right: 15px;
+  }
+.completedDate{
+  color: red;
+}
+  .panel-footer {
+    background-color: transparent;
+    font-size: smaller;
+    padding: 10px 15px;
+    border-top: none;
+    position: relative;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    .todo-creator {
+      color: #999999;
+    }
+    .todo-state {
+      color: #21B4B0;
+    }
+  }
+}
+.icon-cog{
+  color: #dddddd;
+}
+.completedDate{
+  color: red;
+}

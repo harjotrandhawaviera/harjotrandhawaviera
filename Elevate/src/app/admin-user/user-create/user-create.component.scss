@@ -1,0 +1,58 @@
+@import "variables";
+@import "mixins";
+
+form {
+  display: flex;
+  padding: 15px 0;
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+  }
+}
+.avatar-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  img {
+    min-width: 36px;
+    height: 36px;
+    background: center no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+    background-image: url("../../../assets/images/avatar.png");
+    border: #f8f8f8;
+    border-radius: 50%;
+  }
+}
+.fields-cont {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  width: 100%;
+  @media (max-width: $screen-sm-max) {
+    padding-left: 0;
+  }
+  .mat-checkbox {
+    ::ng-deep label {
+      font-variant: normal;
+      font-weight: normal;
+    }
+  }
+  .btn-cont {
+    button {
+      @media (max-width: $screen-xs-max) {
+        width: 100%;
+      }
+      &:first-child {
+        @media (max-width: $screen-xs-max) {
+          margin-bottom: 10px;
+        }
+        &+button {
+          @media (max-width: $screen-xs-max) {
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+  }
+}

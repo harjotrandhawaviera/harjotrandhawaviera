@@ -1,0 +1,265 @@
+@import "variables";
+@import "mixins";
+
+.search-form {
+  padding: 20px;
+}
+.offer-form {
+  padding: 20px;
+}
+.details{
+  margin-bottom: 25px;
+}
+mat-icon {
+  font-size: 20px;
+}
+
+.panel {
+  margin-bottom: 20px;
+  min-height: 250px;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+  border-bottom: 2px solid #cccccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  cursor: pointer;
+  padding: 15px;
+  .panel-body {
+    vertical-align: inherit;
+    padding-top: 5px;
+  }
+  .offer-state {
+    float: right;
+  }
+  .offer-state.pending {
+    color: $p4y-color-status-warning;
+  }
+  .offer-state.submitted {
+    color: $p4y-color-status-warning;
+  }
+  .offer-state.shortlisted {
+    color: $brand-success;
+  }
+  .offer-state.rejected {
+    color: $brand-danger;
+  }
+  &.pending {
+    border-bottom-color: $p4y-color-status-warning;
+  }
+  &.submitted {
+    border-bottom-color: $p4y-color-status-warning;
+  }
+  &.shortlisted {
+    border-bottom-color: $brand-success;
+  }
+  &.rejected {
+    border-bottom-color: $brand-danger;
+  }
+}
+.panel:hover {
+  box-shadow: #999999;
+}
+
+.panel-heading {
+  height: 15px;
+  color: #999999;
+  font-variant: all-small-caps;
+  font-variant-numeric: oldstyle-nums;
+  div.end-xs {
+    span {
+      margin-right: 10px;
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}
+
+.panel-footer {
+  background-color: transparent;
+  font-size: smaller;
+  text-align: right;
+  margin-top: 15px;
+  .active{
+    color: rgba(153, 153, 153, 0.2);
+  }
+}
+.panel.active {
+  border-bottom: solid 3px #999999;
+}
+
+.list-table-actions {
+  // text-align: right;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  button {
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}
+.freelancer-offer-tile {
+  position: relative;
+  cursor: pointer;
+  .pull-right {
+    text-align: right;
+  }
+  // .panel.pending {
+  //   border-bottom: 3px solid #FBB829;
+  // }
+}
+
+.name {
+  margin-bottom: 0;
+}
+.icon {
+  text-align: right;
+  font-size: 20px;
+  margin-right: 0;
+  margin-top: 45px;
+}
+.heading {
+  margin-bottom: 15px;
+}
+.panel.overdue {
+  border-bottom-color: grey !important;
+}
+
+.span-style {
+  margin-top: 20px;
+  text-align: right;
+  margin-right: 0;
+}
+
+.header.date-card {
+  display: flex;
+  padding: 0 10px 10px 10px;
+  .date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    min-width: 80px;
+    height: 86px;
+    border: 2px solid #d0d0d1;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 10px;
+    .day {
+      font-size: 24px;
+    }
+    .month {
+      font-size: 14px;
+      margin: 3px 0 1px;
+    }
+    .year {
+      font-size: 12px;
+    }
+  }
+  .title {
+    max-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    font-size: 17px;
+    color: #222;
+  }
+}
+
+.job-view--type{
+  .btn-group{
+    button{
+      border-radius: 0 !important;
+      border: 1px solid $brand-primary;
+      background-color: transparent;
+      height: 25px;
+      width: 50px;
+      color: $brand-primary;
+      &.active{
+        background-color: $brand-primary;
+        color:$p4y-color-white;
+      }
+    }
+  }
+}
+
+p.staffP {
+  font-size: 13px;
+  margin-bottom: 0;
+  strong {
+    font-weight: normal;
+    color: #888;
+  }
+}
+
+.subtitle {
+  font-size: 13px;
+  text-transform: inherit;
+  color: #21b4b0;
+  font-weight: 600;
+}
+.panel-body1 {
+  padding: 20px 0 0;
+  min-height: 80px;
+
+  .panelBodyDetil {
+    p.addressB {
+      font-size: 12px;
+
+      i {
+        margin-right: 3px;
+      }
+    }
+    .rate-card {
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+      margin-bottom: 15px;
+
+      .title {
+        text-align: end;
+        color: #888;
+        font-size: 12px;
+        line-height: 1;
+      }
+      .rate {
+        text-align: end;
+      }
+    }
+    ul.detilList {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    
+      li {
+        padding-bottom: 8px;
+        font-size: 13px;
+    
+        strong {
+          width: 43%;
+          display: inline-block;
+          font-weight: normal;
+              color: #888;
+        }    
+      }
+    }
+  }
+  
+  .header.date-card {
+    display: flex;
+    padding: 0;
+
+    .date{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 80px;
+      height: 80px;
+      border: 2px solid #d0d0d1;
+      text-align: center;
+      box-sizing: border-box;
+      margin-right: 10px;
+    }
+  }
+}

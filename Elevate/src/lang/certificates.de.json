@@ -1,0 +1,128 @@
+{
+    "certificates": {
+        "all": {
+            "title": "Zertifikate",
+            "header": "Diese Zertifikate kannst du noch erwerben.",
+            "description": "Bereite dich hier auf neue Jobs vor. Beginne bereits jetzt mit dem Training. Viel Spass!",
+            "recommended": "empfohlen",
+            "recommendation": "Es wird allen Fachberatern empfohlen, dieses Zertifikat zu erwerben.",
+            "jobs": "+ {{job_count_by_tenders}}{job_count_by_tenders, select, 1 { Job}  other{ Jobs}}",
+            "created": "{{created_at}}"
+        },
+        "agent": {
+            "header": "Zertifikate, die unsere Fachberater erwerben können.",
+            "recommended": {
+                "label": "Empfehlen",
+                "hint": "Dieses Zertifikat den Fachberater empfehlen."
+            },
+            "certificate-enabled": {
+                "label": "Zertifikat freischalten",
+                "hint": "Dieses Zertifikat ist für die Fachberater sichtbar.\nBei Deaktivierung ist das Zertifikat nur in der Liste der bestandenen Zertifikate sichtbar. Der Test ist dann nicht mehr ausführbar."
+            },
+            "training-enabled": {
+                "label": "Schulung freischalten",
+                "hint": "Die Schulung ist für die Fachberater sichtbar."
+            },
+            "exam-enabled": {
+                "label": "Test freischalten",
+                "hint": "Der Test ist für die Fachberater ausführbar."
+            },
+            "exam-percent": {
+                "label": "Minimaler Prozentsatz",
+                "hint": "Mindestens benötigte richtige Antworten (in Prozent) um den Test zu bestehen."
+            },
+            "valid-interval": {
+                "label": "Gültigkeitsdauer",
+                "hint": "Die Gültigkeit eines Zertifikats wird durch ein DateInterval beschrieben, z.B. 1Y => 1 Jahr, 1M => 1 Monat, 1D => 1 Tag."
+            },
+            "exam": {
+                "label": "Test-Details"
+            }
+        },
+        "my": {
+            "title": "Meine Zertifikate",
+            "header": "Glückwunsch! Diese Zertifikate hast du bereits erworben.",
+            "description": "Mit jedem zusätzlichen Zertifikat erhöhst du deine Chancen auf neue Jobs.",
+            "passed": "Am {{passed_at}} erworben.",
+            "invalid": "Seit {{invalid_at}} abgelaufen.",
+            "valid-until": "Gültig bis {{invalid_at}}",
+            "training-headline": "Zertifikatsschulung",
+            "training-certificated": "Berufsschulungen & Zertifikate"
+        },
+        "exclusive": {
+            "title": "Zertifikate",
+            "header": "Einsatzschulung",
+            "description": "Beginne jetzt eine Einsatzschulung",
+            "table": {
+                "name": "Zertifikate",
+                "jobShortTitle": "Job",
+                "startDateTime": "Restlaufzeit",
+                "details": ""
+            },
+            "buttons": {
+                "details": "Details",
+                "overview": "Alle anzeigen"
+            }
+        },
+        "filters": {
+            "category": "Kategorie des Zertifikats",
+            "recommendation": "Merkmale des Zertifikats",
+            "attributes": "Merkmale des Zertifikats",
+            "legal": "Rechtliche Schulung"
+        },
+        "fields": {
+            "categories": {
+                "product": "Produkt",
+                "brand": "Marke",
+                "promotion": "Promotion",
+                "legal": "Recht"
+            },
+            "recommendation" : {
+                "only_recommended": "Empfohlen",
+                "with_jobs": "Mit Jobs"
+            },
+            "attributes" : {
+                "only_recommended": "Empfohlen",
+                "only_enabled": "Aktiv",
+                "only_exclusive": "Einsatzschulung"
+            },
+            "search" : {
+                "placeholder": "Name, Kurz- oder Langbeschreibung"
+            },
+            "legal": {
+                "with_legal": "Anzeigen"
+            }
+        },
+        "categories": {
+            "product": "Produkt",
+            "brand": "Marke",
+            "fragrance": "Duft",
+            "care": "Pflege",
+            "cosmetics": "Kosmetik",
+            "promotion": "Promotion",
+            "sale": "Verkauf",
+            "legal": "Recht"
+        },
+        "buttons": {
+            "details": "Details",
+            "try": "Zertifizieren",
+            "start-exam": "Starte den Test!",
+            "back-to-my-certificates": "Zurück zu meinen Zertifikaten",
+            "open-training": "Zur Schulung",
+            "back": "Zurück zur Übersicht"
+        },
+        "actions": {
+            "details": "Details",
+            "recommend": "Empfehlen",
+            "unrecommend": "Nicht mehr empfehlen",
+            "enable": "Freischalten",
+            "disable": "Nicht freischalten"
+        },
+        "description": "",
+        "passed" : "Der Test wurde am {{passed_at}} erfolgreich absolviert.",
+        "open" : "Der Test wurde noch nicht bestanden.",
+        "title": {
+            "details": "Zertifikatdetails"
+        }
+    }
+}

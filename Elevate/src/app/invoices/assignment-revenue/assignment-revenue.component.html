@@ -1,0 +1,145 @@
+<div class="add-revenue" *ngIf="view === 'set' && !data && !editing">
+  <p
+    class="description"
+    *ngIf="!onBehalf"
+    translate="invoices.preparation.description.revenues"
+  ></p>
+  <button
+    type="button"
+    mat-flat-button
+    color="accent"
+    (click)="onAdd()"
+    translate="revenue.buttons.add"
+  ></button>
+</div>
+
+<!-- readonly view -->
+<div *ngIf="data && editing === false" class="revenue-details">
+  <div class="row">
+    <div class="col-md-12">
+      <label translate="revenue.label.sales-volume"></label>
+    </div>
+  </div>
+  <div class="row" *ngFor="let entry of data.sales_volume; let i = index">
+    <p class="col-md-6">{{ entry.saleslot }}</p>
+    <div class="col-md-3 text-right">
+      {{ entry.value | currency }}
+    </div>
+  </div>
+  <div class="row" *ngIf="withCreator">
+    <div class="col-md-6">
+      <label translate="revenue.label.creator"></label>
+      <p data-ng-bind="::revenue.">{{ data.creatorName }}</p>
+    </div>
+    <div class="col-md-6">
+      <label translate="revenue.label.created-at"></label>
+      <p data-ng-bind="::revenue.">{{ data.createdAt }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label translate="revenue.label.comment"></label>
+      <p data-ng-bind="::revenue.">{{ data.comment }}</p>
+    </div>
+    <div class="form-group col-md-3 text-right">
+      <label translate="revenue.label.total"></label>
+      <p data-ng-bind="revenue.total(revenue.data) | currency: '€'">
+        {{ totalSum(data) | currency }}
+      </p>
+    </div>
+  </div>
+
+  <button
+    *ngIf="view !== 'readonly'"
+    type="button"
+    mat-flat-button
+    color="accent"
+    (click)="onEdit()"
+    translate="revenue.buttons.edit"
+  ></button>
+  <button
+    *ngIf="view !== 'readonly'"
+    type="button"
+    mat-stroked-button
+    color="primary"
+    translate="revenue.buttons.remove"
+    (click)="onRemove()"
+  ></button>
+</div>
+
+<!-- editing view -->
+<form role="form" name="revenue.form" *ngIf="editing" #revenueForm="ngForm">
+  <div class="row">
+    <div class="col-md-12">
+      <label translate="revenue.label.sales-volume"></label>
+    </div>
+  </div>
+  <div
+    class="row sales-volume"
+    *ngFor="let entry of data.sales_volume; let i = index"
+  >
+    <p class="col-md-6" data-ng-bind="::">{{ entry.saleslot }}</p>
+    <div class="form-group col-md-3">
+      <mat-form-field class="full-width">
+        <mat-label>{{ entry.saleslot }} </mat-label>
+        <span matPrefix appCurrencySymbol></span>
+        <input
+          matInput
+          required
+          [(ngModel)]="entry.value"
+          name="value{{ i }}"
+          #value="ngModel"
+          [pattern]="currencyPattern"
+        />
+        <mat-error *ngIf="value.invalid && (value.dirty || value.touched)">
+          <div *ngIf="value.errors?.required">
+            {{ "form.errors.required" | translate }}
+          </div>
+          <div *ngIf="value.errors?.pattern">
+            {{ "form.errors.currencyformat" | translate }}
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <mat-form-field class="full-width">
+        <mat-label>{{ "revenue.label.comment" | translate }}</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="data.comment"
+          name="comment"
+          rows="1"
+        ></textarea>
+      </mat-form-field>
+      <!-- <label for="comment" data-translate-once="revenue.label.comment"></label>
+      <textarea
+        id="comment"
+        class="form-control"
+        data-ng-model="revenue.data.comment"
+      ></textarea> -->
+    </div>
+    <div class="form-group col-md-3 text-right">
+      <label translate="revenue.label.total"></label>
+      <p data-ng-bind="revenue.total(revenue.data) | currency: '€'">
+        {{ totalSum(data) | currency }}
+      </p>
+    </div>
+  </div>
+  <button
+    type="button"
+    [disabled]="revenueForm.invalid"
+    mat-flat-button
+    color="accent"
+    (click)="onUpdate()"
+    translate="revenue.buttons.update"
+  ></button>
+  <button
+    type="button"
+    mat-stroked-button
+    color="primary"
+    translate="revenue.buttons.cancel"
+    (click)="onCancel()"
+  ></button>
+</form>

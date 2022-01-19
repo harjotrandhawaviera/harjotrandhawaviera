@@ -1,0 +1,56 @@
+<div class="row {{tender.job_status}}"  *ngIf="tender" (click)="navigateToDetail(tender)">
+  <div class="col-md-12">
+    <div class="{{tender.job_status}} panel panel-default tender CustomePanel">
+      <div class="panel-heading">
+        <div class="smallPWidth">
+          <h3 class="title line-clamp"> {{tender?.job_name}} </h3>
+          <span class="subtitle">{{tender?.client_name}}</span>
+        </div>
+        <div class="boxId">
+          <span class="jobId">{{tender?.job_code}}</span>
+          <a aria-haspopup="true" color="accent" class="mat-menu-trigger" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation()">
+            <i class="fas fa-ellipsis-h"></i>
+          </a>
+          <mat-menu #subMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="navigateToDetail(tender)">
+              {{'tenders.tenders.table.actions.details' | translate}}
+            </button>
+            <button *ngIf="tender?.job_status !== 'expired'" mat-menu-item (click)="deleteRecord(tender)">
+              {{'tenders.tenders.table.actions.close' | translate}}
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="panelBodyDetil">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="addressB">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{tender.job_location}}</span>
+              </p>
+              <p class="staffP">{{'tenders.tenders.table.staff_manager' | translate}}</p>
+              <p class="stafName">{{tender.staff_manager}}</p>
+              <button class="sendInvite" (click)="navigate(tender)">{{'tenders.tenders.buttons.invite' | translate}}</button>
+            </div>
+            <div class="col-md-6">
+              <ul class="detilList">
+                <li><strong>{{'tenders.tenders.table.role' | translate}}</strong>: {{tender.role_name}}</li>
+                <li><strong>{{'tenders.tenders.fields.staff' | translate}}</strong>: {{tender.staff_count}}</li>
+                <li><strong>{{'tenders.tenders.fields.start' | translate}}</strong>: {{tender.job_advert_start_date | date: 'mediumDate'}}</li>
+                <li><strong>{{'tenders.tenders.fields.end' | translate}}</strong>: {{tender.job_advert_end_date | date: 'mediumDate'}}</li>
+                <li><strong>{{'tenders.tenders.fields.days' | translate}}</strong>: {{tender.days}}</li>
+                <li><strong>{{'tenders.tenders.fields.contract_type' | translate}}</strong>: {{tender.contract_type}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row panel-footer between-xs">
+
+        <span class="date">{{tender.job_advert_start_date_time | date: 'MMM d, y HH:mm'}} - {{tender.job_advert_end_date_time | date: 'MMM d, y HH:mm'}}</span>
+        <span class="state {{tender.job_status}}">{{'tenders.tender.state.' + tender.job_status | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

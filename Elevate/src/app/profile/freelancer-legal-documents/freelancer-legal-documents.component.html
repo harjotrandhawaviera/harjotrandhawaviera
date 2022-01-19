@@ -1,0 +1,40 @@
+<div
+  class="row"
+  *ngIf="inFormGroup"
+  [formGroup]="inFormGroup"
+  style="margin-bottom: 20px"
+>
+<div class="col-xs-12 col-sm-6">
+  <mat-form-field class="full-width">
+    <mat-label required>{{
+      "profile.fields.document_name.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      formControlName="document_name"
+      name="document_name"
+    />
+  </mat-form-field>
+</div>
+<div class="col-xs-12 col-sm-6">
+  <mat-form-field class="full-width">
+    <mat-label required>{{
+      "profile.fields.document_number.label" | translate
+    }}</mat-label>
+    <input
+      matInput
+      formControlName="document_number"
+      name="document_number"
+    />
+  </mat-form-field>
+</div>
+<div class="col-xs-12">
+  <label for="document" translate="profile.fields.work-history.document.label"></label>
+</div>
+<div class="col-xs-12 padding-none">
+  <!-- <app-profile-document [readonly]="readonly" formControlName="document" [buttonText]="'buttons.upload-document' | translate"></app-profile-document> -->
+  <app-profile-document formControlName="document" [buttonText]="'buttons.upload-document' | translate">
+  </app-profile-document>
+
+</div>
+</div>

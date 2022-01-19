@@ -1,0 +1,26 @@
+@import "variables";
+
+.search-container {
+  display: flex;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100vh;
+}
+
+.search-sidenav {
+  width: 250px;
+  transition: width 0.3s;
+  background-color: $p4y-color-chalky-lighter;
+}
+
+.search-sidenav-content {
+  display: flex;
+  height: 100%;
+  flex: 0 0 calc(100% - 250px);
+  margin-left: 250px !important;
+  transition: margin 0.3s;
+}
+
+table {
+  width: 100%;
+}

@@ -1,0 +1,123 @@
+<div class="container-fluid advance-search" [formGroup]="filters" >
+  <div class="col-xs-12 col-sm-12 padding-none">
+  <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+    <mat-label >{{'report.fields.city' | translate}}</mat-label>
+    <mat-select formControlName="city"  multiple>
+      <mat-option *ngFor="let option of cityLK" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+    <mat-label >{{'report.fields.zip' | translate}}</mat-label>
+    <mat-select formControlName="zip"  multiple>
+      <mat-option *ngFor="let option of postcodeLK" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class=" col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{
+        "profile.fields.gender.label" | translate
+        }}</mat-label>
+      <mat-select formControlName="gender"  multiple>
+        <mat-option *ngFor="let option of genderLK" [value]="option.value">
+          {{ "profile.fields.gender." + option.value | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class=" col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label>{{'report.fields.age_group' | translate}}</mat-label>
+      <mat-select formControlName="age_group"  multiple>
+        <mat-option *ngFor="let option of ageLK" [value]="option.value">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!--<mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{
+        "administration.users.details.work-condition.title" | translate
+        }}</mat-label>
+      <mat-select formControlName="work_condition"  multiple>
+        <mat-option *ngFor="let option of workConditionLk" [value]="option.value">
+          {{ "profile.work_conditions." + option.value | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-3" appearance="outline">
+      <mat-label >{{
+        "administration.users.details.skills.title" | translate
+        }}</mat-label>
+      <mat-select formControlName="skill" multiple>
+        <mat-option *ngFor="let option of skillsLk" [value]="option.value">
+          {{ "profile.skill_list." + option.value | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>-->
+    <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label>{{"assignments.table.filters.project" | translate}}</mat-label>
+
+      <mat-select formControlName="project" multiple>
+        <mat-option></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{
+        "administration.users.details.certificates.title" | translate
+        }}</mat-label>
+      <mat-select formControlName="certificates"  multiple>
+        <mat-option *ngFor="let option of certificatesLK" [value]="option.value">
+          {{ option.text }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{'report.fields.language' | translate}}</mat-label>
+      <mat-select formControlName="language"  class="menu-size" multiple>
+        <mat-option *ngFor="let option of languageLK" [value]="option.value">
+          {{ "profile.fields.languages." + option.value | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!--<mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{'report.fields.license' | translate}}</mat-label>
+      <mat-select formControlName="has_driverslicense"  class="menu-size">
+        <mat-option *ngFor="let option of driverLicenceLK" [value]="option.value">
+          {{ "profile.fields.hasDriversLicense." + option.value | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{'report.fields.hasOwnCar' | translate}}</mat-label>
+      <mat-select formControlName="own_car"  class="menu-size">
+        <mat-option *ngFor="let option of ownCarLK" [value]="option.value">
+          {{"profile.fields.hasOwnCar." + option.value | translate}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>-->
+    <mat-form-field class="col-xs-12 col-sm-3" appearance="outline" >
+      <mat-label >{{'report.fields.state' | translate}}</mat-label>
+      <mat-select formControlName="status"  class="menu-size" multiple>
+        <mat-option *ngFor="let option of stateLK" [value]="option.value">
+          {{ option.text }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="row end-xs col-xs-12">
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="submit()"
+        translate="ui.advance-search.submit"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        (click)="filters.reset()"
+        translate="ui.advance-search.clear"
+      ></button>
+    </div>
+  </div>
+</div>

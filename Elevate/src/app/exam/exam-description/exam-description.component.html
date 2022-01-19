@@ -1,0 +1,25 @@
+<div class="description" *ngIf="exam">
+  <div *ngIf="exam.is_enabled">
+    <app-load-html template="onboarding.exam.hint"></app-load-html>
+  </div>
+  <div *ngIf="exam.is_enabled === false" translate="exams.disabled"></div>
+  <div>
+    <button
+      type="button"
+      mat-flat-button
+      color="accent"
+      *ngIf="exam.is_enabled === false"
+      translate="exams.buttons.back-to-overview"
+      (click)="backToOverview.emit()"
+    ></button>
+
+    <button
+      type="button"
+      mat-flat-button
+      color="accent"
+      *ngIf="exam.is_enabled"
+      translate="exams.buttons.next"
+      (click)="startQuestionnaire.emit()"
+    ></button>
+  </div>
+</div>

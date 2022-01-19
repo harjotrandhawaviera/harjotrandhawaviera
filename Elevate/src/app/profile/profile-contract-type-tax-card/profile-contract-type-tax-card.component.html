@@ -1,0 +1,196 @@
+<div [formGroup]="taxCardFormGroup">
+  <fieldset>
+    <div class="row">
+      <div class="col-xs-12">
+        <legend translate="profile.section.legal.personal"></legend>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "profile.fields.profession.label" | translate
+          }}</mat-label>
+          <mat-select formControlName="profession">
+            <mat-option>{{ "ui.option.deselect" | translate }}</mat-option>
+            <mat-option
+              *ngFor="let option of professionLK"
+              [value]="option.text"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.profession">{{
+            displayMessage.profession
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div
+        class="col-xs-12"
+        *ngIf="professionState && professionState.needs_evidence"
+      >
+        <div class="document-label">
+          <!-- <i *ngIf="!!pending" class="fas fa-hourglass-half"></i> -->
+          <label
+            for="evidence"
+            required
+            translate="form.field.documents_of_evidence.label"
+          ></label>
+        </div>
+        <div
+          class="description"
+          *ngIf="professionState && professionState.evidence_description"
+        >
+          <p translate="form.field.documents_of_evidence.description"></p>
+          <p [innerHtml]="professionState.evidence_description"></p>
+        </div>
+      </div>
+      <div
+        class="col-xs-12 padding-none"
+        *ngIf="professionState && professionState.needs_evidence"
+      >
+        <app-profile-document
+          [multiple]="true"
+          [readonly]="readonly"
+          formControlName="evidence"
+          [buttonText]="'buttons.upload-document' | translate"
+        ></app-profile-document>
+        <mat-error *ngIf="displayMessage.evidence">{{
+          displayMessage.evidence
+        }}</mat-error>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <div class="row middle-xs">
+      <div class="col-xs-12">
+        <legend translate="profile.section.contract_tax_card.tax"></legend>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <mat-form-field class="full-width">
+          <mat-label required>{{ "form.field.tax.tax_id.label" | translate }}</mat-label>
+          <input matInput formControlName="tax_id" name="tax_id" />
+          <mat-error *ngIf="displayMessage.tax_id">{{
+            displayMessage.tax_id
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <a (click)="openHint('profile.tax-id.hint')" style="color: #999999; cursor: pointer;">
+          <i class="fas fa-info-circle"></i>
+          {{ "profile.contracts.tax_id.hint" | translate }}
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "form.field.tax.tax_class.label" | translate
+          }}</mat-label>
+          <mat-select formControlName="tax_class">
+            <mat-option
+              *ngFor="let option of taxClassLK"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.tax_class">{{
+            displayMessage.tax_class
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <a (click)="openHint('profile.tax-class.hint')" style="color: #999999; cursor: pointer;">
+          <i class="fas fa-info-circle"></i>
+          {{ "profile.contracts.tax_class.hint" | translate }}
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "form.field.tax.child_tax_allowance.label" | translate
+          }}</mat-label>
+          <mat-select formControlName="child_tax_allowance">
+            <mat-option
+              *ngFor="let option of taxAllowanceLK"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.child_tax_allowance">{{
+            displayMessage.child_tax_allowance
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <div class="row middle-xs">
+      <div class="col-xs-12">
+        <legend
+          translate="profile.section.contract_tax_card.insurance"
+        ></legend>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "form.field.insurance.socialsecurity_number.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            formControlName="socialsecurity_number"
+            name="socialsecurity_number"
+          />
+          <mat-error *ngIf="displayMessage.socialsecurity_number">{{
+            displayMessage.socialsecurity_number
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <label translate=""></label>
+        <a (click)="openHint('profile.socialsecurity.hint')" style="color: #999999; cursor: pointer;">
+          <i class="fas fa-info-circle"></i>
+          {{ "profile.contracts.socialsecurity_number.hint" | translate }}
+        </a>
+      </div>
+      <!-- <div class="col-xs-12 col-sm-6">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "form.field.insurance.health_insurance_type.label" | translate
+          }}</mat-label>
+          <mat-select formControlName="health_insurance_type">
+            <mat-option
+              *ngFor="let option of healthInsuranceTypeLK"
+              [value]="option.value"
+            >
+              {{
+                "profile.fields.health_insurance_types." + option.text
+                  | translate
+              }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.health_insurance_type">{{
+            displayMessage.health_insurance_type
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-sm-6" *ngIf="healthInsuranceType">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "form.field.insurance.health_insurance_name.label" | translate
+          }}</mat-label>
+          <mat-select formControlName="health_insurance_id">
+            <mat-option
+              *ngFor="let option of healthInsuranceLK"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="displayMessage.health_insurance_id">{{
+            displayMessage.health_insurance_id
+          }}</mat-error>
+        </mat-form-field>
+      </div> -->
+    </div>
+  </fieldset>
+</div>

@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs">
+      <h1 [translate]="'administration.budgets.title.list'"></h1>
+    </div>
+  </div>
+  <div class="row center-xs" *ngIf="noRecords$ | async">
+    <div class="col-xs">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="table-wrapper" *ngIf="!(noRecords$ | async)">
+    <div class="row">
+      <app-budget-tile
+        [budget]="item"
+        class="col-xs-12 col-md-4 col-sm-12 col-lg-4 padding-none"
+        [canViewDetail]="false"
+        *ngFor="let item of result$ | async"
+      >
+      </app-budget-tile>
+    </div>
+    <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+    <div class="row">
+      <div class="col-xs">
+        <app-paginator
+          [disabled]="loading$ | async"
+          hidePageSize="true"
+          showFirstLastButtons="true"
+          [length]="totalRecords$ | async"
+          [pageIndex]="currentPage$ | async"
+          [pageSize]="pageSize$ | async"
+          (page)="pageChange($event)"
+        ></app-paginator>
+      </div>
+    </div>
+    <div class="row end-xs">
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        (click)="download()"
+      >
+        {{ "ui.list-table.default.download" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,214 @@
+<div class="container-fluid">
+  <form *ngIf="detailForm" [formGroup]="detailForm" (ngSubmit)="saveDetail()">
+    <div class="row start-xs">
+      <div class="col-xs-12 photo-sizing-header-wrapper">
+        <h3 translate="profile.pictures-sedcard.headline"></h3>
+       <span class="photo-example-guidlines-wrapper"> <i class="fas fa-info-circle"></i><a target="_blank" href="{{goodPhotoExampleURL}}"> {{ "profile.pictures-sedcard.good-photo" | translate }}</a></span>
+      </div>
+      <div class="col-xs-12" *ngIf="!readonly">
+        {{ "profile.pictures-sedcard.description" | translate }}
+      </div>
+    </div>
+    <fieldset>
+      <div class="row">
+        <div
+          class="col-xs-12 col-sm-6 col-md-4"
+          *ngIf="orgPictures"
+        >
+          <label  translate="profile.fields.photos.profile"></label>
+          <app-profile-photo
+            [readonly]="readonly"
+            [photo]="orgPictures.current.profile"
+            [photoPending]="orgPictures.pending.profile"
+            type="profile"
+            [placeholder]="facePlaceholder"
+            [updateRequest]="!(isOnboarding)"
+            (photoUploaded)="onProfilePictureChange($event)"
+          ></app-profile-photo>
+        </div>
+        <div
+          class="col-xs-12 col-sm-6 col-md-4"
+          *ngIf="orgPictures"
+        >
+          <label  translate="profile.fields.photos.body"></label>
+          <app-profile-photo
+            [readonly]="readonly"
+            [photo]="orgPictures.current.body"
+            [photoPending]="orgPictures.pending.body"
+            type="body"
+            [placeholder]="bodyPlaceholder"
+            [updateRequest]="!(isOnboarding)"
+            (photoUploaded)="onBodyPictureChange($event)"
+          ></app-profile-photo>
+        </div>
+        <div class="col-xs-12" *ngIf="!readonly" appLoadHtml="profile.photo.hints"></div>
+        <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let item of [0, 1, 2]">
+          <label translate="profile.fields.photos.additional"></label>
+          <app-profile-photo
+            [readonly]="readonly"
+            *ngIf="orgPictures"
+            [photo]="orgPictures.current.additional[item]"
+            [photoPending]="orgPictures.current.additional[item]"
+            type="additional"
+            [placeholder]="bodyPlaceholder"
+            (photoUploaded)="onAdditionalPictureChange($event, item)"
+          ></app-profile-photo>
+
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12">
+          <legend translate="profile.overall-appearance.headline"></legend>
+        </div>
+        <div class="col-xs-12 padding-none">
+          <div class="a">
+            <div class="row">
+              <mat-form-field
+                class="col-xs-12 col-sm-6 col-md-3"
+                *ngFor="let item of ['height', 'chest', 'waist', 'hip']"
+              >
+                <mat-label *ngIf="item !== 'height'">{{
+                  "profile.fields." + item + ".label" | translate
+                  }}</mat-label>
+                <mat-label *ngIf="item === 'height'">{{
+                  "profile.fields." + item + ".label" | translate
+                  }}</mat-label>
+                <input
+                  matInput
+                  [formControlName]="item"
+                  [attr.name]="item"
+                  placeholder="{{
+                  'profile.fields.' + item + '.placeholder' | translate
+                }}"
+                />
+                <!-- <mat-error *ngIf="displayMessage[item]">{{
+                  displayMessage[item]
+                }}</mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-none">
+          <div class="a">
+            <div class="row">
+                <mat-form-field class="col-xs-12 col-sm-6 col-md-3">
+                  <mat-label>{{
+                    "profile.fields.shirtsize.label" | translate
+                    }}</mat-label>
+                  <mat-select formControlName="shirtsize" name="shirtsize">
+                    <mat-option
+                      *ngFor="let option of shirtSizeLK"
+                      [value]="option.value"
+                    >
+                      {{ "profile.fields.shirtsize." + option.value | translate }}
+                    </mat-option>
+                  </mat-select>
+                  <!-- <mat-error *ngIf="displayMessage.shirtsize">{{
+                    displayMessage.shirtsize
+                  }}</mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="col-xs-12 col-sm-6 col-md-3">
+                  <mat-label>{{
+                    "profile.fields.pant.label" | translate
+                    }}</mat-label>
+                  <mat-select formControlName="pants" name="pants">
+                    <mat-option
+                      *ngFor="let option of pantSizeLK"
+                      [value]="option.value"
+                    >
+                      {{ "profile.fields.pantsize." + option.value | translate }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="displayMessage.pant">{{
+                    displayMessage.pant
+                    }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-xs-12 col-sm-6 col-md-3"
+                >
+                  <mat-label>{{
+                    "profile.fields.haircolor.label" | translate
+                    }}</mat-label>
+
+                  <input
+                    matInput
+                    formControlName="haircolor"
+                    name="haircolor"
+                    placeholder="{{
+              'profile.fields.haircolor.placeholder' | translate
+            }}"
+                  />
+                  <mat-error *ngIf="displayMessage.haircolor">{{
+                    displayMessage.haircolor
+                    }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-xs-12 col-sm-6 col-md-3">
+                  <mat-label>{{
+                    "profile.fields.shoe.label" | translate
+                    }}</mat-label>
+                  <!--          <mat-select formControlName="shoesize" name="shoe">-->
+                  <!--              <mat-option-->
+                  <!--                *ngFor="let option of shoeSizeLK"-->
+                  <!--                [value]="option.value"-->
+                  <!--              >-->
+                  <!--                {{ "profile.fields.shoesize." + option.value | translate }}-->
+                  <!--              </mat-option>-->
+                  <!--            </mat-select>-->
+                  <input
+                    matInput
+                    formControlName="shoesize"
+                    placeholder="{{
+              'profile.fields.shoe.placeholder' | translate
+            }}"
+                  />
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 shoe-size-reference">
+<!--                <span class="shoes-reference-guidlines-wrapper">-->
+<!--                  <i class="fas fa-info-circle"></i>-->
+<!--                  <a target="_blank" href="{{shoeSizeReferenceExampleURL}}">{{'profile.fields.shoe.shoe-reference' | translate }} </a>-->
+<!--                </span>-->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+    <div class="row" *ngIf="!readonly">
+      <div class="col-xs-12">
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="isOnboarding"
+          translate="profile.submit.button-next"
+        ></button>
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          *ngIf="!(isOnboarding)"
+          translate="profile.submit.button-save"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="isOnboarding"
+          translate="profile.next-step"
+          (click)="next()"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          *ngIf="!(isOnboarding)"
+          translate="profile.cancel"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </div>
+  </form>
+</div>

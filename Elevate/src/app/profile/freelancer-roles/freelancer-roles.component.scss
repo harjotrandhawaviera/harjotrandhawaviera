@@ -1,0 +1,34 @@
+@import "../../../styles/base/variables.scss";
+
+.required-proof-button {
+  border: 1px solid $link-color;
+  color: $link-color;
+}
+.required-proof-button:hover {
+  background-color: $brand-primary;
+  color: $p4y-color-white;
+}
+.upload-document-button {
+  border: 1px solid $link-color;
+  color: $link-color;
+}
+.upload-document-button:hover {
+  background-color: $p4y-color-black;
+  color: $p4y-color-white;
+}
+.remove-role-wrapper
+{
+  margin-left: 40px !important;
+}
+.fas{
+  font-size: 14px !important;
+  padding: 30px 4px 10px 4px;
+  cursor: pointer;
+  &.fa-minus{
+    color: $p4y-color-status-error !important;
+    margin-left: 28px;
+  }
+  &.fa-plus{
+    color:$brand-primary;
+  }
+}

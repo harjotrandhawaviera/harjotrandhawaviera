@@ -1,0 +1,58 @@
+{
+    "offers": {
+      "offers_made": "Submitted Job Details",
+      "offers_shortlisted": "Shortlisted Job Details",
+      "applied_job": "Applied Job Detail",
+      "deadline": "DEADLINE:",
+      "expiry_date": "DATE OF Expiry",
+      "shift_time": "Shift Time",
+      "client": "client",
+      "fee": "possible fee",
+      "job": "job",
+      "compensation": "Task-Based compensation",
+      "contract_type": "Contract Type",
+      "roleName": "Role",
+      "shiftName": "Shift",
+      "Bonus": "Bonuses",
+      "category": "Category",
+      "address": "address",
+      "freelancer": "Staff Member",
+      "phone": "Phone(Mobile)",
+      "email": "E-mail",
+      "project": "project",
+      "rate": "Hourly Rate",
+      "certificate": "Required Certificates",
+      "operational_training": "Required Training",
+      "description": "Description",
+      "briefing": "GENERAL BRIEFING",
+      "register": "Registration:",
+      "sales_report": "Sales Report:",
+      "documentation": "Photo Documentation:",
+      "state": {
+        "pending": "In Progress",
+        "rejected": "Rejected",
+        "submitted": "Submitted",
+        "shortlisted": "Shortlisted"
+      },
+      "confirm-offer": {
+        "check_in": "Confirm with Survey Link",
+        "check_out": "Confirm without Survey Link",
+        "placeholder": {
+          "check_in": "Check-in Survey Link",
+          "check_out": "Check-out Survey Link"
+        }
+      },
+      "buttons": {
+        "confirmOffer": "Confirm an Offer",
+        "rejectOffer": "Reject Offer",
+        "shortlist": "Shortlist",
+        "abort": "Cancel",
+        "accept": "Submit",
+        "details": "Details"
+      },
+      "dialog": {
+        "messageAccept": "Do you really want to accept Offer?",
+        "messageReject": "Do you really want to reject Offer?"
+      }
+    }
+}

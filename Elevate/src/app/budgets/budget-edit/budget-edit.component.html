@@ -1,0 +1,171 @@
+<fieldset [formGroup]="budgetFormGroup">
+  <div class="row">
+    <div class="form-group col-xs-12 col-md-6">
+      <mat-form-field class="full-width">
+        <mat-label required
+          >{{ "administration.budgets.label.name" | translate }}
+        </mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="displayMessage.name">{{
+          displayMessage.name
+        }}</mat-error>
+      </mat-form-field>
+      <!-- <label
+        data-translate-once="administration.budgets.label.name"
+        data-required
+      ></label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        data-required
+        data-ng-model="budget.data.name"
+        data-translate-once-placeholder="administration.budgets.fields.placeholder.name"
+      /> -->
+    </div>
+    <div class="form-group col-xs-12 col-md-6">
+      <label translate="administration.budgets.label.client"></label>
+      <p>
+        <a
+          *ngIf="client"
+          [routerLink]="['/administration/clients/details', client.id]"
+        >
+          {{ client.name }}</a
+        >
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-9">
+      <div class="form-group" *ngIf="!(budget && budget.id)">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "administration.budgets.label.budget.create" | translate
+          }}</mat-label>
+          <app-static-auto-complete
+            formControlName="budget_id"
+            [disabled]="!!(budget && budget.id)"
+            [options]="budgetLK"
+            [error]="displayMessage.budget_id"
+          >
+          </app-static-auto-complete>
+          <mat-error *ngIf="displayMessage.budget_id">{{
+            displayMessage.budget_id
+          }}</mat-error>
+        </mat-form-field>
+        <!-- <label
+          data-translate-once="administration.budgets.label.budget.create"
+          data-required
+        ></label>
+        <div
+          data-selectize
+          data-options="budget.budgets"
+          data-required
+          data-config="{maxOptions: 10000, maxItems: 1, valueField: 'id', labelField: 'budgetTitle', sortField: 'budgetTitle', searchField: ['budgetTitle', 'contactNames'], allowEmptyOption: true}"
+          data-select-description="budgetTitle|[contactNames]"
+          data-select-empty-option="ui.option.deselect"
+          data-ng-model="budget.data.budget_id"
+        ></div> -->
+      </div>
+      <div
+        class="form-group"
+        *ngIf="budget && budget.id && budget.order && budget.order.id"
+      >
+        <label translate="administration.budgets.label.budget.edit"></label>
+        <div>
+          <a
+            [routerLink]="['/administration/orders/details', budget.order.id]"
+            >{{ budget.order.name }}</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-md-3">
+      <div *ngIf="!(budget && budget.id)">
+        <mat-form-field class="full-width">
+          <mat-label required
+            >{{ "administration.budgets.label.value" | translate }}
+          </mat-label>
+          <input matInput formControlName="value" />
+          <mat-error *ngIf="displayMessage.value">{{
+            displayMessage.value
+          }}</mat-error>
+        </mat-form-field>
+        <!-- <label
+          for="value"
+          translate="administration.budgets.label.value"
+          data-required
+        ></label>
+        <input
+          type="text"
+          class="form-control"
+          id="value"
+          data-currencyformat="€"
+          required
+          data-validate-affected-budget="{{ budget.availableParentBudget }}"
+          data-is-transfer
+          data-ng-model="budget.data.value"
+          data-reset-on-change="budget.data.budget_id"
+          data-translate-once-placeholder="administration.budgets.fields.placeholder.value"
+        /> -->
+      </div>
+      <div *ngIf="budget && budget.id">
+        <label
+          for="value"
+          translate="administration.budgets.label.value"
+        ></label>
+        <p>
+          {{ budget.value | currency }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12 col-md-6">
+      <!-- <label
+        for="remarks"
+        translate="administration.budgets.label.remarks"
+      ></label> -->
+      <!-- <textarea
+        class="form-control"
+        id="remarks"
+        rows="2"
+        data-ng-model="budget.data.remarks"
+        data-translate-once-placeholder="administration.budgets.fields.placeholder.remarks"
+      ></textarea> -->
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "administration.budgets.label.remarks" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          formControlName="remarks"
+          name="remarks"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-xs-12 col-md-6">
+      <app-multi-select-auto-complete
+        class="form-field"
+        label="{{ 'administration.budgets.label.contacts' | translate }}"
+        [filteredOptions]="contactLK"
+        [static]="true"
+        formControlName="contact_ids"
+      >
+      </app-multi-select-auto-complete>
+      <!-- <label
+        data-translate-once="administration.budgets.label.contacts"
+      ></label>
+      <div
+        data-selectize
+        data-options="budget.clientContacts"
+        data-config="{maxOptions: 10000, valueField: 'id', labelField: 'fullname', sortField: 'fullname', searchField: 'fullname'}"
+        data-ng-disabled="!(budget.data.client_id || budget.data.budget_id)"
+        data-ng-model="budget.data.contact_ids"
+        data-select-description="fullname|filterdescription"
+        data-select-item-description="true"
+      ></div> -->
+    </div>
+  </div>
+</fieldset>

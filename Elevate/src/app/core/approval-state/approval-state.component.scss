@@ -1,0 +1,130 @@
+@import 'variables';
+@import 'mixins';
+.approval-state {
+  margin-bottom: 10px;
+  .pending,
+  .rejected,
+  .accepted {
+    float: left;
+    margin-right: 15px;
+    label + span {
+      display: inline-block;
+      transform: translateY(1px);
+    }
+  }
+  > div {
+    margin: 0 10px;
+  }
+  // redefine used brand-radio per type
+  .brand-radio {
+    i {
+      font-style: normal;
+    }
+  }
+  .pending {
+    i:before {
+      content: "\f128";
+      transform: translateX(4px);
+    }
+    :checked + i {
+      background-color: #fff;
+      &:before {
+        color: $brand-primary !important;
+      }
+    }
+  }
+  .accepted {
+    i:before {
+      transform: translateX(2px);
+    }
+    .mat-radio-inner-circle {
+      background-color: $brand-primary !important;
+      border-color: $brand-primary !important;
+    }
+  }
+  .rejected {
+    i:before {
+      content: "\f00d";
+      transform: translateX(3px);
+    }
+    .mat-radio-inner-circle {
+      background-color: $brand-danger !important;
+      border-color: $brand-danger !important;
+    }
+  }
+  .input-comment {
+    width: calc(100% - 300px);
+  }
+  &.edit {
+    .pending {
+      display: none;
+    }
+    &.pending .done {
+      display: none;
+    }
+    // disable buttons and comment in edit mode if already answered
+    &.rejected,
+    &.accepted {
+      .rejected,
+      .accepted,
+      .input-comment {
+        margin-right: 5px;
+      }
+      .brand-radio {
+        pointer-events: none;
+      }
+      .input-comment {
+        display: none;
+      }
+    }
+    &.rejected {
+      .accepted {
+        display: none;
+      }
+    }
+    &.accepted {
+      .rejected {
+        display: none;
+      }
+    }
+  }
+  .done {
+    span {
+      line-height: 20px;
+    }
+  }
+  input.ng-invalid + .validation {
+    margin-left: 230px;
+    margin-right: 68px;
+  }
+  &:not(.edit) {
+    .brand-radio {
+      pointer-events: none;
+    }
+    .done {
+      display: none;
+    }
+    &.accepted,
+    &.rejected {
+      .done {
+        display: inline-block;
+      }
+    }
+    .pending,
+    .rejected,
+    .accepted,
+    .input-comment {
+      margin-right: 5px;
+      display: none;
+    }
+    &.pending .pending {
+      display: block;
+    }
+    &.rejected .rejected {
+      display: block;
+    }
+    &.accepted .accepted {
+      display: block;
+    }
+  }
+}

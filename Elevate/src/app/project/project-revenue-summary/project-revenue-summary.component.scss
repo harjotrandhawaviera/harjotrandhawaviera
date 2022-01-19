@@ -1,0 +1,15 @@
+.revenues-summary .average:before {
+  content: "\00d8";
+  margin-right: 2px;
+}
+
+.revenues-summary .details-toggle {
+  float: right;
+  font-size: 16px;
+  cursor: pointer;
+  color: #21b4b0;
+}
+
+.revenues-summary .details-toggle:hover {
+  color: #157371;
+}

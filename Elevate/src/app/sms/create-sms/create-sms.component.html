@@ -1,0 +1,384 @@
+<app-search-container [showSearchPanel]="!fromAdv">
+  <app-search-panel>
+    <form [formGroup]="searchForm" (ngSubmit)="searchChange()">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.freelancers.filters.status" | translate
+            }}</mat-label>
+            <mat-select formControlName="status" multiple>
+              <mat-option *ngFor="let option of stateLK" [value]="option.value">
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.freelancers.filters.contractType" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              #contractType
+              [clearSelection]="true"
+              formControlName="contractType"
+              [options]="contractTypeLK"
+            >
+            </app-static-auto-complete>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.freelancers.filters.postcodes" | translate
+          }}</mat-label>
+        </div>
+        <div class="col-xs-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ "ui.filter.range.min" | translate }}</mat-label>
+            <input matInput formControlName="postcodesMin" type="text" />
+          </mat-form-field>
+        </div>
+        <div class="col-xs-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ "ui.filter.range.max" | translate }}</mat-label>
+            <input matInput formControlName="postcodesMax" type="text" />
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <app-multi-select-auto-complete
+            class="form-field"
+            label="{{
+              'administration.freelancers.filters.certificates' | translate
+            }}"
+            [filteredOptions]="certificateLK"
+            [static]="true"
+            formControlName="certificates"
+          >
+          </app-multi-select-auto-complete>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.freelancers.filters.assignment_rating" | translate
+          }}</mat-label>
+          <div class="row between-xs center-xs">
+            <div>
+              <bar-rating
+                formControlName="assignment_rating"
+                #rating
+                [max]="5"
+                [theme]="'fontawesome-o'"
+              >
+              </bar-rating>
+            </div>
+            <div>
+              <button
+                type="button"
+                mat-button
+                *ngIf="rating.rate > 0"
+                mat-icon-button
+                (click)="clearAssignmentRating()"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.freelancers.filters.project" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              formControlName="project"
+              #project
+              [options]="projectLK"
+              [clearSelection]="true"
+            >
+            </app-static-auto-complete>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <!-- <mat-label>{{"administration.freelancers.filters.assignmentStates" | translate}}</mat-label> -->
+          <mat-slide-toggle formControlName="assignmentStates" color="primary">
+            {{
+              "administration.freelancers.fields.assignmentStates.only_upcoming"
+                | translate
+            }}
+          </mat-slide-toggle>
+        </div>
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        </div>
+
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.freelancers.search-placeholder" | translate
+            }}</mat-label>
+            <input matInput formControlName="search" type="search" />
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "ui.side-option-menu.placeholder" | translate
+            }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <form
+      *ngIf="detailForm"
+      [formGroup]="detailForm"
+      (ngSubmit)="createSms()"
+    >
+      <div class="row">
+        <div class="col-xs">
+          <h1 translate="sms.title.details"></h1>
+        </div>
+      </div>
+      <div class="row end-xs">
+        <div class="col-xs">
+          <button
+            type="submit"
+            mat-flat-button
+            [disabled]="
+              !(
+                selection &&
+                selection.selected &&
+                selection.selected.length &&
+                !detailForm.invalid
+              )
+            "
+            color="accent"
+            translate="sms.buttons.create"
+          ></button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <label translate="sms.campaign.label" data-required></label>
+          <mat-form-field class="full-width" floatLabel="never">
+            <input
+              matInput
+              formControlName="campaign"
+              name="campaign"
+              placeholder="{{ 'sms.campaign.placeholder' | translate }}"
+            />
+            <mat-error *ngIf="displayMessage.campaign">{{
+              displayMessage.campaign
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <label translate="sms.purpose.label" data-required></label>
+          <mat-form-field class="full-width" floatLabel="never">
+            <input
+              matInput
+              formControlName="purpose"
+              name="purpose"
+              placeholder="{{ 'sms.purpose.placeholder' | translate }}"
+            />
+            <mat-error *ngIf="displayMessage.purpose">{{
+              displayMessage.purpose
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 message-div">
+          <label translate="sms.message.label" data-required></label>
+          <mat-form-field class="full-width" floatLabel="never">
+            <textarea
+              matInput
+              formControlName="message"
+              placeholder="{{ 'sms.message.placeholder' | translate }}"
+              name="message"
+              rows="7"
+              maxlength="160"
+            ></textarea>
+            <mat-error *ngIf="displayMessage.message">{{
+              displayMessage.message
+            }}</mat-error>
+          </mat-form-field>
+          <span class="charcount">{{160 - detailForm.controls.message.value.length + ' characters'}}</span>
+        </div>
+        <div class="col-xs-12">
+          <label translate="sms.recipient.label"></label>
+          <div *ngIf="freelancers && freelancers.length">
+            <div>
+              <span
+                *ngIf="
+                  freelancers.length &&
+                  selection &&
+                  selection.selected &&
+                  selection.selected.length
+                "
+                class="description"
+              >
+                {{
+                  "sms.recipient.description-1"
+                    | translate
+                      : {
+                          count: selection.selected.length,
+                          total: freelancers.length
+                        }
+                }}
+              </span>
+              <span
+                *ngIf="
+                  freelancers.length &&
+                  !(
+                    selection &&
+                    selection.selected &&
+                    selection.selected.length
+                  )
+                "
+                class="description"
+              >
+                {{ "sms.recipient.description-0" | translate }}
+              </span>
+              <button
+                type="button"
+                class="pull-right"
+                mat-stroked-button
+                color="primary"
+                (click)="toggleFreelancer()"
+              >
+                {{
+                  "sms.toggle-view." + showFreelancers
+                    ? "show"
+                    : ("hide" | translate)
+                }}
+              </button>
+            </div>
+          </div>
+          <div *ngIf="showFreelancers">
+            <div class="table-inner-wrapper">
+              <table
+                mat-table
+                class="search-table"
+                [dataSource]="freelancers ? freelancers : []"
+              >
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox
+                      (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    >
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox
+                      (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row.id) : null"
+                      [checked]="selection.isSelected(row.id)"
+                    >
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="recipient">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "sms.recipient.table.recipient" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <div [innerHtml]="element.recipient"></div>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="mobile">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "sms.recipient.table.mobile" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <div [innerHtml]="element.mobile"></div>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="postcodes">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "sms.recipient.table.postcodes" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <div [innerHtml]="element.postcodes"></div>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "sms.recipient.table.status" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element.status">
+                      {{
+                        "administration.users.state." + element.status
+                          | translate
+                      }}
+                    </span>
+                  </td>
+                </ng-container>
+                <tr
+                  mat-header-row
+                  *matHeaderRowDef="[
+                    'select',
+                    'recipient',
+                    'mobile',
+                    'postcodes',
+                    'status'
+                  ]"
+                ></tr>
+                <tr
+                  mat-row
+                  *matRowDef="
+                    let row;
+                    columns: ['select', 'recipient', 'mobile', 'postcodes', 'status']
+                  "
+                ></tr>
+              </table>
+              <app-table-spinner
+                *ngIf="
+                  this.freelancerSubscribe && !this.freelancerSubscribe.closed
+                "
+              ></app-table-spinner>
+            </div>
+          </div>
+          <div
+            *ngIf="
+              !(freelancers && freelancers.length) &&
+              !(this.freelancerSubscribe && !this.freelancerSubscribe.closed)
+            "
+          >
+            <p
+              class="description"
+              translate="sms.recipient.freelancer-filter-hint"
+            ></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs action-button">
+          <button
+            type="submit"
+            [disabled]="
+              !(
+                selection &&
+                selection.selected &&
+                selection.selected.length &&
+                !detailForm.invalid
+              )
+            "
+            mat-flat-button
+            color="accent"
+            translate="sms.buttons.create"
+          ></button>
+          <button
+            type="button"
+            mat-stroked-button
+            color="primary"
+            translate="sms.buttons.reset"
+            (click)="reset()"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </app-search-list>
+</app-search-container>

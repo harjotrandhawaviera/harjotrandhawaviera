@@ -1,0 +1,26 @@
+@import "variables";
+@import "mixins";
+
+.acion-title-holder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+  }
+  .action-btn-cont {
+    a {
+      // border-radius: 10px;
+      &[disabled] {
+        pointer-events: none;
+        border-color: $gray-light;
+      }
+    }
+  }
+}
+app-table-spinner {
+  position: relative;
+}
+.mt-10 {
+  margin-top: 10px;
+}

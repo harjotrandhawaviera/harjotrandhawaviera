@@ -1,0 +1,108 @@
+<app-search-container>
+  <app-search-panel>
+    <form [formGroup]="searchForm">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "certificates.filters.attributes" | translate
+            }}</mat-label>
+            <mat-select formControlName="attributes" multiple>
+              <mat-option
+                *ngFor="let option of attributesLK"
+                [value]="option.value"
+              >
+                {{ "certificates.fields.attributes." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "certificates.filters.category" | translate
+            }}</mat-label>
+            <mat-select formControlName="category">
+              <mat-option>{{'ui.option.deselect' | translate}}</mat-option>
+              <mat-option
+                *ngFor="let option of categoriesLK"
+                [value]="option.value"
+              >
+                {{ "certificates.categories." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <!-- <mat-label>{{"administration.freelancers.filters.assignmentStates" | translate}}</mat-label> -->
+          <mat-slide-toggle formControlName="legal" color="primary">
+            {{
+              "certificates.filters.legal"
+                | translate
+            }}
+          </mat-slide-toggle>
+        </div>
+        <div class="col-xs-12">
+          <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        </div>
+
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "certificates.fields.search.placeholder" | translate
+            }}</mat-label>
+            <input matInput formControlName="search" type="search" />
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "ui.side-option-menu.placeholder" | translate
+            }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+<!--    <div class="row">-->
+<!--      <div class="col-xs">-->
+<!--        <h1 [translate]="'certificates.all.title'"></h1>-->
+<!--        <h3 [translate]="'certificates.agent.header'"></h3>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row center-xs" *ngIf="noRecords$ | async">-->
+<!--      <div class="col-xs">-->
+<!--        <div class="alert alert-info text-center">-->
+<!--          {{ "ui.list-table.default.no-records" | translate }}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="table-wrapper" *ngIf="!(noRecords$ | async)">-->
+<!--      <div class="row">-->
+<!--        <app-certificate-tile-->
+<!--          [certificate]="item"-->
+<!--          class="col-xs-12 col-md-4 col-sm-12 col-lg-4 padding-none"-->
+<!--          (toggleRecommendation)="toggleRecommendation($event)"-->
+<!--          (toggleEnabled)="toggleEnabled($event)"-->
+<!--          *ngFor="let item of result$ | async"-->
+<!--        >-->
+<!--        </app-certificate-tile>-->
+<!--      </div>-->
+<!--      <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>-->
+<!--      <div class="row">-->
+<!--        <div class="col-xs">-->
+<!--          <app-paginator-->
+<!--            [disabled]="loading$ | async"-->
+<!--            hidePageSize="true"-->
+<!--            showFirstLastButtons="true"-->
+<!--            [length]="totalRecords$ | async"-->
+<!--            [pageIndex]="currentPage$ | async"-->
+<!--            [pageSize]="pageSize$ | async"-->
+<!--            (page)="pageChange($event)"-->
+<!--          ></app-paginator>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </app-search-list>
+</app-search-container>

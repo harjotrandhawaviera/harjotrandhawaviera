@@ -1,0 +1,72 @@
+<div class="row approval-state {{ set }} {{ view === 'set' ? 'edit' : '' }}">
+  <div>
+    <mat-radio-group
+      aria-labelledby="Role"
+      class="row"
+      color="primary"
+      [(ngModel)]="data.state"
+      (ngModelChange)="updateData()"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <mat-radio-button
+        [value]="state"
+        [disabled]="view !== 'set'"
+        class="approval-state-radio {{ state }}"
+        *ngFor="
+          let state of view === 'set'
+            ? ['pending', 'accepted', 'rejected']
+            : [data.state]
+        "
+      >
+        {{ "common.approval-state." + state | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div *ngIf="view !== 'set'">
+    {{ view !== "set" ? data.comment : "" }}
+  </div>
+  <div class="input-comment">
+    <mat-form-field *ngIf="view === 'set'" class="full-width">
+      <textarea
+        matInput
+        [disabled]="view !== 'set'"
+        [(ngModel)]="data.comment"
+        (ngModelChange)="updateData()"
+        [ngModelOptions]="{ standalone: true }"
+        rows="1"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <div class="done">
+    <span
+      class="performer"
+      *ngIf="data.performed_by"
+      [translate]="'common.approval-state.by'"
+      [translateParams]="{ user: data.performed_by }"
+    ></span>
+    <span
+      *ngIf="data.comment"
+      [translate]="'common.approval-state.comment'"
+      [translateParams]="{ comment: data.comment }"
+    ></span>
+  </div>
+  <!--<div class="{{ state }}">
+       <label class="input-label">
+        <input
+          type="radio"
+          data-brand-radio
+          name="approval-{{ ::approval.id }}"
+          data-ng-model="approval.data.state"
+          data-ng-value="::state"
+        />
+        <span data-translate-once="common.approval-state.{{ ::state }}"></span>
+      </label>
+    </div> -->
+  <!-- <input
+      type="text"
+      class="comment form-control"
+      data-ng-model="approval.data.comment"
+      data-ng-required="approval.view === 'set' && approval.data.state === 'rejected'"
+      data-translate-once-placeholder="common.approval-state.comment-placeholder"
+    /> -->
+</div>

@@ -1,0 +1,68 @@
+<div
+  *ngIf="certificate"
+  class="container-fluid details exam-container {{ certificate.state }}"
+>
+  <div class="row">
+    <div class="col-md-12">
+      <a [routerLink]="['/certificates/all']"
+        >{{ "exams.buttons.back-to-overview" | translate }}
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 header">
+      <div class="clearfix">
+        <h1 class="title pull-left">
+          {{ certificate.name }}
+          <span
+            class="text-primary icon"
+            *ngIf="certificate.is_recommended && !certificate.passed"
+            [matTooltip]="'certificates.all.recommendation' | translate"
+          >
+            <i class="fas fa-fire-alt"></i>
+            <!-- <span data-translate-once="certificates.all.recommended"></span> -->
+          </span>
+        </h1>
+      </div>
+
+      <h2>{{ certificate.teaser }}</h2>
+      <!-- <p
+        [translate]="'certificates.all.created'"
+        [translateParams]="certificate"
+      ></p> -->
+      <p>{{ certificate.description }}</p>
+    </div>
+
+    <!-- <div
+      class="col-xs-12"
+      *ngIf="certificate.training && certificate.training.is_enabled"
+      data-training="certificate.training.content"
+    ></div> -->
+    <div
+      class="col-xs-12"
+      *ngIf="certificate.training && certificate.training.is_enabled"
+      data-training="certificate.data.training.content"
+      app-training-content
+      [content]="certificate.training.content"
+    ></div>
+    <div
+      class="col-xs-12 start-test"
+      *ngIf="
+        certificate.is_enabled &&
+        certificate.exam &&
+        certificate.exam.is_enabled
+      "
+    >
+      <div translate="certificates.description"></div>
+      <a
+        type="submit"
+        mat-flat-button
+        color="accent"
+        [routerLink]="['/exam/', certificate.exam.id]"
+      >
+        {{ "certificates.buttons.start-exam" | translate }}
+      </a>
+    </div>
+  </div>
+</div>

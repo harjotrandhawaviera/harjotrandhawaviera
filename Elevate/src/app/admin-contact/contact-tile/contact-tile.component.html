@@ -1,0 +1,64 @@
+<!-- <mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card> -->
+
+<div class="panel panel-default contact" *ngIf="contact">
+  <div class="panel-heading text-primary">
+    <a *ngIf="contact.site" class="line-ellipsis">
+      <span class="fas fa-map-marker"></span>{{ contact.site.name }}
+    </a>
+    <a *ngIf="contact.client" class="line-ellipsis" [routerLink]="['/administration/clients', contact.client.id]">
+      <span class="far fa-gem"></span>{{ contact.client.name }}
+    </a>
+  </div>
+  <div class="panel-body">
+    <h3 class="line-ellipsis">
+      {{contact.salutation ? (('administration.contact.fields.salutation.'+contact.salutation) | translate) : ''}}
+      {{contact.fullname}}
+    </h3>
+    <h4 class="line-ellipsis">{{ contact.position }} <small>{{contact.department}}</small></h4>
+    <p *ngIf="contact.site">
+      <ng-container *ngTemplateOutlet="address; context: {addressData: contact.site}"></ng-container>
+    </p>
+    <p *ngIf="contact.client">
+      <ng-container *ngTemplateOutlet="address; context: {addressData: contact.client}"></ng-container>
+    </p>
+    <dl class="direct-contact">
+      <dt *ngIf="contact.email"><span class="far fa-envelope text-primary"></span></dt>
+      <dd *ngIf="contact.email"><a [attr.href]="'mailto:' + contact.email">{{contact.email}}</a></dd>
+      <dt *ngIf="contact.phone"><span class="fa fa-phone text-primary"></span></dt>
+      <dd *ngIf="contact.phone"><a [attr.href]="'tel:' + contact.phone | telNumber">{{contact.phone}}</a></dd>
+      <dt *ngIf="contact.fax"><span class="fa fa-fax text-primary"></span></dt>
+      <dd *ngIf="contact.fax"><span>{{contact.fax}}</span></dd>
+    </dl>
+    <dl *ngIf="contact.site && contact.site.group">
+      <dt><span class="far fa-building"></span></dt>
+      <dd><span class="site-group" *ngIf="contact.site.group">{{contact.site.group}}</span></dd>
+    </dl>
+    <dl *ngIf="contact.parent">
+      <dt><span class="far fa-user-circle"></span></dt>
+      <dd><span id="parent-name">{{contact.parent}}</span></dd>
+    </dl>
+  </div>
+</div>
+<ng-template #address let-addressData="addressData">
+  <span>{{addressData.address}}</span>
+  <span class="line-ellipsis" *ngIf="addressData.addresssaddition"> &#8226; {{ addressData.addresssaddition }}</span>
+  <span class="line-ellipsis">{{ (addressData.zip + ' ' + addressData.city +
+    (addressData.country ? ' &#8226; ' + addressData.country : '')) }}</span>
+
+</ng-template>

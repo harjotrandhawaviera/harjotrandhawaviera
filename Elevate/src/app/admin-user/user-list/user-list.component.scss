@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'mixins';
+
+.search-form {
+  padding: 20px;
+}
+.user-brf-wrapper {
+  display: flex;
+  @include user-status;
+  img {
+    min-width: 36px;
+    height: 36px;
+    background: center no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+    background-image: url("../../../assets/images/avatar.png");
+    border: #f8f8f8;
+    border-radius: 50%;
+  }
+  .name-email-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+  }
+}

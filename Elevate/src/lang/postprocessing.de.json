@@ -1,0 +1,90 @@
+{
+    "postprocessing": {
+        "title": {
+            "new": "Arbeitszeitnachweis, Umsatzmeldung und Stellungnahme",
+            "list": "Arbeitszeitnachweis, Umsatzmeldung und  Stellungnahme",
+            "details": "Arbeitszeitnachweise, Umsatzmeldung und Stellungnahme"
+        },
+        "description": {
+            "assignments-list": "Bitte wähle hier den Einsatz aus, für den Du Arbeitszeitnachweis und Umsatzmeldung bereitstellen möchtest.",
+            "revenues": "Bitte erfasse deine Umsätze dieses Einsatzes.",
+            "templates": "Dies sind Vorlagen für die Dokumente, die du nach dem Einsatz ausgefüllt hier hochladen solltest."
+        },
+        "status": "{{done}} von {{all}} Einsätzen bearbeitet",
+        "onbehalf": "Im Auftrag von {{fullname}}",
+        "assignments": "Einsätze",
+        "assignment-date": "Termin: {{appointedAt}}",
+        "preparation-done-hint": "Die Angaben zu diesem Einsatz sind vollständig. Der Einsatz kann in Rechnung gestellt werden.",
+        "document-not-saved": "Das Dokument wurde noch nicht gespeichert.",
+        "report": {
+            "title": "Arbeitszeitnachweis"
+        },
+        "picture-documentation": {
+            "title": "Fotodokumentation"
+        },
+        "online-questionnaire": {
+            "title": "Stellungnahme"
+        },
+        "feedback": {
+            "title": "Feedback"
+        },
+        "questionnaire": {
+            "title": "Stellungnahme"
+        },
+        "templates": {
+            "title": "Vorlagen"
+        },
+        "revenue": {
+            "title": "Umsatzmeldung"
+        },
+        "freelancer": {
+            "label": "Bitte wähle den Fachberater aus, für den die Einsatznachbereitung durchgeführt werden soll:"
+        },
+        "buttons": {
+            "create": "Speichern",
+            "back": "Zurück zur Übersicht",
+            "save": "Speichern",
+            "cancel": "Abbrechen",
+            "add-document": "Neues Dokument",
+            "remove-document": "Dokument löschen",
+            "add-revenue": "Umsatzmeldung hinzufügen"
+        },
+        "save-document": {
+            "title": "Dokument speichern?",
+            "message": "Möchtest du das Dokument jetzt speichern?",
+            "buttons": {
+                "cancel": "Abbrechen",
+                "confirm": "Speichern"
+            }
+        },
+        "table": {
+            "actions": {
+                "label": "Aktionen",
+                "details": "Details"
+            }
+        },
+        "checklist": {
+            "questionnaire": "Stellungnahme",
+            "feedback": "Feedback",
+            "report": "Arbeitszeitnachweis hochladen",
+            "picture_documentation": "Foto hochladen",
+            "sales_report": "Umsatz eintragen"
+        },
+        "documents": {
+            "type": {
+                "template-questionnaire": "Stellungnahme",
+                "template-report": "Arbeitszeitnachweis",
+                "template": "Vorlage"
+            },
+            "remove": {
+                "title": "Dokument löschen",
+                "message": "Möchtest du das Dokument wirklich löschen?"
+            },
+            "actions": {
+                "label": "Aktionen",
+                "edit": "Bearbeiten",
+                "remove": "Löschen"
+            }
+        }
+    }
+}

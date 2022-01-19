@@ -1,0 +1,111 @@
+<div class="job-cont">
+  <div class="row job-site-data" *ngIf="job">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.fields.site.label"></label>
+      <div *ngIf="job.site">
+        <strong class="trim-text" *ngIf="job.site.data.group">
+          <i class="far fa-building"></i>
+          {{ job.site.data.group }}
+        </strong>
+        <address>
+          <div class="trim-text">
+            <span>{{ job.site.data.name }}</span>
+            <span *ngIf="job.site.data.number"> | {{ job.site.data.number }}</span>
+          </div>
+          <div class="trim-text">
+            <span>{{ job.site.data.address }}, {{ job.site.data.zip }} {{ job.site.data.city }}</span>
+          </div>
+        </address>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.fields.siteClientContact.label"></label>
+      <div>{{ job.site_client_contact }}</div>
+    </div>
+  </div>
+  <!--<div class="row" *ngIf="assignment">
+    <div class="form-group lrg-txt col-md-3 col-xs-12">
+      <label> </label>
+      <div>{{ 'assignment.title.date' | translate: {appointedAt: assignment?.appointed_at | date: 'dd.MM.yyyy'} }}</div>
+    </div>
+    <div class="form-group col-md-3 col-xs-12">
+      <label required translate="projects.fields.start_time.label"></label>
+      <div>{{ assignment.start_time }}</div>
+    </div>
+    <div class="form-group col-md-3 col-xs-12">
+      <label required translate="projects.fields.finish_time.label"></label>
+      <div>{{ assignment.finish_time }}</div>
+    </div>
+    <div class="form-group col-md-3 col-xs-12"
+      *ngIf="hasFullAccess && assignment.checkins && assignment.checkins.length">
+      <label translate="assignment.fields.reported.label"></label>
+      <div>
+        <span>{{startTime}} -</span>
+        <span>{{endTime}}</span>
+        <a class="button" *ngIf="assignment" (click)="modifyTime(assignment)">
+          <i class="fas fa-edit"></i>
+        </a>
+      </div>
+    </div>
+  </div> -->
+  <!--<div class="row">
+    <div class="form-group col-md-3 col-xs-12">
+      <label translate="assignment.fields.comment.label"></label>
+      <div>
+        <span *ngIf="!comment && assignment?.comment">{{assignment?.comment}}</span>
+        <span *ngIf="comment">{{comment}}</span>
+        <a class="button" *ngIf="assignment" (click)="updateComment(assignment)">
+          <i class="fas fa-edit"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="assignment && (assignment.state !== 'open' || assignment.assignment_budget_correction)">
+    <div class="form-group col-md-4 col-xs-12">
+      <label class="has-hint line-ellipsis" translate="assignment.fields.planned-costs.label"></label>
+      <span class="hint line-ellipsis" translate="assignment.fields.planned-costs.hint"></span>
+      <div>{{assignment.planned_costs | currency: '€'}}</div>
+    </div>
+    <div class="form-group col-md-4 col-xs-12">
+      <label class="has-hint line-ellipsis" translate="assignment.fields.budget-correction.label"></label>
+      <span class="hint line-ellipsis" translate="assignment.fields.budget-correction.hint"></span>
+      <div>
+        <span *ngIf="!assignmentBudgetCorrection && assignment.assignment_budget_correction">
+          {{ assignment.assignment_budget_correction | currency: '€'}}
+        </span>
+        <span *ngIf="assignmentBudgetCorrection">
+          {{ assignmentBudgetCorrection | currency: '€'}}
+        </span>
+        <span *ngIf="!assignment.assignment_budget_correction">
+          {{'assignment.fields.budget-correction.none' | translate}}
+        </span>
+        <a class="button" *ngIf="hasFullAccess && !assignment?.is_billed"
+          (click)="updateAssignmentBudgetCorrection(assignment)">
+          <i class="fas fa-edit"></i>
+        </a>
+      </div>
+    </div>
+    <div class="form-group col-md-4 col-xs-12" *ngIf="(assignment && assignment.state === 'invoiced') || hasFullAccess">
+      <label class="has-hint line-ellipsis" translate="assignment.fields.freelancer-costs-net.label"></label>
+      <span class="hint line-ellipsis" translate="assignment.fields.freelancer-costs-net.hint"></span>
+      <div>
+        <span *ngIf="assignment.freelancer_costs_net">
+          {{ freelancerCostsNet | currency: '€'}}
+        </span>
+        <span *ngIf="!assignment.freelancer_costs_net">
+          {{'assignment.fields.freelancer-costs-net.none' | translate}}
+        </span>
+        <a class="button" (click)="updateFreelancerCostsNet(assignment)">
+          <i class="fas fa-edit"></i>
+        </a>
+      </div>
+    </div>
+  </div>-->
+  <fieldset *ngIf="assignment">
+    <app-assignment-job-general [assignment]="assignment" [job]="job" [mode]="'assignmentDetail'">
+    </app-assignment-job-general>
+    <app-assignment-job-products [salesSlot]="assignment.saleslots"></app-assignment-job-products>
+    <app-assignment-job-feedback [feedback]="assignment.feedback"></app-assignment-job-feedback>
+    <app-assignment-job-info-document [assignment]="assignment"></app-assignment-job-info-document>
+  </fieldset>
+</div>

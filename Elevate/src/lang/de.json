@@ -1,0 +1,861 @@
+{
+  "page": {
+    "profile": {
+      "headline": "Mein Profil"
+    }
+  },
+  "cookie": {
+    "accept": "Einverstanden",
+    "consent": "Um den Besuch unserer Website attraktiv zu gestalten und die Nutzung bestimmter Funktionen zu ermöglichen, verwenden wir auf verschiedenen Seiten sogenannte Cookies. Hierbei handelt es sich um kleine Textdateien, die auf Ihrem Endgerät abgelegt werden. Einige der von uns verwendeten Cookies werden nach dem Ende der Browser-Sitzung, also nach Schließen Ihres Browsers, wieder gelöscht (sog. Sitzungs-Cookies). Andere Cookies verbleiben auf Ihrem Endgerät und ermöglichen uns oder unseren Partnerunternehmen, Ihren Browser beim nächsten Besuch wiederzuerkennen (persistente Cookies). Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und einzeln über deren Annahme entscheiden oder die Annahme von Cookies für bestimmte Fälle oder generell ausschließen. Bei der Nichtannahme von Cookies kann die Funktionalität unserer Website eingeschränkt sein."
+  },
+  "auth": {
+    "login": {
+      "title": "Melde dich an",
+      "subtitle": "Gib deine E-Mail und dein Passwort an."
+    },
+    "register": {
+      "title": "Als Fachberater registrieren",
+      "subtitle": "In wenigen Schritten Mitglied werden."
+    },
+    "forgot-password": {
+      "title": "Passwort vergessen?",
+      "subtitle": "Gib deine E-Mail-Adresse an."
+    },
+    "contact": "Kontakt",
+    "imprint": "Impressum",
+    "dataprivacy": "Datenschutzerklärung",
+    "email": {
+      "long": "E-Mail-Adresse",
+      "short": "E-Mail",
+      "confirm": "E-Mail wiederholen",
+      "error": {
+        "format": "Format der E-Mail-Adresse ungültig.",
+        "mandatory": "E-Mail-Adresse ist ein Pflichtfeld.",
+        "disabled": "E-Mail gesperrt.",
+        "deactivated": "E-Mail deaktiviert.",
+        "register": "E-Mail nicht bekannt."
+      }
+    },
+    "password": {
+      "label": "Passwort",
+      "confirm": "Passwort wiederholen",
+      "reset": "Passwort zurücksetzen",
+      "error": {
+        "mandatory": "Passwort ist ein Pflichtfeld.",
+        "rules": "Passwortregeln nicht beachtet."
+      },
+      "change": "Passwort ändern",
+      "new": "Neues Passwort",
+      "new-confirm": "Passwort bestätigen",
+      "current": "Altes Passwort"
+    },
+    "button": {
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "accept": "Akzeptieren",
+      "confirm": "Bestätigen",
+      "request": "Anfrage senden",
+      "reset-password": "Zurücksetzen",
+      "decline": "Ablehnen"
+    },
+    "label": {
+      "request-password": "Passwort anfordern",
+      "stay-logged-in": "Angemeldet bleiben",
+      "forgot-password": "Passwort vergessen?",
+      "account-exists": "Bereits registriert?",
+      "not-registered-yet": "Neuer Fachberater?",
+      "not-registered": "Noch nicht registriert?",
+      "register": "Ich bin noch nicht registriert",
+      "login": "Ich bin bereits registriert",
+      "login-forgot": "Ich kenne mein Passwort",
+      "resend-confirmation": "Erneut senden?",
+      "confirm-code": "Bestätigungs-Code",
+      "not_confirmed_registration": "Registrierung noch nicht bestätigt. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+      "registration_confirmed": "Registrierung erfolgreich bestätigt.",
+      "invalid_credentials": "Ungültige Anmeldeinformationen, bitte erneut eingeben.",
+      "user_registration_not_confirmed": "Du hast dich registriert, aber deine Registrierung noch nicht bestätigt."
+    },
+    "login-after-reset-sent": "Du hast ein neues Passwort angefordert. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+    "login-after-passwordreset-confirmed": "Passwort erfolgreich zurückgesetzt. Melde dich mit deiner E-Mail und dem neuen Passwort an.",
+    "login-after-registration-confirmed": "Registrierung erfolgreich bestätigt. Melde dich mit deiner E-Mail und deinem Passwort an.",
+    "login-after-account-deletion-confirmed": "Account deletion confirmed",
+    "login-after-registration": "Registrierung durchgeführt. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+    "login-after-confirmation-resent": "Registrierung erneut durchgeführt. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+    "login-after-emailchange-confirmed": "E-Mail-Adresse erfolgreich geändert. Bitte melde dich mit deiner neuen E-Mail und deinem Passwort an.",
+    "login-after-inactivity": "Deine Sitzung wurde aufgrund von Inaktivität geschlossen. Melde dich erneut an.",
+    "confirm-after-registration": "Registrierung durchgeführt. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+    "confirm-after-resend": "Registrierung erneut durchgeführt. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+    "reset-password": "Bitte gebe deinen Bestätigungs-Code ein, um dein Passwort zurückzusetzen.",
+    "permission-denied": "You are not allowed to open this page.",
+    "invalid-email": "Diese E-Mail-Adresse ist nicht registriert.",
+    "preamble-declined": "Registrierung auf eigenen Wunsch abgebrochen.",
+    "update-preamble-declined": "Die Datenschutzerklärung wurde abgelehnt.",
+    "default-error": "Your request could not be processed successfully. Please try again later or contact support in case the same problem reappears.",
+    "errors": {
+      "general": "Etwas ist schief gelaufen, bitte versuche es später noch einmal.",
+      "user_registration_not_confirmed": "Registrierung noch nicht bestätigt. Bitte schaue in dein Postfach und klicke auf den Link zur Bestätigung.",
+      "token_expired": "Der Link zur Bestätigung ist abgelaufen.",
+      "token-not-found": "Der Link zur Bestätigung wurde bereits verwendet oder ist ungültig.",
+      "user-not-found": "Diese E-Mail-Adresse ist nicht registriert.",
+      "action-not-allowed": "Diese Aktion ist nicht erlaubt.",
+      "invalid_user": "Dein Konto wurde gelöscht.",
+      "user_registration_already_confirmed": "Diese E-Mail-Adresse wurde bereits bestätigt."
+    },
+    "preamble": {
+      "preamble-decline": {
+        "title": "Datenschutzerklärung ablehnen?",
+        "message": "Wenn du den Datenschutzbestimmungen nicht zustimmst, ist eine weitere Zusammenarbeit leider nicht mehr möglich."
+      }
+    }
+  },
+  "user": {
+    "titles": {
+      "group": "Mein Konto",
+      "account": "Kontodaten",
+      "personal": "Persönliches",
+      "preferences": "Einstellungen"
+    },
+    "buttons": {
+      "update": "Änderungen speichern"
+    },
+    "fields": {
+      "languages": {
+        "label": "Sprache",
+        "DE": "Deutsch"
+      },
+      "timezones": {
+        "label": "Zeitzone",
+        "Europe/Berlin": "Europe/Berlin"
+      },
+      "email": {
+        "pending": "Bitte bestätige deine neue E-Mail-Adresse: {{pending}}"
+      }
+    },
+    "delete-account": {
+      "title": "Konto löschen",
+      "button": "Löschen des Kontos beantragen",
+      "description": "Schade, dass du uns verlassen möchtest. Um dein Konto löschen zu lassen, rufe uns unter +49 (0) 30 303 071 56 an. Danke."
+    }
+  },
+  "form": {
+    "title": "Kontaktformular",
+    "subtitle": "Wie können wir dir behilflich sein?",
+    "subject": "Betreff",
+    "name": "Name",
+    "email": "E-Mail-Adresse",
+    "message": "Nachricht",
+    "submit": "Senden",
+    "format": {
+      "date": "dd.MM.yyyy",
+      "time": "HH:mm"
+    },
+    "errors": {
+      "required": "Pflichtfeld.",
+      "email": "Die E-Mail-Adresse hat ein falsches Format.",
+      "matchEmail": "Die E-Mail-Adressen müssen übereinstimmen.",
+      "minLengthEmail": "Die E-Mail-Adresse muss mindestens {{minlength}} Zeichen lang sein.",
+      "password": "Passwort ist falsch.",
+      "matchPassword": "Die Passwörter müssen übereinstimmen.",
+      "minLengthPassword": "Das Passwort muss mindestens {{minlength}} Zeichen lang sein.",
+      "pattern.password": "Das Passwort muss mindestens 1 Sonderzeichen und 1 Großbuchstaben enthalten.",
+      "pattern.height": "Gebe deine Körpermaße in cm ein.",
+      "dateformat": "Das Datum muss im Format {{format}} eingegeben werden.",
+      "validateage": "Du musst mindestens 18 Jahre alt sein.",
+      "validatefuture": "Das Datum muss in der Zukunft liegen.",
+      "iban": "Format der IBAN ist noch nicht korrekt.",
+      "json": "JSON Format ist nicht korrekt.",
+      "phonenumberformat": "Format der Telefonnummer ist nicht korrekt.",
+      "currencyformat": "Währungsformat ist nicht korrekt.",
+      "zipcodeformat": "Format der Postleitzahl ist nicht korrekt.",
+      "timeformat": "Das Format der Uhrzeit ist nicht korrekt.",
+      "timeafter": "Die eingegebene Uhrzeit muß nach der Startzeit liegen.",
+      "pattern.zip": "Die Postleitzahl muß aus 5 Ziffern bestehen.",
+      "affectedBudget": "Das verfügbare Budget darf nicht kleiner als 0 werden.",
+      "list": {
+        "general.contacts": "Kunde hat keine Kontakte definiert."
+      },
+      "pattern.minimum_percent": "Es sind nur Zahlen von 1-100 zulässig.",
+      "pattern.date_interval": "Das Interval ist ungültig.",
+      "pattern.positive_integer": "Es sind nur Zahlen zulässig.",
+      "minAmount": "Die Eingabe darf den Wert {{min}} nicht unterschreiten.",
+      "uniqueName": "Die eingegebene Bezeichnung ist nicht eindeutig.",
+      "pattern.taxId": "Die Angabe ist ungültig.",
+      "pattern.socialSecurity": "Die Angabe entspricht nicht dem zulässigen Format.",
+      "invalidDateInput": "Das Datum ist unzulässig."
+    },
+    "field": {
+      "birthdate": {
+        "label": "Geburtsdatum",
+        "placeholder": "dd.MM.yyyy, z.B. 15.10.1978",
+        "error": {
+          "mandatory": "Pflichtfeld"
+        }
+      },
+      "driver-license": {
+        "label": "Führerschein",
+        "error": {
+          "mandatory": "Pflichtfeld"
+        }
+      },
+      "occupation": {
+        "label": "Tätigkeit"
+      },
+      "phone": {
+        "main": "Telefonnummer",
+        "second": "Alternative Telefonnummer",
+        "error": {
+          "mandatory": "Pflichtfeld",
+          "format": "Format falsch."
+        }
+      },
+      "account": {
+        "owner": {
+          "label": "Kontoinhaber",
+          "error": {
+            "mandatory": "Pflichtfeld"
+          }
+        },
+        "iban": {
+          "label": "IBAN",
+          "error": {
+            "mandatory": "Pflichtfeld",
+            "format": "Format falsch."
+          }
+        },
+        "bic": {
+          "label": "BIC",
+          "error": {
+            "format": "Format falsch."
+          }
+        }
+      },
+      "work-permit": {
+        "label": "Aufenthaltserlaubnis zur Ausübung einer selbständigen Tätigkeit bzw. Aufenthaltserlaubnis mit Arbeitserlaubnis",
+        "placeholder": "Arbeitserlaubnis",
+        "error": {
+          "mandatory": "Pflichtfeld"
+        }
+      },
+      "business": {
+        "vat_tax_id": {
+          "label": "Umsatzsteuer-Id",
+          "placeholder": "Umsatzsteuer-Id",
+          "error": {
+            "mandatory": "Pflichtfeld",
+            "format": "Format falsch."
+          }
+        },
+        "tax_number": {
+          "label": "Steuernummer",
+          "placeholder": "Steuernummer",
+          "error": {
+            "format": "Format falsch."
+          }
+        },
+        "license": {
+          "label": "Gewerbeschein hochladen (mehrere Dateien möglich)",
+          "placeholder": "Gewerbeschein",
+          "error": {
+            "mandatory": "Pflichtfeld"
+          }
+        },
+        "social_security": {
+          "error": {
+            "mandatory": "Pflichtfeld"
+          }
+        },
+        "license-id": {
+          "label": "Ausweisnummer",
+          "placeholder": "Ausweisnummer",
+          "error": {
+            "mandatory": "Pflichtfeld",
+            "format": "Format falsch."
+          }
+        },
+        "license-name": {
+          "label": "ID-Name",
+          "placeholder": "ID-Kartenname",
+          "error": {
+              "mandatory": "Pflichtfeld",
+              "format": "Format falsch."
+          }
+      },
+        "outdate": {
+          "label": "Gültig bis",
+          "placeholder": "dd.MM.yyyy",
+          "error": {
+            "mandatory": "Pflichtfeld"
+          }
+        },
+        "expiryDate": {
+          "label": "Verfallsdatum",
+          "placeholder": "dd.mm.yyyy",
+          "error": {
+              "mandatory": "Pflichtfeld"
+          }
+      }
+      },
+      "tax": {
+        "tax_id": {
+          "label": "Steuer-Id",
+          "placeholder": "Steuer-Id",
+          "error": {
+            "mandatory": "Pflichtfeld",
+            "format": "Format falsch."
+          }
+        },
+        "tax_class": {
+          "label": "Steuerklasse",
+          "placeholder": "Steuerklasse",
+          "error": {
+            "format": "Pflichtfeld."
+          }
+        },
+        "child_tax_allowance": {
+          "label": "Kinderfreibetrag",
+          "placeholder": "Kinderfreibetrag",
+          "error": {
+            "format": "Pflichtfeld."
+          }
+        },
+        "denomination": {
+          "label": "Konfession"
+        }
+      },
+      "insurance": {
+        "socialsecurity_number": {
+          "label": "Sozialversicherungsnummer"
+        },
+        "health_insurance_number": {
+          "label": "Krankenversicherungsnummer"
+        },
+        "health_insurance_type": {
+          "label": "Krankenversicherung"
+        },
+        "health_insurance_name": {
+          "label": "Name der Krankenversicherung"
+        }
+      },
+      "terms": {
+        "label": "Unterschriebenen Rahmenvertrag hochladen (mehrere Dateien möglich)",
+        "linkToDocument": "Rahmenvertrag herunterladen",
+        "linkToAttachment": "Anlage zum Rahmenvertrag herunterladen",
+        "error": {
+          "mandatory": "Pflichtfeld"
+        }
+      },
+      "documents_of_evidence": {
+        "label": "Nachweis(e)",
+        "description": "Bitte lade hier die folgenden Nachweise hoch:"
+      }
+    },
+    "label": {
+      "common": {
+        "no": "Nein",
+        "yes": "Ja",
+        "datepicker": {
+          "close": "Abbrechen",
+          "current": "Heute",
+          "clear": "Löschen"
+        }
+      },
+      "mandatory": {
+        "indicator": "*",
+        "notice": "Das sind Pflichtfelder..."
+      },
+      "read": "Meist gelesen und doch verpasst"
+    },
+    "button": {
+      "profile": {
+        "onboarding": {
+          "next": "Speichern & weiter",
+          "submit": "Profil erstellen"
+        }
+      }
+    }
+  },
+  "buttons": {
+    "login": "Login",
+    "upload-picture": "Bild hochladen",
+    "upload-document": "Dokument hochladen",
+    "upload-pdf-document": "Dokument hochladen",
+    "request-change-picture": "Austausch beantragen",
+    "request-change-document": "Austausch beantragen",
+    "change-picture": "Bild neu hochladen",
+    "change-document": "Dokument neu hochladen",
+    "multi-add-document": "Dokument hochladen",
+    "multi-request-change-document": "Austausch beantragen",
+    "edit": "Editieren",
+    "submit": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "training": {
+    "buttons": {
+      "start-exam": "Test starten",
+      "next-step": "Weiter (ohne Test)"
+    }
+  },
+  "exams": {
+    "error": "Entschuldigung, es ist leider ein Fehler beim Senden aufgetreten. Status: {{status}} - {{statusText}} ",
+    "result": "Du hast {{questions_ok}} von {{questions}} Fragen richtig beantwortet.",
+    "passed": "Herzlichen Glückwunsch! Du hast bestanden.",
+    "tenders": "{{jobsCount}} Job(s) wurden somit freigeschaltet.",
+    "failed": "Du hast leider nicht bestanden. Bitte wiederhole den Test.",
+    "failed-questions": {
+      "header": "Folgende Fragen solltest du dir vorher nochmal genauer anschauen:"
+    },
+    "questionnaire": {
+      "question": "Frage {{index}} von {{questions}}"
+    },
+    "summary": {
+      "question": "Frage {{index}}",
+      "hint": "In dieser Übersicht kannst du alle Fragen und Antworten noch einmal prüfen und korrigieren."
+    },
+    "buttons": {
+      "start-exam": "Test starten",
+      "restart-exam": "Test wiederholen",
+      "show-summary": "Antworten prüfen",
+      "cancel": "Abbrechen",
+      "submit": "Antworten senden",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "onboarding-next": "Weiter",
+      "back-to-training": "Zurück zur Schulung",
+      "back-to-overview": "Zurück zur Übersicht der Zertifikate"
+    },
+    "disabled": "Dieser Test ist leider nicht mehr verfügbar."
+  },
+  "dashboard": {
+    "title": {
+      "agent": "{{firstname}}'s Dashboard",
+      "freelancer": "{{firstname}}'s Dashboard",
+      "client": "Dashboard",
+      "admin": "{{firstname}}'s Dashboard",
+      "field": "Dashboard"
+    },
+    "list": {
+      "no-records": "Keine Übereinstimmungen gefunden."
+    }
+  },
+  "documents": {
+    "limit-reached": "Maximale Anzahl der Dokumente wurde erreicht."
+  },
+  "upload": {
+    "success": "Datei erfolgreich hochgeladen.",
+    "errors": {
+      "message": "Le fichier n'a pas été téléchargé avec succès.",
+      "invalid-max-size": "Dateigröße darf {{max}} nicht überschreiten.",
+      "invalid-min-width": "Breite darf {{min}} Bildpunkte nicht unterschreiten.",
+      "invalid-min-height": "Höhe darf {{min}} Bildpunkte nicht unterschreiten.",
+      "invalid-max-width": "Breite darf {{max}} Bildpunkte nicht überschreiten.",
+      "invalid-max-height": "Höhe darf {{max}} Bildpunkte nicht überschreiten.",
+      "invalid-max-ratio": "Foto nicht im Hochformat.",
+      "invalid-min-ratio": "Foto nicht im Querformat.",
+      "invalid-pattern": "Datei darf nur vom folgenden Dateityp sein: {{pattern}}",
+      "general": "Beim Hochladen der Datei ist ein Fehler aufgetreten."
+    }
+  },
+  "notification": {
+    "file.uploading": "Datei {{file}} wird hochgeladen ({{progress}}%)...",
+    "post": {
+      "skill": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "audits": {
+        "success": "Die Änderung der Einstellungen des Zertifikats war erfolgreich.",
+        "error": "Die Änderung der Einstellungen des Zertifikats ist fehlgeschlagen."
+      },
+      "freelancers": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen.",
+        "warning": "Aber einige Daten sind noch unvollständig."
+      },
+      "clients": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "sites": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "orders": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "projects": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "jobs": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "dates": {
+        "success": "Der Termin wurde gespeichert.",
+        "error": "Das Speichern des Termins ist fehlgeschlagen."
+      },
+      "tenders": {
+        "success": "Job ist veröffentlicht.",
+        "error": "Das Speichern der Ausschreibung ist fehlgeschlagen."
+      },
+      "offers": {
+        "error": "An diesem Termin bist Du schon gebucht."
+      },
+      "users": {
+        "success": "Deine Kontodaten wurden gespeichert.",
+        "error": "Das Speichern der Kontodaten ist leider fehlgeschlagen."
+      },
+      "requests": {
+        "error": "Anfrage fehlgeschlagen"
+      },
+      "users-disable": {
+        "success": "Der Benutzer wurde gesperrt.",
+        "error": "Sperren des Benutzers ist fehlgeschlagen."
+      },
+      "users-enable": {
+        "success": "Der Benutzer wurde entsperrt.",
+        "error": "Entsperren des Benutzers ist fehlgeschlagen."
+      },
+      "users-deactivate": {
+        "success": "Der Benutzer wurde deaktiviert.",
+        "error": "Deaktivieren des Benutzers ist fehlgeschlagen."
+      },
+      "users-reactivate": {
+        "success": "Der Benutzer wurde reaktiviert.",
+        "error": "Reaktivieren des Benutzers ist fehlgeschlagen."
+      },
+      "users-preamble": {
+        "success": "Die Zustimmung zur Datenschutzerklärung wurde gespeichert.",
+        "error": "Das Speichern der Zustimmung zur Datenschutzerklärung ist fehlgeschlagen."
+      },
+      "freelancers-assignments": {
+        "success": "Das Angebot des Fachberaters wurde angenommen.",
+        "error": "Speichern der Daten ist fehlgeschlagen."
+      },
+      "freelancers-contract-types": {
+        "success": "Die Änderungen des Fachberaters wurden angenommen.",
+        "error": "Speichern der Daten ist fehlgeschlagen."
+      },
+      "freelancers-invoices": {
+        "success": "Die Rechnung wurde gespeichert.",
+        "error": "Speichern der Daten ist fehlgeschlagen."
+      },
+      "incentive-models": {
+        "success": "Deine Daten wurden gespeichert.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "budgets-records": {
+        "success": "Der Betrag wurde gebucht.",
+        "error": "Das Buchen des Betrages ist leider fehlgeschlagen."
+      },
+      "budgets": {
+        "success": "Das Budget wurde gespeichert.",
+        "error": "Das Speichern des Budgets ist leider fehlgeschlagen."
+      },
+      "roles": {
+        "add-success": "Rolle erfolgreich hinzugefügt.",
+        "edit-success": "Rolle erfolgreich aktualisiert.",
+        "delete": "Rolle erfolgreich gelöscht."
+      },
+      "checkins": {
+        "success": "Die Anwesenheit wurden bestätigt.",
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen."
+      },
+      "clients-contacts": {
+        "success": "Der Kontakt wurde gespeichert.",
+        "error": "Der Kontakt konnte nicht gespeichert werden."
+      },
+      "contacts": {
+        "success": "Der Kontakt wurde gespeichert.",
+        "error": "Der Kontakt konnte nicht gespeichert werden."
+      },
+      "certificates": {
+        "success": "Die Änderung der Einstellungen des Zertifikats war erfolgreich.",
+        "error": "Die Änderung der Einstellungen des Zertifikats ist fehlgeschlagen."
+      },
+      "trainings": {
+        "success": "Die Änderung der Einstellungen der Schulung war erfolgreich.",
+        "error": "Die Änderung der Einstellungen der Schulung ist fehlgeschlagen."
+      },
+      "exams": {
+        "success": "Die Änderung der Einstellungen des Tests war erfolgreich.",
+        "error": "Die Änderung der Einstellungen des Tests ist fehlgeschlagen."
+      },
+      "revenues": {
+        "success": "Die Umsatzmeldung wurde gespeichert.",
+        "error": "Das Speichern der Umsatzmeldung ist fehlgeschlagen."
+      },
+      "freelancers-revenues": {
+        "success": "Die Umsatzmeldung wurde gespeichert.",
+        "error": "Das Speichern der Umsatzmeldung ist fehlgeschlagen."
+      },
+      "assignments-documents": {
+        "success": "Die Datei wurde gespeichert.",
+        "error": "Die Datei wurde nicht gespeichert."
+      },
+      "projects-documents": {
+        "success": "Die Datei wurde gespeichert.",
+        "error": "Die Datei wurde nicht gespeichert."
+      },
+      "ratings": {
+        "success": "Die Bewertung wurde gespeichert.",
+        "error": "Das Speichern der Bewertung ist fehlgeschlagen."
+      },
+      "invoices": {
+        "error": "Das Speichern oder Akzeptieren der Rechnung ist fehlgeschlagen.",
+        "success": "Die Rechnung wurde gespeichert."
+      },
+      "assignments": {
+        "error": "Das Speichern des Einsatzes ist fehlgeschlagen.",
+        "success": "Der Einsatz wurde gespeichert."
+      },
+      "documents": {
+        "error": "Das Speichern der Daten ist leider fehlgeschlagen.",
+        "success": "Deine Daten wurden gespeichert."
+      },
+      "invoices-exports": {
+        "error": "Die Rechnungen wurden nicht exportiert.",
+        "success": "Die Rechnungen wurden exportiert."
+      },
+      "invoices-approvals": {
+        "error": "Die Rechnungsstatus wurde nicht gespeichert.",
+        "success": "Die Rechnungsstatus wurde gespeichert."
+      },
+      "gtcs": {
+        "success": "Die AGB wurde gespeichert.",
+        "error": "Die Datei wurde nicht gespeichert."
+      },
+      "freelancers-gtcs": {
+        "error": "Die AGB-Bestätigung konnte nicht gespeichert werden.",
+        "success": "Die AGB-Bestätigung wurde gespeichert."
+      },
+      "bills": {
+        "error": "Das Speichern oder Akzeptieren der Rechnung ist fehlgeschlagen.",
+        "success": "Die Rechnung wurde gespeichert."
+      },
+      "todos": {
+        "success": "Die Aufgabe wurde gespeichert.",
+        "error": "Das Speichern der Aufgabe ist leider fehlgeschlagen."
+      },
+      "mails": {
+        "success": "Die E-Mails wurden gesendet.",
+        "error": "Das Senden der E-Mails  ist leider fehlgeschlagen."
+      },
+      "freelancers-assignments-survey_instances": {
+        "success": "Die Angaben wurden gespeichert.",
+        "error": "Die Angaben konnten nicht gespeichert werden."
+      },
+      "survey-instances-approvals": {
+        "success": "Die Angaben wurden gespeichert.",
+        "error": "Die Angaben konnten nicht gespeichert werden."
+      },
+      "freelancers-invoices-generate": {
+        "success": "Die Rechnungsvorschau wurde erzeugt.",
+        "error": "Die Rechnungsvorschau konnte nicht erzeugt werden."
+      },
+      "health-insurances": {
+        "success": "Die Krankenversicherung wurde gespeichert.",
+        "error": "Die Krankenversicherung konnte nicht gespeichert werden."
+      }
+    },
+    "delete": {
+      "skill": {
+        "success": "The skill is deleted.",
+        "error": "Deletion of the skill failed."
+      },
+      "users": {
+        "success": "Der Benutzer wurde gelöscht.",
+        "error": "Löschen des Benutzers fehlgeschlagen."
+      },
+      "projects": {
+        "success": "Projekt gelöscht.",
+        "error": "Löschen des Projekt fehlgeschlagen."
+      },
+      "jobs": {
+        "success": "Job gelöscht.",
+        "error": "Löschen des Job fehlgeschlagen."
+      },
+      "dates": {
+        "success": "Termin gelöscht.",
+        "error": "Löschen des Termins fehlgeschlagen."
+      },
+      "tenders": {
+        "success": "Ausschreibung gelöscht.",
+        "error": "Löschen der Ausschreibung fehlgeschlagen."
+      },
+      "sites": {
+        "success": "Einsatzort gelöscht.",
+        "error": "Löschen des Einsatzortes fehlgeschlagen."
+      },
+      "requests": {
+        "success": "Der Antrag wurde geschlossen.",
+        "error": "Das Schließen des Antrags ist fehlgeschlagen."
+      },
+      "freelancers-assignments": {
+        "success": "Der Einsatz wurde abgesagt.",
+        "error": "Das Absagen des Einsatzes ist fehlgeschlagen."
+      },
+      "offers": {
+        "success": "Das Angebot wurde abgelehnt.",
+        "error": "Das Ablehnen des Angebotes ist fehlgeschlagen."
+      },
+      "assignments": {
+        "success": "Der Einsatz wurde gelöscht.",
+        "error": "Das Löschen des Einsatzes ist fehlgeschlagen."
+      },
+      "clients-contacts": {
+        "success": "Der Kontakt wurde gelöscht.",
+        "error": "Das Löschen des Kontaktes ist fehlgeschlagen."
+      },
+      "revenues": {
+        "success": "Die Umsatzmeldung wurde gelöscht.",
+        "error": "Das Löschen der Umsatzmeldung ist fehlgeschlagen."
+      },
+      "freelancers-revenues": {
+        "success": "Die Umsatzmeldung wurde gelöscht.",
+        "error": "Das Löschen der Umsatzmeldung ist fehlgeschlagen."
+      },
+      "assignments-documents": {
+        "error": "Die Datei wurde nicht gelöscht."
+      },
+      "projects-documents": {
+        "error": "Die Datei wurde nicht gelöscht."
+      },
+      "bills": {
+        "success": "Das Löschen der Kundenrechnung war erfolgreich."
+      },
+      "clients": {
+        "success": "Kunde gelöscht.",
+        "error": "Löschen des Kunden ist fehlgeschlagen."
+      },
+      "orders": {
+        "success": "Auftrag gelöscht.",
+        "error": "Löschen des Auftrags ist fehlgeschlagen."
+      },
+      "budgets": {
+        "success": "Budget gelöscht.",
+        "error": "Löschen des Budgets ist fehlgeschlagen."
+      },
+      "health-insurances": {
+        "success": "Krankenversicherung gelöscht.",
+        "error": "Das Löschen der Krankenversicherung ist fehlgeschlagen."
+      },
+      "submitted-jobs": {
+        "success": "Mitarbeiterin steht in der engeren Auswahl.",
+        "error": "Job wird nicht übermittelt."
+      },
+      "invited-jobs": {
+        "success": "Einladung wird gesendet",
+        "error": "Das Feld \"Auftrag veröffentlichen\" ist erforderlich"
+      },
+      "survey-message": {
+        "success": "Daten werden gespeichert",
+        "error": "Fehler beim Speichern der Daten"
+      }
+    },
+    "put": {
+      "dates": {
+        "success": "Die Termine wurden gespeichert.",
+        "error": "Das Speichern der Termine ist fehlgeschlagen."
+      },
+      "roles-rights": {
+        "success": "Die Rechte wurden gespeichert.",
+        "error": "Die Rechte wurden nicht gespeichert"
+      },
+      "offers": {
+        "error": "Das Erstellen der Angebote ist leider fehlgeschlagen.",
+        "success": "Die Angebote wurden erstellt"
+      },
+      "assignments-ratings": {
+        "success": "Die Einsatzbewertung wurde gespeichert.",
+        "error": "Das Speichern der Einsatzbewertung ist fehlgeschlagen."
+      },
+      "assignments-bulk-cancel": {
+        "error": "Das Absagen der Einsätze ist fehlgeschlagen.",
+        "success": "Die Einsätze wurden abgesagt."
+      },
+      "tenders": {
+        "error": "Das Ausschreiben der Einsätze ist fehlgeschlagen.",
+        "success": "Die Einsätze wurden ausgeschrieben."
+      },
+      "jobs": {
+        "success": "Die Termine wurden ausgeschrieben.",
+        "error": "Das Ausschreiben der Termine ist fehlgeschlagen."
+      },
+      "projects-documents": {
+        "error": "Es ist ein Fehler aufgetreten, die Dokumente wurden nicht für Jobs/Einsätze übernommen."
+      },
+      "projects-jobs": {
+        "success": "Die Jobs wurden angelegt.",
+        "error": "Es ist ein Fehler aufgetreten, die Jobs wurden nicht angelegt."
+      },
+      "gtcs-documents": {
+        "success": "Die Dokumente der AGB wurden aktualisiert.",
+        "error": "Das Speichern der Dokumente ist fehlgeschlagen."
+      },
+      "freelancer-gtc-documents": {
+        "error": "Das Speichern der Angaben zu den Allgemeinen Geschäftsbedingungen ist fehlgeschlagen."
+      }
+    },
+    "get": {
+      "freelancers-tenders": {
+        "error": "Entschuldigung, dieser Job ist bereits vergeben."
+      },
+      "invoices-download": {
+        "error": "Es konnten keine Rechnungsdokumente heruntergeladen werden."
+      },
+      "freelancers-jobs": {
+        "error": "Dieses Angebot ist nicht mehr verfügbar."
+      },
+      "assignments-evaluation-download": {
+        "error": "Der Download der Einsätze ist fehlgeschlagen."
+      }
+    }
+  },
+  "rights": {
+    "fields": {
+      "rights": {
+        "MANAGE_RIGHTS": "Rechte",
+        "MANAGE_USERS": "Benutzer",
+        "MANAGE_CUSTOMERS": "Kunden",
+        "MANAGE_POS": "Einsatzorte (POS)",
+        "MANAGE_FREELANCERS": "Fachberater",
+        "MANAGE_PROJECTS": "Projekte",
+        "MANAGE_ORDERS": "Budgets & Aufträge",
+        "MANAGE_TRAININGS": "Zertifikate",
+        "MANAGE_PRODUCTS": "Produkte",
+        "MANAGE_TYPES": "Einsatztypen",
+        "MANAGE_CATEGORIES": "Kategorien",
+        "MANAGE_SETTINGS": "Einstellungen",
+        "MANAGE_LOGS": "Logs",
+        "MANAGE_INCENTIVES": "Pauschalen & Skonto",
+        "MANAGE_CONTACTS": "Kontakte",
+        "MANAGE_AUDITS": "Audits",
+        "MANAGE_INVOICES": "Rechnungen",
+        "MANAGE_RATINGS": "Rating",
+        "MANAGE_CERTIFICATES": "Zertifikate",
+        "MANAGE_BILLS": "Rechnungen (Kunde)",
+        "MANAGE_SEPA": "SEPA & CSV Export",
+        "RESET_INVOICE": "Rechnungsstatus zurücksetzen",
+        "MANAGE_GTCS": "Rahmenvertrag",
+        "MANAGE_INSURANCES": "Krankenversicherungen"
+      }
+    }
+  },
+  "maintenance": {
+    "info": "Wartungsfenster des Portals",
+    "start": "Beginn",
+    "end": "geplantes Ende",
+    "ad-hoc": "ungeplant",
+    "message": "Wartung aufgrund \"{{reason}}\" beginnt um {{startAt}}.",
+    "now": "Bitte speichere deine Änderungen rechtzeitig."
+  },
+  "incentives": {
+    "types": {
+      "checkin": "Bei Anmeldung",
+      "sales_report": "Umsatzmeldung",
+      "picture_documentation": "Foto-Dokumentation"
+    }
+  }
+}

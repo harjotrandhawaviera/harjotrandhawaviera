@@ -1,0 +1,165 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "profile": {
+      "group": "My Profile",
+            "user": "Account",
+            "master": "Personal Information",
+            "appearance": "Photos & Sizing Information",
+            "qualifications": "Qualifications & Training",
+            "employment": "Employment Information",
+            "contract_freelancer": "Work via Trade License",
+            "contract_tax_card": "Work via Income Tax Card",
+            "legal": "Legal Data",
+            "training": "Legal Training",
+            "contract": "Contract",
+            "terms": "Framework Contract"
+    },
+    "jobs_app.dates": {
+      "group": "Jobs"
+    },
+    "jobs": "Jobs",
+    "freelancer_jobs.all": "All Jobs",
+    "freelancer_jobs.recommended": "Recommended Jobs",
+    "freelancer_jobs": "Recommended/All Jobs",
+    "dates": "Shifts",
+    "assignments": {
+      "group": "Bookings",
+      "list": "Bookings",
+      "freelancer": "My Bookings"
+    },
+    "message": {
+      "group": "Messages",
+      "list": "Messages",
+      "freelancer": "Messages"
+    },
+    "client-created": {
+      "assignments": "Bookings from Client"
+    },
+    "checkins": "Check-In",
+    "projects": "Projects",
+    "projects.client": "Projects",
+    "jobs.client": "Jobs",
+    "approvals_app.administration.freelancers": {
+      "group": "Staff Member",
+      "list": "All Staff Members",
+      "onboarding": "Profiles for Review",
+      "register": "Registration by Admin",
+      "update": "Amendments",
+      "logs": "Change Log"
+    },
+    "gallery": "Report Gallery",
+    "user": "Account Settings",
+    "auth": {
+      "logout": "Log Out"
+    },
+    "onboarding": {
+      "registered": {
+        "step": "1. Registration",
+        "entry": "Registration successfully confirmed."
+      },
+      "profile": {
+        "step": "2. Your Profile",
+        "description": "Complete your profile and become a member of one of the biggest Staffing Agencies."
+      },
+      "approval": {
+        "step": "3. Review",
+        "description": "After submitting your profile, our experts will review your data and photos and, if necessary, suggest improvements."
+      },
+      "certificates": {
+        "step": "Academy",
+        "description": "Prepare yourself for new jobs here. Start training now. Have fun!"
+      }
+    },
+    "invoices": {
+      "group": "Work History (Staff Invoices)",
+      "list": "Overview",
+      "preparation": "Operational Reports, Sales Reports, Statements",
+      "create": "New Invoice",
+      "generate": "Invoice Generator"
+    },
+    "master": {
+      "group": "Master",
+      "skills": "Skills",
+      "roles": "Roles"
+    },
+    "client": {
+      "group": "Clients",
+      "clients": "Client",
+      "contacts": "Contact"
+    },
+    "reports": {
+      "group": "Reports",
+      "report": "Assignments",
+      "questionnaire": "Questionnaire",
+      "revenue": "Revenue"
+    },
+    "administration": {
+      "group": "Administration",
+      "users": "User Management",
+      "budgets": "Budgets",
+      "clients": "Clients",
+      "contacts": "Contacts",
+      "sites": "Deployment Location (POS)",
+      "orders": "Orders",
+      "jobs": "Jobs",
+      "tenders": "Tenders",
+      "dates": "Dates",
+      "assignments": "Assignments",
+      "certificates": "Certificates",
+      "rights": "Rights",
+      "incentives": "Packages & Discounts",
+      "gtcs": "Framework Contract",
+      "logs": "Logs",
+      "maillogs": "Mail Logs",
+      "health-insurances": "Health Insurances"
+    },
+    "certificates": {
+      "group": "Academy",
+      "all": "All Certificates",
+      "my": "My Certificates",
+      "exclusive": "Training"
+    },
+    "tenders": {
+      "group": "Job Board",
+      "list": "All Jobs",
+      "shortlist": "Shortlist",
+      "invite": "Send Invite",
+      "offers": "Applied Jobs",
+      "offer": "Submitted Jobs",
+      "freelancer": "Overview",
+      "booked": "My Jobs",
+      "invited_jobs": "Invited Jobs"
+    },
+    "accounting": {
+      "group": "Accounting",
+      "files": "SEPA and DATEV Files List View",
+      "export": "SEPA and DATEV Export",
+      "bills": {
+        "preparation": "New Client Invoice",
+        "list": "Client Invoices"
+      }
+    },
+    "revenues": "Sales Reports",
+    "revenues.freelancer": "Sales Reports",
+    "budgets": "Budgets",
+    "messages": {
+      "group": "Messages",
+      "jobs": "Job Queries"
+    },
+    "operations": {
+      "group": "Operations",
+      "preDeployment": "Pre-Deployment",
+      "deployment": "Deployment",
+      "postDeployment": "Post-Deployment",
+      "performanceReview": "Performance Review",
+      "checkIn": "Check-in"
+    },
+    "assignments.freelancer": "My Bookings",
+    "todos": "To Do",
+    "mails": "Write E-Mail",
+    "sms": "Send SMS",
+    "postprocessing": "Follow-up",
+    "performanceReview": "Performance Review"
+  }
+}

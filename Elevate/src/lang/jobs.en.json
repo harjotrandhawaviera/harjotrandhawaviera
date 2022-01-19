@@ -1,0 +1,914 @@
+{
+    "jobs": {
+        "title": "Job Overview",
+        "table": {
+            "title": "Job Name",
+            "id": "Job ID",
+            "sitename": "POS",
+            "sitecity": "City",
+            "siteaddress": "Street and House Number",
+            "agentName": "Person Responsible",
+            "sitezip": "Postal Code",
+            "projectname": "Project",
+            "clientname": "Client",
+            "categoryName": "Category",
+            "matched": "Matched",
+            "status": "Status",
+            "datesNumber": "Dates",
+            "assignmentsNumber": "Job Post",
+            "openTendersNumber": "Job Posting(s)",
+            "createdAt": "Created Date",
+            "createdBy": "Created By",
+            "bookedAssignmentsNumber": "Missions (Booked)",
+            "finishedAssignmentsNumber": "Missions (Completed)",
+            "unbookedAssignmentsNumber": "Shifts",
+            "openUpcomingAssignmentsNumber": "Open Deployments",
+            "offersNumber": "No change",
+            "revenueTotal" : "Total Sales",
+            "revenueAvg" : "Average turnover/day",
+            "actions": {
+                "details": "Details",
+                "remove": "Delete",
+                "dates": "Shifts",
+                "assignments": "Bookings",
+                "offers": "Job Application by Staff Members",
+                "offers_overview": "Job Application",
+                "tenders": "Job Board",
+                "createTender": "Publish Job"
+            },
+            "remove": {
+                "title": "Delete Job",
+                "message": "Do you really want to delete the job?"
+            }
+        },
+        "filters": {
+            "client": "Client",
+            "project": "Project",
+            "agent": "Staffing Manager",
+            "attributes": "Status",
+            "contractType": "Contract Type"
+        },
+        "fields" :{
+            "attributes": {
+                "with_offer": "Open Job Posts"
+            }
+        },
+        "search-placeholder": "Name or Job ID",
+        "search": {
+          "label": "Search by Job Name, Job ID",
+          "placeholder": "min. 3 characters"
+        },
+        "buttons":  {
+            "create": "Create New Job"
+        },
+      "job-invite": {
+        "header": "Send Invite",
+        "fields": {
+          "client": "Client",
+          "project": "Project",
+          "job": "Job",
+          "publishedJob": "Published Job",
+          "city": "City",
+          "postcode": "Post Code",
+          "gender": {
+            "title": "Gender",
+            "F": "Female",
+            "M": "Male",
+            "D": "Diverse"
+          },
+          "age": "Age Group",
+          "skills": "Skill Name",
+          "certificates": "Certificate",
+          "languages": {
+            "title": "Language",
+            "german": "German",
+            "english": "English",
+            "french": "French",
+            "turkish": "Turkish",
+            "arabic": "Arabic",
+            "italian": "Italian",
+            "spanish": "Spanish",
+            "dutch": "Dutch",
+            "polish": "Polish",
+            "czech": "Czech",
+            "other": "Other"
+          },
+          "status": {
+            "title": "Status",
+            "active": "Active",
+            "expired": "Expired",
+            "scheduled": "Scheduled"
+          }
+        },
+        "table": {
+          "name": "Name",
+          "gender": "Gender",
+          "age": "Age",
+          "mobile": "Mobile",
+          "email": "Email",
+          "city": "city",
+          "postcode": "Post Code",
+          "date": "Creation Date",
+          "status": "status"
+        },
+        "button": {
+          "send": "Send Invite",
+          "cancel": "Cancel"
+        }
+      },
+        "freelancer": {
+            "matching": {
+                "table": {
+                    "shortTitle": "Job",
+                    "categoryName": "Category",
+                    "sitecity": "Location",
+                    "numberOfTenders": "Dates",
+                    "contractType": "Contract Type",
+                    "details": ""
+                },
+                "header": "Recommended Jobs",
+                "header-invite": "Invited Jobs",
+                "tables": {
+                  "job": "Job Name",
+                  "role": "Role",
+                  "location": "Location",
+                  "city": "City",
+                  "postcode": "Post Code",
+                  "date": "Applied On"
+                },
+                "buttons": {
+                    "overview": "Show All",
+                    "details": "Details"
+                }
+            },
+            "not-matching": {
+                "table": {
+                    "shortTitle": "Offer",
+                    "categoryName": "Category",
+                    "sitecity": "Location",
+                    "missingCertificates": "Missing Certificates",
+                    "missingLocation": "Location",
+                    "details": "",
+                    "numberOfTenders": "Dates",
+                    "remaining_term": "Remaining Term",
+                    "missingContractType": "Missing Contract Type"
+                },
+                "header": "All Jobs",
+                "buttons": {
+                    "overview": "Show All"
+                },
+                "missing-location": "Not Matching"
+            },
+            "list": {
+                "header": "Job Openings",
+                "number-of-tenders": "{count} Appointment(s)",
+                "date-range": "from {min} - {max}",
+                "date": "at {date}"
+            },
+            "search-job-placeholder": "Job Name, Location or Branch",
+            "title": {
+                "details": "Job Details"
+            },
+            "buttons": {
+                "back": "Back to Job Offers"
+            },
+            "details": {
+                "job": "Job",
+                "tender": "Appointments",
+                "buttons": {
+                    "select": "Binding Offer",
+                    "reject-offer": "Reject Job",
+                    "submit-offer": "Submit Binding Offers",
+                    "inquery": "You still have a question?"
+                },
+                "submit-offer": {
+                    "title": "Submit Binding Offers",
+                    "message": "Almost done:\nOnce you confirm, you give us a binding offer for this booking. After we have agreed, a binding contract is concluded.",
+                    "hint": "You can make an offer only after selecting at least one date.",
+                    "check_in": "Confirm with Survey Link",
+                    "check_out": "Confirm without Survey Link",
+                    "placeholder": {
+                      "check_in": "Check-in Survey Link",
+                      "check_out": "Check-out Survey Link"
+                    },
+                    "button": {
+                      "abort": "Cancel",
+                      "accept": "Submit"
+                    }
+                },
+                "reject": {
+                    "title": "Reject Job Posting",
+                    "message": "Are you sure you want to reject this job posting(s)?",
+                    "placeholder": "Give the reason here."
+                },
+                "inquery": {
+                    "title": "Question",
+                    "message": "You have a question about the selected job posting(s)?",
+                    "placeholder": "Please enter your question here.",
+                    "hint": "You can ask your question(s) once you select at least one appointment."
+                },
+                "deactivated-info": "You cannot submit bids or ask questions about job posting(s) because your account is deactivated.",
+                "blocked-info": {
+                    "legal": "You cannot submit bids or ask questions about job posting(s) because we are still missing documents from you or not yet checked by us.",
+                    "missing-gtc": "You cannot submit bids or ask questions about job posting(s) because you have not yet accepted the new framework agreement."
+                },
+                "update-profile": "Open my profile (work {contract_type_identifier, select, staff member { via trade license} other{ via income tax card}}).",
+                "accept-agb": "Open my profile (work {contract_type_identifier, select, staff member { via trade license} other{ via income tax card}}) to accept",
+                "pending-info": "We are currently reviewing your information for this contract type. You will be able to submit bids again as soon as we have reviewed your changes."
+            },
+            "filters": {
+                "type": "Class of the Job Posting",
+                "dates": "Dates",
+                "postcodes": "Postal Code of the Place of work",
+                "certificate": "Certificate",
+                "contractType": "Contract Type"
+            }
+        },
+        "client": {
+            "list": {
+                "header": "Jobs",
+                "table": {
+                    "title": "Name",
+                    "projectname": "Project",
+                    "clientname": "Customer",
+                    "agentName": "Agent",
+                    "status": "Status",
+                    "shortTitle": "Name",
+                    "sitename": "POS",
+                    "siteNameNumber": "POS",
+                    "siteaddress": "Street & House Number",
+                    "sitezip": "Postal Code",
+                    "sitecity": "City",
+                    "categoryName": "Category",
+                    "datesNumber": "Dates",
+                    "assignmentsNumber": "Operations",
+                    "openTendersNumber": "Job Posting(s)",
+                    "bookedAssignmentsNumber": "Booked Operations",
+                    "finishedAssignmentsNumber": "Completed Missions",
+                    "offersNumber": "Offers",
+                    "openUpcomingAssignmentsNumber": "Open Bookings",
+                    "revenueTotal" : "Total Sales",
+                    "revenueAvg" : "Average Revenue/Day",
+                    "siteClientContact": "Field Service",
+                    "search-placeholder": "Search for Jobs (name or ID) (min. 3 characters)",
+                    "details": "",
+                    "actions": {
+                        "details": "Details",
+                        "offers": "Offers",
+                        "remove": "Delete",
+                        "createTender": "Publish Appointments"
+                    },
+                    "remove": {
+                        "title": "Delete Job",
+                        "message": "Do you really want to delete the job?"
+                    }
+                },
+                "filters": {
+                    "project": "Project",
+                    "contractType": "Contract Type"
+                },
+                "dateNumber": "{{datesNumber}} Appointment",
+                "datesNumber": "{{datesNumber}} Appointments",
+                "assignmentNumber": "{{assignmentsNumber}} Booking",
+                "assignmentsNumber": "{{assignmentsNumber}} Bookings",
+                "bookedAssignmentNumber": "{{bookedAssignmentsNumber}} Booked Operation",
+                "bookedAssignmentsNumber": "{{bookedAssignmentsNumber}} Booked Operations",
+                "finishedAssignmentNumber": "{{finishedAssignmentsNumber}} Completed Operation",
+                "finishedAssignmentsNumber": "{{finishedAssignmentsNumber}} Completed Operations",
+                "openTenderNumber": "{{openTendersNumber}} Open Job Posting",
+                "openTendersNumber": "{{openTendersNumber}} Open Job Postings",
+                "openUpcomingAssignmentNumber": "{{openUpcomingAssignmentsNumber}} Open Booking",
+                "openUpcomingAssignmentsNumber": "{{openUpcomingAssignmentsNumber}} Open Bookings",
+                "offerNumber": "{{offersNumber}} Available Job Posting",
+                "offersNumber": "{{offersNumber}} Available Job Posting(s)",
+                "search-placeholder": "Job Name, Location or Branch",
+                "buttons": {
+                    "overview": "Show All",
+                    "details": "Details",
+                    "create": "Create New Job"
+                }
+            }
+        },
+        "rate-types": {
+            "per_hour": "Per Hour",
+            "per_shift": "Per Shift",
+            "undefined": ""
+        },
+      "shortlist": {
+        "title": "Shortlisted Jobs",
+        "table": {
+          "search-placeholder": "minimum 3 characters",
+          "jobTitle": "Job Title",
+          "sitePlace": "Site Location",
+          "appointedAt": "Date",
+          "expired_at": "Valid until",
+          "expiredAt": "Valid until",
+          "freelancerName": "Staff Member Name",
+          "actions": {
+            "details": "Details"
+          },
+          "filter": {
+            "job": "Job"
+          },
+          "details": "",
+          "filters": {
+            "state": "Application Status",
+            "job": "Job",
+            "project": "Project",
+            "site": "POS",
+            "client": "Customer Name",
+            "agent": "Agent",
+            "dates": "Job Posting (from - to)",
+            "contractType": "Contract Type",
+            "freelancer": "Staff Member"
+          }
+        },
+        "download": {
+            "id": "ID",
+            "freelancer_id": "Staff Member Id",
+            "job":"Job Name",
+            "site_place": "Site Location",
+            "appointed_at": "Date",
+            "freelancer_name": "Staff Member Name",
+            "expired_at":"Valid until"
+        }
+      }
+    },
+    "job": {
+        "title": {
+            "invite-job": "Invite Job Details",
+            "details": "Job Details",
+            "edit": "Edit Job",
+            "new": "New Job"
+        },
+        "buttons": {
+            "create": "Add Job",
+            "edit": "Edit",
+            "update": "Save Changes",
+            "cancel": "Cancel",
+            "cancel-edit": "Cancel",
+            "back": "Back to Job Overview",
+            "create-tenders": "Publish Job",
+            "pending-offers": "Unprocessed Offers"
+        },
+        "create-tenders": {
+            "section": {
+                "dates": "Appointment Details",
+                "tender": "Job Posting Validity",
+                "assignment": "Job Details",
+                "job": "Job Details",
+                "criteria": "Job Posting Criteria"
+            },
+            "title": {
+                "edit": "Job Advertisement",
+                "details": "Confirmation of Date Publication"
+            },
+            "buttons": {
+                "edit": "Edit",
+                "update": "Publish Job",
+                "cancel": "Cancel",
+                "cancel-edit": "Cancel",
+                "back": "Back to the Job Overview"
+            },
+            "dates": "{{count}} Appointment",
+            "more-dates": "{{count}} Dates",
+            "result": {
+                "not-created": "The following dates could not be advertised: {failed}",
+                "created-tender": "{{count}} Appointment was advertised.",
+                "created-tenders": "{{count}} Dates were advertised."
+            },
+            "submitting": "Bookings are advertised...",
+            "budget-exceeded": "The budget is not sufficient. Please delete some bookings.",
+            "save": {
+                "title": "Publish Job?",
+                "message": "Do you want to publish the job now?"
+            }
+        },
+        "offers": {
+            "section": {
+                "pending-offers": "Unprocessed Offers",
+                "job": "Job Details"
+            },
+            "title": {
+                "edit": "Application Overview"
+            },
+            "buttons": {
+                "update": "Accept Offers",
+                "cancel": "Cancel",
+                "cancel-edit": "Cancel",
+                "back": "Back to Job Overview",
+                "accept-all": "Select all Offers",
+                "reset": "Reset"
+            },
+            "accept": {
+                "title": "Accept selected offers?",
+                "message": "Do you want to accept the selected offers?"
+            },
+            "no-pending": "No unprocessed offers available",
+            "confirmation": {
+                "title": "Accept Offers",
+                "message": "{{success}} offer(s) could be accepted\n{{failures}} offer(s) could not be accepted.",
+                "buttons": {
+                    "cancel": "Back",
+                    "confirm": "To the booking overview"
+                }
+            }
+        },
+        "details": {
+          "fields": {
+            "jobName": "JOB",
+            "contractType": "Contract type",
+            "could": "Could",
+            "projectCat": "Project category",
+            "subs_company": "Subsidiary company",
+            "required_cert": "Required certificates",
+            "required_operation_train": "Required operational training",
+            "description_goal": "Description / goal of the project",
+            "general_brief": "General briefing",
+            "term": "TERM",
+            "registering": "When registering",
+            "salesReport": "Sales report",
+            "photoDocumentation": "Photo documentation:",
+            "compensation": "Task-based compensation",
+            "Possible_fee": "Possible fee",
+            "rate_card": "Rate Card",
+            "offer_binding": "Select Shift",
+            "location_not_match": "Location doesn't Match",
+            "contract_mismatched": "Contract type mismatched"
+          }
+        }
+    },
+    "dates": {
+        "title": {
+            "list": "Shifts Overview"
+        },
+        "state": {
+            "draft": "Draft",
+            "active": "Open"
+        },
+        "list": {
+            "title": "Dates"
+        },
+        "table": {
+            "search-placeholder": "Search for shifts (min. 3 characters)",
+            "id": "ID",
+            "jobtitle": "Job",
+            "appointedAt": "Date",
+            "start_time": "Start Time",
+            "finish_time": "End Time",
+            "jobName": "Job Title",
+            "role_name": "Role",
+            "shift_name": "Shift",
+            "actions": {
+                "edit": "Details",
+                "copy": "Copy",
+                "assignments": "Bookings",
+                "createAssignment": "Add Booking",
+                "remove": "Delete"
+            },
+            "remove": {
+                "title": "Delete Appointment",
+                "message": "Do you really want to delete the appointment?"
+            }
+        },
+        "filters": {
+            "job": "Job",
+            "dates": "Shifts (From - To)",
+            "project": "Project",
+            "agent": "Staffing Manager"
+        },
+        "buttons": {
+            "add": "Add Appointment",
+            "back": "Back to the Job Overview"
+        }
+    },
+    "date": {
+        "title": {
+            "new": "New Appointment",
+            "details": "Appointment Details",
+            "edit": "Edit Appointment"
+        },
+        "fields": {
+            "start_time": {
+                "label": "Start Time"
+            },
+            "finish_time": {
+                "label": "End Time"
+            },
+            "appointed_at": {
+                "label": "Shift Dates"
+            }
+        },
+        "create": {
+            "selected_dates": "Selected Dates",
+            "selected_range": "Period of the Appointments"
+        },
+        "buttons": {
+            "create": "Add Appointment",
+            "save": "Save Appointment",
+            "update": "Save changes",
+            "edit": "Edit Appointment",
+            "cancel": "Cancel",
+            "cancel-edit": "Cancel",
+            "confirm": "OK",
+            "remove": "Delete Appointment",
+            "back": "Back to the Appointment Overview"
+        },
+        "remove": {
+            "title": "Delete Appointment",
+            "message": "Do you really want to delete the Appointment?"
+        }
+    },
+    "assignments": {
+        "title": "Overview of Bookings",
+        "search-placeholder": "Job Name, Location or Branch",
+        "table": {
+            "search-placeholder": "Search for bookings (min. 3 characters)",
+            "id"          : "ID",
+            "start_time"  : "Start Time",
+            "finish_time" : "End Time",
+            "category"    : "Category",
+            "clientName"  : "Customer",
+            "address"     : "Address",
+            "status"      : "Status",
+            "jobTitle"    : "Job Name",
+            "appointedAt" : "Date",
+            "appointedTimeLabel": "Date",
+            "siteName"    : "Place of Job Location (POS)",
+            "siteFullAddress": "Location",
+            "sitePlace"   : "City",
+            "budgetName"  : "Budget",
+            "budgetValue" : "Total",
+            "orderName"   : "Order",
+            "orderedAt"   : "Order Date",
+            "invoiceTotal": "FL-Invoice Total",
+            "invoiceState": "FL-Invoice",
+            "revenueTotal" : "Total Turnover",
+            "billsTotal"  : "Customer Invoice Total",
+            "billsNumber"  : "Customer Invoice Number",
+            "budgetConsumed" : "Consumed",
+            "freelancerName" : "Staff Member Name",
+            "assignment_budget" : "Cost to Customer (without correction)",
+            "assignment_budget_correction": "Correction to Customer Cost",
+            "planned_costs": "Cost to Customer (with correction)",
+            "comment": "Comment",
+            "additionalCosts" : "Remuneration",
+            "clientProperties" : "Customer specific Properties",
+            "invoicePaymentTotal": "FL-Invoice Total (Discount)",
+            "incentiveModel" : "Lump-sum and Discount",
+            "wage": "Hourly Rate",
+            "createdAt": "Created On",
+            "createdBy": "Created By",
+            "modifytime": {
+                "title": "Confirm Attendance",
+                "message": "Do you want to change the reported times for this booking?",
+                "placeholder": "HH:mm - HH:mm (Start - End)"
+            },
+            "update-comment": {
+                "title": "Comment on the Booking",
+                "message": "Do you want to change the comment for this booking?",
+                "placeholder": "Comment"
+            },
+            "filters": {
+                "job": "Job",
+                "status": "Status",
+                "states": "Status",
+                "dates": "Deployments (from - to)",
+                "freelancer": "Staff Member",
+                "site": "POS",
+                "project": "Project",
+                "invoice_state": "Invoice Status",
+                "client_invoice": "Customer Invoice",
+                "agent": "Staffing Manager",
+                "creator": "Created by (customer/AD)",
+                "created": "Created on (from - to)",
+                "client": "Customer",
+                "contractType": "Contract Type"
+            },
+            "actions": {
+                "details": "Details",
+                "remove": "Delete",
+                "tender_create": "New Job Posting",
+                "tender_update": "Update Job Posting",
+                "modifytime": "Confirm Presence",
+                "invoicepreparation": "Prepare Invoice",
+                "update-comment": "Comment",
+                "update-freelancer-costs-net": "Enter Staff Member Fee (Net)",
+                "update-correction": "Correct planned costs for the Customer"
+            },
+            "remove": {
+                "title": "Delete Bookings",
+                "message": "Are you sure you want to delete the booking?\nPossible existing bookings will be closed."
+            }
+        },
+        "labels": {
+            "planned-time": "Planned Time",
+            "reported-time": "Reported Time",
+            "planned-costs": "Planned Cost (Customer)",
+            "freelancer-costs-net": "Reported Fee",
+            "feedback": "Feedback",
+            "documents": {
+                "header": "Documents",
+                "report": "Mission Report",
+                "questionnaire": "Statement",
+                "picture-documentation": "Photo Documentation",
+                "freelancer": {
+                    "report": "Mission Report",
+                    "questionnaire": "Statement",
+                    "picture-documentation": "Photo Documentation"
+                },
+                "tax_card": {
+                    "report": "Timesheet",
+                    "questionnaire": "Statement",
+                    "picture-documentation": "Photo Documentation"
+                },
+                "revenue": "Turnover Report",
+                "invoice": "Invoice",
+                "not-attached": "Not Attached",
+                "attached": "Attached"
+            },
+            "comment": "Comment"
+        },
+        "fields": {
+            "states": {
+                "null": "Not Defined",
+                "open": "No Job Posting Available",
+                "tendered": "Job Posting Generated",
+                "booked": "Staff Member Booked",
+                "preparation": "Follow-up Required",
+                "missing-docs": "Missing Documents",
+                "invoiced": "Invoiced",
+                "done": "Completed",
+                "preparation,invoiced": "Completed"
+            },
+            "client_invoice": {
+                "not_invoiced": "Billable",
+                "invoiced": "Billed"
+            },
+            "missing_docs": {
+                "only_missing_docs": "Only missing Documents"
+            }
+        },
+        "presence": {
+            "header": "Unconfirmed attendance",
+            "table": {
+                "jobTitle": "Job Name",
+                "freelancerName": "Staff Member",
+                "siteCity": "City",
+                "startDateTime": "Start Time",
+                "details": ""
+            },
+            "buttons": {
+                "overview": "Show All",
+                "details": "Details"
+            }
+        },
+        "ratings": {
+            "label": "Mission Assessments",
+            "rating" : {
+                "value-1": "Very Bad",
+                "value-2": "Bad",
+                "value-3": "Average",
+                "value-4": "Good",
+                "value-5": "Very Good",
+                "comment": "Comment"
+            },
+            "buttons": {
+                "submit": "Save Deployment Rating"
+            }
+        },
+        "freelancer": {
+            "header": "My Current Jobs",
+            "buttons": {
+                "overview": "Show All",
+                "details": "Details",
+                "preparation": "Upload missing Documents"
+            },
+            "table": {
+                "jobTitle": "Job Name",
+                "jobShortTitle": "Job",
+                "staffMember": "Staff Member",
+                "startDateTime": "Expiry Date",
+                "startDateTimeLabel": "Receipt Date",
+                "details": ""
+            },
+            "fields": {
+                "states": {
+                    "null": "Not Defined",
+                    "booked": "Booked",
+                    "preparation": "Follow-up Required",
+                    "invoiced": "Invoiced"
+                },
+                "attributes": {
+                    "only_upcoming": "Pending Operations"
+                }
+            }
+        },
+        "selection": {
+            "hint": "Please select {single, select, true {the booking} other {the bookings}}."
+
+        },
+        "download": {
+            "confirm": {
+                "title": "Start Download",
+                "message": "The download may take some time to complete.\nChanges to the data that occur during the time the download is in progress may not be captured or may result in an incorrect download.",
+                "buttons": {
+                    "cancel": "Cancel",
+                    "confirm": "Start Download"
+                }
+            }
+        },
+        "buttons": {
+            "cancel-booking": "Cancel All Bookings",
+            "tender-assignments": "Post All Jobs"
+        },
+        "cancel-booking": {
+            "title": "Cancel Operations",
+            "message": "Do you really want to cancel all selected missions (count: <b>{{count}}</b>)??",
+            "disabled-hint": "Please activate the status filter 'Staff Member Booked' to use this function."
+        },
+        "tender-assignments": {
+            "title": "Post Bookings",
+            "message": "Do you really want to post all selected bookings (number: <b>{{count}}</b>)? \n The postings will be posted for the postal code area, which is entered as default setting in the POS!",
+            "placeholder": "10000 - 99999",
+            "disabled-hint": "Please activate the status-filter 'No job Posting available' and the date-filter ('from at least today') to use this function."
+        },
+        "client-created": {
+            "counter-hint": "Number of bookings created by customers/field staff since {start}."
+        }
+    },
+    "checkins": {
+        "title": "Unconfirmed attendance",
+        "search-placeholder": "Job Name, Location or Branch",
+        "confirm": {
+            "title": "Confirm Presence",
+            "message": "You can confirm or change the start time here.",
+            "placeholder": "HH:mm"
+        },
+        "table": {
+            "address": "Address",
+            "appointedAt": "Date",
+            "jobTitle": "Job Title",
+            "siteName": "POS",
+            "sitePlace": "City",
+            "clientName": "Customer",
+            "start_time": "Start Time",
+            "finish_time": "End Time",
+            "freelancerName": "Staff Member",
+            "freelancerEmail": "Email",
+            "freelancerPhone": "Phone",
+            "siteClientContact": "Field Service",
+            "confirm": {
+                "title": "Confirm Presence",
+                "message": "You can confirm or change the start time here.",
+                "placeholder": "HH:mm"
+            },
+            "actions": {
+                "details": "Details",
+                "confirm": "Confirm Presence"
+            },
+            "filters": {
+                "freelancer": "Staff Member",
+                "site": "POS",
+                "project": "Project"
+            }
+        }
+    },
+    "assignment": {
+      "confirm-offer": {
+        "placeholder": {
+          "check_in": "Check-in Survey Link",
+          "check_out": "Check-out Survey Link"
+        }
+      },
+        "title": {
+            "new": "New Booking",
+            "details": "Booking Details",
+            "edit": "Edit Booking",
+            "date": "Appointment: {{appointedAt}}",
+            "time": "{{start_time}} - {{finish_time}}"
+        },
+        "hint": {
+            "tendered": "This booking cannot be edited because there is a scheduled or active call for this Booking.",
+            "booked": "This booking cannot be edited because a Staff Member has already been booked for this Booking.",
+            "preparation": "This booking cannot be edited because it has already been performed.",
+            "invoiced": "This booking cannot be edited because it has already been invoiced."
+        },
+        "hint-missing-checkins": "This booking is already booked, but the Staff Member has not confirmed his presence. Confirm the presence here: ",
+        "hint-missing-checkins-link": "Confirm Presence",
+        "fields": {
+            "start_time": {
+                "label": "Start Time"
+            },
+            "finish_time": {
+                "label": "End Time"
+            },
+            "reported": {
+                "label": "Reported Booking Time"
+            },
+            "state": {
+                "label": "Status"
+            },
+            "comment": {
+                "label": "Comment",
+                "placeholder": "Comment"
+            },
+            "budget-correction": {
+                "label": "Customer Cost Correction",
+                "hint": "Difference to originally planned costs",
+                "placeholder": "Difference (+/- X,XX €) to planned costs",
+                "none": "0,00 €"
+            },
+            "planned-costs": {
+                "label": "Customer Costs",
+                "hint": "incl. possible corrections"
+            },
+            "freelancer-costs-net": {
+                "label": "Reported Staff Member Fee",
+                "hint": "Fee charged by the Staff Member (net)",
+                "placeholder": "Fee in €",
+                "none": "not yet recorded"
+            }
+        },
+        "booked": {
+            "name": "Staff Member",
+            "mobile": "Telephone (mobile)",
+            "email": "E-Mail"
+        },
+        "buttons": {
+            "create": "Add Booking",
+            "save": "Save Booking",
+            "update": "Save Changes",
+            "edit": "Edit Booking",
+            "cancel": "Cancel",
+            "confirm": "OK",
+            "remove": "Delete Booking",
+            "back": "Back to the Booking Overview",
+            "create-tender": "Create Job Posting",
+            "update-tender": "Update Job Posting",
+            "cancel-booking": "Cancel Booking",
+            "booked-details": "Booked Staff Member",
+            "survey-link": "Update Survey Link",
+            "confirmOffer": "Enter Survey Link",
+            "successMessage": "Survey Link Successfully Updated",
+            "abort": "Cancel",
+            "accept": "Submit"
+        },
+        "delete": {
+            "title": "Delete Booking",
+            "message": "Do you really want to delete the Operation?"
+        },
+        "cancel-booking": {
+            "title": "Cancel Booking",
+            "message": "Do you really want to cancel the Operation?"
+        },
+        "update-hours": {
+            "title": "Confirm Deployment Time",
+            "message": "Do you want to change the reported time for this Operation?",
+            "placeholder": "HH:mm - HH:mm (Start Time - End Time)",
+            "buttons": {
+                "cancel": "Cancel",
+                "confirm": "Save"
+            }
+        },
+        "update-comment": {
+            "title": "Comment on the Booking",
+            "message": "Do you want to change the comment for this Operation?",
+            "placeholder": "Comment",
+            "buttons": {
+                "cancel": "Cancel",
+                "confirm": "Save"
+            }
+        },
+        "update-correction": {
+            "title": "Budget Adjustment",
+            "message": "Do you want to adjust the budgeted costs for the customer for this Deployment?",
+            "placeholder": "Difference (+/-) to the planned costs",
+            "buttons": {
+                "cancel": "Cancel",
+                "confirm": "Save"
+            }
+        },
+        "update-freelancer-costs-net": {
+            "title": "Fee recorded by the Staff Member (net)",
+            "message": "Do you want to record the fee charged by the Staff Member for this Booking?",
+            "placeholder": "Invoiced fee in €",
+            "buttons": {
+                "cancel": "Cancel",
+                "confirm": "Save"
+            }
+        },
+        "additional-documents": {
+            "label": "Job Details",
+            "report": "Booking Report",
+            "questionnaire": "Statement"
+        },
+        "revenue": "Revenue Report",
+        "online-questionnaire": {
+            "label": "Statement"
+        },
+        "feedback": {
+            "label": "Feedback"
+        }
+    }
+}

@@ -1,0 +1,128 @@
+{
+    "certificates": {
+        "all": {
+            "title": "Certificates",
+            "header": "You can still acquire these certificates.",
+            "description": "Prepare yourself for new jobs here. Start training now. Have fun!",
+            "recommended": "Recommended",
+            "recommendation": "It is recommended that all professional freelancers obtain this certificate.",
+            "jobs": "+ {{job_count_by_tenders}}{job_count_by_tenders, select, 1 { Job}  other{ Jobs}}",
+            "created": "{{created_at}}"
+        },
+        "agent": {
+            "header": "Certificates that freelancers can acquire.",
+            "recommended": {
+                "label": "Recommend",
+                "hint": "Recommend this certificate to the freelancer."
+            },
+            "certificate-enabled": {
+                "label": "Unlock Certificate",
+                "hint": "This certificate is visible to the freelancers.\nWhen deactivated, the certificate is only visible in the list of passed certificates. The test is then no longer executable."
+            },
+            "training-enabled": {
+                "label": "Activate training",
+                "hint": "The training is visible to the freelancers."
+            },
+            "exam-enabled": {
+                "label": "Activate Test",
+                "hint": "The test can be executed by the freelancers."
+            },
+            "exam-percent": {
+                "label": "Minimum Percentage",
+                "hint": "Minimum required correct answers (in percent) to pass the test."
+            },
+            "valid-interval": {
+                "label": "Validity Period",
+                "hint": "The validity of a certificate is described by a Date Interval, e.g. 1Y => 1 year, 1M => 1 month, 1D => 1 day."
+            },
+            "exam": {
+                "label": "Test-Details"
+            }
+        },
+        "my": {
+            "title": "My Certificates",
+            "header": "Congratulations! You have already acquired these certificates.",
+            "description": "With every additional certificate you increase your chances of getting new jobs.",
+            "passed": "Acquired on {{passed_at}}.",
+            "invalid": "Expired since {{invalid_at}}.",
+            "valid-until": "Valid until {{invalid_at}}",
+            "training-headline": "Trainings",
+            "training-certificated": "Job Trainings & Certificates"
+        },
+        "exclusive": {
+            "title": "Certificates",
+            "header": "Deployment Training",
+            "description": "Start Deployment Training now",
+            "table": {
+                "name": "Certificates",
+                "jobShortTitle": "Job",
+                "startDateTime": "Remaining",
+                "details": ""
+            },
+            "buttons": {
+                "details": "Details",
+                "overview": "Show All"
+            }
+        },
+        "filters": {
+            "category": "Certificate Category",
+            "recommendation": "Features of the Certificate",
+            "attributes": "Features of the Certificate",
+            "legal": "Legal Training"
+        },
+        "fields": {
+            "categories": {
+                "product": "Product",
+                "brand": "Brand",
+                "promotion": "Promotion",
+                "legal": "Law"
+            },
+            "recommendation" : {
+                "only_recommended": "Recommended",
+                "with_jobs": "With jobs"
+            },
+            "attributes" : {
+                "only_recommended": "Recommended",
+                "only_enabled": "Active",
+                "only_exclusive": "Deployment training"
+            },
+            "search" : {
+                "placeholder": "Name, Short or long description"
+            },
+            "legal": {
+                "with_legal": "View"
+            }
+        },
+        "categories": {
+            "product": "Product",
+            "brand": "Brand",
+            "fragrance": "Scent",
+            "care": "Care",
+            "cosmetics": "Cosmetics",
+            "promotion": "Promotion",
+            "sale": "Sale",
+            "legal": "Law"
+        },
+        "buttons": {
+            "details": "Details",
+            "try": "Certify",
+            "start-exam": "Start the Test!",
+            "back-to-my-certificates": "Back to my Certificates",
+            "open-training": "To the training",
+            "back": "Back to the Overview"
+        },
+        "actions": {
+            "details": "Details",
+            "recommend": "Recommend",
+            "unrecommend": "Do not recommend anymore",
+            "enable": "Activate",
+            "disable": "Deactivate"
+        },
+        "description": "",
+        "passed" : "The test was successfully completed on {{passed_at}}.",
+        "open" : "The test has not yet been passed.",
+        "title": {
+            "details": "Certificate Details"
+        }
+    }
+}

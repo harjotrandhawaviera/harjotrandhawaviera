@@ -1,0 +1,107 @@
+@import "variables";
+@import "mixins";
+
+.panel.checkin {
+  padding: 15px;
+  border: 1px solid $p4y-color-gray-light;
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  .panel-heading {
+    display: flex;
+    flex-direction: column;
+    font-variant: all-small-caps;
+    color: $p4y-color-gray-medium;
+    .action-title-cont {
+      display: flex;
+      justify-content: space-between;
+      a {
+        cursor: pointer;
+        font-size: 10px;
+      }
+    }
+    .small-text-cont {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .panel-body {
+    padding: 15px 0 0;
+    min-height: 100px;
+    address {
+     line-height: 20px;
+     .site-phone {
+       margin-top: 5px;
+     }
+    }
+    .trim-text {
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header.date-card {
+      display: flex;
+      padding: 0 10px 10px 10px;
+      .date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center;
+        min-width: 80px;
+        height: 80px;
+        border: 2px solid #d0d0d1;
+        text-align: center;
+        box-sizing: border-box;
+        margin-right: 10px;
+        .day {
+          font-size: 24px;
+        }
+        .month {
+          font-size: 14px;
+          margin: 3px 0 1px;
+        }
+        .year {
+          font-size: 12px;
+        }
+      }
+      .title {
+        max-height: 50px;
+        height: 50px;
+        overflow: hidden;
+        font-size: 20px;
+        line-height: 25px;
+      }
+      .subtitle {
+        line-height: 25px;
+      }
+    }
+    .booked-freelancer {
+      display: flex;
+      flex-direction: column;
+      a {
+        margin-bottom: 3px;
+      }
+    }
+    .site {
+      margin-top: 15px;
+      .site-group {
+        span.far {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .text-info {
+    position: absolute;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+  }
+
+  i {
+    margin-right: 5px;
+  }
+}

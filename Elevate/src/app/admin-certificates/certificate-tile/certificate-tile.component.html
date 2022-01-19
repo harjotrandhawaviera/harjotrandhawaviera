@@ -1,0 +1,99 @@
+<div
+  class="panel panel-default certificate {{ certificate.state }} {{
+    certificate.is_enabled ? 'enabled' : ''
+  }}
+  {{ certificate.is_legal ? 'legal' : '' }}"
+  (click)="goToDetail()"
+>
+  <img appImageAvatar [imageId]="certificate.picture_id" />
+  <div
+    *ngIf="certificate.is_legal"
+    class="legal-icon fa fa-balance-scale"
+  ></div>
+  <div class="panel-heading">
+    <div class="row middle-xs between-xs">
+      <div>
+        <span
+          *ngIf="certificate.category"
+          class="category pull-left"
+          [translate]="'certificates.categories.' + certificate.category"
+        ></span>
+      </div>
+      <div>
+        <button
+          mat-icon-button
+          color="accent"
+          [matMenuTriggerFor]="subMenu"
+          (click)="$event.stopPropagation()"
+        >
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <mat-menu #subMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="goToDetail()">
+            {{ "certificates.actions.details" | translate }}
+          </button>
+          <button
+            mat-menu-item
+            (click)="toggleRecommendationClick()"
+            *ngIf="!this.certificate.is_legal"
+          >
+            {{
+              (certificate.is_recommended
+                ? "certificates.actions.unrecommend"
+                : "certificates.actions.recommend"
+              ) | translate
+            }}
+          </button>
+          <button
+            mat-menu-item
+            (click)="toggleEnabledClick()"
+            *ngIf="!this.certificate.is_legal"
+          >
+            {{
+              (certificate.is_enabled
+                ? "certificates.actions.disable"
+                : "certificates.actions.enable"
+              ) | translate
+            }}
+          </button>
+          <!-- <button
+            *ngIf="(deletePermission$ | async) && !row.number_of_jobs"
+            mat-menu-item
+            (click)="deleteRecord(row)"
+          >
+            {{ "projects.list.table.actions.remove" | translate }}
+          </button> -->
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <h3 class="line-ellipsis">{{ certificate.name }}</h3>
+    <div class="teaser">{{ certificate.teaser }}</div>
+  </div>
+  <div class="panel-footer">
+    <!-- <a
+      class="btn btn-primary btn-sm pull-left"
+      data-translate-once="certificates.buttons.details"
+    ></a> -->
+    <div class="row middle-xs between-xs">
+      <a
+        type="submit"
+        mat-flat-button
+        color="accent"
+        (click)="$event.stopPropagation(); goToDetail()"
+        class="pull-left"
+      >
+        {{ "certificates.buttons.details" | translate }}
+      </a>
+      <span
+        class="pull-right icon"
+        (click)="$event.stopPropagation(); toggleRecommendationClick()"
+      >
+        <!-- <i class="glyphicon glyphicon-fire"></i> -->
+        <i class="fas fa-fire-alt"></i>&nbsp;
+        <span translate="certificates.all.recommended"></span>
+      </span>
+    </div>
+  </div>
+</div>

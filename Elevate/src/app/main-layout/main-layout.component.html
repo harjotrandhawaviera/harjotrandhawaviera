@@ -1,0 +1,63 @@
+<mat-sidenav-container class="main-container">
+  <mat-sidenav
+    #sidenav
+    [mode]="(isOnboarding$ | async) && smallDevice ? 'over' : 'side'"
+    [opened]="(isOnboarding$ | async) && smallDevice ? !menuFolded : true"
+    [ngClass]="{
+      'main-sidenav': true,
+      folded: menuFolded && (!(isOnboarding$ | async) || ((isOnboarding$ | async) && smallDevice)),
+      onboarding: isOnboarding$ | async
+    }"
+  >
+    <app-menu
+      id="menu"
+      #menu
+      *ngIf="userInfo && !(isOnboarding$ | async)"
+      [folded]="menuFolded"
+      (foldingPanel)="foldingPanel($event)"
+    >
+    </app-menu>
+    <button
+      *ngIf="!menuFolded && (isOnboarding$ | async) && smallDevice"
+      mat-mini-fab
+      class="menu-close"
+      (click)="closeOnboardingMenu()"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <app-onboarding-menu
+      id="menu"
+      #menu
+      *ngIf="userInfo && (isOnboarding$ | async)"
+    >
+    </app-onboarding-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content
+    [ngClass]="{
+      'main-sidenav-content': true,
+      folded: menuFolded && (!(isOnboarding$ | async) || ((isOnboarding$ | async) && smallDevice)),
+      onboarding: isOnboarding$ | async
+    }"
+  >
+    <div class="main-content" id="main-content">
+      <button
+        *ngIf="menuFolded && (isOnboarding$ | async) && smallDevice"
+        mat-mini-fab
+        class="menu-open"
+        matTooltip="Open menu"
+        (click)="openOnboardingMenu()"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="footer-cont">
+      <span
+        >Copyright &copy; {{ year }} Elevate Staffing. All Rights
+        Reserved.</span
+      >
+      <span>Release Version: {{ appVersion }}</span>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

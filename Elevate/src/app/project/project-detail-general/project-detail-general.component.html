@@ -1,0 +1,315 @@
+<fieldset *ngIf="project">
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label translate="projects.fields.client.label" data-required></label>
+      <div class="client-name">
+        <a
+          *ngIf="allowManageCustomer && project.client"
+          [routerLink]="['/administration/clients', project.client_id]"
+          >{{ project.client.name }}</a
+        >
+        <span *ngIf="!allowManageCustomer && project.client">{{
+          project.client.name
+        }}</span>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+      <label translate="projects.fields.contact.label" data-required></label>
+      <div *ngIf="project.contact">{{ project.contact.fullname }}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <label translate="projects.fields.name.label" data-required></label>
+      <div>{{ project.name }}</div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="form-group col-xs-12 col-sm-4">
+        <label translate="projects.fields.start.label" data-required></label>
+        <div>
+          {{ project.started_at | date: 'mediumDate'}}
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-4">
+        <label translate="projects.fields.finish.label"></label>
+        <div>{{ project.finished_at | date: 'mediumDate' }}</div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-4">
+        <label translate="projects.fields.state.label" data-required></label>
+        <div [translate]="'projects.fields.state.' + project.state"></div>
+      </div>
+      <!-- <div class="form-group col-xs-12 col-sm-6">
+        <label translate="projects.fields.category.label" data-required></label>
+        <div [translate]="'projects.fields.category.' + project.category"></div>
+      </div> -->
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label
+        translate="projects.fields.account-manager.label"
+        data-required
+      ></label>
+      <div *ngIf="project.agent">
+        {{ project.agent.fullname }}
+        <span
+          class="text-nowrap agent-contact"
+          *ngIf="project.agent.mobile || project.agent.email"
+        >
+          <br />
+          <i
+            class="fas fa-mobile-alt"
+            aria-hidden="true"
+            *ngIf="project.agent.mobile"
+          ></i>
+          <a [attr.href]="'tel:' + project.agent.mobile | telNumber">
+            {{ project.agent.mobile }}
+          </a>
+          <br />
+          <i
+            class="far fa-envelope"
+            aria-hidden="true"
+            *ngIf="project.agent.email"
+          ></i>
+          <a [attr.href]="'mailto:' + project.agent.email">
+            {{ project.agent.email }}
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+      <label
+        translate="projects.fields.staffing-manager.label"
+        data-required
+      ></label>
+      <div *ngIf="project.staff">
+        {{ project.staff.fullname }}
+        <span
+          class="text-nowrap agent-contact"
+          *ngIf="project.staff.mobile || project.staff.email"
+        >
+          <br />
+          <i
+            class="fas fa-mobile-alt"
+            aria-hidden="true"
+            *ngIf="project.staff.mobile"
+          ></i>
+          <a [attr.href]="'tel:' + project.staff.mobile | telNumber">
+            {{ project.staff.mobile }}
+          </a>
+          <br />
+          <i
+            class="far fa-envelope"
+            aria-hidden="true"
+            *ngIf="project.staff.email"
+          ></i>
+          <a [attr.href]="'mailto:' + project.staff.email">
+            {{ project.staff.email }}
+          </a>
+        </span>
+      </div>
+    </div>
+    <!--<div class="form-group col-xs-12 col-sm-3">
+      <label
+        translate="projects.fields.contract_type.label"
+        data-required
+      ></label>
+      <div>
+        {{
+          (project.contract_type_id && project.contract_type_id === 1
+          ? 'contracts.identifier.freelancer'
+          : 'contracts.identifier.tax_card') | translate
+        }}
+      </div>
+    </div> -->
+  </div>
+</fieldset>
+
+
+<fieldset *ngIf="project">
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <label
+        translate="projects.fields.description.label"
+        data-required
+      ></label>
+      <div [innerHtml]="project.description | newlines"></div>
+    </div>
+  </div>
+  <div class="target_budget">
+    <div class="row">
+      <div class="col-xs-12">
+        <label translate="projects.target-budget.label"></label>
+      </div>
+    </div>
+    <app-target-budget
+      [currency]="project.currency"
+      [targetBudget]="project.target_budget"
+    ></app-target-budget>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-4">
+      <label translate="projects.fields.po_no.label"></label>
+      <div>{{ project.po_no }}</div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-4">
+      <label translate="projects.fields.po_amount.label"></label>
+      <div> <span [appCurrencySymbol]="project.po_currency"></span>{{ project.po_amount}}</div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-4">
+      <label translate="projects.fields.po_date.label"></label>
+      <div>{{ project.po_date | date: 'mediumDate'}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-12">
+      <label translate="projects.fields.po_comment.label"></label>
+      <div>{{ project.po_comment}}</div>
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="form-group col-xs">
+      <label translate="projects.details.label.primary_address"></label>
+      <div>{{ project.primary_address_full }}</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-xs">
+      <label translate="projects.details.label.site_address"></label>
+      <div>{{ project.site_address_full }}</div>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="form-group col-xs">
+      <label translate="projects.details.label.skills_required"></label>
+      <ng-container *ngIf="project.skills_required && project.skills_required.data">
+        <ol>
+          <li *ngFor="let item of project.skills_required.data">{{item.title}}</li>
+        </ol>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-xs">
+      <label translate="projects.details.label.global_brand"></label>
+      <ng-container *ngIf="project.global_brand_id">
+        <ol>
+          <li *ngFor="let item of project.global_brand_id">{{ "projects.brands." + item | translate }}</li>
+        </ol>
+      </ng-container>
+    </div>
+  </div>
+
+  
+
+</fieldset>
+
+<!--
+<fieldset *ngIf="project">
+ 
+  
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label translate="projects.fields.order.label"></label>
+      <div class="order-name">
+        <a
+          *ngIf="allowManageOrder && project.order"
+          [routerLink]="['/administration/orders', project.order_id]"
+          >{{ project.order.name }}</a
+        >
+        <span *ngIf="!allowManageOrder && project.order">{{
+          project.order.name
+        }}</span>
+      </div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6">
+      <label translate="projects.fields.budget.label"></label>
+      <div class="budget-name">
+        <a
+          *ngIf="allowManageOrder && project.budget"
+          [routerLink]="['/administration/budgets', project.budget_id]"
+          >{{ project.budget.name }}</a
+        >
+        <span *ngIf="!allowManageOrder && project.budget">{{
+          project.budget.name
+        }}</span>
+        <br /><small data-ng-bind="::project.budget.contactNames"></small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label translate="projects.fields.assignment_budget.label"></label>
+      <div>{{ project.assignment_budget | currency }}</div>
+    </div>
+    <div class="form-group col-xs-12 col-sm-6 wage">
+      <label translate="projects.fields.wage.label"></label>
+      <div>{{ project.wage | currency }}</div>
+    </div>
+  </div>
+  <div class="additional_costs">
+    <div class="row">
+      <div class="col-xs">
+        <label translate="projects.additional-costs.label"></label>
+      </div>
+    </div>
+    <app-additional-cost
+      [additionalCosts]="project.additional_costs"
+    ></app-additional-cost>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <label
+        translate="projects.fields.description.label"
+        data-required
+      ></label>
+      <div [innerHtml]="project.description | newlines"></div>
+    </div>
+    <div class="form-group col-xs-12 information">
+      <label translate="projects.fields.information.label"></label>
+      <div [innerHtml]="project.information | newlines"></div>
+    </div>
+    <div class="form-group col-xs-12">
+      <label translate="projects.fields.briefing.label"></label>
+      <div [innerHtml]="project.briefing | newlines"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12 col-sm-6">
+      <label translate="projects.fields.certificates.label"></label>
+      <div
+        *ngFor="let certificate of project.certificates"
+        [ngClass]="{ exclusive: certificate.is_exclusive }"
+      >
+        <span>{{ certificate.name }}</span>
+      </div>
+    </div>
+  </div>
+</fieldset>
+<app-custom-properties-values
+  [module]="'client'"
+  [project]="project"
+></app-custom-properties-values>-->
+<!-- <div data-custom-properties-values="project.data" data-properties="project.client.custom_properties"
+  data-view="readonly" data-context="client"></div> -->
+<!--<fieldset *ngIf="templateDocuments">
+  <div class="row">
+    <div class="col-xs">
+      <label
+        required
+        translate="projects.inherited.fields.document.report.label"
+      ></label>
+    </div>
+  </div>
+  <app-project-documents
+    [projectDocuments]="templateDocuments"
+  ></app-project-documents>
+
+</fieldset> -->
+<!-- <div data-project-documents="project.documents['template-report']" data-type="template-report"
+      data-belongs-to="{project_id: project.id}" data-view="general.view" data-only-one="true"></div> -->

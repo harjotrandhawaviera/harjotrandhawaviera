@@ -1,0 +1,28 @@
+<div class="sweet-alert">
+  <div class="sa-icon sa-error" *ngIf="type === 'error'">
+    <span class="sa-x-mark">
+      <span class="sa-line sa-left"></span>
+      <span class="sa-line sa-right"></span>
+    </span>
+  </div>
+  <div class="sa-icon sa-warning pulseWarning" *ngIf="type === 'warning'">
+    <span class="sa-body pulseWarningIns"></span>
+    <span class="sa-dot pulseWarningIns"></span>
+  </div>
+  <div class="sa-icon sa-info" *ngIf="type === 'info'"></div>
+  <div class="sa-icon sa-success" *ngIf="type === 'success'">
+    <span class="sa-line sa-tip"></span>
+    <span class="sa-line sa-long"></span>
+    <div class="sa-placeholder"></div>
+    <div class="sa-fix"></div>
+  </div>
+  <!-- <div class="sa-icon sa-custom" style="display: none;"></div> -->
+  <h2 *ngIf="title">{{title}}</h2>
+  <h2 *ngIf="titleCode">{{titleCode | translate}}</h2>
+  <p style="display: block;" *ngIf="message" [innerHtml]="message"></p>
+  <p style="display: block;" *ngIf="messageCode" [innerHtml]="messageCode | translate"></p>
+  <div class="sa-button-container">
+    <button type="button" mat-stroked-button color="primary" (click)="cancel()">{{cancelText ? cancelText : (cancelCode | translate)}}</button>
+    <button type="button" mat-flat-button color="accent" (click)="confirm()">{{confirmText ? confirmText : (confirmCode | translate)}}</button>
+  </div>
+</div>

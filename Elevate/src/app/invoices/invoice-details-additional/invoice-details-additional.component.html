@@ -1,0 +1,79 @@
+<div *ngFor="let type of enabledDocTypes" class="type">
+  <h4
+    translate="invoices.fields.additional-documents.{{
+      (contractTypeIdentifier ? contractTypeIdentifier + '.' : '') + type
+    }}.label"
+  ></h4>
+  <div
+    class="photo-preview"
+    *ngIf="
+      type === 'picture-documentation' &&
+      images &&
+      images.length
+    "
+  >
+    <ng-image-slider
+      [images]="images"
+      [imagePopup]="false"
+      [imageSize]="{ height: 300, width: '100%' }"
+      [manageImageRatio]="true"
+    >
+    </ng-image-slider>
+    <!-- <div data-uib-carousel data-active="active">
+      <div data-uib-slide *ngFor="let item of data[type]" data-index="$index">
+        <h5>{{ item.appointments.join() }}</h5>
+        <img
+          data-http-src="{{ item.url }}"
+          title="{{ item.originalFilename }}"
+          alt="{{ item.originalFilename }}"
+        />
+      </div>
+    </div> -->
+  </div>
+  <div
+    *ngIf="!(data && data[type] && data[type].length)"
+    translate="invoices.fields.additional-documents.not-available"
+  ></div>
+  <div *ngFor="let item of data[type]" class="item">
+    <h5
+      *ngIf="item.appointments.length === 1"
+      [translate]="'invoices.fields.appointments.label-single'"
+      [translateParams]="{
+        dates: item.appointments.join()
+      }"
+    ></h5>
+    <h5
+      *ngIf="item.appointments.length !== 1"
+      [translate]="'invoices.fields.appointments.label-multiple'"
+      [translateParams]="{
+        dates: item.appointments.join()
+      }"
+    ></h5>
+    <app-document-upload
+      [readonly]="true"
+      [documents]="item ? [item] : []"
+    ></app-document-upload>
+    <!-- <div
+      data-profile-document="item"
+      data-type="{{
+        item.type === 'picture-documentation' ? 'picture' : 'document'
+      }}"
+      data-document-type="type"
+      data-profile-view="'readonly'"
+    ></div> -->
+    <div
+      app-approval-state
+      *ngIf="item.approval"
+      [data]="item.approval"
+      view="{{ view }}"
+    ></div>
+    <div
+      class="row revenues"
+      app-invoice-report-revenue
+      *ngIf="item.revenues && item.revenues.length"
+      [data]="item.revenues"
+      [assignments]="assignments"
+      [withCreator]="onBehalf !== roleId"
+    ></div>
+  </div>
+</div>

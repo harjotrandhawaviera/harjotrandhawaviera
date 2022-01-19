@@ -1,0 +1,61 @@
+{
+  "calls": {
+    "title": "My Bookings",
+    "detail": "Booking Details",
+    "filters": {
+      "mission": "Upcoming Bookings",
+      "contractType": "Contract Type",
+      "status": "status",
+      "invoice_status": "Invoice Status",
+      "dates": "Payment Target",
+      "search-placeholder": "Job name, location or branch"
+    },
+    "message": {
+      "invoiced_message": "Invoice: Payment has been made",
+      "status_invoice": "Be invoiced",
+      "status_booked": "Booked",
+      "status_prepare": "Follow up Required",
+      "brief_message": "The following feedback questions must be answered after each day of the assignment, so please pay attention to this during the assignment:  "
+    },
+    "fields": {
+      "scheduled_time": "Scheduled Time",
+      "report_time": "Reported Time",
+      "deadline": "Deadline: ",
+      "client": "client",
+      "fee": "Possible Fee",
+      "job": "Job",
+      "date": "Date",
+      "shift": "Shift",
+      "role": "Role",
+      "staff": "Staffing Manager",
+      "job_number": "Job Number",
+      "job_location": "Job Location",
+      "checkin_location": "Checkin Location",
+      "rate_card": "Rate Card",
+      "compensation": "Task-Based Compensation",
+      "contractType": "Contract Type",
+      "category": "category",
+      "Bonus": "Bonuses",
+      "address": "Address",
+      "certificate": "Required Certificates",
+      "operational_training": "Required Operational Training",
+      "customer": "Responsible person",
+      "description": "Description/ Goal Of the Project",
+      "briefing": "General Briefing",
+      "feedback": "Feedback",
+      "brief_document": "Briefing Documents",
+      "job_overview": "Job Overview",
+      "buttons": {
+        "back": "Back to My Bookings",
+        "actions": {
+          "details": "details"
+        }
+      },
+      "rate_type": {
+        "per_hour": "Hour",
+        "per_shift": "Shift",
+        "null": ""
+      }
+    }
+  }
+}

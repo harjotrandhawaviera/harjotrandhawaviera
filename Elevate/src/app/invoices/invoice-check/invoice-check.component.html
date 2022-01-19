@@ -1,0 +1,316 @@
+<div class="container-fluid" *ngIf="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/invoices/list']">{{
+        "invoices.check.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12">
+      <h1 translate="invoices.check.title.new"></h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="invoice.id">
+    <div class="form-group col-md-12">
+      <label translate="invoices.fields.job.label"></label>
+      <div>
+        <strong>{{ invoice.jobTitle }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <label translate="invoices.fields.number.label"></label>
+      <p>{{ invoice.number }}</p>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <label translate="invoices.fields.issued.label"></label>
+      <p>{{ invoice.issued_at | date: 'mediumDate' }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <label for="total" translate="invoices.fields.total.label"></label>
+      <p id="total">{{ invoice.total | currency }}</p>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <label translate="invoices.fields.taxes.label"></label>
+      <p>
+        {{
+          (invoice.includes_taxes
+          ? "invoices.taxes.included"
+          : "invoices.taxes.not-included") | translate
+        }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <label translate="invoices.fields.creator.label"></label>
+      <p data-ng-bind="::">{{ invoice.creatorName }}</p>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <label translate="invoices.fields.states.label"></label>
+      <p data-ng-bind="::">
+        {{ "invoices.fields.states." + invoice.state | translate }}
+      </p>
+    </div>
+    <div class="col-md-6 invoice-approval">
+      <label translate="invoices.fields.approval-state.label"></label>
+      <div app-approval-state [data]="invoice.approval"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <label translate="invoices.fields.comment.label"></label>
+      <p data-ng-bind="::">{{ invoice.comment }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label translate="invoices.fields.fullname.label"></label>
+      <p data-ng-bind="::">{{ invoice.freelancer.fullname }}</p>
+    </div>
+    <div class="form-group col-md-3">
+      <label translate="invoices.fields.bic.label"></label>
+      <p data-ng-bind="::">{{ invoice.freelancer.bic }}</p>
+    </div>
+    <div class="form-group col-md-6">
+      <label translate="invoices.fields.iban.label"></label>
+      <p data-ng-bind="::">{{ invoice.freelancer.iban }}</p>
+    </div>
+  </div>
+  <div class="row document bottom-margin" style="margin-top: 30px;">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.document.label"></h3>
+      <app-document-upload
+        [readonly]="true"
+        [documents]="invoice.document ? [invoice.document] : []"
+      ></app-document-upload>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.assignments.label"></h3>
+    </div>
+    <div
+      app-assignment-list
+      class="col-xs-12 padding-none"
+      *ngIf="invoice.assignments"
+      [assignments]="invoice.assignments"
+      [assignmentColumns]="assignmentColumns"
+    ></div>
+  </div>
+  <div class="row additional bottom-margin">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.additional-documents.label"></h3>
+    </div>
+    <div class="col-xs-12">
+      <!-- <div
+        data-invoice-additional="invoice.data.additional"
+        data-assignments="invoice.assignments"
+        data-view="set"
+      ></div> -->
+      <div
+        app-invoice-details-additional
+        [data]="invoice.additional"
+        [assignments]="assignments"
+        [onBehalf]="freelancerId"
+        view="set"
+      ></div>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-md-12">
+      <h3 translate="invoices.fields.questionnaire.label"></h3>
+      <div *ngFor="let assignment of invoice.assignments">
+        <div
+          *ngIf="assignment.questionnaire_id"
+          app-survey-details-button
+          [assignment]="assignment"
+          [type]="'questionnaire'"
+          view="readonly"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="row assignments bottom-margin">
+    <div class="col-md-12">
+      <h3 translate="invoices.fields.feedback.label"></h3>
+      <div *ngFor="let assignment of invoice.assignments">
+        <div
+          *ngIf="assignment.feedback"
+          app-survey-details-button
+          [assignment]="assignment"
+          [surveyInstanceApproval]="assignment.feedbackApproval.approval"
+          [type]="'feedback'"
+          view="readonly"
+          approvalView="set"
+          (updatedSurveyInstanceApproval)="
+            assignment.feedbackApproval.approval = $event
+          "
+        ></div>
+        <div
+          *ngIf="!assignment.feedback"
+          [translate]="'invoices.fields.feedback.not-requested'"
+          [translateParams]="{ appointedAt: assignment.appointedAt }"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row assignments bottom-margin"
+    *ngIf="isOnBehalf && invoice.freelancerRatings"
+  >
+    <div class="col-md-12">
+      <h3 translate="assignments.ratings.label"></h3>
+    </div>
+    <div
+      class="col-md-12 padding-none"
+      app-assignments-ratings
+      [assignmentIds]="invoice.assignmentIds"
+      [criterias]="invoice.freelancerRatings"
+      [freelancerId]="invoice.freelancer_id"
+      viewType="set"
+    ></div>
+  </div>
+  <div class="row payment" [ngClass]="{ disabled: !approvable }">
+    <div class="col-xs-12">
+      <h3 translate="invoices.fields.payment-data.label"></h3>
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <label translate="invoices.fields.total-net.label"></label>
+      <div
+        *ngIf="
+          invoice.paymentTotalNet === undefined && !invoice.paymentTotalNetHint
+        "
+      >
+        -
+      </div>
+      <div
+        *ngIf="
+          invoice.paymentTotalNet !== undefined && !invoice.paymentTotalNetHint
+        "
+        data-ng-bind=": '€'"
+      >
+        {{ invoice.paymentTotalNet | currency }}
+      </div>
+      <div
+        *ngIf="
+          invoice.paymentTotalNet !== undefined &&
+          true === invoice.paymentTotalNetHint
+        "
+      >
+        <a
+          href="#"
+          [matTooltip]="'invoices.fields.payment-total.warning' | translate"
+          data-tooltip-placement="right"
+          >{{ invoice.data.paymentTotalNet | currency: "€" }}
+          <i class="fa fa-warning"></i
+        ></a>
+      </div>
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <label translate="invoices.fields.total-gross.label"></label>
+      <div data-ng-bind=": '€'">{{ invoice.total | currency }}</div>
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <label
+        for="payment-total-gross"
+        translate="invoices.fields.payment-total.gross.label"
+      ></label>
+      <div id="payment-total-gross" data-ng-bind=": '€'">
+        {{ invoice.payment_total | currency }}
+      </div>
+    </div>
+    <div class="form-group col-sm-3">
+      <label class="empty-label"></label>
+      <div>
+        <!-- <input id="discount" type="checkbox" data-brand-checkbox data-ng-model="invoice.with_discount"> -->
+        <div>
+          <mat-checkbox
+            color="primary"
+            [disabled]="!approvable"
+            [(ngModel)]="invoice.with_discount"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="onDiscountChange(invoice.with_discount)"
+          >
+            <mat-label
+              class="input-label"
+              translate="invoices.fields.payment-discount.label"
+            ></mat-label>
+          </mat-checkbox>
+        </div>
+        <!-- <label for="discount" class="input-label" translate="invoices.fields.payment-discount.label"></label> -->
+      </div>
+    </div>
+    <div class="form-group col-sm-3">
+      <!-- <label translate="invoices.fields.payment-target.label" data-required></label> -->
+      <!-- <div data-date-picker data-ng-model="invoice.payment_target" data-options="invoice.pickerOptions" data-required></div> -->
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "invoices.fields.payment-target.label" | translate
+        }}</mat-label>
+        <input
+          matInput
+          [disabled]="!approvable"
+          [matDatepicker]="payment_target"
+          [(ngModel)]="invoice.payment_target"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="payment_target"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #payment_target></mat-datepicker>
+      </mat-form-field>
+      <p
+        class="alert alert-warning"
+        *ngIf="paymentTargetOverdue"
+        translate="invoices.fields.payment-target.hint"
+      ></p>
+    </div>
+    <div class="form-group col-md-12">
+      <!-- <label
+        for="payment-comment"
+        translate="invoices.fields.payment-comment.label"
+      ></label>
+      <textarea
+        id="payment-comment"
+        class="form-control"
+        data-ng-model="invoice.payment_comment"
+      ></textarea> -->
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "invoices.fields.payment-comment.label" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          [disabled]="!approvable"
+          [(ngModel)]="invoice.payment_comment"
+          [ngModelOptions]="{ standalone: true }"
+          rows="1"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-12">
+      <button
+        type="button"
+        mat-raised-button
+        color="accent"
+        [disabled]="!approvable"
+        (click)="approve()"
+        translate="invoices.check.buttons.approve"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="invoices.check.buttons.reject"
+        (click)="reject()"
+      ></button>
+    </div>
+  </div>
+</div>

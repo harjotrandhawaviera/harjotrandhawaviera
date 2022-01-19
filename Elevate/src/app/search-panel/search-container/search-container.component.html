@@ -1,0 +1,19 @@
+<mat-sidenav-container class="search-container" [hasBackdrop]="hasBackdrop" (backdropClick)="closeFilter()">
+  <mat-sidenav *ngIf="showSearchPanel" [mode]="mode" [opened]="opened"
+    [ngClass]="{ 'search-sidenav': opened, 'small-device': smallDevice }" [disableClose]="true">
+    <ng-content select="app-search-panel"></ng-content>
+    <button *ngIf="smallDevice" mat-icon-button class="filter-button-close" (click)="closeFilter()">
+      <i class="fas fa-times"></i>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content [ngClass]="{ 'search-sidenav-content': true, opened: opened, over: mode === 'over' || !showSearchPanel, 'full-width': !showSearchPanel }">
+    <button *ngIf="smallDevice" mat-mini-fab class="filter-button" (click)="openFilter()">
+      <i class="fas fa-filter"></i>
+    </button>
+    <ng-content select="app-search-list"></ng-content>
+    <div class="footer-cont">
+      <span>Copyright &copy; {{ year }} Elevate Staffing. All Rights Reserved.</span>
+      <span>Release Version: {{ appVersion }}</span>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

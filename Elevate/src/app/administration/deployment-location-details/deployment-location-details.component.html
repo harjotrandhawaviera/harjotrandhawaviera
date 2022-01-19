@@ -1,0 +1,321 @@
+<div class="container-fluid deployment-detail">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/administration/sites']"
+      >{{ "administration.site.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-xs-12 start-xs">
+      <h1 translate="administration.site.title.details"></h1>
+    </div>
+    <div class="col-md-4 col-xs-12 end-xs">
+      <a
+        [routerLink]="['/administration/sites/edit',paramId]"
+        mat-flat-button
+        color="accent"
+        (click)="Edata(paramId)"
+      >{{ "administration.site.buttons.edit" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.name.label" required></label>
+      <div>{{deploymentdetails?.name}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.number.label"></label>
+      <div>{{deploymentdetails?.num}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.group.label"></label>
+      <div>{{deploymentdetails?.group}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.category.label"></label>
+      <div>{{deploymentdetails?.cat}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.address.label" required></label>
+      <div>{{deploymentdetails?.SH}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.addressaddition.label"></label>
+      <div>{{deploymentdetails?.Aaddress}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-3 col-xs-12">
+      <label translate="administration.site.fields.zip.label" required></label>
+      <div>{{deploymentdetails?.zip}}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label translate="administration.site.fields.city.label" required></label>
+      <div>{{deploymentdetails?.city}}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label translate="administration.site.fields.country.label"></label>
+      <div>{{deploymentdetails?.country}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.phone.label" required></label>
+      <div>{{deploymentdetails?.phone}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.fax.label"></label>
+      <div>{{deploymentdetails?.fax}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.site.fields.email.label"></label>
+      <div><a>{{deploymentdetails?.email}}</a></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h4 translate="administration.site.section.tender-preset"></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-3 col-xs-12">
+      <label>Zip code Area from</label>
+      <div>{{deploymentdetails?.zip_min}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label>Zip code Area to</label>
+      <div>{{deploymentdetails?.zip_max}}</div>
+    </div>
+  </div>
+  <div  *ngIf="deploymentdetails?.firstname">
+    <div>
+    <h3 class="col-xs-12">{{'administration.client.section.contacts' | translate}}</h3>
+    <div class="col-xs-12 col-md-6">
+      <label translate="administration.contact.fields.salutation.label"></label>
+      <mat-form-field class="full-width">
+<!--        <input matInput>-->
+        <mat-select formControlName="salution" >
+          <mat-option >
+
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row" >
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.firstname.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput  readonly> {{deploymentdetails?.firstname}}
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.lastname.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="lastname" readonly>{{deploymentdetails?.lastname}}
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.position.label" required></label>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="position" readonly>{{deploymentdetails?.position}}
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.department.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="department" readonly>{{deploymentdetails?.department}}
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.email.label"></label>
+        <mat-form-field class="full-width">
+          <a><input matInput formControlName="email" readonly>{{deploymentdetails?.clientemail}}</a>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.phone.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="phoneno" readonly>{{deploymentdetails?.clientphone}}
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <label translate="administration.contact.fields.data.label"></label>
+        <mat-form-field class="full-width">
+          <input matInput formControlName="information" readonly>{{deploymentdetails?.data}}
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 translate="administration.site-clients.table.contactName"></h3>
+    </div>
+  </div>
+  <div class="table-inner-wrapper">
+    <table
+      mat-table
+      class="search-table"
+      [dataSource]="Client"
+    >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.site-clients.table.name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row" >
+          {{row?.name}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="contactName">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.site-clients.table.contactName" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{row?.client_site_remarks}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="client_site_remarks">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "administration.site-clients.table.client_site_remarks" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{row?.fullName}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row" class="action">
+          <button
+            mat-icon-button
+            color="accent"
+            [matMenuTriggerFor]="subMenu"
+            (click)="$event.stopPropagation()"
+          >
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <mat-menu #subMenu="matMenu" xPosition="before">
+            <button mat-menu-item>
+              {{ "administration.site-clients.table.actions.edit" | translate }}
+            </button>
+            <button mat-menu-item (click)="deleteFieldClient(row)">
+              {{ "administration.site-clients.table.actions.remove" | translate }}
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns;"
+      ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <app-paginator *ngIf="Client?.length"
+                 [disabled]="loading$ | async"
+                 hidePageSize="true"
+                 showFirstLastButtons="true"
+                 [length]="paginator?.total"
+                 [pageIndex]="paginator?.current_page - 1"
+                 (page)="pageChange($event)"
+  ></app-paginator>
+  <div class="col-xs" *ngIf="!Client.length ">
+    <div class="alert alert-info text-center">
+      {{ "ui.list-table.default.no-records" | translate }}
+    </div>
+  </div>
+  <div class="row end-md center-xs">
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      (click)="downloadList()"
+    >
+      {{'ui.list-table.default.download' | translate}}
+    </button>
+  </div>
+  <form [formGroup]="deployment">
+  <div *ngIf="show">
+    <fieldset>
+      <div class="row" >
+        <div class="col-xs-12 col-md-6" *ngIf="!deployment.value.client_id">
+          <mat-form-field class="full-width">
+            <mat-label required>{{ 'administration.site-client.fields.client.label' | translate }}</mat-label>
+            <mat-select [(ngModel)]="customer" formControlName="client_id" (selectionChange)="d()">
+              <mat-option *ngFor="let c of Customer" [value]="c" >{{c.name}}</mat-option>
+            </mat-select>
+            <mat-hint *ngIf="!customer" translate="administration.site-client.fields.client.placeholder"></mat-hint>
+            <mat-error >{{'form.errors.required' | translate}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6" *ngIf="deployment.value.client_id">
+            <label required>{{ 'administration.site-client.fields.client.label' | translate }}</label>
+            <input matInput  readonly>{{customer?.name}}
+        </div>
+        <div class="col-xs-12 col-md-6" *ngIf="customer">
+          <mat-form-field class="full-width">
+            <mat-label required>{{ 'administration.site-client.fields.contact.label' | translate }}</mat-label>
+            <app-static-auto-complete formControlName="contact_id"   [options]="contactData"
+                                      [clearSelection]="true">
+            </app-static-auto-complete>
+            <mat-error >{{'form.errors.required' | translate}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6" *ngIf="customer">
+          <mat-form-field class="full-width">
+            <label>{{ 'administration.site-client.fields.description.label' | translate }}</label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6" *ngIf="customer">
+          <label translate="administration.site-client.fields.data.label"></label>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="data">
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="col-xs-12 col-md start-xs">
+      <a
+        mat-flat-button
+        color="accent"
+        (click)="saveDetails(deployment.value)"
+
+      >{{ "administration.site.buttons.save" | translate }}
+      </a>
+      <a
+        mat-stroked-button
+        color="primary"
+        (click)="addfield()"
+      >{{ "administration.site-clients.table.actions.remove" | translate }}
+      </a>
+    </div>
+  </div>
+  </form>
+  <div class="col-xs-12 col-md start-xs">
+    <a
+
+      *ngIf="!show"
+      mat-flat-button
+      color="accent"
+      (click)="addfield()"
+    >{{ "administration.site-clients.buttons.add" | translate }}
+    </a>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<app-search-container>
+  <app-search-panel>
+    <form class="search-form"  [formGroup]="searchForm">
+      <div class="circle">
+        <div class="circle__inner">
+          <div class="circle__wrapper">
+            <div class="circle__content"><br><p class="circle_bold"></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.files.filters.export_type" | translate}}</mat-label>
+          <app-static-auto-complete [formControlName]="'type'" [options]="fileType"  [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <label>{{"accounting.bills.filters.dates" | translate}}</label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="start" formControlName="start" 
+          autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="end" formControlName="end" 
+          autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="row center-xs" *ngIf="noRecords$ | async">
+      <div class="col-xs">
+        <div class="alert alert-info text-center">
+          {{ "accounting.bills.filters.dates" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        [ngClass]="{ 'col-xs': true, 'table-wrapper': true }"
+        *ngIf="!(noRecords$ | async)"
+      >
+        <div class="table-inner-wrapper">
+          <h3>{{"accounting.files.title" | translate}}</h3>
+          <table
+            mat-table
+            [dataSource]="fileList"
+            class="search-table"
+            matSort
+            matSortDisableClear
+            matSortDirection="desc"
+          >
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.files.table.createdAt" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.value | date:"MMM d, y, h:mm:ss a"}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.files.table.typeName" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.types }}</td>
+            </ng-container>
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.files.table.paymentTotal" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.total | currency }}</td>
+            </ng-container>
+            <ng-container matColumnDef="bills">
+              <th mat-header-cell *matHeaderCellDef>
+                bills
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.bills }}</td>
+            </ng-container>
+            <ng-container matColumnDef="reported_by">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.files.table.creatorName"  | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+            <ng-container matColumnDef="file_size">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.files.table.size" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.size }}</td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" class="action">
+                <buttonN
+                  mat-icon-button
+                  color="accent"
+                  [matMenuTriggerFor]="subMenu"
+                >
+                  <i class="fas fa-ellipsis-v"></i>
+                </buttonN>
+                <mat-menu #subMenu="matMenu" xPosition="before">
+                  <button mat-menu-item (click)="download(row?.document)">
+                    {{ "accounting.files.table.actions.download" | translate }}
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns;"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+        <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+        <app-paginator
+          [disabled]="loading$ | async"
+          hidePageSize="true"
+          showFirstLastButtons="true"
+          [length]="paginator?.total"
+          [pageIndex]="paginator?.current_page - 1"
+          (page)="pageChange($event)"
+        ></app-paginator>
+        <div class="row end-md center-xs">
+          <button
+            type="button"
+            [disabled]="loading$ | async"
+            mat-stroked-button
+            color="primary"
+            (click)="downloadList()"
+          >
+            {{'ui.list-table.default.download' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </app-search-list>
+</app-search-container>

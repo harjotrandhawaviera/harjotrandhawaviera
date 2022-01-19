@@ -1,0 +1,40 @@
+@import "variables";
+@import "mixins";
+// .document-mime,
+// .document-original-filename,
+// .document-size,
+// .document-action {
+//   display: flex;
+//   vertical-align: middle;
+//   text-align: center;
+//   overflow: hidden;
+// }
+.document-mime {
+  @include document-mime;
+  padding: 5px !important;
+  text-align: center;
+}
+.document-original-filename {
+  padding: 5px !important;
+}
+// .document-original-filename {
+//   color: $p4y-color-gray-dark;
+//   display: flex;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   padding: 0 10px;
+//   width: 50%;
+//   text-align: left;
+// }
+
+// .document-size {
+//   color: $p4y-color-gray-medium;
+//   width: 80px;
+//   float: right;
+//   text-align: right;
+// }
+
+// .document-action {
+//   float: right;
+// }

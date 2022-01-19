@@ -1,0 +1,150 @@
+.operationalTraining{
+  float: right;
+}
+.less-information {
+  display: none;
+}
+.buttons_area {
+  button {
+    font-family: Raleway,sans-serif;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 12px;
+    margin-right: 3px;
+    cursor: pointer;
+  }
+  button[disabled] {
+    opacity: .3;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+  }
+  .btn-default {
+    color: #000;
+    background-color: #fff;
+    border-color: #21b4b0;
+  }
+}
+.header.date-card {
+  display: flex;
+  padding: 0 10px 10px 10px;
+  .date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    min-width: 80px;
+    height: 80px;
+    border: 2px solid #d0d0d1;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 10px;
+    .day {
+      font-size: 24px;
+    }
+    .month {
+      font-size: 14px;
+      margin: 3px 0 1px;
+    }
+    .year {
+      font-size: 12px;
+    }
+  }
+  .title {
+    max-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .subtitle {
+    line-height: 25px;
+  }
+  @mixin flipper-container {
+    .flipper-container {
+      perspective: 1000;
+      position: relative;
+      .flipper {
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+        .front,
+        .back {
+          backface-visibility: hidden;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+        .front {
+          z-index: 2;
+          transform: rotateY(0deg);
+        }
+        .back {
+          transform: rotateY(180deg);
+        }
+      }
+      &:hover {
+        .flipper {
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+}
+
+.freelancer-job-tender-details-tile {
+  margin-bottom: 10px;
+  .panel-default {
+    border: 1px solid #ddd;
+    border-bottom: solid 3px #cccccc;
+  }
+  .panel-default.selected {
+    color: #000;
+    background-color: #BCEDE8;
+    border-color: #157371;
+  }
+  .selected .header.date-card .date {
+    border-color: #157371;
+    background-color: #fff;
+  }
+  .panel-heading {
+    height: 40px;
+    background-color: transparent;
+    border-bottom: none;
+    color: #999999;
+    padding: 10px 15px;
+  }
+  .panel-body {
+    height: calc(100% - 40px);
+    padding: 0 15px;
+  }
+  .flipper-container {
+    position: relative;
+  }
+}
+.icon{
+  color: #24c3bc;
+  font-size: 18px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.icon_more_less {
+  text-align: right;
+}
+.back-icon{
+  margin-top: 39px;
+  text-align: right;
+}
+.icon-name{
+  font-size: small;
+}
+.offer_bind {
+  margin-bottom: 10px;
+}

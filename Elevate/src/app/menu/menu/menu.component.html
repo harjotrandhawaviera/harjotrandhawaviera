@@ -1,0 +1,111 @@
+<div class="row between-xs">
+  <div>
+    <button id="menu-collapse" mat-button color="primary" aria-label="Collapse menu" (click)="toggleFold()">
+      <i [ngClass]="{
+        'fas': true,
+        'fa-bars': folded,
+        'fa-window-close': !folded
+      }"></i>
+    </button>
+  </div>
+  <div>
+    <span *ngIf="!folded" class="lang-text">{{'user.fields.languages.label' | translate}}:</span>
+    <button mat-button color="primary" aria-label="Change language" [matMenuTriggerFor]="languageMenu" class="language-btn">
+      {{language}} <i class="fa far fa-caret-down"></i>
+    </button>
+    <mat-menu #languageMenu="matMenu" xPosition="before">
+      <button mat-menu-item (click)="setLanguage('en')">English</button>
+      <button mat-menu-item (click)="setLanguage('de')">Deutsche</button>
+    </mat-menu>
+  </div>
+</div>
+<div class="add-icon" *ngIf="!folded && loggedRole === 'freelancer'" >
+  <app-logo-brand maxHeight="54px"></app-logo-brand>
+</div>
+<div class="add-icon" *ngIf="!folded && loggedRole === 'field'" >
+  <app-logo-brand maxHeight="54px"></app-logo-brand>
+</div>
+<div class="add-icon" *ngIf="loggedRole === 'admin'">
+  <app-logo-brand maxHeight="54px"></app-logo-brand>
+  <button class="add-tasks" (click)="addTasks()"><mat-icon>add_circle_outline</mat-icon></button>
+</div>
+<div class="add-icon" *ngIf="loggedRole === 'agent'">
+  <app-logo-brand maxHeight="54px"></app-logo-brand>
+  <button class="add-tasks" (click)="addTasks()"><mat-icon>add_circle_outline</mat-icon></button>
+</div>
+<mat-nav-list class="menu-list">
+  <ng-container *ngFor="let entry of menu; let i = index">
+    <a mat-list-item *ngIf="!entry.items" [routerLink]="[entry.path]" routerLinkActive="active"
+      matTooltip="{{ entry.label | translate }}" [matTooltipDisabled]="!folded">
+      <i mat-list-icon [attr.class]="'pull-left fa ' + entry.icon" *ngIf="entry.icon"></i>
+      <span matLine>
+        <span>{{ entry.label | translate }}</span>
+      </span>
+    </a>
+    <ng-container *ngIf="entry.items">
+      <a mat-list-item *ngIf="!folded"
+        (click)="this.expanded === entry.name ? this.expanded = '' : this.expanded = entry.name">
+        <i mat-list-icon [attr.class]="'pull-left fa ' + entry.icon" *ngIf="entry.icon"></i>
+        <span matLine>
+          <span>{{ entry.label | translate }}</span>
+          <i class="pull-right fa" *ngIf="entry.items.length > 0" [ngClass]="{
+              'far fa-caret-right': expanded === entry.name,
+              'far fa-caret-down': expanded !== entry.name
+            }"></i>
+        </span>
+      </a>
+      <a mat-list-item *ngIf="folded" [matMenuTriggerFor]="subMenu" matTooltip="{{ entry.label | translate }}">
+        <i mat-list-icon [attr.class]="'pull-left fa ' + entry.icon" *ngIf="entry.icon"></i>
+        <span matLine>
+          <span>{{ entry.label | translate }}</span>
+          <i class="pull-right fa" *ngIf="entry.items.length > 0" [ngClass]="{
+              'far fa-caret-right': expanded === entry.name,
+              'far fa-caret-down': expanded !== entry.name
+            }"></i>
+        </span>
+      </a>
+      <mat-menu #subMenu="matMenu" xPosition="after">
+        <a mat-menu-item *ngFor="let subentry of entry.items;" [routerLink]="[subentry.path]" routerLinkActive="active">
+          <span>{{ subentry.label | translate }}</span>
+        </a>
+      </mat-menu>
+      <ng-container *ngIf="expanded === entry.name && !folded">
+        <a mat-list-item class="sub-menu" *ngFor="let subentry of entry.items;" (click)="onClickMenu()" [routerLink]="[subentry.path]"
+          routerLinkActive="active">
+          <span>{{ subentry.label | translate }}</span>
+        </a>
+      </ng-container>
+
+    </ng-container>
+  </ng-container>
+</mat-nav-list>
+<!-- <div class="entries" data-prevent-body-scroll>
+  <div *ngFor="let entry of menu; let i = index" class="entry">
+    <div *ngIf="!entry.items" [ngClass]="{ logout: entry.name === 'auth.logout' }">
+      <a [attr.class]="'link ' + entry.class.join(' ')" [routerLink]="[entry.path]">
+        <i [attr.class]="'pull-left fa ' + entry.icon" *ngIf="entry.icon"></i>
+        <span>{{ entry.label | translate }}</span>
+      </a>
+    </div>
+    <div *ngIf="entry.items" class="sub-entries">
+      <div [ngClass]="{ group: true, 'has-sub': expanded === entry.name }" (click)="
+          expanded === entry.name ? (expanded = '') : (expanded = entry.name)
+        ">
+        <i [attr.class]="'pull-left fa ' + entry.icon" *ngIf="entry.icon"></i>
+        <span>{{ entry.label | translate }}</span>
+        <i class="pull-right fa" *ngIf="entry.items.length > 0" [ngClass]="{
+            'far fa-caret-right': expanded === entry.name,
+            'far fa-caret-down': expanded !== entry.name
+          }"></i>
+      </div>
+      <div data-uib-collapse="!menu.items[i].expanded" *ngIf="expanded === entry.name || folded"
+        [ngClass]="{ 'has-sub': expanded === entry.name }">
+        <a *ngFor="let subentry of entry.items; let i = index" data-ng-repeat="subentry in entry.items"
+          data-ng-bind-html="::subentry.label" [attr.class]="'link ' + subentry.class.join(' ')"
+          data-ng-click="menu.clicked()" [routerLink]="[subentry.path]" data-ui-sref-active="current">{{ subentry.label
+          | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->

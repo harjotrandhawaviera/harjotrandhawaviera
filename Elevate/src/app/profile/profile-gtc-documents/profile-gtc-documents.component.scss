@@ -1,0 +1,42 @@
+@import "variables";
+.gtc-section {
+  border: 2px solid $brand-primary;
+  padding: 30px 30px 30px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.checked-state {
+  margin: 20px 0;
+  i {
+    font-size: 28px;
+    padding-right: 20px;
+    &.fa-exclamation {
+      color: $brand-danger;
+    }
+    &.fa-check {
+      color: $brand-success;
+    }
+  }
+}
+.gtc_document {
+  border-bottom: 1px solid #cccccc;
+  /*
+        &.terms-and-conditions {
+            background-color: $p4y-color-gray-lightest;
+        }
+        &.attachment:nth-child(even) {
+            background-color: $p4y-color-gray-lightest;
+        } */
+}
+
+.gtc_document.terms-and-conditions {
+  border-top: 1px solid #cccccc;
+}
+
+.gtc_document:last-of-type {
+  border-bottom: none;
+}
+
+.gtc_document:hover {
+  background-color: rgba(204, 204, 204, 0.1);
+}

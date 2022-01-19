@@ -1,0 +1,45 @@
+@import "../../../styles/base/variables.scss";
+
+
+.legal-action-button{
+    display: flex;
+    margin-left: -35px;
+    margin-top: 2px;
+    .fas{
+    font-size: 14px !important;
+    margin-top: 10px;
+    cursor: pointer;
+    &.fa-minus{
+      color: $p4y-color-status-error !important;
+      margin-left: 28px;
+    }
+    &.fa-plus{
+      color:$brand-primary;
+    }
+    &.fa-file-download{
+      margin-left: 28px;
+    }
+    .mt-3{
+      margin-top: 12px;
+    }
+
+  }
+}
+
+.identycard {
+  app-profile-document app-file-upload .drag-drop-cont {
+    height: unset;
+    border: none;
+  }
+  app-profile-document {
+    .btn-download {
+      display: none;
+    }
+    .row {
+      flex-wrap: wrap-reverse;
+      .col-xs-12 {
+        margin: 5px 0;
+      }
+    }
+  }
+}

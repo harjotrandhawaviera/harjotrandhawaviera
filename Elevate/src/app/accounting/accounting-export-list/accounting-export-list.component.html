@@ -1,0 +1,129 @@
+<app-search-container>
+  <app-search-panel>
+    <form class="search-form" [formGroup]="searchForm">
+      <div class="text-center">
+        <strong>{{ 'accounting.export.selected-total' | translate }} {{getTotal(selection.selected)}}</strong>
+      </div>
+     <div class="text-center">
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          translate="accounting.export.buttons.export"
+          (click)="confirmModal()"
+        ></button>
+      </div>
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <h5>{{ "accounting.export.filters.filter_for_export" | translate }}</h5>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.files.filters.export_type" | translate}}</mat-label>
+          <app-static-auto-complete [formControlName]="'type'" [options]="accountList" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <h5>{{ "accounting.export.filters.dates" | translate }}</h5>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="start" formControlName="start" name="start" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="end" formControlName="end" name="end" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="col-xs-12">
+      <h1>{{ 'accounting.export.buttons.export' | translate }}</h1>
+    </div>
+    <div class="row center-xs" *ngIf="noRecords$ | async">
+      <div class="col-xs">
+        <div class="alert alert-info text-center">
+          {{ "ui.list-table.default.no-records" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        [ngClass]="{ 'col-xs-12': true, 'table-wrapper': true }"
+        *ngIf="!(noRecords$ | async)"
+      >
+        <div class="table-inner-wrapper">
+          <table
+            mat-table
+            [dataSource]="exportList"
+            class="search-table"
+            matSort
+            matSortDisableClear
+            matSortDirection="desc"
+          >
+            <ng-container matColumnDef="No">
+              <th mat-header-cell *matHeaderCellDef>
+               <mat-checkbox name="checkbox"
+                 (change)="$event ? masterToggle() : null"
+                 [checked]="selection.hasValue() && isAllSelected()"
+                 [indeterminate]="selection.hasValue() && !isAllSelected()">
+               </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="billNumber">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.bills.table.number" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.value }}</td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.export.table.freelancer_name" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.export.table.paymentTotal" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.amount | currency }}</td>
+            </ng-container>
+            <ng-container matColumnDef="payment">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.export.table.paymentTarget" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.date | date:'mediumDate' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="tax">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.export.table.includesTaxesText" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.taxes }}</td>
+            </ng-container>
+            <ng-container matColumnDef="comment">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ "accounting.bills.table.comment" | translate }}
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.comment }}</td>
+            </ng-container>
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns;"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)"></tr>
+          </table>
+        </div>
+        <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+      </div>
+    </div>
+  </app-search-list>
+</app-search-container>

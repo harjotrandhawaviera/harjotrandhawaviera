@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a  [routerLink]="['/administration/insurances']"
+      >{{ "administration.site.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-md-8 col-xs-12 start-xs">
+      <h1 translate="administration.health-insurances.title.details"></h1>
+    </div>
+    <div class=" col-md-4 col-xs-12 end-xs">
+      <a
+        [routerLink]="['/administration/insurances/edit',paramId]"
+        mat-flat-button
+        color="accent"
+        (click)="Edata(paramId)"
+      >{{ "administration.site.buttons.edit" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.health-insurances.fields.name.label"></label>
+      <div>{{insuranceDetails?.name}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.health-insurances.fields.external-identifier.label"></label>
+      <div>{{insuranceDetails?.Eid}}</div>
+    </div>
+  </div>
+  <div class="form-group col-sm-6 col-xs-12">
+    <label translate="administration.health-insurances.fields.type.label"></label>
+    <div>{{insuranceDetails?.type}}</div>
+  </div>
+  <div class="form-group col-sm-6 col-xs-12">
+    <label translate="administration.health-insurances.fields.description.label"></label>
+    <div>{{insuranceDetails?.desc}}</div>
+  </div>
+</div>
+

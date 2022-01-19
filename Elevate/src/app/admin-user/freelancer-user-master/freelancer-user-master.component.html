@@ -1,0 +1,74 @@
+<div class="row contact" *ngIf="data">
+  <div class="col-xs-6 col-md-6 col-lg-3">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    {{ data.city }}
+  </div>
+  <div class="col-xs-6 col-md-6 col-lg-3 text-nowrap">
+    <i class="fa fa-mobile" aria-hidden="true"></i>
+    <a [attr.href]="'tel:' + (data.mobile | telNumber)">{{ data.mobile }}</a>
+  </div>
+  <div class="col-xs-6 col-md-6 col-lg-3 text-nowrap">
+    <i class="fa fa-phone" aria-hidden="true"></i>
+    <a [attr.href]="'tel:' + (data.alternative_phone | telNumber)">
+      {{ data.alternative_phone }}
+    </a>
+    <span *ngIf="!data.alternative_phone">-</span>
+  </div>
+  <div class="col-xs-6 col-md-6 col-lg-3 text-nowrap">
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+    <a [attr.href]="'mailto:' + data.email">{{ data.email }}</a>
+  </div>
+  <!--<div class="col-md-6 col-lg-3">-->
+  <!--<i class="fa fa-cloud-download" aria-hidden="true"></i>-->
+  <!--<a class="disabled" href="" data-translate-once="profile.fields.photos.download"></a>-->
+  <!--</div>-->
+</div>
+
+<div class="row section">
+  <div class="col-md-11 col-lg-10 padding-none">
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <div class="picture-wrapper">
+          <img appImageAvatar [showDefault]="false" [path]="
+              data &&
+              data.orgPictures &&
+              data.orgPictures.current &&
+              data.orgPictures.current.profile &&
+              data.orgPictures.current.profile.url &&
+              data.orgPictures.current.profile.url.medium
+            " />
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="gallery-wrapper">
+          <ng-image-slider [images]="images" [infinite]="true" [imagePopup]="false"
+            [imageSize]="{ width: '99%', height: 650 }">
+          </ng-image-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row body-section">
+  <div class="col-md-12 col-lg-9">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 text-center" *ngFor="let opt of detailsOptions"
+        data-ng-init="required = {height: true}">
+        <div class="appearance-values">{{ data[opt] || "-" }}</div>
+        <label [translate]="'profile.fields.' + opt + '.label'"></label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-3">
+    <div class="body-icon">
+      <img src="{{ bodyIcon }}" alt="body" />
+      <div class="chest line" [translate]="'profile.fields.chest.label-with-size'"
+        [translateParams]="{ chest: data.chest || '-' }"></div>
+      <div class="line" [translate]="'profile.fields.waist.label-with-size'"
+        [translateParams]="{ waist: data.waist || '-' }"></div>
+      <div class="line" [translate]="'profile.fields.hip.label-with-size'" [translateParams]="{ hip: data.hip || '-' }">
+      </div>
+    </div>
+  </div>
+</div>

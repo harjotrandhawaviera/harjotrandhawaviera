@@ -1,0 +1,58 @@
+@import "variables";
+
+.search-form {
+  padding: 20px;
+}
+.toggle-btn-cont {
+  display: flex;
+  flex-direction: column;
+  mat-slide-toggle {
+    margin: 8px 0;
+  }
+}
+.form-field-label {
+  font-variant: normal;
+  font-size: 14px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.54);
+}
+.progress-circle-cont {
+  display: flex;
+  min-height: 50px;
+  width: auto;
+  margin: 0 15px;
+  padding: 15px 0;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid $p4y-color-gray-light;
+  .progress-circle {
+    position: absolute;
+    left: 0;
+    font-size: 13px;
+    top: 56px;
+    width: 100%;
+    div {
+      &.max {
+        font-weight: bold;
+      }
+    }
+  }
+}
+.button-holder {
+  display: flex;
+  & > :first-child {
+    margin-right: 10px;
+  }
+  .button-wrap {
+    position: relative;
+    .disabled-hint {
+      position: absolute;
+      height: 36px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}

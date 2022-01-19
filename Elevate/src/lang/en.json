@@ -1,0 +1,861 @@
+{
+  "page": {
+    "profile": {
+      "headline": "My Profile"
+    }
+  },
+  "cookie": {
+    "accept": "Agree",
+    "consent": "In order to make visiting our website attractive and to enable the use of certain functions, we use so-called cookies on various pages. These are small text files that are stored on your device. Some of the cookies we use are deleted again after the end of the browser session, i.e. after you close your browser (so-called session cookies). Other cookies remain on your device and enable us or our partner companies to recognize your browser on your next visit (persistent cookies). You can set your browser so that you are informed about the setting of cookies and individually decide whether to accept them or to exclude the acceptance of cookies for certain cases or in general. If you do not accept cookies, the functionality of our website may be restricted."
+  },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "subtitle": "Enter your email and password."
+    },
+    "register": {
+      "title": "Register as a Staff Member",
+      "subtitle": "Become a member in few steps."
+    },
+    "forgot-password": {
+      "title": "Forgot Password?",
+      "subtitle": "Enter your email address."
+    },
+    "contact": "Contact",
+    "imprint": "Imprint",
+    "dataprivacy": "Privacy Policy",
+    "email": {
+      "long": "E-Mail Address",
+      "short": "E-Mail",
+      "confirm": "Repeat E-Mail",
+      "error": {
+        "format": "The E-Mail format is invalid.",
+        "mandatory": "E-Mail address is a required field.",
+        "disabled": "E-Mail ID Disabled.",
+        "deactivated": "E-Mail ID Disabled.",
+        "register": "E-Mail address is not recognised."
+      }
+    },
+    "password": {
+      "label": "Password",
+      "confirm": "Confirm Password",
+      "reset": "Reset Password",
+      "error": {
+        "mandatory": "Password is a required field.",
+        "rules": "The required Password policy is not met."
+      },
+      "change": "Change Password",
+      "new": "New Password",
+      "new-confirm": "Confirm Password",
+      "current": "Current Password"
+    },
+    "button": {
+      "login": "Login",
+      "register": "Register",
+      "accept": "Accept",
+      "confirm": "Confirm",
+      "request": "Send Request",
+      "reset-password": "Reset Password",
+      "decline": "Decline"
+    },
+    "label": {
+      "request-password": "Request Password",
+      "stay-logged-in": "Stay Logged-in",
+      "forgot-password": "Forgot Password?",
+      "account-exists": "Already Registered?",
+      "not-registered-yet": "New Staff Member?",
+      "not-registered": "I am not registered yet",
+      "register": "Register",
+      "login": "I am already Registered",
+      "login-forgot": "I know my Password",
+      "resend-confirmation": "Send again?",
+      "confirm-code": "Confirmation Code",
+      "not_confirmed_registration": "Registration not yet confirmed. Please check your mailbox and click on the link for confirmation.",
+      "registration_confirmed": "Registration confirmed successfully.",
+      "invalid_credentials": "Invalid Credentials, please enter again.",
+      "user_registration_not_confirmed": "You have registered but not yet confirmed your registration, please check your email and follow required instruction."
+    },
+    "login-after-reset-sent": "You have requested a new password. Please check your mailbox and click on the link for confirmation.",
+    "login-after-passwordreset-confirmed": "Password reset successfully. Log in with your email and the new password.",
+    "login-after-registration-confirmed": "Registration confirmed successfully. Log in with your email and password.",
+    "login-after-account-deletion-confirmed": "Are you sure to delete the Account?",
+    "login-after-registration": "Registration completed. Please check your mailbox and click on the link for confirmation.",
+    "login-after-confirmation-resent": "Registration done again. Please check your mailbox and click on the confirmation link.",
+    "login-after-emailchange-confirmed": "Email address changed successfully. Please log in with your new email and password.",
+    "login-after-inactivity": "Your session is closed as it was idle beyond the permissible time. Please Log in again.",
+    "confirm-after-registration": "Registration completed. Please check your mailbox and click on the link for confirmation.",
+    "confirm-after-resend": "Registration done again. Please check your mailbox and click on the confirmation link.",
+    "reset-password": "Please enter your confirmation code to reset your password.",
+    "permission-denied": "You are not authorised to open this page.",
+    "invalid-email": "This email address is not registered.",
+    "preamble-declined": "Registration cancelled on your own request.",
+    "update-preamble-declined": "The privacy policy has been rejected.",
+    "default-error": "Your request could not be processed successfully. Please try again later or contact support in case the same problem re-occurs.",
+    "errors": {
+      "general": "Something went wrong, please try again later.",
+      "user_registration_not_confirmed": "Registration not yet confirmed. Please check your mailbox and click on the link for confirmation.",
+      "token_expired": "The confirmation link is expired.",
+      "token-not-found": "The confirmation link is already been used or is invalid.",
+      "user-not-found": "This email address is not registered.",
+      "action-not-allowed": "This action is not allowed.",
+      "invalid_user": "Your account has been deleted.",
+      "user_registration_already_confirmed": "This email address has already been confirmed."
+    },
+    "preamble": {
+      "preamble-decline": {
+        "title": "Reject Privacy Policy?",
+        "message": "If you do not agree to the privacy policy, you can not access the portal."
+      }
+    }
+  },
+  "user": {
+    "titles": {
+      "group": "My Account",
+      "account": "Account Details",
+      "personal": "Personal",
+      "preferences": "Settings"
+    },
+    "buttons": {
+      "update": "Save changes"
+    },
+    "fields": {
+      "languages": {
+        "label": "Language",
+        "DE": "German"
+      },
+      "timezones": {
+        "label": "Time zone",
+        "Europe/Berlin": "Europe/Berlin"
+      },
+      "email": {
+        "pending": "Please confirm your new email address: {{pending}}"
+      }
+    },
+    "delete-account": {
+      "title": "Delete Account",
+      "button": "Request Account deletion",
+      "description": "It's a pity that you want to leave us. To have your account deleted, call our support team. Thank you."
+    }
+  },
+  "form": {
+    "title": "Contact Form",
+    "subtitle": "How can we help you?",
+    "subject": "Subject",
+    "name": "Name",
+    "email": "E-Mail Address",
+    "message": "Message",
+    "submit": "Send",
+    "format": {
+      "date": "dd.mm.yyyy",
+      "time": "hh:mm"
+    },
+    "errors": {
+      "required": "Mandatory field.",
+      "email": "The email address format is incorrect.",
+      "matchEmail": "The emails must match, please enter correctly.",
+      "minLengthEmail": "The email address must be at least {{minlength}} characters long.",
+      "password": "Password is incorrect.",
+      "matchPassword": "The passwords must match, please enter correctly.",
+      "minLengthPassword": "Password must be at least {{minlength}} characters long.",
+      "pattern.password": "Password must contain at least 1 upper case letter and 1 special character.",
+      "pattern.height": "Enter your body measurements in cm.",
+      "dateformat": "The date must be entered in {{format}} format.",
+      "validateage": "You must be at least {{min}} years old.",
+      "validatefuture": "The date must be a future date.",
+      "iban": "IBAN format is not yet correct.",
+      "json": "JSON format is not correct.",
+      "phonenumberformat": "The Phone number format is not correct.",
+      "currencyformat": "Currency format is not correct.",
+      "zipcodeformat": "Postal code format is not correct.",
+      "timeformat": "Time format is not correct.",
+      "timeafter": "The end time must be after the start time.",
+      "pattern.zip": "The postal code must contains the required characters based on your region.",
+      "affectedBudget": "The available budget must not be less than 0.",
+      "list": {
+        "general.contacts": "Customer has no contacts added."
+      },
+      "pattern.minimum_percent": "Only numbers from 1-100 are allowed.",
+      "pattern.date_interval": "The interval is invalid.",
+      "pattern.positive_integer": "Only numbers are allowed.",
+      "minAmount": "The input must not fall below the value {{min}}.",
+      "uniqueName": "The entered designation is not unique.",
+      "pattern.taxId": "The entry is not valid.",
+      "pattern.socialSecurity": "The entry does not correspond to the permissible format.",
+      "invalidDateInput": "The date format is invalid."
+    },
+    "field": {
+      "birthdate": {
+        "label": "Date of Birth",
+        "placeholder": "dd.mm.yyyy, z.B. 15.10.1978",
+        "error": {
+          "mandatory": "Mandatory field"
+        }
+      },
+      "driver-license": {
+        "label": "Driving license",
+        "error": {
+          "mandatory": "Mandatory field"
+        }
+      },
+      "occupation": {
+        "label": "Occupation"
+      },
+      "phone": {
+        "main": "Phone Number",
+        "second": "Alternative Phone Number",
+        "error": {
+          "mandatory": "Mandatory field",
+          "format": "Incorrect format."
+        }
+      },
+      "account": {
+        "owner": {
+          "label": "Account Holder",
+          "error": {
+            "mandatory": "Mandatory field"
+          }
+        },
+        "iban": {
+          "label": "IBAN",
+          "error": {
+            "mandatory": "Mandatory field",
+            "format": "Incorrect format."
+          }
+        },
+        "bic": {
+          "label": "BIC",
+          "error": {
+            "format": "Incorrect format."
+          }
+        }
+      },
+      "work-permit": {
+        "label": "Residence permit for self-employment or residence permit with work permit",
+        "placeholder": "Work Permit",
+        "error": {
+          "mandatory": "Mandatory field"
+        }
+      },
+      "business": {
+        "vat_tax_id": {
+          "label": "Sales Tax ID",
+          "placeholder": "Sales Tax ID",
+          "error": {
+            "mandatory": "Mandatory field",
+            "format": "Incorrect format."
+          }
+        },
+        "tax_number": {
+          "label": "Tax Number",
+          "placeholder": "Tax Number",
+          "error": {
+            "format": "Incorrect format."
+          }
+        },
+        "license": {
+          "label": "Upload trade license (multiple files possible)",
+          "placeholder": "Trade License",
+          "error": {
+            "mandatory": "Mandatory field"
+          }
+        },
+        "social_security": {
+          "error": {
+            "mandatory": "Mandatory field"
+          }
+        },
+        "license-name": {
+          "label": "ID Name",
+          "placeholder": "ID-Kartenname",
+          "error": {
+              "mandatory": "Mandatory field",
+              "format": "Incorrect format."
+           }
+        },
+      "expiryDate": {
+        "label": "Expiry Date",
+        "placeholder": "dd.mm.yyyy",
+        "error": {
+            "mandatory": "Mandatory field"
+        }
+      },
+        "license-id": {
+          "label": "ID Number",
+          "placeholder": "ID Card Number",
+          "error": {
+            "mandatory": "Mandatory field",
+            "format": "Incorrect format."
+          }
+        },
+        "outdate": {
+          "label": "Valid until",
+          "placeholder": "dd.mm.yyyy",
+          "error": {
+            "mandatory": "Mandatory field"
+          }
+        }
+      },
+      "tax": {
+        "tax_id": {
+          "label": "Tax ID",
+          "placeholder": "Tax ID",
+          "error": {
+            "mandatory": "Mandatory field",
+            "format": "Incorrect format."
+          }
+        },
+        "tax_class": {
+          "label": "Tax Class",
+          "placeholder": "Tax Class",
+          "error": {
+            "format": "Mandatory field."
+          }
+        },
+        "child_tax_allowance": {
+          "label": "Child Allowance",
+          "placeholder": "Child Allowance",
+          "error": {
+            "format": "Mandatory field."
+          }
+        },
+        "denomination": {
+          "label": "Denomination"
+        }
+      },
+      "insurance": {
+        "socialsecurity_number": {
+          "label": "Social Security Number"
+        },
+        "health_insurance_number": {
+          "label": "Health Insurance Number"
+        },
+        "health_insurance_type": {
+          "label": "Health Insurance"
+        },
+        "health_insurance_name": {
+          "label": "Name of Health Insurance"
+        }
+      },
+      "terms": {
+        "label": "Upload signed Master Agreement (multiple files possible)",
+        "linkToDocument": "Download Framework Agreement",
+        "linkToAttachment": "Download Annexure to the Framework Contract",
+        "error": {
+          "mandatory": "Mandatory field"
+        }
+      },
+      "documents_of_evidence": {
+        "label": "Proof(s)",
+        "description": "Please upload the following proofs here:"
+      }
+    },
+    "label": {
+      "common": {
+        "no": "No",
+        "yes": "Yes",
+        "datepicker": {
+          "close": "Cancel",
+          "current": "Today",
+          "clear": "Delete"
+        }
+      },
+      "mandatory": {
+        "indicator": "*",
+        "notice": "These are Required fields..."
+      },
+      "read": "Mostly read and yet missed"
+    },
+    "button": {
+      "profile": {
+        "onboarding": {
+          "next": "Save & Continue",
+          "submit": "Create Profile"
+        }
+      }
+    }
+  },
+  "buttons": {
+    "login": "Login",
+    "upload-picture": "Upload Image",
+    "upload-document": "Upload Document",
+    "upload-pdf-document": "Upload Document",
+    "request-change-picture": "Request Change",
+    "request-change-document": "Request Change",
+    "change-picture": "Upload new image",
+    "change-document": "Upload Document",
+    "multi-add-document": "Upload Document",
+    "multi-request-change-document": "Request Change",
+    "edit": "Edit",
+    "submit": "Save",
+    "cancel": "Cancel"
+  },
+  "training": {
+    "buttons": {
+      "start-exam": "Start Test",
+      "next-step": "Continue (without test)"
+    }
+  },
+  "exams": {
+    "error": "Sorry, there was an error sending this message. Status: {{status}} - {{statusText}} ",
+    "result": "You have {{questions_ok}} from {{questions}} Answered questions correctly.",
+    "passed": "Congratulations! You have passed.",
+    "tenders": "{{jobsCount}} Job(s) have been unlocked.",
+    "failed": "You have unfortunately not passed. Please retake the test.",
+    "failed-questions": {
+      "header": "You should have a closer look at the following questions:"
+    },
+    "questionnaire": {
+      "question": "Question {{index}} from {{questions}}"
+    },
+    "summary": {
+      "question": "Question {{index}}",
+      "hint": "In this overview you can check and correct all questions and answers again."
+    },
+    "buttons": {
+      "start-exam": "Start Test",
+      "restart-exam": "Repeat test",
+      "show-summary": "Check answers",
+      "cancel": "Cancel",
+      "submit": "Send answers",
+      "previous": "Back",
+      "next": "Next",
+      "onboarding-next": "Next",
+      "back-to-training": "Back to Training",
+      "back-to-overview": "Back to the Certificates Overview"
+    },
+    "disabled": "Sorry, this test is no longer available."
+  },
+  "dashboard": {
+    "title": {
+      "agent": "{{firstname}}'s Dashboard",
+      "freelancer": "{{firstname}}'s Dashboard",
+      "client": "Dashboard",
+      "admin": "{{firstname}}'s Dashboard",
+      "field": "Dashboard"
+    },
+    "list": {
+      "no-records": "No matches found."
+    }
+  },
+  "documents": {
+    "limit-reached": "Reached maximum number of file attachments."
+  },
+  "upload": {
+    "success": "File uploaded successfully.",
+    "errors": {
+      "message": "File upload failed.",
+      "invalid-max-size": "File size must not exceed {{max}}.",
+      "invalid-min-width": "Width must not be less than {{min}} pixels.",
+      "invalid-min-height": "Height must not be less than {{min}} pixels.",
+      "invalid-max-width": "Width must not exceed {{max}} pixels.",
+      "invalid-max-height": "Height must not exceed {{max}} pixels.",
+      "invalid-max-ratio": "Photo not in portrait format.",
+      "invalid-min-ratio": "Photo not in landscape format.",
+      "invalid-pattern": "File may only be of the following file type: {pattern}",
+      "general": "An error occurred while uploading the file."
+    }
+  },
+  "notification": {
+    "file.uploading": "File {{file}} is uploading ({{progress}}%)...",
+    "post": {
+      "skill": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "audits": {
+        "success": "The change of the certificate settings was successful.",
+        "error": "Changing the certificate settings failed."
+      },
+      "freelancers": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed.",
+        "warning": "Some data is still incomplete."
+      },
+      "clients": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "sites": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "orders": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "projects": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "jobs": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "dates": {
+        "success": "The appointment is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "tenders": {
+        "success": "Job is published.",
+        "error": "Unofrtunately, saving of the data is failed."
+      },
+      "offers": {
+        "error": "You are already booked on this date."
+      },
+      "users": {
+        "success": "Your account data has been saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "requests": {
+        "error": "Unfortunately, the request is failed"
+      },
+      "users-disable": {
+        "success": "The user is locked.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "users-enable": {
+        "success": "The user is unlocked.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "users-deactivate": {
+        "success": "The user is deactivated.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "users-reactivate": {
+        "success": "The user is reactivated.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "users-preamble": {
+        "success": "The consent to the privacy policy is saved.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "freelancers-assignments": {
+        "success": "The offer of the freelancer is accepted.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "freelancers-contract-types": {
+        "success": "The changes of the freelancer is accepted.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "freelancers-invoices": {
+        "success": "The invoice is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "incentive-models": {
+        "success": "Your data is saved.",
+        "error": "Unfortunately, saving the data is failed."
+      },
+      "budgets-records": {
+        "success": "The amount is booked.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "budgets": {
+        "success": "The budget is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "roles": {
+        "add-success": "Role added successfully.",
+        "edit-success": "Role updated successfully.",
+        "delete": "Role deleted successfully."
+      },
+      "checkins": {
+        "success": "The attendance has been confirmed.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "clients-contacts": {
+        "success": "The contact is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "contacts": {
+        "success": "The contact is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "certificates": {
+        "success": "The change of the certificate settings is successful.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "trainings": {
+        "success": "The change of the settings of the training is successful.",
+        "error": "Unfortunately, the request is failed."
+      },
+      "exams": {
+        "success": "The change of the settings of the test is successful.",
+        "error": "TUnfortunately, the request is failed."
+      },
+      "revenues": {
+        "success": "The sales message is saved.",
+        "error": "SUnfortunately, the request is failed."
+      },
+      "freelancers-revenues": {
+        "success": "The sales message was saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "assignments-documents": {
+        "success": "The file is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "projects-documents": {
+        "success": "The file is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "ratings": {
+        "success": "The assessment is saved.",
+        "error": "Unfortunately, saving of the data is failed."
+      },
+      "invoices": {
+        "error": "Unfortunately, saving of the data is failed.",
+        "success": "The invoice is saved."
+      },
+      "assignments": {
+        "error": "Unfortunately, saving of the data is failed.",
+        "success": "New booking is added."
+      },
+      "documents": {
+        "error": "Unfortunately, saving of the data is failed.",
+        "success": "Your data is saved."
+      },
+      "invoices-exports": {
+        "error": "The invoices are not exported.",
+        "success": "The invoices are exported."
+      },
+      "invoices-approvals": {
+        "error": "The invoice status is not saved.",
+        "success": "The invoice status has been saved."
+      },
+      "gtcs": {
+        "success": "The GTC is saved.",
+        "error": "The GTC is not saved."
+      },
+      "freelancers-gtcs": {
+        "error": "The GTC confirmation is not be saved.",
+        "success": "The GTC confirmation is saved."
+      },
+      "bills": {
+        "error": "Saving or accepting the invoice failed.",
+        "success": "The invoice is saved."
+      },
+      "todos": {
+        "success": "The task is saved.",
+        "error": "Unfortunately, saving the task is failed."
+      },
+      "mails": {
+        "success": "The emails are sent.",
+        "error": "Sending the emails is failed."
+      },
+      "freelancers-assignments-survey_instances": {
+        "success": "The information is saved.",
+        "error": "The information is not saved."
+      },
+      "survey-instances-approvals": {
+        "success": "The data is saved.",
+        "error": "The data is not saved."
+      },
+      "freelancers-invoices-generate": {
+        "success": "The invoice preview is generated.",
+        "error": "The invoice preview is not generated."
+      },
+      "health-insurances": {
+        "success": "The health insurance is saved.",
+        "error": "The health insurance is not saved."
+      },
+      "submitted-jobs": {
+        "success": "Staff Member is shortlisted.",
+        "error": "Job is not submitted."
+      },
+      "invited-jobs": {
+        "success": "Invite is sent",
+        "error": "Publish Job Field is required"
+      },
+      "survey-message": {
+        "success": "Data is saved",
+        "error": "Failed to save data"
+      }
+    },
+    "delete": {
+      "users": {
+        "success": "The user is deleted.",
+        "error": "Deletion of the user failed."
+      },
+      "skill": {
+        "success": "The skill is deleted.",
+        "error": "Deletion of the skill failed."
+      },
+      "projects": {
+        "success": "Project deleted.",
+        "error": "Deletion of the project failed."
+      },
+      "jobs": {
+        "success": "Job deleted.",
+        "error": "Deletion of the job failed."
+      },
+      "dates": {
+        "success": "Appointment deleted.",
+        "error": "Deletion of the appointment failed."
+      },
+      "tenders": {
+        "success": "Tender deleted.",
+        "error": "Deletion of the tender failed."
+      },
+      "sites": {
+        "success": "Job location deleted.",
+        "error": "Deletion of the Job location failed."
+      },
+      "requests": {
+        "success": "The request is closed.",
+        "error": "Closing the request failed."
+      },
+      "freelancers-assignments": {
+        "success": "The operation is cancelled.",
+        "error": "Cancelling the operation failed."
+      },
+      "offers": {
+        "success": "The offer is rejected.",
+        "error": "Rejecting the offer failed."
+      },
+      "assignments": {
+        "success": "The assignment is deleted.",
+        "error": "Deleting the assignment failed."
+      },
+      "clients-contacts": {
+        "success": "The contact is deleted.",
+        "error": "Deleting the contact failed."
+      },
+      "revenues": {
+        "success": "The sales message is deleted.",
+        "error": "Deleting the sales message failed."
+      },
+      "freelancers-revenues": {
+        "success": "The sales message is deleted.",
+        "error": "Deleting the sales message failed."
+      },
+      "assignments-documents": {
+        "error": "The file is not deleted."
+      },
+      "projects-documents": {
+        "error": "The file is not deleted."
+      },
+      "bills": {
+        "success": "Deleting the customer invoice is successful."
+      },
+      "clients": {
+        "success": "Customer deleted.",
+        "error": "Deleting the customer failed."
+      },
+      "orders": {
+        "success": "Order deleted.",
+        "error": "Deleting the order failed."
+      },
+      "budgets": {
+        "success": "Budget deleted.",
+        "error": "Deleting the budget failed."
+      },
+      "health-insurances": {
+        "success": "Health insurance deleted.",
+        "error": "Deleting the health insurance failed."
+      }
+    },
+    "put": {
+      "dates": {
+        "success": "The dates are saved.",
+        "error": "Saving the appointments failed."
+      },
+      "roles-rights": {
+        "success": "The rights are saved.",
+        "error": "The rights are not saved"
+      },
+      "offers": {
+        "error": "Unfortunately creation of the offers failed.",
+        "success": "The offers are created"
+      },
+      "assignments-ratings": {
+        "success": "The assignment ratings are saved.",
+        "error": "Saving the assignment ratings failed."
+      },
+      "assignments-bulk-cancel": {
+        "error": "The cancellation of the assignments failed.",
+        "success": "The assignments are cancelled."
+      },
+      "tenders": {
+        "error": "The tendering of the assignments is failed.",
+        "success": "The assignments are successfully tendered."
+      },
+      "jobs": {
+        "success": "The dates are advertised.",
+        "error": "The dates are failed to be advertised."
+      },
+      "projects-documents": {
+        "error": "An error occurred, the documents are not accepted for jobs/assignments."
+      },
+      "projects-jobs": {
+        "success": "The jobs are created.",
+        "error": "An error occurred, the jobs are not created."
+      },
+      "gtcs-documents": {
+        "success": "The documents of the terms and conditions are updated.",
+        "error": "Saving of the documents failed."
+      },
+      "freelancer-gtc-documents": {
+        "error": "The saving of the documents of the general terms and conditions failed."
+      }
+    },
+    "get": {
+      "freelancers-tenders": {
+        "error": "Sorry, this job is already taken."
+      },
+      "invoices-download": {
+        "error": "No invoice documents can be downloaded."
+      },
+      "freelancers-jobs": {
+        "error": "This offer is no longer available."
+      },
+      "assignments-evaluation-download": {
+        "error": "The download of the assignment evaluation failed."
+      }
+    }
+  },
+  "rights": {
+    "fields": {
+      "rights": {
+        "MANAGE_RIGHTS": "Rights",
+        "MANAGE_USERS": "Users",
+        "MANAGE_CUSTOMERS": "Customers",
+        "MANAGE_POS": "Deployment locations (POS)",
+        "MANAGE_FREELANCERS": "Freelancers",
+        "MANAGE_PROJECTS": "Projects",
+        "MANAGE_ORDERS": "Budgets & Orders",
+        "MANAGE_TRAININGS": "Certificates",
+        "MANAGE_PRODUCTS": "Products",
+        "MANAGE_TYPES": "Deployment Types",
+        "MANAGE_CATEGORIES": "Categories",
+        "MANAGE_SETTINGS": "Settings",
+        "MANAGE_LOGS": "Logs",
+        "MANAGE_INCENTIVES": "Flat Rates & Discounts",
+        "MANAGE_CONTACTS": "Contacts",
+        "MANAGE_AUDITS": "Audits",
+        "MANAGE_INVOICES": "Invoices",
+        "MANAGE_RATINGS": "Rating",
+        "MANAGE_CERTIFICATES": "Certificates",
+        "MANAGE_BILLS": "Invoices (customer)",
+        "MANAGE_SEPA": "SEPA & CSV Export",
+        "RESET_INVOICE": "Reset invoice status",
+        "MANAGE_GTCS": "Framework Contract",
+        "MANAGE_INSURANCES": "Health Insurance"
+      }
+    }
+  },
+  "maintenance": {
+    "info": "Maintenance window of the Portal",
+    "start": "Start",
+    "end": "Planned End",
+    "ad-hoc": "Unplanned",
+    "message": "Maintenance due to {{reason}} starts at {{startAt}}.",
+    "now": "Please save your changes in time."
+  },
+  "incentives": {
+    "types": {
+      "checkin": "For Registration",
+      "sales_report": "Sales Report",
+      "picture_documentation": "Photo Documentation"
+    }
+  }
+}

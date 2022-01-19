@@ -1,0 +1,62 @@
+.rating-main {
+  border-top: solid #eee 1px;
+  padding-top: 10px;
+  &.empty {
+    min-height: 42px;
+    .creator {
+      display: none;
+    }
+  }
+  &:not(.empty) {
+    min-height: 75px;
+    .creator {
+      min-height: 25px;
+    }
+  }
+  button {
+    display: none;
+    margin-left: 10px;
+  }
+  &.editing {
+    min-height: 85px;
+    button.cancel {
+      display: inline-block;
+    }
+    &.empty {
+      button.save {
+        display: inline-block;
+      }
+    }
+    &:not(.empty) {
+      button.update {
+        display: inline-block;
+      }
+    }
+    div.comment {
+      display: none;
+    }
+    mat-form-field.comment {
+      display: inline-block;
+      width: calc(100% - 150px);
+    }
+  }
+  &:not(.editing) {
+    &.empty {
+      button.add {
+        display: inline-block;
+      }
+    }
+    &:not(.empty) {
+      button.edit {
+        display: inline-block;
+      }
+    }
+    div.comment {
+      display: block;
+      margin-bottom: 10px;
+    }
+    mat-form-field.comment {
+      display: none;
+    }
+  }
+}

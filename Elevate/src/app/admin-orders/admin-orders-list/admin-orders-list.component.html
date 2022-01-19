@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <div class="row between-xs">
+    <div class="col-xs">
+      <h1 translate="administration.orders.title"></h1>
+    </div>
+    <div class="col-xs end-xs">
+      <a
+        mat-flat-button
+        color="accent"
+        [routerLink]="['/administration/orders/create']"
+        >{{ "administration.orders.buttons.create" | translate }}
+      </a>
+    </div>
+  </div>
+  <form [formGroup]="searchForm">
+    <div class="row">
+      <div class="col-md-9 col-xs-12 start-xs">
+        <div class="row">
+          <div class="col-xs-9 padding-none">
+            <mat-form-field class="full-width">
+              <mat-label>{{
+                "administration.orders.table.search-placeholder" | translate
+              }}</mat-label>
+              <input
+                matInput
+                placeholder="{{
+                  'administration.orders.table.search-placeholder' | translate
+                }}"
+                formControlName="search"
+                type="search"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row center-xs" *ngIf="noRecords$ | async">
+    <div class="col-xs">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!(noRecords$ | async)">
+    <div class="col-xs table-wrapper">
+      <div class="table-inner-wrapper">
+        <table
+          mat-table
+          [dataSource]="result$"
+          class="search-table"
+          matSort
+          matSortDisableClear
+          matSortDirection="desc"
+        >
+          <ng-container matColumnDef="stateName">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "administration.orders.table.stateName" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" class="col-stateName col-{{row.state}}">
+              {{ ("administration.orders.state." + row.state) | translate }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "administration.orders.table.name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="clientName">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "administration.orders.table.clientName" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.clientName }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="orderedAt">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "administration.orders.table.orderedAt" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.ordered_at | date: 'mediumDate' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row" class="action">
+              <button
+                mat-icon-button
+                color="accent"
+                [matMenuTriggerFor]="subMenu"
+                (click)="$event.stopPropagation()"
+              >
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <mat-menu #subMenu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="gotoDetail(row)">
+                  {{
+                    "administration.orders.table.actions.details" | translate
+                  }}
+                </button>
+                <button
+                  *ngIf="canDelete"
+                  mat-menu-item
+                  (click)="deleteOrder(row)"
+                >
+                  {{ "administration.orders.table.actions.remove" | translate }}
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="gotoDetail(row)"></tr>
+        </table>
+      </div>
+      <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+      <app-paginator
+        [disabled]="loading$ | async"
+        hidePageSize="true"
+        showFirstLastButtons="true"
+        [length]="totalRecords$ | async"
+        [pageIndex]="currentPage$ | async"
+        [pageSize]="pageSize$ | async"
+        (page)="pageChange($event)"
+      ></app-paginator>
+      <div class="row end-xs">
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="download()"
+        >
+          {{ "ui.list-table.default.download" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

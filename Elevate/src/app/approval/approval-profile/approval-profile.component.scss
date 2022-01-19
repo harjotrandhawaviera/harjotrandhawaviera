@@ -1,0 +1,59 @@
+@import "variables";
+.duplicates {
+  margin: 15px 0;
+  border: 1px solid #dcebfa;
+  border-radius: 3px;
+
+  .duplicates-warning {
+    background-color: #dcebfa;
+    border: 1px solid #dcebfa;
+    cursor: pointer;
+    position: relative;
+
+    h4 {
+      margin: 10px 20px;
+
+      // &:before {
+      //   @include fa-icon;
+      //   content: $p4y-icon-exclamation;
+      //   margin-right: 10px;
+      // }
+    }
+
+    .fa {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+  }
+
+  .table {
+  }
+}
+.space-added {
+  margin: 10px;
+}
+.table-duplicates {
+  width: 100%;
+  th {
+    padding: 8px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
+  td {
+    padding: 8px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
+  margin-bottom: 0;
+
+  .far {
+    font-size: 20px;
+    color: $brand-danger;
+  }
+}
+.padding {
+  padding: 20px
+}

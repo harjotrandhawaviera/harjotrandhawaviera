@@ -1,0 +1,368 @@
+<div  class="container-fluid" *ngIf="detailForm">
+  <form
+    [formGroup]="detailForm"
+  >
+<div class="row">
+  <div class="col-xs-12">
+    <h3 translate="profile.employment_info.main.headline"></h3>
+  </div>
+</div>
+<div class="row" *ngIf="!readonly">
+  <div
+    class="col-xs-12"
+    [innerHtml]="'profile.employment_info.main.description' | translate"
+  ></div>
+</div>
+
+<fieldset>
+  <div class="row">
+    <div class="col-xs-12">
+      <legend
+        translate="profile.employment_info.work-history.headline"
+      ></legend>
+    </div>
+  </div>
+  <div class="row" *ngIf="!readonly">
+    <div
+      class="col-xs-12 description"
+      [innerHtml]="'profile.employment_info.work-history.description' | translate"
+    ></div>
+  </div>
+  <div class="row" *ngIf="employmentHistory">
+    <ng-container
+      *ngFor="let userFormGroup of employmentHistory?.controls; let i = index"
+    >
+    <div
+    class="col-xs-12 padding-none"
+    *ngIf="userFormGroup"
+    app-freelancer-work-history
+    [readonly]="readonly"
+    [inFormGroup]="userFormGroup"
+  ></div>
+      <div class="col-xs-12 end-xs" >
+        <button
+          type="button"
+          class="section-button"
+          mat-stroked-button
+          color="primary"
+          (click)="removeWorkHistory(i)"
+          translate="profile.qualifications.delete"
+        ></button>
+      </div>
+    </ng-container>
+    <div class="col-xs-12">
+      <button
+      *ngIf="employmentHistory.controls.length < 1"
+        type="button"
+        class="section-button mt-3"
+        mat-stroked-button
+        (click)="addEmployee()"
+        color="primary"
+        translate="profile.qualifications.add-employment"
+      ></button>
+      <button
+      *ngIf="employmentHistory.controls.length > 0"
+        type="button"
+        class="section-button mt-3"
+        mat-stroked-button
+        (click)="addEmployee()"
+        color="primary"
+        translate="profile.qualifications.add-more"
+      ></button>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+ <div class="row">
+  <div class="col-xs-12">
+    <legend
+      translate="profile.employment_info.role.headline"
+    ></legend>
+  </div>
+</div>
+ <div class="row" *ngIf="!readonly">
+   <div
+     class="col-xs-12"
+     [innerHtml]="'profile.employment_info.role.description' | translate"
+   ></div>
+ </div>
+
+  <div class="row" *ngIf="secondaryRole && primaryRole">
+    <ng-container
+    *ngFor="let userFormGroup of primaryRole?.controls; let i = index"
+  >
+  <div
+  class="col-xs-12  "
+  *ngIf="userFormGroup"
+  app-freelancer-roles
+  [index]='i'
+  [roles]="roles"
+  [isPrimaryRole]="true"
+  [inFormGroup]="userFormGroup"
+></div>
+</ng-container>
+   <ng-container
+     *ngFor="let userFormGroup of secondaryRole?.controls; let i = index"
+   >
+   <div
+   class="col-xs-12 "
+   *ngIf="userFormGroup"
+   app-freelancer-roles
+   [index]='i'
+   [roles]="roles"
+   [isPrimaryRole]="false"
+   (roleAdded)="addRole()"
+   (roleRemoved)="removeRole(i)"
+   [readonly]="readonly"
+   [inFormGroup]="userFormGroup"
+ ></div>
+   </ng-container>
+    <div class="col-xs-12 ">
+     <button
+     *ngIf="secondaryRole?.controls?.length==0"
+       type="button"
+       class="section-button mt-3"
+       mat-stroked-button
+       (click)="addRole()"
+       color="primary"
+       translate="profile.qualifications.add-role"
+     ></button>
+   </div>
+ </div>
+</fieldset>
+<fieldset>
+  <div class="row">
+    <div class="col-xs-12">
+      <legend
+        translate="profile.fields.industryExposure.label"
+      ></legend>
+    </div>
+  </div>
+  <div class="row" *ngIf="!readonly">
+    <div
+      class="col-xs-12 description"
+      [innerHtml]="
+        'profile.fields.industryExposure.description' | translate
+      "
+    ></div>
+    </div>
+  <div class="row" formArrayName="industryExposure" *ngIf="industryExposure">
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 mt-2"
+      *ngFor="let alias of industryExposure.controls; let i = index"
+    >
+        <div [formGroupName]="i">
+      <mat-form-field style="width: calc(100% - 60px)">
+        <mat-label *ngIf="i == 0">{{
+          "profile.fields.industryExposure.additional.label" | translate
+        }}</mat-label>
+        <mat-label *ngIf="i !== 0">{{
+          "profile.fields.industryExposure.additional.label" | translate
+        }}</mat-label>
+        <mat-select formControlName="name"  >
+          <mat-option
+            *ngFor="let option of industryExposureLK"
+            [value]="option"
+          >
+            {{ "profile.fields.industryExposure." + option | translate }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <button
+        *ngIf="i !== 0 && !readonly"
+        type="button"
+        mat-icon-button
+        color="accent"
+        (click)="removeIndustryExposure(i)"
+      >
+        <i class="far fa-trash-alt"></i>
+      </button></div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3" *ngIf="!readonly">
+      <button
+        *ngIf="industryExposure.controls.length <= 3"
+        type="button"
+        class="section-button mt-3"
+        mat-stroked-button
+        color="primary"
+        (click)="addIndustryExposure()"
+        translate="profile.fields.industryExposure.add"
+      ></button>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="row">
+    <div class="col-xs-12">
+      <legend
+        translate="profile.qualifications.references.headline"
+      ></legend>
+    </div>
+  </div>
+  <div class="row" *ngIf="!readonly">
+    <div
+      class="col-xs-12"
+      [innerHtml]="
+        'profile.qualifications.references.description' | translate
+      "
+    ></div>
+  </div>
+  <div class="row" formArrayName="references">
+    <ng-container
+      *ngFor="let userFormGroup of references?.controls; let i = index"
+    >
+      <div
+        class="col-xs-12 padding-none"
+        app-freelancer-reference
+        [readonly]="readonly"
+        (onChange)="onFormValueChange()"
+        [displayMessage]="referencesDisplayMessage[i]
+        ? referencesDisplayMessage[i]
+        : {}"
+        [inFormGroup]="userFormGroup"
+      ></div>
+      <div class="col-xs-12 end-xs" *ngIf="!readonly">
+        <button
+          type="button"
+          class="section-button mb-3"
+          mat-stroked-button
+          color="primary"
+          (click)="removeReferences(i)"
+          translate="profile.qualifications.delete"
+        ></button>
+      </div>
+    </ng-container>
+    <div class="col-xs-12">
+      <div
+        *ngIf="references?.invalid"
+        class="alert alert-info"
+        translate="profile.qualifications.add-reference-disabled"
+      ></div>
+    </div>
+    <div class="col-xs-12" *ngIf="!readonly">
+      <button
+        [disabled]="references?.invalid"
+        type="button"
+        class="section-button mt-3"
+        mat-stroked-button
+        color="primary"
+        (click)="addReferences()"
+        translate="profile.qualifications.add-reference"
+      ></button>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+   <div class="row">
+    <div class="col-xs-12">
+      <legend
+      translate="profile.employment_info.skill.headline"
+    ></legend>
+    </div>
+  </div>
+  <div class="row" *ngIf="!readonly">
+    <div
+      class="col-xs-12 mb-3"
+      [innerHtml]="'profile.employment_info.skill.description' | translate"
+    ></div>
+  </div>
+   <div class="row" *ngIf="employmentSkill">
+    <ng-container
+      *ngFor="let userFormGroup of employmentSkill?.controls; let i = index"
+    >
+    <div
+    class="col-xs-12  "
+    style=""
+    *ngIf="userFormGroup"
+
+    app-freelancer-skills
+   (skillAdded) = "addSkill()"
+   (skillRemoved) = "removeSkill(i)"
+    [skills]="skills"
+    [readonly]="readonly"
+    [inFormGroup]="userFormGroup"
+  ></div>
+    </ng-container>
+     <div class="col-xs-12">
+      <button
+      *ngIf="employmentSkill?.controls?.length==0"
+        type="button"
+        class="section-button  "
+        mat-stroked-button
+        (click)="addSkill()"
+        color="primary"
+        translate="profile.qualifications.add-skill"
+      ></button>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+    <div class="row">
+    <div class="col-xs-12">
+      <legend
+      translate="profile.employment_info.work_preferences.headline"
+    ></legend>
+    </div>
+  </div>
+  <div class="row" *ngIf="!readonly">
+    <div
+      class="col-xs-12"
+      [innerHtml]="'profile.employment_info.work_preferences.description' | translate"
+    ></div>
+  </div>
+    <ng-container *ngFor="let method of workPreferencesLK;let i = index">
+      <div [ngClass]="method.value == 'Other' ? 'other-work-preference-wrapper' : ''">
+      <mat-checkbox [checked]="isCheckedWorkPreferences(method.value)" class="col-md-4 col-sm-6 col-xs-12 work-preferences-checkbox"
+        value="{{method.value}}" (change)="checkCheckBoxvalue($event)">
+      {{'profile.Work_preference.' + method.value | translate}}
+      </mat-checkbox>
+      <div class="col-sm-6">
+        <mat-form-field *ngIf="isShown && workPreferencesLK.length == i+1" class="full-width other-work-preference-input-wrapper">
+          <input matInput name="other">
+        </mat-form-field>
+            </div>
+    </div>
+  </ng-container>
+
+</fieldset>
+<div class="row qualification-footer-wrapper" *ngIf="!readonly">
+  <div class="col-xs-12">
+    <button
+      type="submit"
+      mat-flat-button
+      color="accent"
+      *ngIf="isOnboarding"
+
+      (click)="saveDetail()"
+      translate="profile.submit.button-next"
+    ></button>
+    <button
+      type="submit"
+      mat-flat-button
+      color="accent"
+      (click)="saveDetail()"
+      *ngIf="!isOnboarding"
+      translate="profile.submit.button-save"
+    ></button>
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      *ngIf="isOnboarding"
+      translate="profile.next-step"
+      (click)="next()"
+    ></button>
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      *ngIf="!isOnboarding"
+      translate="profile.cancel"
+      (click)="cancel()"
+    ></button>
+  </div>
+</div>
+</form>
+</div>

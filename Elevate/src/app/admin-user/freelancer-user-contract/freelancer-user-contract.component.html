@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4>
+      <mat-checkbox
+        color="accent"
+        [disabled]="true"
+        [(ngModel)]="enabled.freelancer"
+      >
+        <label
+          for="contract_freelancer"
+          class="input-label"
+          translate="profile.contracts.freelancer"
+        ></label>
+        <label
+          *ngIf="pending.freelancer"
+          translate="profile.pending-contract-type-approval"
+        ></label>
+      </mat-checkbox>
+    </h4>
+  </div>
+</div>
+<div class="row" *ngIf="enabled.freelancer">
+  <div class="col-xs-12 col-md-6">
+    <label translate="profile.contracts.tax_number"></label>
+    <p>{{ data.tax_number }}</p>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <label translate="profile.contracts.vat_tax_id"></label>
+    <p>{{ data.vat_tax_id }}</p>
+  </div>
+  <div class="col-xs-12 col-md-6" *ngIf="false">
+    <label translate="profile.contracts.vat_tax_liable.label"></label>
+    <p
+      data-translate="invoices.fields.taxes.{{
+        data.is_vat_tax_liable === true ? 'included' : 'not-included'
+      }}"
+    ></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>
+      <mat-checkbox
+        color="accent"
+        [disabled]="true"
+        [(ngModel)]="enabled.tax_card"
+      >
+        <label
+          for="contract_tax_card"
+          class="input-label"
+          translate="profile.contracts.tax_card"
+        ></label>
+        <label
+          *ngIf="pending.tax_card"
+          translate="profile.pending-contract-type-approval"
+        ></label>
+      </mat-checkbox>
+    </h4>
+  </div>
+</div>
+<div *ngIf="enabled.tax_card">
+  <div class="row">
+    <div class="col-xs-12">
+      <label translate="profile.identity.profession"></label>
+      <p>{{ data.profession }}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.tax_id.label"></label>
+      <p>{{ data.tax_id }}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.tax_class.label"></label>
+      <p>{{ data.tax_class }}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.child_tax_allowance"></label>
+      <p>{{ data.child_tax_allowance }}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.denomination"></label>
+      <p *ngIf="denomination">{{ denomination.name }}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.socialsecurity_number.label"></label>
+      <p>{{ data.socialsecurity_number }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.health_insurance_type"></label>
+      <p *ngIf="healthInsurance.type">
+        {{
+          "profile.fields.health_insurance_types." + healthInsurance.type
+            | translate
+        }}
+      </p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label translate="profile.contracts.health_insurance_name"></label>
+      <p>{{ healthInsurance.name }}</p>
+    </div>
+  </div>
+</div>

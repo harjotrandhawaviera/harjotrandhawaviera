@@ -1,0 +1,90 @@
+<div class="panel panel-default budget-tile {{ budget.status }}" *ngIf="budget" (click)="gotoDetailClick()">
+  <div class="panel-heading">
+    <div class="row between-xs middle-xs">
+      <div>
+        {{ budget.clientName }}
+      </div>
+      <div *ngIf="canViewDetail">
+        <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu" (click)="$event.stopPropagation();">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <mat-menu #subMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="gotoDetailClick()">
+            {{ "administration.budgets.table.actions.details" | translate }}
+          </button>
+          <button mat-menu-item *ngIf="!budget.count_assignments && canDelete" (click)="deleteClick()">
+            {{ "administration.budgets.table.actions.remove" | translate }}
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="title">
+      {{ budget.name }}
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 padding-none">
+        <div
+          class="budget-label"
+          translate="administration.budgets.label.available"
+        ></div>
+        <div class="budget-available">{{ budget.available | currency }}</div>
+        <div
+          class="budget-label"
+          translate="administration.budgets.label.value"
+        ></div>
+        <div class="budget-value">{{ budget.value | currency }}</div>
+        <div>
+          <span class="fa fa-calendar"> </span>&nbsp;
+          <span
+            *ngIf="budget.count_assignments === 1"
+            [translate]="
+              'administration.budgets.label.count-assignments-single'
+            "
+            [translateParams]="{ count_assignments: budget.count_assignments }"
+          ></span>
+          <span
+            *ngIf="budget.count_assignments !== 1"
+            [translate]="
+              'administration.budgets.label.count-assignments-multiple'
+            "
+            [translateParams]="{ count_assignments: budget.count_assignments }"
+          ></span>
+        </div>
+      </div>
+      <div class="col-xs-6 padding-none">
+        <div
+          class="budget-label"
+          translate="administration.budgets.label.planned"
+        ></div>
+        <div class="budget-planned">{{ budget.planned | currency }}</div>
+
+        <div
+          class="budget-label"
+          translate="administration.budgets.label.consumed"
+        ></div>
+        <div class="budget-consumed">{{ budget.consumed | currency }}</div>
+        <div class="line-ellipsis" *ngIf="budget.order">
+          <i class="fa fa-folder"> </i> {{ budget.order.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <span
+    *ngIf="canViewDetail"
+      class="text-left creator"
+      [translate]="'administration.budgets.label.creatorName'"
+      [translateParams]="{
+        creatorName: budget.creatorName
+          ? budget.creatorName
+          : ('common.users.system' | translate)
+      }"
+    ></span>
+    <span class="text-right">{{
+      "administration.budgets.states." + budget.status | translate
+    }}</span>
+  </div>
+</div>

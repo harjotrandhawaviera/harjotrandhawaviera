@@ -1,0 +1,389 @@
+<div class="container-fluid">
+  <!-- <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/projects']">{{
+        'projects.details.buttons.back' | translate}}
+      </a>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-xs-12 col-md start-xs">
+      <h1 *ngIf="id" translate="projects.details.title.edit"></h1>
+      <h1 *ngIf="!id" translate="projects.details.title.new"></h1>
+    </div>
+    <!-- <div class="col-xs-12 col-md end-xs">
+      <a mat-stroked-button color="primary" [routerLink]="['/projects/edit']">{{
+        'projects.jobs.bulk_create.buttons.submit' | translate}}
+      </a>
+      <a mat-flat-button color="accent" [routerLink]="['/projects/edit']">{{
+        'projects.details.buttons.edit' | translate}}
+      </a>
+    </div> -->
+    <div *ngIf="backToJob" class="col-xs end-xs">
+      <a mat-flat-button color="accent" (click)="gotoJobs()">{{
+        'projects.details.buttons.back-to-job' | translate}}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form
+        [formGroup]="detailForm"
+        *ngIf="detailForm"
+        (ngSubmit)="saveDetail()"
+      >
+        <mat-accordion>
+          <mat-expansion-panel hideToggle expanded>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ "projects.details.tab.general" | translate | uppercase }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-project-detail-general-edit
+              [group]="generalGroup"
+              [id]="id"
+              (documentUploaded)="templateDocUploaded($event)"
+              (documentDeleted)="templateDocDeleted($event)"
+              (clientSalesSlot)="clientSalesSlot($event)"
+              (clientFreelancerRatings)="clientFreelancerRatings($event)"
+              [templateDocuments]="templateDocs"
+              (addAdditionalCost)="addAdditionalCost()"
+              (addAdditionalTargetBudget)="addAdditionalTargetBudget()"
+              [displayMessage]="
+                displayMessage && displayMessage.general
+                  ? displayMessage.general
+                  : {}
+              "
+              (removeAdditionalCost)="removeAdditionalCost($event)"
+              (removeTargetBudget)="removeTargetBudget($event)"
+            ></app-project-detail-general-edit>
+            <ng-container *ngTemplateOutlet="buttons"></ng-container>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ "projects.details.tab.briefing" | translate | uppercase }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <fieldset>
+              <app-project-documents
+                mode="edit"
+                *ngIf="briefingDocs && briefingDocs.length"
+                [projectDocuments]="briefingDocs"
+                (documentDeleted)="briefingDeleted($event)"
+              >
+              </app-project-documents>
+              <div class="row">
+                <div class="col-xs">
+                  <app-file-upload
+                    (documentUploaded)="briefingUploaded($event)"
+                    text="Upload Document"
+                    type="document"
+                  >
+                  </app-file-upload>
+                </div>
+              </div>
+            </fieldset>
+            <ng-container *ngTemplateOutlet="buttons"></ng-container>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle [disabled]="!id">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ "projects.details.tab.reports" | translate | uppercase }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <fieldset>
+              <div class="row">
+                <div class="col-xs">
+                  <legend
+                    translate="projects.fields.freelancer-ratings.label"
+                  ></legend>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs">
+                  <app-load-html
+                    *ngIf="!(freelancer_ratings && freelancer_ratings.length)"
+                    template="administration.client.freelancer-ratings.hint"
+                  ></app-load-html>
+                </div>
+              </div>
+              <div
+                *ngIf="freelancer_ratings"
+                formArrayName="freelancer_ratings"
+              >
+                <div
+                  *ngFor="
+                    let alias of freelancer_ratings.controls;
+                    let i = index
+                  "
+                  class="row middle-xs"
+                >
+                  <div class="col-sm-6 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label required
+                        >{{
+                          "administration.client.fields.freelancer-ratings.placeholder"
+                            | translate
+                        }}
+                      </mat-label>
+                      <input matInput [formControlName]="i" />
+                      <mat-error
+                        *ngIf="
+                          displayMessage.freelancer_ratings &&
+                          displayMessage.freelancer_ratings[i]
+                        "
+                      >
+                        {{
+                          displayMessage.freelancer_ratings &&
+                            displayMessage.freelancer_ratings[i]
+                        }}</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4 col-xs-12">
+                    <button
+                      type="button"
+                      mat-stroked-button
+                      color="primary"
+                      (click)="removeCriteria(i)"
+                      translate="administration.client.buttons.delete-criteria"
+                    ></button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs">
+                    <button
+                      type="button"
+                      mat-stroked-button
+                      color="primary"
+                      (click)="addCriteria()"
+                      translate="administration.client.buttons.add-criteria"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="row">
+                <div class="col-xs">
+                  <legend translate="administration.client.section.saleslots"></legend>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs">
+                  <app-load-html
+                    *ngIf="!(salesSlots && salesSlots.length)"
+                    template="administration.client.saleslots.hint"
+                  >
+                  </app-load-html>
+                </div>
+              </div>
+              <div
+                *ngIf="salesSlots"
+                formArrayName="salesSlots"
+                class="col-xs padding-none"
+              >
+                <div
+                  *ngFor="let sale of salesSlots.controls; let i = index"
+                  class="col-xs padding-none"
+                >
+                  <!-- <app-sales-slot-edit [saleGroup]="sale"></app-sales-slot-edit> -->
+                  <div [formGroupName]="i" class="row top-xs middle-md">
+                    <div class="col-sm-11 col-xs-11 padding-none">
+                      <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                          <mat-form-field class="full-width">
+                            <mat-label required>{{
+                              "administration.client.fields.saleslots.name.label" | translate
+                            }}</mat-label>
+                            <input matInput formControlName="name" />
+                            <mat-error
+                              *ngIf="displayMessage.salesSlots[i].name"
+                            >
+                              {{ displayMessage.salesSlots[i].name }}</mat-error
+                            >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                          <mat-form-field class="full-width">
+                            <mat-label required
+                              >{{ "administration.client.fields.saleslots.price.label" | translate }}
+                            </mat-label>
+                            <span matPrefix appCurrencySymbol></span>
+                            <input matInput formControlName="price" />
+                            <mat-error
+                              *ngIf="displayMessage.salesSlots[i].price"
+                            >
+                              {{ displayMessage.salesSlots[i].price }}</mat-error
+                            >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                          <mat-form-field class="full-width">
+                            <mat-label
+                              >{{ "administration.client.fields.saleslots.description.label" | translate }}
+                            </mat-label>
+                            <input matInput formControlName="description" />
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-1 col-xs-1 padding-none">
+                      <button
+                        type="button"
+                        mat-icon-button
+                        color="accent"
+                        (click)="removeSlot(i)"
+                      >
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs">
+                    <button
+                      type="button"
+                      mat-stroked-button
+                      color="primary"
+                      (click)="addSlot()"
+                      translate="administration.client.buttons.add-slot"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="row">
+                <div class="col-xs">
+                  <legend
+                    translate="projects.feedback-questions.label"
+                  ></legend>
+                </div>
+              </div>
+              <div class="row" *ngIf="!(questions && questions.length)">
+                <div class="col-xs">
+                  {{ "projects.feedback-questions.none" | translate }}
+                </div>
+              </div>
+              <div
+                *ngIf="questions"
+                formArrayName="questions"
+                class="col-xs padding-none"
+              >
+                <div
+                  *ngFor="let sale of questions.controls; let i = index"
+                  class="col-xs padding-none"
+                >
+                  <div [formGroupName]="i" class="row top-xs middle-md">
+                    <div class="col-sm-11 col-xs-11 padding-none">
+                      <div class="row">
+                        <div class="col-sm-9 col-xs-12">
+                          <mat-form-field class="full-width">
+                            <mat-label required>{{
+                              "projects.feedback-questions.fields.question.label"
+                                | translate
+                            }}</mat-label>
+                            <input matInput formControlName="question" />
+                            <mat-error
+                              *ngIf="displayMessage.questions[i].question"
+                            >
+                              {{
+                                displayMessage.questions[i].question
+                              }}</mat-error
+                            >
+                          </mat-form-field>
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                          <mat-form-field class="full-width">
+                            <mat-label required
+                              >{{
+                                "projects.feedback-questions.fields.type.label"
+                                  | translate
+                              }}
+                            </mat-label>
+                            <mat-select formControlName="type" name="type">
+                              <mat-option
+                                *ngFor="let option of questionTypeLK"
+                                [value]="option"
+                              >
+                                {{
+                                  "projects.feedback-questions.fields.feedback." +
+                                    option | translate
+                                }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-1 col-xs-1 padding-none">
+                      <button
+                        type="button"
+                        mat-icon-button
+                        color="accent"
+                        (click)="removeQuestion(i)"
+                      >
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs">
+                    <button
+                      type="button"
+                      mat-stroked-button
+                      color="primary"
+                      (click)="addQuestion()"
+                      translate="projects.feedback-questions.buttons.add"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <ng-container *ngTemplateOutlet="buttons"></ng-container>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle [disabled]="!id">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ "projects.details.tab.revenues" | translate | uppercase }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-project-revenue-summary
+              [projectId]="id"
+            ></app-project-revenue-summary>
+          </mat-expansion-panel>
+          <!-- <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ 'projects.details.tab.evaluation' | translate | uppercase}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel> -->
+        </mat-accordion>
+      </form>
+    </div>
+  </div>
+</div>
+<ng-template #buttons>
+  <div class="row">
+    <div class="col-xs">
+      <button class="section-button" mat-flat-button type="submit" color="accent">
+        {{
+          "projects.details.buttons." + (id ? "update" : "create") | translate
+        }}
+      </button>
+      <button
+        mat-stroked-button
+        class="section-button"
+        type="button"
+        color="primary"
+        (click)="cancelEdit()"
+        translate="projects.details.buttons.cancel-edit"
+      ></button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,175 @@
+{
+    "approval": {
+        "freelancer-onboarding": {
+            "header": "neue Fachberater",
+            "buttons": {
+                "details": "Prüfen",
+                "overview": "Zeige alle",
+                "back": "Zurück zum Onboarding"
+            },
+            "table": {
+                "fullname": "Name",
+                "zip": "PLZ",
+                "submissionDate": "Eingangsdatum",
+                "actions": {
+                    "details": "Details"
+                }
+            }
+        },
+        "freelancer-approval": {
+            "header": "New Freelancers",
+            "admin-header": "Registrierung durch Admin",
+            "email-success": "E-Mail erfolgreich gesendet.",
+            "buttons": {
+              "new": "Neue Mitarbeiter",
+              "save": "Next",
+              "cancel": "Abort",
+              "create": "Freiberufler erstellen"
+            },
+            "fields": {
+              "subject": "Enter the E-Mail Address",
+              "search-placeholder": "Enter  E-Mail Address"
+            },
+            "table": {
+              "fullname": "Name",
+              "gender": "Geschlecht",
+              "age": "Alter",
+              "mobile": "Handy",
+              "status": "Status",
+              "city": "Stadt",
+              "country": "Land",
+              "zip": "Postleitzahl",
+              "created": "Von Erstellt",
+              "email": "E-Mail",
+              "submissionDate": "Datum der Erstellung",
+              "actions": {
+                "detail": "Einzelheiten",
+                "email": "E-Mail Senden"
+              }
+            }
+        },
+        "freelancer-changerequest": {
+            "header": "Änderungen",
+            "buttons": {
+                "details": "Prüfen",
+                "overview": "Zeige alle"
+            },
+            "table": {
+                "fullname": "Name",
+                "submissionDate": "Eingangsdatum",
+                "actionType": "Änderung",
+                "actions": {
+                    "details": "Details"
+                }
+            }
+        },
+        "buttons": {
+            "details": "Prüfen"
+        },
+        "list": {
+            "freelancer-onboarding": "Übersicht der Personalprofile zur Überprüfung",
+            "freelancer-changerequest": "Übersicht aller Änderungsanträge",
+            "fullname": "Name",
+            "email": "Email",
+            "mobile": "Mobiltelefon",
+            "city": "Stadt",
+            "postcode": "Postleitzahl",
+            "zip": "PLZ",
+            "submissionDate": "Eingangsdatum",
+            "actionType": "Änderung",
+            "actions": {
+              "details": "Einzelheiten",
+                "verify_email": "E-Mail senden"
+            }
+        },
+        "accept-button": "Prüfung abschließen & senden",
+        "comment-placeholder": "Schreibe einen Kommentar, wenn du die Daten ablehnen willst.",
+        "comment-required": "Bitte gib eine Begründung für die Ablehnung an.",
+        "profile": {
+            "headline": "{{fullname}}'s Profil",
+            "step": {
+                "accept-button": "Daten akzeptieren",
+                "submit-decline-button": "Daten ablehnen"
+            },
+            "summary": {
+                "all-done": "Du hast alle Angaben geprüft. Bitte schließe jetzt die Anfrage ab."
+            },
+            "training": {
+                "heading": "Rechtliche Schulung und Test",
+                "success": "Die rechtliche Schulung wurde absolviert und der Test erfolgreich bestanden.",
+                "open": "Die rechtliche Schulung wurde entweder noch nicht absolviert oder der Test wurde noch nicht bestanden."
+            },
+            "change": {
+                "accept-button": "Änderungen akzeptieren",
+                "decline-button": "Änderungen ablehnen",
+                "pending-photo": "Neues Foto",
+                "current-photo": "Bisheriges Foto",
+                "pending-document": "Neues Dokument",
+                "current-document": "Bisheriges Dokument",
+                "current-data": "Neue Angaben",
+                "previous-data": "Bisherige Angaben"
+            },
+            "duplicates": {
+                "heading": "Es existiert möglicherweise bereits ein Konto für diesen Fachberater.",
+                "columns": {
+                    "fullname": "Name",
+                    "personal": "Persönliche Daten",
+                    "tax_number": "Steuernummer",
+                    "iban": "IBAN"
+                }
+            },
+            "missing": {
+                "heading": "Durch die Systemumstellung fehlen in dem Profil dieses Fachberaters noch einige Pflichtangaben.\nBitte weise den Fachberater auf die fehlenden Angaben hin.",
+                "master": {
+                    "heading": "Profilbereich: Stammdaten",
+                    "birthplace": "Geburtsort",
+                    "birthcountry": "Geburtsland"
+                },
+                "legal": {
+                    "heading": "Profilbereich: Rechtliche Daten",
+                    "workpermit": "Arbeitserlaubnis"
+                }
+            }
+        },
+        "action-type": {
+            "replace-freelancer-portraitpicture": "Porträt-Foto",
+            "replace-freelancer-bodypicture": "Ganzkörper-Foto",
+            "replace-freelancer-tradelicence": "Gewerbeschein",
+            "replace-freelancer-workpermit": "Arbeitserlaubnis",
+            "replace-freelancer-evidence": "Nachweis",
+            "approve-freelancer-onboarding": "Onboarding",
+            "approve-freelancer-contract": "Vertragstyp",
+            "approve-freelancer-data-change": "Datenänderung",
+            "approve-freelancer-gtc": "AGB",
+            "replace-freelancer-gtc-document": "AGB-Dokument"
+        },
+        "message": {
+            "required": "Bitte gib eine Begründung an.",
+            "sender-info": "{{fullname}}, {{date}}",
+            "subject": {
+                "label": "Betreff",
+                "placeholder": "Grund der Nachricht",
+                "action": {
+                    "replace-freelancer-bodypicture": "Kommentar zur Aktualisierung des Ganzkörper-Fotos",
+                    "replace-freelancer-portraitpicture": "Kommentar zur Aktualisierung des Porträt-Fotos",
+                    "replace-freelancer-tradelicence": "Kommentar zur Aktualisierung des Gewerbescheins",
+                    "approve-freelancer-contract": "Kommentar zur Aktualisierung des Profils"
+                }
+            },
+            "content": {
+                "placeholder": "..."
+            }
+        },
+        "logs": {
+            "data-changed": {
+                "list": {
+                    "message": "Details",
+                    "performer_name": "Benutzer",
+                    "createdAt": "Datum"
+                },
+                "title": "Übersicht aller Änderungen"
+            }
+        }
+    }
+}
+

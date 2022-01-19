@@ -1,0 +1,120 @@
+@import "variables";
+@import "mixins";
+
+.search-form {
+  padding: 20px;
+}
+.panel {
+  margin-bottom: 20px;
+  height: 200px;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  cursor: pointer;
+  padding: 15px;
+  .panel-body {
+    vertical-align: inherit;
+  }
+  address{
+    margin-top: 15px;
+  }
+  .file{
+    margin-top: 10px;
+  }
+  .freelance_jobs_wrapper{
+    margin-right: 0;
+  }
+  i{
+    float: right;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .category-contractType{
+    margin-top: 15px;
+  }
+}
+.freelance_jobs_data address {
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 1.42857;
+}
+.freelance_jobs_wrapper{
+  color: rgba(0, 0, 0, 0.3);
+}
+.panel:hover {
+  box-shadow: #999999;
+}
+.post-code-cont {
+  .mat-form-field {
+    padding:0 5px 0 0;
+    &:last-child {
+      padding: 0 0 0 5px;
+    }
+  }
+}
+
+.panel-heading {
+  height: 40px;
+  font-variant: all-small-caps;
+  width: 100%;
+  display: inline-block;
+}
+
+.freelancer-offer-tile.matched {
+  color: #000;
+}
+
+.freelancer-offer-tile {
+  color: #999999;
+}
+
+.acion-title-holder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+  }
+  .action-btn-cont {
+    a {
+      // border-radius: 10px;
+      &[disabled] {
+        pointer-events: none;
+        border-color: $gray-light;
+      }
+    }
+  }
+}
+.job-view--type{
+  .btn-group{
+    button{
+      border-radius: 0px !important;
+      border: 1px solid $brand-primary;
+      background-color: transparent;
+      height: 25px;
+      width: 50px;
+      color: $brand-primary;
+      &.active{
+        background-color: $brand-primary;
+        color:$p4y-color-white;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------
+

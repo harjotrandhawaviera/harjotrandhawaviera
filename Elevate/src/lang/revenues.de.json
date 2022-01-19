@@ -1,0 +1,106 @@
+{
+    "revenues": {
+        "title": {
+            "list": "Umsatzmeldungen"
+        },
+        "filters": {
+            "project": "Projekt",
+            "job": "Job",
+            "freelancer": "Fachberater",
+            "state": "Status",
+            "dates": "Umsätze (von - bis)",
+            "client": "Kunde"
+        },
+        "table": {
+            "assignmentsCount": "Einsätze",
+            "assignment-date": "Einsatztag",
+            "total": "Gesamtumsatz",
+            "comment": "Kommentar",
+            "createdAt": "Gemeldet am",
+            "createdAtDate": "Gemeldet am {{createdAt}}",
+            "creatorName": "Gemeldet von",
+            "jobTitle": "Job",
+            "clientName": "Kunde",
+            "salesVolumes": "Umsatz pro Produkt",
+            "appointedAt": "Einsatz",
+            "actions": {
+                "label": "Aktion",
+                "details": "Details",
+                "more-details": "Mehr Informationen",
+                "less-details": "Weniger Informationen",
+                "edit": "Bearbeiten",
+                "delete": "Löschen",
+                "remove": "Löschen"
+            },
+            "remove": {
+                "title": "Umsatzmeldung löschen",
+                "message": "Möchtest du die Umsatzmeldung wirklich löschen?"
+            }
+        },
+        "tile": {
+            "sales-volume": "Umsätze pro Produkt",
+            "sales-volume-more": "Weitere Produkte gemeldet...",
+            "total": "Gesamtumsatz",
+            "comment": "Hinweis",
+            "assignments": "Einsätze",
+            "count-of-assignments": "{{count}} {count, select, 1 { Einsatz} other { Einsätze}}",
+            "created-at": "Gemeldet am  {{date}}",
+            "state": "Status"
+        },
+        "fields":{
+            "states": {
+                "rejected": "Abgelehnt",
+                "accepted": "Genehmigt",
+                "pending": "In Arbeit"
+            }
+        },
+        "buttons": {
+            "create": "Umsatzmeldung anlegen"
+        },
+        "summary": {
+            "total": "Gesamtumsatz: ",
+            "details": "Details"
+        },
+        "export-prefix": "Produkt: "
+    },
+    "revenue": {
+        "title": {
+            "details": "Umsatzmeldung",
+            "edit": "Umsatzmeldung bearbeiten",
+            "new": "Umsatzmeldung erstellen"
+        },
+        "label": {
+            "job-title": "Job",
+            "freelancer": "Fachberater",
+            "sales-volume": "Umsätze",
+            "comment": "Kommentar",
+            "created-at": "Gemeldet am",
+            "assignments": "Einsätze",
+            "state": "Status",
+            "total": "Gesamt",
+            "creator": "Gemeldet von",
+            "updator": "Geändert von"
+        },
+        "hint": {
+            "job-title": "Bitte wähle den Job aus:",
+            "freelancer": "Bitte wähle den Fachberater aus:",
+            "assignments": "Bitte wähle die Einsätze aus"
+        },
+        "buttons": {
+            "edit": "Bearbeiten",
+            "back": "Zurück zur Übersicht",
+            "cancel": "Abbrechen",
+            "create": "Umsatzmeldung anlegen",
+            "update": "Änderungen speichern",
+            "remove": "Umsatzmeldung löschen",
+            "add": "Umsatzmeldung erfassen",
+            "back-from-list": "Zurück"
+        },
+        "confirm": {
+            "remove": {
+                "title": "Umsatzmeldung löschen",
+                "message": "Möchtest du die Umsatzmeldung wirklich löschen?"
+            }
+        }
+    }
+}

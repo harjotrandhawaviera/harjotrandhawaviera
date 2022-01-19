@@ -1,0 +1,50 @@
+<fieldset [formGroup]="freelancerFormGroup">
+  <div class="row">
+    <div class="col-xs-12">
+      <legend translate="profile.section.contract_freelancer.business"></legend>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "form.field.business.vat_tax_id.label" | translate
+        }}</mat-label>
+        <input matInput formControlName="vat_tax_id" name="vat_tax_id" />
+        <mat-error *ngIf="displayMessage.vat_tax_id">{{
+          displayMessage.vat_tax_id
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "form.field.business.tax_number.label" | translate
+        }}</mat-label>
+        <input matInput formControlName="tax_number" name="tax_number" />
+        <mat-error *ngIf="displayMessage.tax_number">{{
+          displayMessage.tax_number
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12">
+      <div class="document-label">
+        <i *ngIf="!!pending" class="fas fa-hourglass-half"></i>
+        <label
+          for="documents"
+          required
+          translate="form.field.business.license.label"
+        ></label>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <app-profile-document
+         name="licence"
+        [readonly]="readonly"
+        formControlName="licence"
+        [buttonText]="'buttons.upload-document' | translate"
+      ></app-profile-document>
+      <mat-error *ngIf="!displayMessage.licence">{{
+        displayMessage.licence
+      }}</mat-error>
+    </div>
+  </div>
+</fieldset>

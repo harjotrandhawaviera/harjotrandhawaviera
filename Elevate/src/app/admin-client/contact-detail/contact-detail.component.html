@@ -1,0 +1,138 @@
+<fieldset *ngIf="contactForm" id="contactForm">
+  <div class="row">
+    <div class="col-xs padding-none">
+      <form name="register" [formGroup]="contactForm" role="form" (ngSubmit)="submitForm()">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.salutation.label' | translate }}</mat-label>
+              <mat-select formControlName="salutation">
+                <mat-option *ngFor="let option of salutationOptions" [value]="option">
+                  {{'administration.contact.fields.salutation.'+option | translate}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.parent.label' | translate }}</mat-label>
+              <mat-select formControlName="contact_id">
+                <mat-option>{{'ui.option.deselect' | translate}}</mat-option>
+                <mat-option *ngFor="let option of parentOption$ | async" [value]="option.id">
+                  {{option.fullname}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.firstname.label' | translate }}</mat-label>
+              <input matInput formControlName="firstname">
+              <mat-error *ngIf="validationMessages?.firstname?.required">{{validationMessages?.firstname?.required}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.lastname.label' | translate }}</mat-label>
+              <input matInput formControlName="lastname">
+              <mat-error *ngIf="validationMessages?.lastname?.required">{{validationMessages?.lastname?.required}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.position.label' | translate }}</mat-label>
+              <input matInput formControlName="position">
+              <mat-error *ngIf="validationMessages?.position?.required">{{validationMessages?.position?.required}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.department.label' | translate }}</mat-label>
+              <input matInput formControlName="department">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.email.label' | translate }}</mat-label>
+              <input matInput formControlName="email">
+              <mat-error *ngIf="cForm.email?.errors?.required">{{validationMessages?.email?.required}}</mat-error>
+              <mat-error *ngIf="cForm.email?.errors?.email">{{validationMessages?.email?.email}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.phone.label' | translate }}</mat-label>
+              <input matInput formControlName="phone">
+              <mat-error *ngIf="cForm.phone?.errors?.required">{{validationMessages?.phone?.required}}</mat-error>
+              <mat-error *ngIf="cForm.phone?.errors?.phone">{{validationMessages?.phone?.phone}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row" *ngIf="showAddress">
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.address.label' | translate }}</mat-label>
+              <input matInput formControlName="address">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.addressaddition.label' | translate }}</mat-label>
+              <input matInput formControlName="addressaddition">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.zip.label' | translate }}</mat-label>
+              <input matInput formControlName="zip">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.city.label' | translate }}</mat-label>
+              <input matInput formControlName="city">
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.country.label' | translate }}</mat-label>
+              <input matInput formControlName="country">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-12">
+            <mat-form-field class="full-width">
+              <mat-label>{{ 'administration.contact.fields.data.label' | translate }}</mat-label>
+              <textarea matInput formControlName="data"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-radio-group aria-labelledby="Role" class="row" color="primary" formControlName="role">
+              <mat-radio-button class="col-xs-12 col-md-4" value="none">
+                {{'administration.client.fields.no-user.label' | translate}}
+              </mat-radio-button>
+              <mat-radio-button class="col-xs-12 col-md-4" value="client">
+                {{'administration.client.fields.client-user.label' | translate}}
+              </mat-radio-button>
+              <mat-radio-button class="col-xs-12 col-md-4" value="field">
+                {{'administration.client.fields.field-user.label' | translate}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="action-button" id="contactFormAction">
+          <div class="row">
+            <div class="col-xs">
+              <button class="section-button" type="submit" mat-flat-button color="accent">{{'administration.client.buttons.save-contact' | translate}}</button>
+              <button class="section-button" type="button" mat-stroked-button color="primary"
+                (click)="cancelContact()">{{'administration.client.buttons.cancel' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</fieldset>

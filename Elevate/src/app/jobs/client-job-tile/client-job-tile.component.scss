@@ -1,0 +1,58 @@
+@import "variables";
+@import "mixins";
+
+.panel.client-job {
+  padding: 15px;
+  border: 1px solid $p4y-color-gray-light;
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  .panel-heading {
+    display: flex;
+    flex-direction: column;
+    font-variant: all-small-caps;
+    color: $p4y-color-gray-medium;
+    .action-title-cont {
+      display: flex;
+      justify-content: space-between;
+      a {
+        cursor: pointer;
+        font-size: 10px;
+      }
+    }
+    .small-text-cont {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .panel-body {
+    padding: 15px 0 0;
+    min-height: 100px;
+    address {
+     margin: 2px 0 15px;
+     line-height: 18px;
+    }
+    .trim-text {
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  @include flipper-container;
+
+  .back {
+    div {
+      margin-bottom: 3px;
+    }
+  }
+
+  .text-info {
+    position: absolute;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+  }
+}

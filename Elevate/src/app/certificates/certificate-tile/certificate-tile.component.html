@@ -1,0 +1,81 @@
+<div
+  *ngIf="certificate"
+  class="panel panel-default certificate {{ certificate.state }}"
+  (click)="navigateToDetail()"
+>
+  <img appImageAvatar [imageId]="certificate.picture_id" />
+
+  <div
+    *ngIf="certificate.job_count_by_tenders"
+    class="btn info-label count-jobs"
+    [translate]="'certificates.all.jobs'"
+    [translateParams]="certificate"
+  ></div>
+
+  <div class="panel-heading">
+    <span class="category pull-left">
+      {{ "certificates.categories." + certificate.category | translate }}</span
+    >
+    <span
+      class="date text-success pull-right"
+      *ngIf="certificate.state === 'passed'"
+    >
+      <i class="glyphicon glyphicon-certificate"></i>
+      <span
+        [translate]="'certificates.my.passed'"
+        [translateParams]="{passed_at: certificate.passed_at | date}"
+      ></span>
+    </span>
+    <span
+      class="date text-danger pull-right"
+      *ngIf="certificate.state === 'invalid'"
+    >
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <span
+        [translate]="'certificates.my.invalid'"
+        [translateParams]="{invalid_at: certificate.invalid_at | date}"
+      ></span>
+    </span>
+  </div>
+  <div class="panel-body">
+    <h3 class="line-ellipsis">{{ certificate.name }}</h3>
+    <div class="teaser">{{ certificate.teaser }}</div>
+  </div>
+  <div class="panel-footer">
+    <div class="row middle-xs between-xs">
+      <a
+        type="submit"
+        mat-flat-button
+        color="accent"
+        class="pull-left"
+        (click)="$event.stopPropagation(); navigateToDetail()"
+      >
+        {{
+          "certificates.buttons." +
+            (certificate.state === "passed" ? "details" : "try") | translate
+        }}
+      </a>
+      <!-- <a
+      class="btn btn-primary btn-sm pull-left"
+      data-translate-once=""
+    ></a> -->
+      <span class="pull-right icon" *ngIf="!certificate.passed">
+        <i class="fas fa-fire-alt"></i>&nbsp;
+        <span translate="certificates.all.recommended"></span>
+      </span>
+      <span
+        class="pull-right valid-until"
+        *ngIf="
+          certificate.passed &&
+          certificate.state === 'passed' &&
+          certificate.invalid_at
+        "
+      >
+        <span
+          [translate]="'certificates.my.valid-until'"
+          [translateParams]="{invalid_at: certificate.invalid_at | date}"
+        ></span>
+      </span>
+    </div>
+  </div>
+</div>

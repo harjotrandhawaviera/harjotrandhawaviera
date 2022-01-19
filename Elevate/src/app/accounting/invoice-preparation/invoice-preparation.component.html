@@ -1,0 +1,53 @@
+<app-search-container>
+  <app-search-panel [actions]="[
+      {
+        text: ('accounting.bills.buttons.create' | translate),
+        key: 'new_invoice',
+        link: '/accounting/create',
+        permission: true,
+        query: linkParams
+      }
+    ]">
+    <form class="invoice-prepare-form" [formGroup]="invoicePrepareForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.filters.client" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="client" #client [options]="accountCustomer" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.filters.project" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="project" #project [options]="accountProject" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.filters.job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="jobs" #job [options]="accountJobs"  [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <label>{{"accounting.bills.filters.dates" | translate}}</label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="start" formControlName="start" name="start" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="end" formControlName="end" name="end" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="accounting.bills.preparation.title.list"></h1>
+    <ng-container *ngIf="!hasFilter">
+      <div class="alert alert-info">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </ng-container>
+  </app-search-list>
+</app-search-container>

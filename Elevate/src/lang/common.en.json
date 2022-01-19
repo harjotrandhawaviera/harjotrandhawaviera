@@ -1,0 +1,88 @@
+{
+    "common": {
+        "labels": {
+            "no": "No",
+            "yes": "Yes",
+            "unnamed": "Unknown",
+            "view": "View",
+            "since": "since",
+            "from": "from",
+            "user": {
+                "agent": "{{name}} (Agent)",
+                "admin": "Admin",
+                "freelancer": "freelancer",
+                "system": "System"
+            }
+        },
+        "buttons": {
+            "search": "Search",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "yes-delete": "Delete",
+            "yes-remove": "Remove",
+            "yes-disable": "Lock",
+            "yes-enable": "Unlock",
+            "yes-deactivate": "Deactivate",
+            "yes-reactivate": "Activate",
+            "yes-close": "Close",
+            "yes-reject": "Reject",
+            "yes-save": "Save",
+            "yes-submit": "Submit",
+            "yes-edit": "Edit",
+            "yes-accept": "Accept",
+            "yes-confirm": "Accept",
+            "back": "Back",
+            "yes-cancel-booking": "Cancel",
+            "yes-submit-offer": "Confirm",
+            "yes-create-record": "Book",
+            "yes-modifytime": "Change",
+            "yes-update-payment-target": "Save",
+            "yes-approve": "Confirm",
+            "yes-answer": "Send Reply",
+            "yes-inquery": "Send",
+            "yes-export": "Export",
+            "yes-update-comment": "Save",
+            "yes-update-correction": "Save",
+            "yes-update-freelancer-costs-net": "Save",
+            "yes-set-state": "Yes, done",
+            "yes-send-mail": "Send",
+            "yes-preamble-decline": "Decline",
+            "yes-update-hours": "Modify",
+            "yes-generate": "Yes, create",
+            "yes-tender-assignments": "Write out",
+            "yes-reset-state": "Reset"
+        },
+        "messages": {
+            "required": "Mandatory field."
+        },
+        "validation": {
+            "time": "Format of the time is not correct.",
+            "time-range": "The format of the time period is not correct.",
+            "number": "The format of the numeric value is not correct.",
+            "positive-number": "The format of the numeric value is not correct.",
+            "min": "The input should not be less than the value {{min}}.",
+            "max": "The input should not exceed the value {{max}}.",
+            "zip-range": "The format of the postal code is not correct."
+        },
+        "requests": {
+            "service-unavailable.error": "Service not available.",
+            "access-denied.error": "Access denied"
+        },
+        "users": {
+            "system": "System",
+            "name-unavailable": "Unknown"
+        },
+        "salutation": {
+            "F": "Ms. ",
+            "M": "Mr. "
+        },
+        "approval-state": {
+            "accepted": "Accepted",
+            "rejected": "Rejected",
+            "pending": "In-Progress",
+            "by": "by {{user}}",
+            "comment": "({{comment}})",
+            "comment-placeholder": "Comment"
+        }
+    }
+}

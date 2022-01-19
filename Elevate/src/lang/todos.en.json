@@ -1,0 +1,81 @@
+{
+  "todos": {
+    "title": {
+      "list": "Tasks",
+      "new": "New Task",
+      "details": "Task Details",
+      "edit": "Edit Task"
+    },
+    "table": {
+      "actions": {
+        "label": "Action",
+        "edit": "Edit",
+        "details": "Details",
+        "remove": "Delete"
+      },
+      "filters": {
+        "agent": "Responsible Person",
+        "status": "Status",
+        "creator": "Created By"
+      },
+      "remove": {
+        "title": "Delete Task",
+        "message": "Do you really want to delete the task?"
+      },
+      "search-placeholder": "Search for tasks (content)",
+      "buttons": {
+        "create": "New Task"
+      }
+    },
+    "buttons": {
+      "done": "Done",
+      "new-todo": "To-Do",
+      "create": "Save new Task",
+      "edit": "Edit Task",
+      "update": "Save",
+      "cancel": "Cancel",
+      "back": "Back to the Task List",
+      "details": "Details"
+    },
+    "details": {
+      "subject": "Task: {{subject}}",
+      "target-at": "To be Done By {{targetAt}}",
+      "created-by": "Created By {{creatorName}}",
+      "created-info": "Created By {{creatorName}} am {{createdAt}}",
+      "fields": {
+        "owner": "Responsible Person",
+        "target-at": "To be Completed By",
+        "subject": "Description of the Task",
+        "important": "Important",
+        "state": {
+          "label": "Status",
+          "open": "Open",
+          "done": "Done",
+          "overdued": "Deadline has expired"
+        }
+      }
+    },
+    "set-state": {
+      "title": "Done?",
+      "message": "Do you want to save the task as done?",
+      "buttons": {
+        "confirm": "Yes, Done",
+        "cancel": "No"
+      }
+    },
+    "list": {
+      "header": "My Open Tasks",
+      "table": {
+        "targetAt": "To Do until",
+        "subject": "Task Description",
+        "done": "Done"
+      },
+      "buttons": {
+        "overview": "Show All",
+        "done": "Done",
+        "edit": "Edit",
+        "create": "New Task"
+      }
+    }
+  }
+}

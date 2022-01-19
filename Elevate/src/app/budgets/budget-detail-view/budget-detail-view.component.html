@@ -1,0 +1,74 @@
+<div class="status {{ budget.status }}" *ngIf="budget">
+  <div class="row">
+    <div class="col-md-6">
+      <label translate="administration.budgets.label.name"></label>
+      <p>{{ budget.name }}</p>
+    </div>
+    <div class="col-md-6">
+      <label translate="administration.budgets.label.client"></label>
+      <p>{{ budget.client.name }}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="budget.order?.name">
+    <div class="col-md-6">
+      <label translate="administration.budgets.label.order"></label>
+      <p>
+        <a
+          *ngIf="budget.order"
+          [routerLink]="['/administration/orders', budget.order.id]"
+        >
+          {{ budget.order.name }}</a
+        >
+      </p>
+
+      <label translate="administration.budgets.label.remarks"></label>
+      <p>{{ budget.remarks || "--" }}</p>
+
+      <div class="row">
+        <div class="col-md-6 padding-none">
+          <label translate="administration.budgets.label.value"></label>
+          <p>{{ budget.value | currency }}</p>
+
+          <label translate="administration.budgets.label.available"></label>
+          <p>{{ budget.available | currency }}</p>
+        </div>
+        <div class="col-md-6 padding-none">
+          <label translate="administration.budgets.label.planned"></label>
+          <p>{{ budget.planned | currency }}</p>
+
+          <label translate="administration.budgets.label.consumed"></label>
+          <p>{{ budget.consumed | currency }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label translate="administration.budgets.label.assignments"></label>
+      <p>
+        <span class="fa fa-calendar"> </span>&nbsp;
+        <span
+          *ngIf="budget.count_assignments === 1"
+          [translate]="'administration.budgets.label.count-assignments-single'"
+          [translateParams]="{ count_assignments: budget.count_assignments }"
+        ></span>
+        <span
+          *ngIf="budget.count_assignments !== 1"
+          [translate]="
+            'administration.budgets.label.count-assignments-multiple'
+          "
+          [translateParams]="{ count_assignments: budget.count_assignments }"
+        ></span>
+      </p>
+
+      <div *ngIf="budget.contacts">
+        <label translate="administration.budgets.label.contacts"></label>
+        <ul style="list-style: none;margin: 0; padding: 4px 0;">
+          <li *ngFor="let contact of budget.contacts">
+            <span>{{ contact.fullname }}</span>&nbsp;
+            <small>{{ contact.filterdescription }}</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

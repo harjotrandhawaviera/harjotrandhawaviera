@@ -1,0 +1,118 @@
+<!-- documents -->
+<form role="form" name="assignmentDocument.form">
+  <div
+    class="assignment-document row {{
+      view || editing === data.trackingId ? 'set' : 'readonly'
+    }}"
+    data-ng-class=""
+  >
+    <div class="col-md-11">
+      <div
+        data-profile-document="data"
+        app-document-upload
+        [buttonText]="
+          (type === 'picture-documentation'
+            ? 'buttons.upload-picture'
+            : 'buttons.upload-document'
+          ) | translate
+        "
+        [type]="type === 'picture-documentation' ? 'image' : 'document'"
+        [documents]="data ? [data] : []"
+        data-document-type="assignmentDocument.type"
+        [readonly]="view || editing === data.trackingId ? false : true"
+        data-required="true"
+        data-on-behalf="onBehalf"
+        (documentUpdated)="documentUpdated($event)"
+      ></div>
+    </div>
+    <div
+      class="col-md-1 document-actions pull-right"
+      *ngIf="editing !== data.trackingId && data.enabled"
+    >
+      <button
+        mat-icon-button
+        color="accent"
+        [matMenuTriggerFor]="subMenu"
+        (click)="$event.stopPropagation()"
+      >
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <mat-menu #subMenu="matMenu" xPosition="before">
+        <button
+          mat-menu-item
+          (click)="toggleOpen()"
+          *ngIf="view !== 'readonly' && !data.readonly"
+        >
+          {{ "invoices.documents.actions.edit" | translate }}
+        </button>
+        <button
+          mat-menu-item
+          (click)="remove()"
+          *ngIf="view !== 'readonly' && !data.readonly"
+        >
+          {{ "invoices.documents.actions.remove" | translate }}
+        </button>
+      </mat-menu>
+      <!-- <div
+        data-ng-class="{opened: assignmentDocument.actionOpened}"
+        data-uib-dropdown
+        data-is-open="assignmentDocument.actionOpened"
+      >
+        <a class="btn btn-default btn-outline" data-uib-dropdown-toggle>...</a>
+        <div data-uib-dropdown-menu role="menu" class="dt-actions">
+          <div
+            class="heading"
+            data-translate-once="invoices.documents.actions.label"
+          ></div>
+          <a
+            data-translate-once="invoices.documents.actions.edit"
+            *ngIf="assignmentDocument.view !== 'readonly' && !assignmentDocument.data.readonly"
+            data-ng-click="assignmentDocument.toggleOpen()"
+          >
+          </a>
+          <br />
+          <a
+            data-translate-once="invoices.documents.actions.remove"
+            data-ng-if="assignmentDocument.view !== 'readonly' && !assignmentDocument.data.readonly"
+            data-confirm-action="remove"
+            data-context="invoices.documents"
+            data-on-confirm="assignmentDocument.remove()"
+          >
+          </a>
+        </div>
+      </div> -->
+    </div>
+    <div
+      class="col-md-12"
+      *ngIf="
+        (data.approval?.state === 'rejected' ||
+          data.approval?.state === 'accepted') &&
+        !(editing === data.trackingId)
+      "
+      data-ng-hide="editing === data.trackingId"
+      app-approval-state
+      [data]="data.approval"
+    ></div>
+  </div>
+
+  <div
+    class="col-md-12"
+    *ngIf="editing === data.trackingId && data.id"
+    style="margin: 10px 0"
+  >
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      translate="invoices.preparation.buttons.cancel"
+      (click)="toggleOpen()"
+    ></button>
+
+    <!-- <button
+      type="button"
+      class="btn btn-default"
+      data-ng-click="assignmentDocument.toggleOpen()"
+      data-translate-once="invoices.preparation.buttons.cancel"
+    ></button> -->
+  </div>
+</form>

@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/master/skills']"
+        >{{ "master.skills.buttons.back" | translate }}
+      </a>
+    </div>
+    <div *ngIf="paramId" class="col-xs-12 col-md start-xs">
+      <h1 translate="master.skills.title.edit"></h1>
+    </div>
+    <div *ngIf="!paramId" class="col-xs-12 col-md start-xs">
+      <h1 translate="master.skills.title.new"></h1>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <form [formGroup]="skill">
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <label
+                  translate="master.skills.fields.category.label"
+                  required
+                ></label>
+                <div class="drop-plus">
+                  <mat-form-field class="full-width">
+                    <app-static-auto-complete
+                      [clearSelection]="false"
+                      formControlName="category"
+                      [options]="categoryLK"
+                    >
+                    </app-static-auto-complete>
+                  </mat-form-field>
+                  <mat-icon class="add-icon" (click)="openDialog()"
+                    >add_circle</mat-icon
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <label
+                  translate="master.skills.fields.name.label"
+                  required
+                ></label>
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="name" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12">
+                <!-- <app-static-auto-complete
+                    [clearSelection]="false"
+                    formControlName="region"
+                    [options]="regionsLK"
+                  >
+                  </app-static-auto-complete> -->
+
+                <app-multi-select-auto-complete
+                  [required]="true"
+                  formControlName="region"
+                  [filteredOptions]="regionsLK"
+                  [static]="true"
+                  label="{{ 'master.skills.fields.region.label' | translate }}"
+                >
+                </app-multi-select-auto-complete>
+              </div>
+            </div>
+
+            <div class="col-xs-12 padding-none">
+              <div class="form-group col-sm-6 col-xs-12 with-right-label">
+                <label
+                  translate="master.skills.fields.proof.label"
+                  required
+                ></label>
+                <mat-radio-group
+                  formControlName="requiredProof"
+                  aria-label="Required Proof (Certificate)"
+                >
+                  <mat-radio-button [value]="1">Yes</mat-radio-button>
+                  <mat-radio-button [value]="0">No</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="col-xs-12 col-md start-xs">
+          <a
+            mat-flat-button
+            color="accent"
+            (click)="add()"
+            [disabled]="!skill.valid"
+            >{{
+              (paramId
+                ? "master.skills.buttons.update"
+                : "master.skills.buttons.create"
+              ) | translate
+            }}
+          </a>
+          <a
+            mat-stroked-button
+            color="primary"
+            [routerLink]="['/master/skills']"
+            >{{ "master.skills.buttons.cancel" | translate }}
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h3 translate="profile.contract.main.headline"></h3>
+  </div>
+</div>
+<div class="row">
+  <div
+    class="col-xs-12"
+    [innerHtml]="'profile.contract.main.description' | translate"
+  ></div>
+</div>
+<div>
+<fieldset>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3
+        translate="profile.contract.method-of-engagement.headline"
+      ></h3>
+    </div>
+  </div>
+    <ng-container *ngFor="let method of methodOfEngagement">
+      <mat-checkbox class="col-md-4 col-sm-6 col-xs-12"
+        value="method">
+      {{method}}  
+      </mat-checkbox>
+    </ng-container>
+
+</fieldset>
+<app-profile-contract-tax-card [isShowGeneralContract]="true" ></app-profile-contract-tax-card>
+</div>

@@ -1,0 +1,18 @@
+
+td.col-stateName:before {
+  content: "";
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  margin-right: 8px;
+  background: #157371;
+  border-radius: 50%;
+}
+
+td.col-stateName.col-active:before {
+  background: #21b4b0;
+}
+
+td.col-stateName.col-draft:before {
+  background: #bcede8;
+}

@@ -1,0 +1,196 @@
+<div class="row" *ngIf="updateSet === null">
+  <div class="col-md-6" *ngIf="withDates">
+    <label translate="profile.reference.startDate"></label>
+    <p>{{ referenceData.startedAt }}</p>
+  </div>
+  <div class="col-md-6" *ngIf="withDates">
+    <label translate="profile.reference.endDate"></label>
+    <p>{{ referenceData.finishedAt }}</p>
+  </div>
+  <div class="col-md-6">
+    <label translate="profile.reference.title"></label>
+    <p>{{ referenceData.title }}</p>
+  </div>
+  <div class="col-md-6">
+    <label translate="profile.reference.company"></label>
+    <p>{{ referenceData.company }}</p>
+  </div>
+  <div class="col-md-12">
+    <label translate="profile.reference.description"></label>
+    <p [innerHtml]="referenceData.description | newlines"></p>
+  </div>
+  <div
+    class="col-md-12"
+    *ngIf="referenceData.document && referenceData.document.id"
+  >
+    <label translate="profile.reference.document"></label>
+    <!-- <p
+      data-profile-document=""
+      data-type="document"
+      data-document-type="reference"
+    ></p> -->
+    <app-profile-document
+      [readonly]="true"
+      [documents]="referenceData.document ? [referenceData.document] : []"
+      [buttonText]="'buttons.upload-document' | translate"
+    ></app-profile-document>
+  </div>
+  <div class="col-md-12" *ngIf="isEditAllowed">
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      translate="buttons.edit"
+      (click)="onEdit()"
+    ></button>
+  </div>
+</div>
+<form
+  [formGroup]="referenceForm"
+  *ngIf="referenceForm && updateSet"
+  (ngSubmit)="onSave()"
+>
+  <div class="row bg-info" *ngIf="referenceForm" style="margin-bottom: 20px">
+    <div class="col-xs-12 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "profile.fields.reference.title.label" | translate
+        }}</mat-label>
+        <input matInput formControlName="title" name="title" />
+        <mat-error *ngIf="displayMessage.title">{{
+          displayMessage.title
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "profile.fields.reference.company.label" | translate
+        }}</mat-label>
+        <input matInput formControlName="company" name="company" />
+        <mat-error *ngIf="displayMessage.company">{{
+          displayMessage.company
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "profile.fields.reference.description.label" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          name="description"
+          rows="3"
+        ></textarea>
+        <mat-error *ngIf="displayMessage.description">{{
+          displayMessage.description
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12">
+      <label
+        for="document"
+        translate="profile.fields.reference.document.label"
+      ></label>
+    </div>
+    <div class="col-xs-12 padding-none" *ngIf="updateSet.document && updateSet.document.id">
+      <app-profile-document
+        [readonly]="true"
+        formControlName="document"
+        [buttonText]="'buttons.upload-document' | translate"
+      ></app-profile-document>
+    </div>
+    <div class="col-md-12">
+      <button
+        type="submit"
+        mat-flat-button
+        color="accent"
+        translate="buttons.submit"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="buttons.cancel"
+        (click)="onCancel()"
+      ></button>
+    </div>
+  </div>
+</form>
+
+<!-- <div class="row bg-info" *ngIf="updateSet !== null && updateSet.id !== null">
+  <form role="form" name="reference.form" data-ng-fab-form>
+    <div class="form-group col-md-6" *ngIf="withDates">
+      <label for="startDate" translate="profile.reference.startDate"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="startDate"
+        data-ng-model="updateSet.started_at"
+        data-dateformat
+        translate-placeholder="profile.fields.reference.startDate.placeholder"
+      />
+    </div>
+    <div class="form-group col-md-6" *ngIf="withDates">
+      <label for="endDate" translate="profile.reference.endDate"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="endDate"
+        data-ng-model="updateSet.finished_at"
+        data-dateformat
+        translate-placeholder="profile.fields.reference.endDate.placeholder"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <label
+        for="title"
+        translate="profile.reference.title"
+        data-required
+      ></label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        required
+        data-ng-model="updateSet.title"
+        translate-placeholder="profile.fields.reference.title.placeholder"
+      />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="company" translate="profile.reference.company"></label>
+      <input
+        type="text"
+        class="form-control"
+        id="company"
+        data-ng-model="updateSet.company"
+        translate-placeholder="profile.fields.reference.company.placeholder"
+      />
+    </div>
+    <div class="form-group col-md-12">
+      <label
+        for="description"
+        translate="profile.reference.description"
+        data-required
+      ></label>
+      <textarea
+        class="form-control"
+        id="description"
+        required
+        data-ng-model="updateSet.description"
+        translate-placeholder="profile.fields.reference.description.placeholder"
+      ></textarea>
+    </div>
+
+    <div class="col-md-12" *ngIf="referenceData.document.id">
+      <label translate="profile.reference.document"></label>
+      <p
+        data-profile-document="referenceData.document"
+        data-type="document"
+        data-document-type="reference"
+      ></p>
+    </div>
+  </form>
+</div> -->

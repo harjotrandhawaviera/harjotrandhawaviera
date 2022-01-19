@@ -1,0 +1,197 @@
+<app-search-container>
+  <app-search-panel>
+    <form class="revenue-form" [formGroup]="revenueForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.filters.client" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="client" #client [options]="revenueCustomer"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.filters.project" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="project" #project [options]="revenueProject"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.filters.job" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="jobs" #job [options]="revenueJobs" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <label>{{"accounting.bills.filters.dates" | translate}}</label>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="start" formControlName="start" name="start" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="end" formControlName="end" name="end" autocomplete="off">
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="full-width">
+          <mat-label>{{"accounting.bills.table.freelancerName" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="freelancer" #freelancer [options]="revenueFreelancers"
+                                    [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="revenues.title.list"></h1>
+    <ng-container *ngIf="!hasFilter">
+      <div class="alert alert-info">
+        {{ "ui.list-table.filter-required" | translate }}
+      </div>
+    </ng-container>
+    <ng-container *ngIf="hasFilter && noRecords">
+      <div class="alert alert-info">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </ng-container>
+    <div class="panel1" *ngIf="hasFilter">
+      <div class="panel-body">
+        <div class="row ">
+          <div class="col-xs-10">
+            <h3> {{ 'revenues.summary.total' | translate }} {{ totalRevenue | currency }} ( {{ averageRevenue | currency }} ) </h3>
+          </div>
+          <div class=" details">
+            <a (click)="showMyContainer=!showMyContainer">{{ 'revenues.summary.details' | translate }}</a>
+          </div>
+        </div>
+        <div *ngIf="showMyContainer">
+          <div class="col-md-12 slot-container">
+            <div class="col-xs-6 col-md-2" *ngFor="let slot of slots">
+                <label class="slotname">{{slot.name}}</label>
+                <p class="slotvalue">{{slot.value}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 revenue-tile" *ngFor="let data of revenuesList; let i= index">
+        <div class="panel" (click)="navigateToDetail(data.value)">
+          <div class="panel-body">
+            <div class="flipper">
+              <div class="front" [hidden]="(isChangedBlock === i)">
+                <div class="row panel-heading">
+                  <div>
+                    {{data.created_at | date: "mediumDate"}}
+                  </div>
+                  <div class="col-md-offset-10">
+                    <div class="action" (click)="$event.stopPropagation()">
+                      <button
+                        mat-icon-button
+                        color="accent"
+                        [matMenuTriggerFor]="subMenu"
+                      >
+                        <i class="fas fa-ellipsis-h"></i>
+                      </button>
+                      <mat-menu #subMenu="matMenu" xPosition="before">
+                        <button mat-menu-item (click)="navigateToDetail(data.value)">
+                          {{ "revenues.summary.details"  | translate }}
+                        </button>
+                        <button mat-menu-item (click)="confirmModal(data?.value)">
+                          clear
+                        </button>
+                      </mat-menu>
+                    </div>
+                  </div>
+                </div>
+                <div class="heading">
+                  <b>{{ data.title }}</b>
+                </div>
+                <div class="name">
+                  {{ data.name }}
+                </div>
+                <div>
+                  <h5>{{ 'revenues.tile.total' | translate }}</h5>
+                  <h5 class="span-style">{{ data.total | currency }}</h5>
+                </div>
+                <div>
+                  {{ 'revenues.tile.comment' | translate }}
+                </div>
+              </div>
+              <div class="back" [hidden]="!(isChangedBlock == i)">
+                <div class="row panel-heading">
+                  <div>
+                    {{data.created_at | date: "mediumDate"}}
+                  </div>
+                  <div class="col-md-offset-10">
+                    <div class="action" (click)="$event.stopPropagation()">
+                      <button
+                        mat-icon-button
+                        color="accent"
+                        [matMenuTriggerFor]="subMenu"
+                      >
+                        <i class="fas fa-ellipsis-h"></i>
+                      </button>
+                      <mat-menu #subMenu="matMenu" xPosition="before">
+                        <button mat-menu-item>
+                          {{ "revenues.summary.details"  | translate }}
+                        </button>
+                        <button mat-menu-item>
+                          clear
+                        </button>
+                      </mat-menu>
+                    </div>
+                  </div>
+                </div>
+                <div class="sales-volume">
+                  <div class="headline">
+                    {{'revenues.tile.sales-volume' | translate}}
+                  </div>
+                  <div *ngFor="let sales of data?.sales" class="sales_table">
+                    <div class="row">
+                      <div class="col-md-7">
+                        {{sales?.saleslot}}
+                      </div>
+                      <div class="col-md-5">
+                        {{sales?.value | currency}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="icon col-lg-offset-12">
+            <i class="fas fa-info-circle" (mouseover)="isChangedBlock = i" (mouseout)="isChangedBlock = -1"></i>
+          </div>
+          <div class="panel-footer col-md-offset-6  ">
+            {{ 'revenues.table.createdAtDate' | translate: { createdAt: data.created_at | date: 'mediumDate' } }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="hasFilter">
+      <app-paginator
+        [disabled]="loading$ | async"
+        hidePageSize="true"
+        showFirstLastButtons="true"
+        [length]="paginator?.total"
+        [pageIndex]="paginator?.current_page - 1"
+        [pageSize]="paginator?.per_page"
+        (page)="pageChange($event)"
+      ></app-paginator>
+      <div class="row end-md center-xs">
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="download()"
+        >
+          {{'ui.list-table.default.download' | translate}}
+        </button>
+      </div>
+    </div>
+  </app-search-list>
+</app-search-container>

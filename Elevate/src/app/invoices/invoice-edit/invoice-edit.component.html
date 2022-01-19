@@ -1,0 +1,236 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/invoices/list']">{{
+        "invoices.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12" *ngIf="mode === 'create'">
+      <h1 translate="invoices.title.new"></h1>
+    </div>
+    <div class="col-xs-12" *ngIf="mode === 'edit'">
+      <h1 translate="invoices.title.edit"></h1>
+    </div>
+  </div>
+  <form
+    *ngIf="form"
+    role="form"
+    name="invoice.form"
+    [formGroup]="form"
+    (ngSubmit)="saveInvoice()"
+  >
+    <div class="row" *ngIf="mode === 'create' && isOnBehalf">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "invoices.fields.freelancer.label" | translate
+          }}</mat-label>
+          <app-static-auto-complete
+            formControlName="freelancerId"
+            [options]="freelancerList"
+            [error]="displayMessage.freelancerId"
+          >
+          </app-static-auto-complete>
+          <mat-error *ngIf="displayMessage.freelancerId">{{
+            displayMessage.freelancerId
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" *ngIf="mode === 'create' && freelancerId">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <mat-form-field class="full-width">
+          <mat-label required>{{
+            "invoices.fields.job.label" | translate
+          }}</mat-label>
+          <app-static-auto-complete
+            formControlName="jobId"
+            [options]="jobList"
+            [error]="displayMessage.jobId"
+          >
+          </app-static-auto-complete>
+          <mat-error *ngIf="displayMessage.jobId">{{
+            displayMessage.jobId
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" *ngIf="invoice && invoice.id">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <mat-label translate="invoices.fields.job.label"></mat-label>
+        <div style="margin-bottom: 15px;">
+          <strong>{{
+            isOnBehalf ? invoice.jobTitle : invoice.jobTitleShort
+          }}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="jobId || (invoice && invoice.id)">
+      <div class="col-xs-12 padding-none">
+        <div class="row">
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label required
+                >{{ "invoices.fields.number.label" | translate }}
+              </mat-label>
+              <input matInput formControlName="number" />
+              <mat-error *ngIf="displayMessage.number">{{
+                displayMessage.number
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <mat-form-field class="ful-width">
+              <mat-label required>{{
+                "invoices.fields.issued.label" | translate
+              }}</mat-label>
+              <input
+                matInput
+                [matDatepicker]="issued_atPicker"
+                formControlName="issued_at"
+                name="issued_at"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="issued_atPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #issued_atPicker></mat-datepicker>
+              <mat-error *ngIf="displayMessage.issued_at">{{
+                displayMessage.issued_at
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <mat-form-field class="full-width">
+              <mat-label required
+                >{{ "invoices.fields.total.label" | translate }}
+              </mat-label>
+              <input matInput formControlName="total" />
+              <mat-error *ngIf="displayMessage.total">{{
+                displayMessage.total
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-4 col-sm-6 col-xs-12">
+            <mat-label
+              translate="invoices.fields.taxes.label"
+              data-required
+            ></mat-label>
+            <mat-radio-group
+              aria-label="Select an option"
+              class="row"
+              color="primary"
+              formControlName="includes_taxes"
+            >
+              <mat-radio-button
+                value="included"
+                class="col-xs-12 col-sm-6 col-md-3"
+                style="margin-top: 5px"
+              >
+                {{
+                  "invoices.fields.taxes.included" | translate
+                }}</mat-radio-button
+              >
+              <mat-radio-button
+                value="not-included"
+                class="col-xs-12 col-sm-6 col-md-3"
+                style="margin-top: 5px"
+                >{{
+                  "invoices.fields.taxes.not-included" | translate
+                }}</mat-radio-button
+              >
+            </mat-radio-group>
+            <a
+              (click)="openHint('invoice.taxes.hint')"
+              style="color: #999999; cursor: pointer"
+            >
+              <i class="fas fa-info-circle"></i>
+              {{ "invoices.fields.taxes.hint" | translate }}
+            </a>
+          </div>
+          <div class="form-group col-md-4 col-sm-6 col-xs-12 discount">
+            <mat-checkbox
+              color="primary"
+              #with_discount
+              formControlName="with_discount"
+            >
+              <mat-label
+                class="input-label"
+                translate="invoices.fields.payment-discount.label"
+              ></mat-label>
+            </mat-checkbox>
+            <p
+              class="hint"
+              style="color: #999999"
+              translate="invoices.fields.payment-discount.hint"
+            ></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-sm-12 col-xs-12">
+            <mat-form-field class="full-width comment">
+              <mat-label>{{
+                "invoices.fields.comment.label" | translate
+              }}</mat-label>
+              <textarea
+                matInput
+                formControlName="comment"
+                name="comment"
+                rows="3"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-label
+              translate="invoices.fields.document.label"
+              required
+            ></mat-label>
+            <app-document-upload
+              formControlName="document"
+              [buttonText]="'buttons.upload-document' | translate"
+            ></app-document-upload>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            app-assignment-list
+            class="col-xs-12 padding-none"
+            *ngIf="assignments"
+            [assignments]="assignments"
+            [selection]="selection"
+            [assignmentColumns]="assignmentColumns"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs action-button">
+        <button
+          type="submit"
+          [disabled]="
+            !(
+              selection &&
+              selection.selected &&
+              selection.selected.length &&
+              !form.invalid
+            )
+          "
+          mat-flat-button
+          color="accent"
+          translate="invoices.buttons.submit"
+        ></button>
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          translate="invoices.buttons.cancel"
+          (click)="cancelEdit()"
+        ></button>
+      </div>
+    </div>
+  </form>
+</div>

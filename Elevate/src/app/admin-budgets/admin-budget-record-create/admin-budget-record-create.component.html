@@ -1,0 +1,81 @@
+<div class="container-fluid" *ngIf="budget">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/administration/budgets']">{{
+        "administration.budget-record.buttons.back" | translate
+      }}</a>
+    </div>
+    <div class="col-xs-12">
+      <h1 translate="administration.budget-record.title.edit"></h1>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      app-budget-detail-view
+      [budget]="budget"
+    ></div>
+  </div>
+  <p
+    class="budget-record-description"
+    data-translate-once="administration.budgets.description.record-value"
+  ></p>
+  <form [formGroup]="form">
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-12 col-md-3">
+          <mat-form-field class="full-width">
+            <mat-label required
+              >{{ "administration.budgets.label.record-value" | translate }}
+            </mat-label>
+            <input matInput formControlName="recordValue" />
+            <mat-error *ngIf="displayMessage.recordValue">{{
+              displayMessage.recordValue
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-9">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.budgets.label.record-comment" | translate
+            }}</mat-label>
+            <textarea
+              matInput
+              formControlName="recordComment"
+              name="recordComment"
+              rows="1"
+            ></textarea>
+          </mat-form-field>
+          <!-- <label
+            for="record-comment"
+            data-translate-once="administration.budgets.label.record-comment"
+          ></label>
+          <textarea
+            class="form-control"
+            id="record-comment"
+            data-ng-model="record.data.recordComment"
+            rows="1"
+            data-translate-once-placeholder="administration.budgets.fields.placeholder.record-comment"
+          >
+          </textarea> -->
+        </div>
+        <div class="col-xs-12">
+          <div class="action-button">
+            <button
+              type="button"
+              mat-flat-button
+              color="accent"
+              (click)="save()"
+              translate="administration.budgets.buttons.create-record"
+            ></button>
+            <button
+              type="button"
+              mat-stroked-button
+              color="primary"
+              translate="administration.budgets.buttons.cancel-edit"
+              (click)="cancelEdit()"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

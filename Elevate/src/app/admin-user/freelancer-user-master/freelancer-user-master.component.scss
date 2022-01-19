@@ -1,0 +1,93 @@
+@import 'variables';
+.body-icon {
+  font-size: 1.1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 160px;
+
+  img {
+      float: left;
+      height: 13rem;
+      width: 10rem;
+  }
+}
+.line:before {
+  content: '';
+  border-bottom: 1px solid black;
+  height: 1px;
+  width: 40px;
+  display: block;
+  transform: translate(50px, 10px);
+}
+.chest {
+  padding-top: 4rem;
+}
+.contact {
+  margin-bottom: 25px;
+  .fa {
+    color: #999999;
+    margin-right: 5px;
+  }
+}
+.body-section {
+  margin: 3rem 0;
+}
+
+.body-section div .ng-scope {
+  text-align: center;
+}
+
+.body-section .appearance-values {
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  margin: 1.5rem 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.body-section .body-icon {
+  font-size: 13px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.body-section .body-icon img {
+  float: left;
+  height: 130px;
+  width: 100px;
+}
+
+.body-section .line:before {
+  content: '';
+  border-bottom: 1px solid black;
+  height: 1px;
+  width: 40px;
+  display: block;
+  transform: translate(50px, 10px);
+}
+
+.body-section .chest {
+  padding-top: 38px;
+}
+.gallery-wrapper {
+  background-color: #fff;
+  border: dashed 1px $p4y-color-chalky-light;
+  height: 650px;
+}
+.picture-wrapper {
+  background-color: #fff;
+  height: 650px;
+  margin-bottom: 20px;
+  border: dashed 1px $p4y-color-chalky-light;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+  }
+}

@@ -1,0 +1,77 @@
+<div class="row" *ngIf="!(additionalCosts && additionalCosts.length)">
+  <div class="col-xs-12 padding-none">
+    <app-load-html template="additional-costs.hint"></app-load-html>
+  </div>
+</div>
+<div class="row" *ngIf="(additionalCosts && additionalCosts.length)">
+  <div class="col-xs table-wrapper">
+    <div class="table-inner-wrapper">
+      <table class="search-table" mat-table [dataSource]="dataSource">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> {{'projects.additional-costs.table.name' | translate}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> {{'projects.additional-costs.table.formattedValue' | translate}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> {{'projects.additional-costs.table.description' | translate}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <app-paginator [onlyCount]="true" [pageSize]="additionalCosts.length" [length]="additionalCosts.length">
+    </app-paginator>
+  </div>
+</div>
+<!-- <div class="row" *ngIf="additional_costs && mode === 'edit'">
+  <div class="col-xs padding-none">
+    <div *ngFor="let sale of additional_costs.controls; let i=index" class="col-xs padding-none">
+      <div [formGroupName]="i" class="row top-xs middle-md">
+        <div class="col-sm-11 col-xs-11 padding-none">
+          <div class="row">
+            <div class="col-sm-4 col-xs-12">
+              <mat-form-field class="full-width">
+                <mat-label>{{ 'projects.additional-costs.fields.name.label' | translate }}</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="displayMessage[i].name">
+                  {{displayMessage[i].name}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <mat-form-field class="full-width">
+                <mat-label>{{ 'projects.additional-costs.fields.value.label' | translate }}</mat-label>
+                <input matInput formControlName="value">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <mat-form-field class="full-width">
+                <mat-label>{{ 'projects.additional-costs.fields.description.label' | translate }}
+                </mat-label>
+                <input matInput formControlName="description">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1 col-xs-1 padding-none">
+          <button type="button" mat-icon-button color="accent" (click)="remove(i)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs">
+        <button type="button" mat-stroked-button color="primary" (click)="add()"
+          translate="projects.additional-costs.buttons.add"></button>
+      </div>
+    </div>
+  </div>
+</div> -->

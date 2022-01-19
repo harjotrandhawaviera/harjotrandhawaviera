@@ -1,0 +1,115 @@
+<app-search-container>
+  <app-search-panel [actions]="[
+      {
+        text: ('todos.table.buttons.create' | translate),
+        key: 'new_tasks',
+        permission: true
+      }
+    ]" (action)="addModal()">
+    <form class="todos-form" [formGroup]="todosForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"todos.table.filters.agent" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="agent" #agent [options]="agentList" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "todos.details.fields.state.label" | translate
+              }}</mat-label>
+            <mat-select formControlName="status" multiple>
+              <mat-option *ngFor="let option of stateLK" [value]="option.value">
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"todos.table.filters.creator" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="created_by" #created_by [options]="creatorList" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"todos.table.search-placeholder" | translate}}</mat-label>
+          <input matInput formControlName="search" type="search" />
+          <i matSuffix class="fas fa-search"></i>
+          <mat-hint>{{"todos.table.search-placeholder" | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="todos.title.list"></h1>
+    <div class="col-md-12 tile todo-tile" *ngFor="let lists of todoList" (click)="openModal(lists)">
+      <div class="panel panel-default list-table-actions-row" [ngClass]="{ 'open': lists.status, 'overdue': getDateDifference(lists.target) }">
+        <div class="panel-heading">
+          <div class="todo-header clearfix">
+            <div class="todo-owner">
+            {{lists.name}}
+          </div>
+          <div *ngIf="lists.target" class="abc" [ngClass]="getDateDifference(lists.target) ? 'completedDate' : ''">
+              {{"todos.details.target-at" | translate: { targetAt: lists.target | date:'mediumDate' } }}
+          </div>
+
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-3"  (click)="$event.stopPropagation(); confirmModal(lists)" *ngIf="lists.status === 'open'">
+            <mat-checkbox [mat-dialog-close]="false" class="example-margin">{{ "todos.buttons.done" | translate }}</mat-checkbox>
+          </div>
+          <div class="col-md-3" (click)="$event.stopPropagation()" *ngIf="lists.status === 'done'">
+            <mat-checkbox [mat-dialog-close]="false" [disabled]="lists.status === 'done'" [checked]="lists.status === 'done'" class="example-margin">Done</mat-checkbox>
+          </div>
+          <div class="col-md-2 col-md-offset-7">
+            <a><i class="fa fa-exclamation" [ngClass]="lists.important  ? 'exclam-red' : 'exclam-gray'"></i></a>
+          </div>
+          <div class="col-md-12">
+            <div class="todo-subject" [ngClass]="lists.status === 'done' ? 'open-stripe' : ''">
+              {{lists.content}}
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer clearfix">
+          <div class="todo-creator">
+            Created by {{ lists.creator }} ({{ lists.creator_role }}) on {{lists.created}}
+          </div>
+          <div class="todo-state" *ngIf="lists.target && getDate(lists.target)">
+            {{ lists.status }}
+          </div>
+          <div class="todo-state" [ngClass]="{ 'open': lists.status, 'overdue': lists.target }" *ngIf="lists.target && getDateDifference(lists.target)">
+            {{"todos.details.fields.state.overdued" | translate}}
+          </div>
+
+        </div>
+        <div class="list-table-actions">
+          <div class="action" (click)="$event.stopPropagation()">
+            <button
+              mat-icon-button
+              color="accent"
+              [matMenuTriggerFor]="subMenu"
+            >
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <mat-menu #subMenu="matMenu" xPosition="before">
+              <button mat-menu-item  (click)="openModal(lists)">
+                {{ "todos.table.actions.details" | translate }}
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+    <app-paginator
+      *ngIf="hasFilter && !(noRecords$ | async)"
+      [disabled]="loading$ | async"
+      hidePageSize="true"
+      showFirstLastButtons="true"
+      [length]="totalRecords"
+      [pageIndex]="currentPage - 1"
+      [pageSize]="pagesize"
+      (page)="pageChange($event)">
+    </app-paginator>
+  </app-search-list>
+</app-search-container>

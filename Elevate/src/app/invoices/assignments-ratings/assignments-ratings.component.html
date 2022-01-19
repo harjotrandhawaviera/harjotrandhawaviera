@@ -1,0 +1,75 @@
+<div *ngIf="hasProperties && data">
+  <div class="row">
+    <h3 class="col-xs-12" data-translate-once="assignments.ratings.label"></h3>
+    <div class="col-md-12 padding-none">
+      <div class="row" *ngFor="let item of data | keyvalue" style="margin-bottom: 10px;">
+        <div class="col-md-8">
+          <label class="label-input">{{ item.key }}</label>
+          <div>
+            <mat-radio-group>
+              <mat-radio-button
+                color="primary"
+                *ngFor="let value of [1, 2, 3, 4, 5]"
+                [checked]="value === data[item.key].value"
+                (change)="data[item.key].value = value; onRatingChanged()"
+                [value]="value"
+                [disabled]="viewType !== 'set'"
+                style="margin: 0 10px;"
+              >
+                {{ "assignments.ratings.rating.value-" + value | translate }}
+              </mat-radio-button>
+            </mat-radio-group>
+
+            <!-- <label class="input-label" data-ng-repeat="value in [1,2,3,4,5]">
+              <input
+                type="radio"
+                data-brand-radio
+                name="{{ label }}"
+                data-ng-model="data[label].value"
+                data-ng-value="value"
+                data-ng-disabled="ratings.view !== 'set'"
+              />
+              <span
+                data-translate-once="assignments.ratings.rating.value-{{::value}}"
+              ></span>
+            </label> -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="empty-label"></label>
+          <p *ngIf="viewType !== 'set'">{{ data[item.key].comment }}</p>
+          <mat-form-field class="full-width" *ngIf="viewType === 'set'">
+            <mat-label></mat-label>
+            <input
+              matInput
+              [(ngModel)]="data[item.key].comment"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </mat-form-field>
+
+          <!-- <input
+            type="text"
+            class="form-control"
+            *ngIf="ratings.view === 'set'"
+            data-ng-model="data[label].comment"
+            data-translate-once-placeholder="assignments.ratings.rating.comment"
+          />
+          <p
+            *ngIf="ratings.view !== 'set'"
+            data-ng-bind="data[label].comment"
+          ></p> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" *ngIf="viewType === 'set'">
+      <button
+        type="button"
+        mat-raised-button
+        color="accent"
+        [disabled]="!hasValues"
+        translate="assignments.ratings.buttons.submit"
+        (click)="submit()"
+      ></button>
+    </div>
+  </div>
+</div>

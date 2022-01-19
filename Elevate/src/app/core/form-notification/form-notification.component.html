@@ -1,0 +1,19 @@
+<div
+*ngIf="notifications && notifications.length > 0"
+  class="alert alert-{{ type }} text-center"
+
+>
+  <p
+    *ngFor="let message of notifications"
+    [innerHtml]="message"
+  ></p>
+  <div class="actions" *ngIf="actions.length">
+    <a
+      class="btn btn-default btn-sm"
+      *ngFor="let action of actions"
+      [routerLink]="action.state"
+      [translate]="action.label"
+    >
+    </a>
+  </div>
+</div>

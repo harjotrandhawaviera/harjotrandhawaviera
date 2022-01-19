@@ -1,0 +1,48 @@
+@import "variables";
+
+.confirm-email {
+  min-height: 466px;
+}
+.confirm-email {
+  display: flex;
+  .slogan-container {
+    padding-right: 104px;
+    @media (max-width: 1180px) {
+      padding-right: 40px;
+    }
+    @media (max-width: $screen-md-max) {
+      padding-right: 0px;
+    }
+  }
+  .form-wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 340px;
+    transition-duration: 0.6s;
+    @media (max-width: $screen-md-max) {
+      width: 300px;
+    }
+    h3 {
+      text-transform: none;
+      font-weight: 600;
+    }
+    .form-body {
+      form {
+        button {
+          margin: 15px 0;
+          line-height: 42px;
+        }
+      }
+    }
+
+    .login-link {
+      display: flex;
+      margin: 15px 0 25px;
+      color: $link-color;
+      a {
+        margin-left: 5px;
+      }
+    }
+  }
+}

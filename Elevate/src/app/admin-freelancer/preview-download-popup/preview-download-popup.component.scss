@@ -1,0 +1,28 @@
+.preview-download {
+  @media only screen and (max-width: 600px){
+    width: auto;
+    height: 640px
+  }
+  height: 800px;
+  width: 1000px;
+  display: block;
+  mat-icon{
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  .image_display {
+    height: 250px;
+  }
+  pdf-viewer ::ng-deep {
+    .ng2-pdf-viewer-container {
+      overflow-x: hidden;
+      overflow-y: auto;
+      top: 6.5rem;
+      left: 1rem;
+      right: 1rem;
+      width: 100%;
+      height: 80%;
+      z-index: 1050;
+    }
+  }
+}

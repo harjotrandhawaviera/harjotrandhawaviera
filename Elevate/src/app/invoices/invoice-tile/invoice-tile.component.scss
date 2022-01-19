@@ -1,0 +1,71 @@
+@import "variables";
+@import "mixins";
+.panel-heading,
+.panel-body {
+  padding: $p4y-tile-inner-padding;
+}
+
+.panel-body {
+  min-height: 100px;
+}
+
+.panel-footer {
+  background-color: transparent;
+  border-top: none;
+  font-size: smaller;
+  padding: 10px 15px;
+  border-top: none;
+  position: relative;
+  clear: both;
+  padding-bottom: $p4y-tile-inner-padding;
+  .valid-until {
+    margin-top: 10px;
+  }
+}
+.panel {
+  margin: 15px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #ddd;
+  border-bottom: solid 3px #cccccc;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+  @include tile-state("issued", $p4y-color-status-warning);
+  @include tile-state("approved", $p4y-color-status-active);
+  @include tile-state("payment-authorized", $p4y-color-status-active);
+  @include tile-state("money-transfered", $p4y-color-status-completed);
+  @include tile-state("rejected", $p4y-color-status-error);
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  &.discount {
+    background-color: $brand-info;
+  }
+  h3 {
+    line-height: 28px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    & + h3 {
+      font-size: 20px;
+      margin-bottom: 0;
+      line-height: unset;
+      text-align: right;
+      span.with_discount {
+        font-size: 12px;
+      }
+    }
+    &.number {
+      max-width: 60%;
+    }
+  }
+  .panel-body {
+    padding: 10px 15px;
+  }
+  .comment {
+    height: 38px;
+    margin-bottom: 10px;
+  }
+  &-footer {
+    padding-top: 0;
+  }
+}

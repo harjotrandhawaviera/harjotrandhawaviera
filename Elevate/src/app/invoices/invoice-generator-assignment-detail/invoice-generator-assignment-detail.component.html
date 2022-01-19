@@ -1,0 +1,164 @@
+<div *ngIf="detailGroup" [formGroup]="detailGroup">
+  <div class="row">
+    <div
+      class="col-md-12 description"
+      translate="invoices.generator.details.description"
+    ></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <table
+        class="table table-striped table-bordered"
+        formArrayName="assignment_details"
+        *ngIf="assignment_details"
+      >
+        <tbody>
+          <tr>
+            <th
+              class="appointed"
+              translate="invoices.generator.table.appointed"
+            ></th>
+            <th
+              class="wage"
+              translate="invoices.generator.table.costs_on_time"
+            ></th>
+            <th
+              class="additionalCosts"
+              translate="invoices.generator.table.additional_costs"
+            ></th>
+            <th
+              class="incentives"
+              translate="invoices.generator.table.incentives"
+            ></th>
+            <th class="sum" translate="invoices.generator.table.sum"></th>
+          </tr>
+        </tbody>
+        <tbody
+          *ngFor="let contr of assignment_details.controls; let i = index"
+          id="group{{ i }}"
+        >
+          <tr [formGroupName]="i">
+            <td>{{ assignment_detailsValues[i].appointedAt }}</td>
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label></mat-label>
+                <span matPrefix appCurrencySymbol></span>
+                <input matInput formControlName="costs_on_time" />
+              </mat-form-field>
+            </td>
+            <td formArrayName="additional_costs">
+              <div
+                *ngFor="
+                  let add of getFormArray(contr, 'additional_costs').controls;
+                  let j = index
+                "
+              >
+                <div [formGroupName]="j">
+                  <mat-checkbox formControlName="selected"
+                    >{{
+                      assignment_detailsValues[i].additional_costs[j].key
+                    }}
+                    ({{
+                      assignment_detailsValues[i].additional_costs[j].value
+                        | currency
+                    }})</mat-checkbox
+                  >
+                </div>
+              </div>
+            </td>
+            <td formArrayName="incentives">
+              <div
+                *ngFor="
+                  let add of getFormArray(contr, 'incentives').controls;
+                  let j = index
+                "
+              >
+                <div [formGroupName]="j">
+                  <mat-checkbox formControlName="selected"
+                    >{{ ('invoices.generator.incentives.'+assignment_detailsValues[i].incentives[j].key) | translate }}
+                    ({{
+                      assignment_detailsValues[i].incentives[j].value
+                        | currency
+                    }})</mat-checkbox
+                  >
+                </div>
+              </div>
+            </td>
+            <td>
+              <div data-ng-bind="details.sum | currency: '€'">
+                {{ assignment_detailsValues[i].sum | currency }}
+              </div>
+            </td>
+            <!--
+
+        <td>
+          <div
+            class="form-group col-md-12"
+            data-ng-repeat="additional in details.additional_costs"
+          >
+            <input
+              type="checkbox"
+              id="{{ additional.key + '-' + id }}"
+              data-brand-checkbox
+              data-checklist-model="details.selected.additional_costs"
+              data-checklist-value="::additional"
+            />
+            <label for="{{ additional.key + '-' + id }}" class="input-label"
+              >{{ additional.key }} ({{
+                additional.value | currency: "€"
+              }})</label
+            >
+          </div>
+        </td>
+        <td>
+          <div
+            class="form-group col-md-12"
+            data-ng-repeat="incentive in details.incentives"
+          >
+            <input
+              type="checkbox"
+              id="{{ incentive.key + '-' + id }}"
+              data-brand-checkbox
+              data-checklist-model="details.selected.incentives"
+              data-checklist-value="::incentive"
+            />
+            <label class="input-label" for="{{ incentive.key + '-' + id }}"
+              >{{::'invoices.generator.incentives.' + incentive.key | translate}}
+              ({{ incentive.value | currency: "€" }})</label
+            >
+          </div>
+        </td>
+        <td>
+          <div data-ng-bind="details.sum | currency: '€'"></div>
+        </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-4 col-sm-6">
+      <label translate="invoices.fields.generator-total.label"></label>
+      <div>
+        {{ total | currency }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <button
+        type="button"
+        class="section-button"
+        mat-flat-button
+        color="accent"
+        [disabled]="!total"
+        style="width: 100%"
+        (click)="nextClick()"
+      >
+        {{ "invoices.generator.buttons.next-step" | translate }}
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+.staffPerformanceSec {
+    .headerDes {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        mat-form-field.mat-form-field-type-mat-select .mat-form-field-flex {
+            border: 1px solid #21b4b0;
+            border-radius: 8px;
+            padding: 0 6px;
+          }
+        mat-form-field.mat-form-field-type-mat-select .mat-form-field-flex .mat-form-field-infix {
+            margin: 5px 0;
+            border: 0;
+            height: auto;
+        }          
+        mat-form-field.mat-form-field-type-mat-select .mat-form-field-underline {
+            display: none;
+        }
+        mat-form-field.mat-form-field-type-mat-select .mat-select-arrow {
+            color: #21b4b0;
+        }
+        button {
+            margin-top: 5px;
+        }
+    }
+    .fieldBox {
+        margin-bottom: 8px;
+        .border {
+            border: 1px solid #ccc;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .userPic {
+            margin-top: 16px;
+            display: inline-block;
+            width: 65px;
+        }
+        .userPic img {
+            max-width: 100%;
+        }
+        .userDetais {
+            width: calc(100% - 75px);
+            display: inline-block;
+            vertical-align: top;
+            padding-left: 10px;
+            h3 {
+                font-size: 19px;
+                font-weight: 700;
+                text-transform: capitalize;
+                color: #21b4b0;
+                margin-bottom: 6px;
+            }
+            p.red {
+                font-size: 13px;
+                font-weight: 600;
+                color: #b62020;
+                margin-bottom: 11px;
+                line-height: 15px;
+            }
+            p.black {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+        }
+        mat-form-field.mat-form-field .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+        mat-form-field.mat-form-field .mat-form-field-underline {
+            display: none;
+        }
+        mat-form-field.mat-form-field .mat-form-field-flex {
+            background: transparent;
+            padding: 0;
+        }
+        mat-form-field.mat-form-field .mat-form-field-infix {
+            border: navajowhite;
+            width: 100% !important;
+        }
+        mat-form-field.mat-form-field textarea {
+            resize: none;
+        }
+        mat-form-field.mat-form-field-type-mat-select {
+            border: 1px solid #21b4b0;
+            border-radius: 6px;
+            padding: 0 6px;
+            margin-left: -8px;
+            margin-top: 7%;
+        }
+        button.mat-focus-indicator {
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0 6px;
+        }
+        .border {
+            h4 {
+                font-size: 16px;
+                font-weight: 600;
+                color: #222;
+                text-align: center;
+            }
+            bar-rating {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .br {
+                    margin: 28px 0;
+                }
+                .br-unit::after {
+                    color: #21b4b0;
+                    font-size: 23px;
+                }
+                .br-units {
+                    justify-content: center;
+                }
+                .br-unit {
+                    margin: 0 7px;
+                }
+            }
+            mat-form-field.mat-form-field.example-full-width {
+                width: 100%;
+            }
+        }
+    }
+}

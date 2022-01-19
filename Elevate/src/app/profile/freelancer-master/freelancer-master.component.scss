@@ -1,0 +1,49 @@
+.freelancer-master-title-field{
+    width: 90px;
+}
+
+::ng-deep{
+    // .mobile-input-wrapper{
+    //     padding-left: 80px !important;
+    // }
+    ngx-intl-tel-input{
+        .country-dropdown{
+            .search-container{
+                input{
+                    padding: 9px;
+                }
+            }
+        }
+    }
+    .mobile-input-wrapper{
+        padding-left: 80px !important;
+   &::placeholder{
+       font-size: 14px;
+       color: rgba(0, 0, 0, 0.54);
+
+   }
+    }
+    .mobile-form-field-wrapper{
+        .mat-form-field-label-wrapper{
+            .mat-form-field-label {
+                mat-label{
+                    font-size: 14px;
+                    color: rgba(0, 0, 0, 0.54);
+                }
+            }
+         
+
+        }
+        .mobile-input-wrapper{
+                border: none;
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+        .mat-form-field-label-wrapper{
+            display: none;
+        }
+    }
+}
+
+

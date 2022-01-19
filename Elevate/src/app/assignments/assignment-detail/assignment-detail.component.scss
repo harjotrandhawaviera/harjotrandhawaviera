@@ -1,0 +1,44 @@
+@import "variables";
+@import "mixins";
+.assignment-details {
+  .acion-title-holder {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    @media (max-width: $screen-sm-max) {
+      flex-direction: column;
+    }
+
+    .action-btn-cont {
+      a {
+        // border-radius: 10px;
+        &[disabled] {
+          pointer-events: none;
+          border-color: $gray-light;
+        }
+      }
+    }
+  }
+
+  .phone {
+    border-bottom: 1px solid #d0d0d1;
+    padding: 6px 0 9px 0;
+  }
+
+  .job-title {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .box {
+    background-color: #4FAEC7;
+    color: white;
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    text-transform: uppercase;
+    width: auto;
+    margin-right: 3px;
+    font-size: 15px;
+  }
+}

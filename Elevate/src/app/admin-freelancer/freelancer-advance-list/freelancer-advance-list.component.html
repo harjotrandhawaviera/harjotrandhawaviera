@@ -1,0 +1,189 @@
+<div class="container-fluid">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/administration/freelancers']"
+        >{{
+          "administration.freelancers.onboarding-profile.buttons.back"
+            | translate
+        }}
+      </a>
+    </div>
+  </div>
+  <div class="row between-xs">
+    <div class="col-xs">
+      <h1>
+        {{"ui.advance-search.label" | translate}}
+      </h1>
+    </div>
+  </div>
+  <app-advance-search (emitFilter)="getFilters($event)"></app-advance-search>
+  <div class="row">
+  <mat-form-field class="advance-search col-xs-12 col-sm-3" appearance="outline" >
+    <mat-label>{{'report.fields.pageSize' | translate}}</mat-label>
+    <mat-select [formControl]="pageSize">
+      <mat-option *ngFor="let option of pageLK" [value]="option.value">
+        {{option.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+  <div class="row">
+    <div class="col-xs table-wrapper">
+      <div class="table-inner-wrapper">
+        <table
+          mat-table
+          class="search-table"
+          [dataSource]="userList"
+        >
+        <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.email" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.email}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.fullname" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row" (click)="openpopuup(row)">
+              <a>{{row.fullname}}</a>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.gender" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ "profile.fields.gender." + row.gender | translate}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.age" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.age}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="mobile">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.mobile" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.mobile}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.status" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{"report.state." + row.status | translate}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.city" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.city}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="zip">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.zip" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.zip}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.freelancer-approval.table.submissionDate" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.created_at | date: 'mediumDate'}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row" class="action">
+              <button
+                mat-icon-button
+                color="accent"
+                [matMenuTriggerFor]="subMenu"
+                (click)="$event.stopPropagation()"
+              >
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <mat-menu #subMenu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="navigateToDetail(row)">
+                  {{ "approval.freelancer-approval.table.actions.detail" | translate }}
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+        </table>
+      </div>
+      <app-paginator
+        [length]="pagination?.total"
+        [pageIndex]="pagination?.current_page - 1"
+        [pageSize]="pagination?.per_page"
+        (page)="pageChange($event)"
+      ></app-paginator>
+      <div class="row end-xs">
+        <div class="col-xs">
+          <button
+            type="button"
+            [disabled]="!selection.selected.length"
+            mat-stroked-button
+            color="primary"
+            (click)="email()"
+          >
+            {{ "ui.list-table.default.email" | translate }}
+          </button>
+          <button
+            type="button"
+            [disabled]="!selection.selected.length"
+            mat-stroked-button
+            color="primary"
+            (click)="sms()"
+          >
+            {{ "ui.list-table.default.sms" | translate }}
+          </button>
+          <button
+            type="button"
+            [disabled]="!selection.selected.length"
+            mat-stroked-button
+            color="primary"
+            (click)="download()"
+          >
+            {{ "ui.list-table.default.download" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

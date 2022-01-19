@@ -1,0 +1,166 @@
+<app-search-container>
+  <app-search-panel
+    [actions]="[
+      {
+        key: 'new_insurance',
+        link: '/administration/insurances/' + (c) ,
+        text: ('administration.health-insurances.buttons.create-insurance' | translate),
+        permission: true
+      }
+    ]">
+    <form [formGroup]="filterValue">
+      <div class="row">
+        <div class="col-xs-12">
+          <h4>{{ 'ui.side-option-menu.filter' | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.health-insurances.filters.type" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-select formControlName="option">
+              <mat-option
+                value="{{'administration.health-insurances.fields.types.private' | translate}}">{{'administration.health-insurances.fields.types.private' | translate}}</mat-option>
+              <mat-option
+                value="{{'administration.health-insurances.fields.types.statutory' | translate}}">{{'administration.health-insurances.fields.types.statutory' | translate}}</mat-option>
+            </mat-select>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!contractType.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="contractType.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "ui.side-option-menu.search" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.health-insurances.search-placeholder" | translate
+              }}</mat-label>
+            <input matInput formControlName="search" type="search"/>
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "administration.users.search.hint" | translate
+              }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="row">
+      <div class="col-xs">
+        <h1 translate="administration.health-insurances.title.list"></h1>
+      </div>
+    </div>
+    <div class="table-inner-wrapper col-xs">
+      <table
+        mat-table
+        class="search-table"
+        [dataSource]="InsuranceList"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.health-insurances.table.id" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.id}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.health-insurances.table.name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.name}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="external_identifier">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.health-insurances.table.external_identifier" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.external_identifier}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="insuranceType">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.health-insurances.table.type" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.type}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.health-insurances.table.description" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.desc}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row" class="action">
+            <button
+              mat-icon-button
+              color="accent"
+              [matMenuTriggerFor]="subMenu"
+              (click)="$event.stopPropagation()"
+            >
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <mat-menu #subMenu="matMenu" xPosition="before">
+              <button mat-menu-item (click)="navigateToDetail(row.id)">
+                {{ "administration.health-insurances.table.actions.details" | translate }}
+              </button>
+              <button mat-menu-item *ngIf="(row.in_use) === false" (click)="deleteConfirmModal(row.id)">
+                {{ "administration.health-insurances.table.actions.remove" | translate }}
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns;"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetail(row.id)"></tr>
+      </table>
+      <app-paginator *ngIf="InsuranceList.length"
+        [disabled]="loading$ | async"
+        hidePageSize="true"
+        showFirstLastButtons="true"
+        [length]="paginator?.total"
+        [pageIndex]="paginator?.current_page - 1"
+        (page)="pageChange($event)"
+      ></app-paginator>
+    </div>
+    <div class="col-xs" *ngIf="!InsuranceList.length && noRecords$">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+    <div class="row end-md center-xs">
+      <button
+        type="button"
+        (click)="downloadList()"
+        mat-stroked-button
+        color="primary"
+      >
+        {{'ui.list-table.default.download' | translate}}
+      </button>
+    </div>
+  </app-search-list>
+</app-search-container>

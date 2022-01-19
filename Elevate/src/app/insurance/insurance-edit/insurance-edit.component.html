@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/administration/insurances']"
+      >{{ "administration.health-insurances.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div *ngIf="paramId" class="col-xs-12 col-md start-xs">
+    <h1 translate="administration.health-insurances.title.edit"></h1>
+  </div>
+  <div *ngIf="!paramId" class="col-xs-12 col-md start-xs">
+    <h1 translate="administration.health-insurances.title.new"></h1>
+  </div>
+  <form [formGroup]="insurance">
+    <div class="row">
+      <div class="form-group col-sm-6 col-xs-12">
+        <label translate="administration.health-insurances.fields.name.label" required></label>
+        <mat-form-field class="full-width" *ngIf="paramId">
+          <input matInput formControlName="name" >
+        </mat-form-field >
+        <mat-form-field class="full-width" *ngIf="!paramId">
+          <input matInput formControlName="name"  >
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-sm-6 col-xs-12">
+        <label translate="administration.health-insurances.fields.external-identifier.label" required></label>
+        <mat-form-field class="full-width" *ngIf="paramId">
+          <input matInput  formControlName="external_identifier" readonly>
+        </mat-form-field>
+        <mat-form-field class="full-width" *ngIf="!paramId">
+          <input matInput formControlName="external_identifier">
+          <mat-error>{{'form.errors.required' | translate}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="administration.health-insurances.fields.type.label" required></label>
+      <mat-form-field class="full-width" *ngIf="paramId">
+        <input matInput  formControlName="type" readonly>
+      </mat-form-field>
+      <mat-form-field class="full-width" *ngIf="!paramId">
+        <mat-select formControlName="type">
+          <mat-option
+            value="{{'administration.health-insurances.fields.types.private' | translate}}">{{'administration.health-insurances.fields.types.private' | translate}}</mat-option>
+          <mat-option
+            value="{{'administration.health-insurances.fields.types.statutory' | translate}}">{{'administration.health-insurances.fields.types.statutory' | translate}}</mat-option>
+        </mat-select>
+        <mat-error>{{'form.errors.required' | translate}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group  col-xs-12">
+      <label translate="administration.health-insurances.fields.description.label"></label>
+      <mat-form-field class="full-width" *ngIf="paramId">
+        <input matInput  formControlName="description">
+      </mat-form-field>
+      <mat-form-field class="full-width" *ngIf="!paramId">
+        <input matInput formControlName="description">
+      </mat-form-field>
+    </div>
+    <div *ngIf="paramId" class="col-xs-12 col-md start-xs">
+      <a
+        mat-flat-button
+        color="accent"
+
+        (click)="saveDetail(insurance.value)"
+      >{{ "administration.health-insurances.buttons.update" | translate }}
+      </a>
+      <a
+        mat-stroked-button
+        color="primary"
+        (click)="navigateToDetail()"
+      >{{ "administration.health-insurances.buttons.cancel" | translate }}
+      </a>
+    </div>
+    <div *ngIf="!paramId" class="col-xs-12 col-md start-xs">
+      <a
+        mat-flat-button
+        color="accent"
+        (click)="add(insurance.value)"
+
+      >{{ "administration.health-insurances.buttons.create" | translate }}
+      </a>
+      <a
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/administration/insurances']"
+      >{{ "administration.health-insurances.buttons.cancel" | translate }}
+      </a>
+    </div>
+  </form>
+</div>

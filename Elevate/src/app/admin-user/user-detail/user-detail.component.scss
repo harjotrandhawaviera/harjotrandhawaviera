@@ -1,0 +1,77 @@
+@import "variables";
+@import "mixins";
+
+.acion-title-holder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+  }
+  .action-btn-cont {
+    a {
+      // border-radius: 10px;
+      &[disabled] {
+        pointer-events: none;
+        border-color: $gray-light;
+      }
+    }
+  }
+}
+form {
+  display: flex;
+  padding: 15px 0;
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+  }
+}
+.avatar-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+img.avatar {
+  min-width: 36px;
+  height: 36px;
+  background: center no-repeat;
+  background-size: cover;
+  margin-bottom: 0;
+  background-image: url("../../../assets/images/avatar.png");
+  border: #f8f8f8;
+  border-radius: 50%;
+}
+.fields-cont {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  width: 100%;
+  @media (max-width: $screen-sm-max) {
+    padding-left: 0;
+  }
+  .mat-checkbox {
+    ::ng-deep label {
+      font-variant: normal;
+      font-weight: normal;
+    }
+  }
+}
+.block-head-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  .blocker-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    img.avatar {
+      min-width: 24px;
+      height: 24px;
+      margin-left: 4px;
+    }
+    span {
+      font-size: 13px;
+      margin: 0 4px;
+    }
+  }
+}

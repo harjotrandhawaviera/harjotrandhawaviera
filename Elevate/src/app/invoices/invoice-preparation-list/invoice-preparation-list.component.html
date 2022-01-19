@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="row between-xs">
+    <div class="col-xs-12">
+      <h1 translate="invoices.preparation.title.list"></h1>
+    </div>
+    <div class="col-xs-12" *ngIf="!isOnBehalf">
+      <h3 translate="invoices.preparation.description.assignments-list"></h3>
+    </div>
+    <div class="col-xs-12" *ngIf="isOnBehalf">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "invoices.fields.freelancer.label" | translate
+        }}</mat-label>
+        <app-static-auto-complete
+          [(ngModel)]="freelancerId"
+          [options]="freelancerList"
+          (ngModelChange)="searchPreparation()"
+        >
+        </app-static-auto-complete>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12" *ngIf="noRecords">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+    <div class="col-xs-12 padding-none">
+      <div class="table-wrapper" *ngIf="!noRecords && totalRecords > 0">
+        <div class="row">
+          <div
+            class="col-xs-12 col-md-6 col-sm-12 col-lg-6 padding-none"
+            app-invoice-preparation-assignment-tile
+            *ngFor="let item of result"
+            [item]="item"
+            [types]="types"
+            (goToDetail)="goToDetail(item)"
+          >
+          </div>
+        </div>
+        <app-table-spinner
+          *ngIf="unsubscribeSearchReq && !unsubscribeSearchReq.closed"
+        ></app-table-spinner>
+        <div class="row">
+          <div class="col-xs">
+            <app-paginator
+              [disabled]="unsubscribeSearchReq && !unsubscribeSearchReq.closed"
+              hidePageSize="true"
+              showFirstLastButtons="true"
+              [length]="totalRecords"
+              [pageIndex]="currentPage"
+              [pageSize]="pageSize"
+              (page)="pageChange($event)"
+            ></app-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

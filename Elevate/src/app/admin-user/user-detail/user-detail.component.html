@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="[backTo]" *ngIf="backTo">
+        {{ 'administration.users.buttons.back' | translate }}
+      </a>
+    </div>
+    <div class="col-xs-12">
+      <div class="acion-title-holder">
+        <h1 translate="administration.users.title.details"></h1>
+        <div class="action-btn-cont" *ngIf="user">
+          <a mat-stroked-button color="primary" (click)="user.is_deactivated ? activate() : deactivate()"
+          [disabled]="user.status === 'disabled' || (user?.role === 'freelancer' && (this.user?.status === 'unconfirmed' || this.user?.status === 'onboarding'))"
+          *ngIf="(((deactivateUserPermission$ | async) && id !== loggedInUser?.id) || (user?.role === 'freelancer' && (deactivateFreelancerPermission$ | async)))">
+            <span *ngIf="user.is_deactivated">{{ 'administration.users.reactivate.button' | translate }}</span>
+            <span *ngIf="!user.is_deactivated">{{ 'administration.users.deactivate.button' | translate }}</span>
+          </a>
+          <a mat-flat-button color="accent" (click)="user.is_disabled ? enable() : disable()"
+            *ngIf="((disableUserPermission$ | async) && id !== loggedInUser?.id)">
+            <span *ngIf="!user.is_disabled">{{ 'administration.users.disable.button' | translate }}</span>
+            <span *ngIf="user.is_disabled">{{ 'administration.users.enable.button' | translate }}</span>
+          </a>
+        </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="user && user.is_deactivated">
+        <div class="block-head-cont">
+          <h4>
+            <span>{{ 'administration.users.deactivated-info' | translate }}</span>
+          </h4>
+          <div class="blocker-info" *ngIf="blocker$ | async as blocker">
+            <img class="avatar" data-src="row.avatar">
+            <span>
+              <ng-container *ngIf="blocker.fullname">{{blocker.fullname}}</ng-container>
+              <ng-container *ngIf="!blocker.fullname">{{blocker.username}}</ng-container>
+            </span>
+            <span>{{user.deactivated_at}},</span>
+          </div>
+        </div>
+        <p>{{user.deactivated_reason}}</p>
+      </div>
+      <div class="alert alert-danger" *ngIf="user && user.is_disabled">
+        <div class="block-head-cont">
+          <h4>
+            <span>{{ 'administration.users.disabled-info' | translate }}</span>
+          </h4>
+          <div class="blocker-info" *ngIf="blocker$ | async as blocker">
+            <img class="avatar" data-src="row.avatar">
+            <span>
+              <ng-container *ngIf="blocker.fullname">{{blocker.fullname}}</ng-container>
+              <ng-container *ngIf="!blocker.fullname">{{blocker.username}}</ng-container>
+            </span>
+            <span>{{user.disabled_at}},</span>
+          </div>
+        </div>
+        <p>{{user.disabled_reason}}</p>
+      </div>
+
+      <form *ngIf="user?.role !== 'freelancer'">
+        <div class="avatar-cont">
+          <img class="avatar" data-src="avatar.src" />
+        </div>
+        <div class="fields-cont" *ngIf="user$ | async as user">
+          <fieldset class="row">
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.users.fields.role.label' | translate }}</mat-label>
+              <mat-select disabled="true" [value]="user.role">
+                <mat-option [value]="user.role">{{ user.role }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.users.fields.email.label' | translate }}</mat-label>
+              <input matInput value="{{ user.email }}" disabled="true">
+            </mat-form-field>
+          </fieldset>
+          <fieldset class="row">
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.users.fields.salutation.label' | translate }}</mat-label>
+              <mat-select [value]="user.agent?.gender" disabled="true">
+                <mat-option value="{{ user.agent?.gender }}">
+                  {{'administration.users.fields.salutation.'+user.agent?.gender | translate}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.users.fields.firstname.label' | translate }}</mat-label>
+              <input matInput value="{{ user.agent?.firstname }}" disabled="true">
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.users.fields.lastname.label' | translate }}</mat-label>
+              <input matInput value="{{ user.agent?.lastname }}" disabled="true">
+            </mat-form-field>
+          </fieldset>
+          <fieldset class="row">
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.users.fields.birthdate.label' | translate }}</mat-label>
+              <input matInput value="{{ user.agent?.birthdate }}" disabled="true">
+            </mat-form-field>
+            <mat-form-field class="col-md-4 col-xs-12">
+              <mat-label>{{ 'administration.client.fields.phone.label' | translate }}</mat-label>
+              <input matInput value="{{ user.agent?.mobile }}" disabled="true">
+            </mat-form-field>
+          </fieldset>
+          <fieldset class="row">
+            <ng-container *ngFor="let right of rights">
+              <mat-checkbox class="col-md-4 col-sm-6 col-xs-12" [disabled]="true"
+                [checked]="isCheckboxSelected(right?.identifier) ? true : false" value="right.identifier">
+                {{'rights.fields.rights.' +right.identifier | translate}}
+              </mat-checkbox>
+            </ng-container>
+          </fieldset>
+        </div>
+      </form>
+
+    </div>
+    <div class="col-xs-12 padding-none">
+      <app-freelancer-detail *ngIf="user?.role === 'freelancer'" [userDetail]="user$ | async"></app-freelancer-detail>
+    </div>
+  </div>
+</div>

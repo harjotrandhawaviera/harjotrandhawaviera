@@ -1,0 +1,55 @@
+.acion-title-holder {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    margin: 20px 0 10px;
+  }
+}
+.alert-info {
+  P {
+    line-height: 24px;
+    letter-spacing: 0.25px;
+  }
+}
+.header.date-card {
+  display: flex;
+  padding: 0 10px 10px 10px;
+  .date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    min-width: 80px;
+    height: 80px;
+    border: 2px solid #d0d0d1;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 10px;
+    .day {
+      font-size: 24px;
+    }
+    .month {
+      font-size: 14px;
+      margin: 3px 0 1px;
+    }
+    .year {
+      font-size: 12px;
+    }
+  }
+  .title {
+    max-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .subtitle {
+    line-height: 25px;
+  }
+}
+.lable{
+  color: #999;
+}
+.row {
+  line-height: 1.8;
+}

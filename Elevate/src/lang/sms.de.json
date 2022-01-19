@@ -1,0 +1,46 @@
+{
+    "sms": {
+        "title": {
+            "details": "SMS schreiben"
+        },
+        "buttons": {
+            "create": "SMS absenden",
+            "reset": "Zurücksetzen",
+            "show" : "show"
+        },
+        "campaign": {
+            "label": "Kampagnenname",
+            "placeholder": ""
+        },
+        "purpose": {
+            "label": "Zweck",
+            "placeholder": ""
+        },
+        "message": {
+            "label": "Nachricht",
+            "placeholder": "Bitte geben Sie hier Ihre Nachricht ein"
+        },
+        "recipient": {
+            "label": "Empfänger",
+            "description": "{count, select, 0{Bitte wähle einen oder mehrere Empfänger aus.} other{{count}}/{{total}} Empfänger ausgewählt}}",
+            "description-0": "Bitte wähle einen oder mehrere Empfänger aus.",
+            "description-1": "{{count}}/{{total}} Empfänger ausgewählt",
+            "freelancer-filter-hint": "Bitte wähle einen oder mehrere Filter für die Empfängerliste aus oder verändere deine Suchanfrage.",
+            "table": {
+                "recipient": "Empfänger",
+                "status": "Status",
+                "postcodes": "Wohnort",
+                "certificates": "Zertifikate",
+                "mobile": "Handy"
+            }
+        },
+        "send-sms": {
+            "title": "SMS versenden",
+            "message": "Möchtest du diese SMS wirklich an <b>{{count}}</b> Empfänger versenden?"
+        },
+        "toggle-view": {
+            "show": "Liste anzeigen",
+            "hide": "Liste schließen"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+<div [ngClass]="{ row: true, 'rating-main': true, editing: editing, empty: empty }">
+  <div class="col-md-12 creator">
+    <span>{{ set.updated_at | date: 'mediumDate' }}</span> -
+    <span *ngIf="set.creator">{{ set.creator.name }}</span>
+  </div>
+  <div [ngClass]="{ 'col-md-8': editable, 'col-md-12': !editable }">
+    <!-- <div
+      data-ng-model="rating.set.rate"
+      data-ng-rate-it
+      data-star-width="24"
+      data-star-height="24"
+      data-resetable="false"
+      data-step="1"
+      data-max="5"
+      data-read-only="!rating.editable || !rating.editing"
+    ></div> -->
+    <bar-rating
+      [readOnly]="!editable || !editing"
+      [(rate)]="set.rate"
+      #rating
+      [max]="5"
+      [theme]="'fontawesome-o'"
+    >
+    </bar-rating>
+    <div class="comment" [innerHtml]="set.comment"></div>
+    <mat-form-field class="full-width comment">
+      <mat-label>{{
+        "profile.fields.qualification.description.label" | translate
+      }}</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="set.comment"
+        name="comment"
+        rows="3"
+      ></textarea>
+    </mat-form-field>
+    <!-- <textarea class="form-control comment" [(ngModel)]="set.comment"></textarea> -->
+  </div>
+  <div class="col-md-4 text-right" *ngIf="editable">
+    <ng-container
+      *ngFor="
+        let item of {
+          add: 'default',
+          edit: 'default',
+          update: 'primary',
+          save: 'primary',
+          cancel: 'default'
+        } | keyvalue
+      "
+    >
+      <button
+        *ngIf="item.value === 'primary'"
+        mat-flat-button
+        color="accent"
+        class="{{item.key}}"
+        [disabled]="
+          (item.key === 'save' || item.key === 'update') &&
+          editing &&
+          !(set.rate >= 1 && set.rate <= 5)
+        "
+        data-ng-click="rating[item.key]()"
+        (click)="performAction(item.key)"
+      >
+        {{
+          "administration.freelancers.rating.buttons." + item.key | translate
+        }}
+      </button>
+      <button
+        *ngIf="item.value === 'default'"
+        mat-stroked-button
+        class="{{item.key}}"
+        color="primary"
+        [disabled]="
+          (item.key === 'save' || item.key === 'update') &&
+          editing &&
+          !(set.rate >= 1 && set.rate <= 5)
+        "
+        (click)="performAction(item.key)"
+      >
+        {{
+          "administration.freelancers.rating.buttons." + item.key | translate
+        }}
+      </button>
+    </ng-container>
+    <!-- <button
+      type="button"
+      class="btn btn-{{ ::type }} {{ ::action }}"
+      data-ng-disabled="(action === 'save' || action === 'update') && rating.editing && !(rating.set.rate >= 1 && rating.set.rate <= 5)"
+      data-ng-repeat="(action, type) in {add: 'default', edit: 'default', update: 'primary', save: 'primary', cancel: 'default'}"
+      data-ng-click="rating[action]()"
+      [translate]="administration.freelancers.rating.buttons.{{ action }}"
+    ></button> -->
+  </div>
+</div>

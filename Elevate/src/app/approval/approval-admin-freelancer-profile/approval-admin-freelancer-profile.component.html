@@ -1,0 +1,157 @@
+<div class="container-fluid" *ngIf="data">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['/approval/freelancer-approved']"
+        >{{
+          "administration.freelancers.onboarding-profile.buttons.back"
+            | translate
+        }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md start-xs">
+      <h1
+        *ngIf="data.fullname"
+        [translate]="'administration.freelancers.onboarding-profile.title-fullname'"
+        [translateParams]="{ fullname: data.fullname }"
+      ></h1>
+      <h1
+        *ngIf="!data.fullname"
+        [translate]="'administration.freelancers.onboarding-profile.title-unknown'"
+        [translateParams]="{ fullname: data.fullname }"
+      ></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs" *ngIf="onboardingRequest && onboardingRequest.id">
+      <a
+        mat-flat-button
+        color="accent"
+        [routerLink]="[
+          '/administration/freelancer-onboarding',
+          onboardingRequest.id
+        ]"
+        >{{
+          "administration.freelancers.onboarding-profile.buttons.approval"
+            | translate
+        }}
+        <!-- [skipLocationChange]="true" -->
+      </a>
+    </div>
+  </div>
+  <mat-tab-group
+    [selectedIndex]="currentTabIndex - 1"
+  >
+    <mat-tab *ngFor="let step of onboardingSteps">
+      <ng-template mat-tab-label>
+        <container-element [ngSwitch]="approvals[step].state">
+          <!-- the same view can be shown in more than one case -->
+          <i *ngSwitchCase="'saved'" class="far fa-eye"></i>
+          <i *ngSwitchCase="'submitted'" class="far fa-eye"></i>
+          <i *ngSwitchCase="'approved'" class="fas fa-check success"></i>
+          <i *ngSwitchCase="'rejected'" class="fas fa-exclamation"></i>
+          <i *ngSwitchDefault class="far fa-eye"></i>
+        </container-element>
+        &nbsp;{{ "menu.profile." + step | translate }}
+      </ng-template>
+
+      <container-element [ngSwitch]="step">
+        <!-- the same view can be shown in more than one case -->
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'master'"
+          app-freelancer-master
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'appearance'"
+          app-freelancer-appearance
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'qualifications'"
+          app-freelancer-qualification
+          [profile]="data"
+        ></div>
+        <div
+        class="approval-tab"
+        *ngSwitchCase="'employment'"
+        app-freelancer-employment-info
+        [profile]="data"
+      ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'legal'"
+          app-freelancer-legal
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'contract_freelancer'"
+          app-freelancer-contract-type
+          [type]="'freelancer'"
+          [profile]="data"
+        ></div>
+        <div
+          class="approval-tab"
+          *ngSwitchCase="'contract_tax_card'"
+          app-freelancer-contract-type
+          [type]="'tax_card'"
+          [profile]="data"
+        ></div>
+      </container-element>
+      <div class="row" *ngIf="approvals[step].comment">
+        <div class="col-xs-12">
+          <label
+            translate="administration.freelancers.onboarding-profile.comment"
+          ></label>
+          <p [innerHtml]="approvals[step].comment"></p>
+        </div>
+      </div>
+    </mat-tab>
+    <!-- <mat-tab *ngIf="allStepsChecked && showSummaryStep" label="Summary">
+      <div class="row middle-xs">
+        <div class="col-xs-8">
+          <p class="padding" translate="approval.profile.summary.all-done"></p>
+        </div>
+        <div class="col-xs-8 text-center padding">
+          <button
+            (click)="closeRequest()"
+            mat-flat-button
+            color="accent"
+            translate="approval.accept-button"
+          ></button>
+        </div>
+      </div>
+    </mat-tab> -->
+  </mat-tab-group>
+</div>
+<!-- <div class="onboarding-profile">
+  <div
+    class="approval-tabs"
+    data-uib-tabset
+    data-active="approval.currentTabIndex"
+  >
+    <div
+      class="approval {{ approval.freelancerApprovals[step].state }}"
+      data-ng-repeat="step in approval.onboardingSteps"
+      data-uib-tab
+      data-heading="{{ 'menu.profile.' + step | translate | unescape }}"
+      data-index="$index"
+    >
+      <div
+        data-ng-include="'app/approval/approval.profile.' + step + '.html'"
+      ></div>
+
+      <div class="row" data-ng-if="approval.freelancerApprovals[step].comment">
+        <div class="col-md-12">
+          <label
+            data-translate-once="administration.freelancers.onboarding-profile.comment"
+          ></label>
+          <p data-ng-bind="approval.freelancerApprovals[step].comment"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

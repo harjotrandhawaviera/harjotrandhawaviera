@@ -1,0 +1,14 @@
+<div class="search-panel">
+  <div [ngClass]="{'col-xs-12': true, 'has': actions.length}">
+    <ng-template ngFor let-action [ngForOf]="actions" let-i="index">
+      <a mat-flat-button color="accent" *ngIf="action.link && action.permission" [routerLink]="action.link" [queryParams]="action.query">
+        {{ action.text }}
+      </a>
+      <a mat-flat-button color="accent" *ngIf="!action.link && action.permission" (click)="actionClick(action.text)">
+        {{ action.text }}
+      </a>
+    </ng-template>
+  </div>
+  <h4 *ngIf="header">{{header}}</h4>
+  <ng-content></ng-content>
+</div>

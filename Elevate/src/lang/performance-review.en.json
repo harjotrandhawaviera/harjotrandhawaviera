@@ -1,0 +1,32 @@
+{
+    "performance-review": {
+        "title": "Staff Performance",
+        "search": {
+            "client": "Client",
+            "project": "Project",
+            "job": "Job",
+            "time_period": "Time Period"
+        },
+        "fields" :{
+            "overall_rating": {
+                "label": "Overall Rating",
+                "placeholder": ""
+            },
+            "comment": {
+                "placeholder": "Type review comment here.."
+            },
+            "review_status": {
+                "label": "Review Status"
+            }
+        },
+        "label" : {
+            "job_hours": "Job Hours:",
+            "total_shift": "Total Shift:"
+        },
+        "buttons":  {
+            "search": "Search",
+            "clear": "Clear",
+            "update": "Update"
+        }
+    }
+}

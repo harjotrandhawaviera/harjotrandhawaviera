@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 30">
+    <defs>
+        <style>
+            .polygon{
+                fill:#c5a06a;
+                box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0 2 4px 0 rgba(0,0,0,0.5);
+            }
+        </style>
+    </defs>
+    <polygon class="polygon"
+             points="342.69 15 350 7.69 350 0 0 0 0 30 350 30 350 22.31 342.69 15"/>
+    <title>Asset 3</title>
+</svg>

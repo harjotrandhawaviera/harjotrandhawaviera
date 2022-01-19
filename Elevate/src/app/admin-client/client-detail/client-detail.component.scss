@@ -1,0 +1,7 @@
+@import 'variables';
+.section-button {
+  margin-top: 10px;
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+  }
+}

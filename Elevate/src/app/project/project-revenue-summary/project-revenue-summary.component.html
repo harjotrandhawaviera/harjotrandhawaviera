@@ -1,0 +1,20 @@
+<div class="row revenues-summary" *ngIf="projectSummary">
+  <div class="col-xs-12">
+    <h3 class="clearfix">
+      <span class="total" translate="revenues.summary.total"></span>{{(projectSummary.total || 0) | currency}}
+      (<span class="average">
+        {{(projectSummary.average || 0) | currency}}
+      </span>)
+      <span class="details-toggle" (click)="expanded = !expanded">
+        <i *ngIf="!expanded" class="fas fa-angle-down"></i>
+        <i *ngIf="expanded" class="fas fa-angle-up"></i>
+        {{'revenues.summary.details' | translate}}</span>
+    </h3>
+  </div>
+</div>
+<div class="row" *ngIf="expanded">
+  <div class="col-xs-6 col-sm-6 col-md-2" *ngFor="let slot of detail">
+    <label>{{slot.key}}</label>
+    <p data-ng-bind=":'€'">{{slot.value | currency}}</p>
+  </div>
+</div>

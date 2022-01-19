@@ -1,0 +1,63 @@
+{
+    "messages": {
+        "required": "Bitte gib Betreff und Nachricht ein.",
+        "subject": {
+            "label": "Betreff",
+            "placeholder": "Grund der Nachricht",
+            "action": {
+                "replace-freelancer-bodypicture": "Kommentar zur Aktualisierung des Ganzkörper-Fotos",
+                "replace-freelancer-portraitpicture": "Kommentar zur Aktualisierung des Porträt-Fotos",
+                "replace-freelancer-tradelicence": "Kommentar zur Aktualisierung des Gewerbescheins",
+                "replace-freelancer-workpermit": "Kommentar zur Aktualisierung der Arbeitserlaubnis",
+                "replace-freelancer-evidence": "Kommentar zur Aktualisierung des Nachweises",
+                "approve-freelancer-onboarding": "Kommentar zur Aktualisierung des Mitarbeiterstatus aus dem Onboarding",
+                "approve-freelancer-contract": "Kommentar zur Aktualisierung deines Profils",
+                "approve-freelancer-data-change": "Kommentar zur Aktualisierung deiner Vertragsdaten",
+                "approve-freelancer-gtc": "Kommentar zur Aktualisierung der Angaben für die Allgemeinen Geschäftsbedingungen",
+                "replace-freelancer-gtc-document": "Kommentar zur Aktualisierung des Dokumentes der AGB",
+                "answer-job-message": "Re: {{subject}}",
+                "create-job-message": "Frage zum Job '{{title}}'"
+            }
+        },
+        "content": {
+            "placeholder": "..."
+        },
+        "sender-info": "{{fullname}}, {{date}}",
+        "details": {
+            "header": "Nachricht von {{senderFullname}} ({{senderEmail}}) vom {{createdAt}}",
+            "subject": "Betreff: {{subject}}",
+            "content": "{{content}}",
+            "content2": "Frage: {{content}}",
+            "response" : "Antwort: {{response}}",
+            "recipient": "Verantwortlicher {{recipientFullname}}",
+            "tenders": "{{tenders_count}}{tenders_count, select, 1{ Ausschreibung}  other{ Ausschreibungen}}",
+            "link-to-job": "Zum Jobangebot",
+            "question": "Deine ursprüngliche Nachricht: {{questionContent}}",
+            "link-to-certificate": "Zum Zertifikat"
+        },
+        "jobs": {
+            "title": "Nachrichten/Fragen zu Ausschreibungen",
+            "table": {
+                "filters": {
+                    "job": "Job",
+                    "agent": "Verantwortlicher Agent",
+                    "sender": "Fachberater"
+                },
+                "actions": {
+                    "remove": "Löschen",
+                    "answer": "Beantworten"
+                },
+                "answer": {
+                    "title": "Antworten",
+                    "message": "Re: <b>{{subject}}</b>",
+                    "placeholder": "Die Antwort lautet..."
+                },
+                "remove": {
+                    "title": "Löschen?",
+                    "message": "Möchtest Du diese unbeantwortete Nachricht wirklich löschen?",
+                    "message_freelancer": "Antwort auf die Frage lesen, bitte senden"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<div class="auth-header">
+  <app-logo-brand link="/login"></app-logo-brand>
+</div>
+<div class="auth-body">
+  <router-outlet></router-outlet>
+</div>
+<div class="auth-footer">
+  <app-auth-footer></app-auth-footer>
+</div>
+<div class="cookie-consent" *ngIf="cookieSetAlready !== 'yes'">
+  <div class="alert-info padding sticky-bottom">
+    <div>
+      <div>
+        <h2>Cookies</h2>
+        <p>{{'cookie.consent' | translate}}</p>
+      </div>
+      <button class="btn btn-primary center-block" (click)="cookieAccept(true)">{{'cookie.accept' | translate}}</button>
+    </div>
+  </div>
+</div>

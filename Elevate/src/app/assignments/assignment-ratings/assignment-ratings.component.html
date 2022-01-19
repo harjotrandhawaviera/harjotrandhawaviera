@@ -1,0 +1,17 @@
+<div class="ratings-cont" *ngIf="hasProperties">
+  <div class="row" *ngFor="let rating of ratingProp">
+    <div class="rating-section col-md-8">
+      <label>{{ rating.key }}</label>
+      <mat-radio-group>
+        <mat-radio-button color="primary" *ngFor="let value of [1,2,3,4,5]" name="{{rating.key}}"
+          [checked]="value === rating.value" [value]="value" [disabled]="viewType !== 'set'">
+          {{'assignments.ratings.rating.value-' +value | translate}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="comment-section col-md-4">
+      <label class="empty-label"></label>
+      <p *ngIf="viewType !== 'set'">{{ rating.comment }}</p>
+    </div>
+  </div>
+</div>

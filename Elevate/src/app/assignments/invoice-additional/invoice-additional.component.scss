@@ -1,0 +1,58 @@
+@import "variables";
+@import "mixins";
+
+.docTypes_container {
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 15px 0;
+  h4 {
+    margin-bottom: 10px;
+  }
+  .document-cont {
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      .document-mime {
+        @include document-mime;
+        padding: 5px !important;
+        text-align: center;
+      }
+      .document-original-filename {
+        padding: 5px !important;
+      }
+    }
+    .btn-download {
+      font-size: 20px;
+    }
+    & + .approval-state + .no-docs {
+      display: none;
+    }
+  }
+  .approval-state {
+    margin: 10px 0 0;
+    .pending, .rejected, .accepted {
+      .mat-radio-group {
+        margin-right: 5px;
+      }
+      display: none;
+      .mat-radio-button {
+        padding: 0;
+      }
+      .done {
+        display: flex;
+        align-items: center;
+      }
+    }
+    &.accepted .accepted {
+      display: flex;
+    }
+    &.pending .pending {
+      display: flex;
+    }
+    &.rejected .rejected {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="form-group col-xs-12">
+    <label translate="projects.inherited.fields.feedback-questions.label"></label>
+    <div *ngIf="!(feedback && feedback.length)">
+      <p class="col-xs-12 padding-none" translate="projects.feedback-questions.none"></p>
+    </div>
+    <div class="table-wrapper feedback-table" *ngIf="feedback && feedback.length">
+      <div class="table-inner-wrapper">
+        <table class="search-table" mat-table [dataSource]="dataSource">
+          <!-- Name Column -->
+          <ng-container matColumnDef="question">
+            <th mat-header-cell *matHeaderCellDef> {{'projects.feedback-questions.table.question' | translate}}  </th>
+            <td mat-cell *matCellDef="let element"> {{element.question}} </td>
+          </ng-container>
+          <ng-container matColumnDef="translatedType">
+            <th mat-header-cell *matHeaderCellDef> {{'projects.feedback-questions.table.translatedType' | translate}}  </th>
+            <td mat-cell *matCellDef="let element"> {{'projects.feedback-questions.fields.feedback.' + element.type  | translate}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <app-paginator [onlyCount]="true" [pageSize]="feedback.length" [length]="feedback.length"></app-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+{
+  "master": {
+    "skills": {
+      "title": {
+        "name": "Skill Master",
+        "edit": "Edit Skill",
+        "new": "New Skill",
+        "detail": "Skill Details"
+      },
+      "list": {
+        "buttons": {
+          "create": "Create new Skill"
+        },
+        "filters": {
+          "category": "Category",
+          "region": "Region",
+          "dates": "(From - To)"
+        },
+        "search": {
+          "placeholder": "min. 3 characters",
+          "label": "Search for skill"
+        }
+      },
+      "state": {
+        "active": "Active",
+        "draft": "Draft",
+        "closed": "Closed",
+        "undefined": "Not Defined"
+      },
+      "table": {
+        "category": "Skill Category",
+        "name": "Skill Name",
+        "region": "Region Applicable",
+        "createdBy": "Created By",
+        "createdDate": "Created Date",
+        "search-placeholder": "Search for skill name (min. 3 characters)",
+        "actions": {
+          "details": "Details",
+          "remove": "Delete",
+          "edit": "Edit"
+        },
+        "remove": {
+          "title": "Delete Skill?",
+          "message": "Are you sure you want to delete this skill?"
+        }
+      },
+      "buttons": {
+        "create": "Create new Skill",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "save": "Save",
+        "update": "Save Changes",
+        "back": "Back to Skill Master"
+      },
+      "fields": {
+        "category": {
+          "label": "Skill Category"
+        },
+        "name": {
+          "label": "Skill Name"
+        },
+        "region": {
+          "label": "Region Applicable"
+        },
+        "proof": {
+          "label": "Required Proof (Certificate)"
+        }
+      }
+    },
+    "roles": {
+      "title": {
+        "name": "Role Master",
+        "edit": "Edit Role",
+        "new": "New Role",
+        "detail": "Role Details"
+      },
+      "list": {
+        "buttons": {
+          "create": "Create new Role"
+        },
+        "filters": {
+          "category": "Category",
+          "region": "Region",
+          "dates": "(From - To)"
+        },
+        "search": {
+          "placeholder": "min. 3 characters",
+          "label": "Search for role"
+        }
+      },
+      "state": {
+        "active": "Active",
+        "draft": "Draft",
+        "closed": "Closed",
+        "undefined": "Not Defined"
+      },
+      "table": {
+        "identifier": "Role Name",
+        "label": "Role Label",
+        "region": "Region Applicable",
+        "createdBy": "Created By",
+        "createdDate": "Created Date",
+        "search-placeholder": "Search for role name (min. 3 characters)",
+        "actions": {
+          "details": "Details",
+          "remove": "Delete",
+          "edit": "Edit"
+        },
+        "remove": {
+          "title": "Delete Role?",
+          "message": "Are you sure you want to delete this role?"
+        }
+      },
+      "buttons": {
+        "create": "Create new Role",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "save": "Save",
+        "update": "Save Changes",
+        "back": "To the Role Overview"
+      },
+      "fields": {
+        "label": {
+          "label": "Role Label"
+        },
+        "identifier": {
+          "label": "Role Name"
+        },
+        "region": {
+          "label": "Region Applicable"
+        },
+        "description": {
+          "label": "Role Description"
+        },
+        "skills": {
+          "label": "Skill Applicable"
+        }
+      }
+    }
+  }
+}

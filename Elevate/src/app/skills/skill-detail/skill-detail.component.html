@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a [routerLink]="['../../']"
+        >{{ "master.skills.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md start-xs">
+      <h1 translate="master.skills.title.detail"></h1>
+    </div>
+    <div class="col-xs-12 col-md end-xs">
+      <a mat-flat-button color="accent" [routerLink]="['../']"
+        >{{ "master.skills.title.edit" | translate }}
+        <!-- [skipLocationChange]="true" -->
+      </a>
+    </div>
+  </div>
+  <fieldset *ngIf="skillData">
+    <div class="row">
+      <div class="form-group col-sm-12 col-xs-12">
+        <label translate="master.skills.fields.category.label"></label>
+        <div>{{ skillData?.skillCategory?.name }}</div>
+      </div>
+      <div class="form-group col-sm-12 col-xs-12">
+        <label translate="master.skills.fields.name.label"></label>
+        <div>{{ skillData.title }}</div>
+      </div>
+      <div class="form-group col-sm-12 col-xs-12">
+        <label translate="master.skills.fields.region.label"></label>
+        <div>{{ showValOfList(skillData?.regions) }}</div>
+      </div>
+      <div class="form-group col-sm-12 col-xs-12">
+        <label translate="master.skills.fields.proof.label"></label>
+        <div>{{ skillData.required_proof ? "Yes" : "No" }}</div>
+      </div>
+    </div>
+  </fieldset>
+</div>

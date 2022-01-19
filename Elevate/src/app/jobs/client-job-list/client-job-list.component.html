@@ -1,0 +1,77 @@
+<app-search-container>
+  <app-search-panel [actions]="[
+      {
+        text: ('jobs.client.list.buttons.create' | translate),
+        key: 'new_job',
+        link: '/jobs/client/create',
+        permission: true
+      }
+    ]">
+    <form class="search-form" [formGroup]="searchForm">
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+        <!-- <mat-form-field class="full-width">
+          <mat-label>{{"jobs.filters.agent" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="agent" #agent [options]="agentLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.filters.client" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="client" #client [options]="clientLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field> -->
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.filters.project" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="project" #project [options]="projectLK" [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.filters.contractType" | translate}}</mat-label>
+          <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
+            [clearSelection]="true">
+          </app-static-auto-complete>
+        </mat-form-field>
+        <!-- <div class="status-cont">
+          <mat-label>{{"jobs.filters.attributes" | translate}}</mat-label>
+          <mat-slide-toggle formControlName="attributes" color="primary">
+            {{'jobs.fields.attributes.with_offer' | translate}}
+          </mat-slide-toggle>
+        </div> -->
+      </div>
+      <div class="row">
+        <h4>{{ "ui.side-option-menu.search" | translate }}</h4>
+        <mat-form-field class="full-width">
+          <mat-label>{{"jobs.search.label" | translate}}</mat-label>
+          <input matInput formControlName="search" type="search" />
+          <i matSuffix class="fas fa-search"></i>
+          <mat-hint>{{"jobs.search.placeholder" | translate}}</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <h1 translate="jobs.title"></h1>
+    <ng-container *ngIf="!(noRecords$ | async)">
+      <div class="row">
+        <div class="tile-cont col-xs-12 col-md-6 padding-none" *ngFor="let item of result$ | async">
+          <app-client-job-tile [clientJob]="item"></app-client-job-tile>
+        </div>
+        <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+      </div>
+      <app-paginator [disabled]="loading$ | async" hidePageSize="true" showFirstLastButtons="true"
+        [length]="totalRecords$ | async" [pageIndex]="currentPage$ | async" [pageSize]="pageSize$ | async"
+        (page)="pageChange($event)" *ngIf="!(noRecords$ | async)">
+      </app-paginator>
+      <div class="row end-md center-xs" *ngIf="!(noRecords$ | async)">
+        <button type="button" mat-stroked-button color="primary" (click)="download()">
+          Download
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(noRecords$ | async)">
+      <div class="alert alert-info">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </ng-container>
+  </app-search-list>
+</app-search-container>

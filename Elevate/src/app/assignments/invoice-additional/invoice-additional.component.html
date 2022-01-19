@@ -1,0 +1,50 @@
+<ng-container *ngIf="additionalCTI">
+  <div class="docTypes_container" *ngFor="let type of enabledDocTypes">
+    <h4>
+      {{'invoices.fields.additional-documents.' + additionalCTI + '.' + type + '.label' | translate}}
+    </h4>
+    <ng-container *ngFor="let document of documents | filterByType: type">
+      <div class="row document-cont" *ngIf="document">
+        <div class="col-xs-12 col-sm-8 item">
+          <span class="document-mime" *ngIf="document.mime !== null">{{document.mime | shortMime}}</span>
+          <span class="document-original-filename" *ngIf="document.original_filename">
+            {{ document.original_filename }}
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-4 end-xs">
+          <button type="button" mat-icon-button color="accent" class="btn-download" *ngIf="document.url"
+            (click)="onDownloadClick(document)">
+            <i class="fas fa-file-download"></i>
+          </button>
+          <span class="document-size" *ngIf="document.size !== null">{{document.size | fileSize}}</span>
+        </div>
+      </div>
+      <div class="approval-state {{document.approval.state}}">
+        <div class="{{state}}" *ngFor="let state of reportStatuses">
+          <mat-radio-group>
+            <mat-radio-button class="col-xs-12" color="primary" [checked]="isRadioSelected(document.approval.state)"
+              [value]="document.approval.state" name="approval-{{ document.approval.id }}">
+              {{'common.approval-state.' +document.approval.state | translate}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <div class="done">
+            <ng-container *ngIf="document.approval.performed_by; else elseApprovalByTemplate">
+              <span class="performer">
+                {{'common.approval-state.by' | translate: {user: document.approval.performed_by} }}
+              </span>
+            </ng-container>
+            <ng-template #elseApprovalByTemplate>
+              <span class="performer">
+                {{'common.approval-state.by' | translate: {user: 'System'} }}
+              </span>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="no-docs" *ngIf="documents | filterByType: type">
+      {{'invoices.fields.additional-documents.not-available' | translate}}
+    </div>
+  </div>
+</ng-container>
+

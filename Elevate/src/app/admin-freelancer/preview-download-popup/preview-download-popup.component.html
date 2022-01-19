@@ -1,0 +1,11 @@
+<div class="preview-download">
+  <div class="end-xs icon">
+    <mat-icon class="end-xs"  [mat-dialog-close]="true" type="button">close</mat-icon>
+    <div class="center-md">
+      <button mat-stroked-button color="primary" (click)="download()"> Download </button>
+    </div>
+  </div>
+  <pdf-viewer *ngIf="data?.pdf?.mime === 'application/pdf'" src="{{temp}}" [show-borders]="true"></pdf-viewer>
+  <img class="image_display" *ngIf="data?.image" [src]="imageToShow">
+
+</div>

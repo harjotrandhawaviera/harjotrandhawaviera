@@ -1,0 +1,42 @@
+<div
+  class="row"
+  *ngIf="inFormGroup"
+  [formGroup]="inFormGroup"
+  style="margin-bottom: 20px"
+>
+  <div class="col-xs-12 col-sm-3">
+      <mat-form-field class="full-width">
+        <mat-label *ngIf="isPrimaryRole">{{ "profile.fields.roles.primaryRole.label" | translate}}</mat-label>
+        <mat-label *ngIf="!isPrimaryRole">{{ "profile.fields.roles.secondaryRole.label" | translate}}</mat-label>
+        <mat-select *ngIf="isPrimaryRole" [ngModelOptions]="{standalone: true}" [ngModel]="role" name="category">
+          <mat-option *ngFor="let data of roles" [value]="data" (click)="onRoleSelect(data)">
+            {{data.label}}
+          </mat-option>
+        </mat-select>
+        <mat-select *ngIf="!isPrimaryRole" [ngModelOptions]="{standalone: true}" [ngModel]="role" name="category">
+          <mat-option *ngFor="let data of roles" [value]="data" (click)="onRoleSelect(data)">
+            {{data.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-3">
+    <mat-form-field class="full-width">
+      <mat-label>{{ "profile.fields.roles.roleLabel.label" | translate}}</mat-label>
+      <input readonly matInput formControlName="role_label" name="label">
+      <mat-error></mat-error>
+    </mat-form-field>
+  </div>
+  <div class="col-xs-12 col-sm-3">
+    <mat-form-field class="full-width">
+      <mat-label>{{ "profile.fields.roles.description.label" | translate}}</mat-label>
+      <input readonly matInput formControlName="role_description" name="description">
+      <mat-error></mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="col-xs-12 col-sm-2">
+    <i class="fas fa-plus" *ngIf="!isPrimaryRole" (click)="addNewRole()"></i>
+    <i class="fas fa-minus" *ngIf="!isPrimaryRole" [ngClass]="isPrimaryRole ? 'remove-role-wrapper' : ''" (click)="removeRole($event)"></i>
+  </div>
+</div>

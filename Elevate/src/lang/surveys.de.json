@@ -1,0 +1,62 @@
+{
+    "surveys": {
+        "details": {
+          "show": "{type, select, questionnaire {Stellungnahme} feedback {Feedback} other {Umfrage}} für den {date}",
+          "show-questionnaire": "Stellungnahme für den {{date}}",
+          "show-feedback": "Feedback für den {{date}}",
+          "show-other": "Umfrage für den {{date}}",
+          "create": "{type, select, questionnaire {Stellungnahme} feedback {Feedback} other {Umfrage}} für den {date} beantworten",
+          "create-questionnaire": "Stellungnahme für den {{date}} beantworten",
+          "create-feedback": "Feedback für den {{date}} beantworten",
+          "create-other": "Umfrage für den {{date}} beantworten",
+          "not-available": "{type, select, questionnaire {Keine Stellungnahme} feedback {Kein Feedback} other {Keine Umfrage}} für den {date} verfügbar.",
+          "not-available-questionnaire": "Keine Stellungnahme für den {{date}} verfügbar.",
+          "not-available-feedback": "Kein Feedback für den {{date}} verfügbar.",
+          "not-available-other": "Keine Umfrage für den {{date}} verfügbar."
+        },
+        "questionnaire": {
+            "title": "Stellungnahme",
+            "hint-create": "Bevor Du den Einsatzbericht und die Umsatzmeldung eingeben kannst, benötigen wir von Dir noch einige Angaben.",
+            "hint": "Bitte beantworte die nachfolgenden Fragen wahrheitsgemäß. Solltest du eine Frage mit 'nein' beantworten müssen, nenne uns bitte eine Begründung dafür.\nVielen Dank!",
+            "cancel-saving": "Das Beantworten der Stellungnahme wurde abgebrochen.",
+            "answer": {
+                "yes": "Stimmt",
+                "no": "Stimmt nicht",
+                "comment": "Begründung/Kommentar zur Frage {{index}}"
+            },
+            "review": {
+                "comment": "Anmerkung zur Stellungnahme - vom Agenten"
+            }
+        },
+        "feedback": {
+            "title": "Feedback",
+            "hint-create": "",
+            "hint": "Bitte gib uns noch eine Rückmeldung, wie dein Einsatz abgelaufen ist.\nVielen Dank!",
+            "cancel-saving": "Das Beantworten des Feedbacks wurde abgebrochen.",
+            "answer": {
+                "yes": "Ja",
+                "no": "Nein",
+                "comment": "Begründung/Kommentar zur Frage {{index}}",
+                "text": "Antwort zu Frage {{index}}"
+            },
+            "review": {
+                "comment": "Anmerkung zum Feedback - vom Agenten"
+            }
+        },
+        "buttons": {
+            "submit": "Speichern",
+            "cancel": "Abbrechen",
+            "close": "Schließen"
+        },
+        "table": {
+            "id": "ID",
+            "createdAt": "Angelegt am",
+            "commentedAt": "Kommentiert am",
+            "comment": "Kommentar",
+            "commenterName": "Kommentator",
+            "jobTitle": "Job",
+            "appointedAt": "Einsatztag",
+            "freelancerName": "Fachberater"
+        }
+    }
+}

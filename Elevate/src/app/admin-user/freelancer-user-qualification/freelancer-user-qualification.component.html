@@ -1,0 +1,193 @@
+<div class="row" *ngIf="updateSet === null">
+  <div class="col-md-6">
+    <label translate="profile.qualification.title"></label>
+    <p>{{ qualification.name }}</p>
+  </div>
+  <div class="col-md-6">
+    <label translate="profile.qualification.date"></label>
+    <p>{{ qualification.achievedAt }}</p>
+  </div>
+  <div class="col-md-12">
+    <label translate="profile.qualification.description"></label>
+    <p [innerHtml]="qualification.description | newlines"></p>
+  </div>
+  <div
+    class="col-md-12"
+    *ngIf="qualification.document && qualification.document.id"
+  >
+    <label translate="profile.qualification.document"></label>
+    <app-profile-document
+      [readonly]="true"
+      [documents]="qualification.document ? [qualification.document] : []"
+      [buttonText]="'buttons.upload-document' | translate"
+    ></app-profile-document>
+    <!-- <p
+      data-profile-document="qualification.document"
+      data-type="document"
+      data-document-type="qualification"
+    ></p> -->
+  </div>
+  <div class="col-md-12" *ngIf="isEditAllowed">
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      translate="buttons.edit"
+      (click)="onEdit()"
+    ></button>
+  </div>
+</div>
+<form
+  [formGroup]="detailForm"
+  *ngIf="detailForm && updateSet"
+  (ngSubmit)="onSave()"
+>
+  <div class="row bg-info" *ngIf="detailForm" style="margin-bottom: 20px">
+    <div class="col-xs-12 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label required>{{
+          "profile.fields.qualification.title.label" | translate
+        }}</mat-label>
+        <input matInput formControlName="name" name="name" />
+        <mat-error *ngIf="displayMessage.name">{{
+          displayMessage.name
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "profile.fields.qualification.date.label" | translate
+        }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="achievedAtPicker"
+          formControlName="achieved_at"
+          name="achieved_at"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="achievedAtPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #achievedAtPicker></mat-datepicker>
+        <mat-error *ngIf="displayMessage.achieved_at">{{
+          displayMessage.achieved_at
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12">
+      <mat-form-field class="full-width">
+        <mat-label>{{
+          "profile.fields.qualification.description.label" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          name="description"
+          rows="3"
+        ></textarea>
+        <mat-error *ngIf="displayMessage.description">{{
+          displayMessage.description
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      *ngIf="qualification.document && qualification.document.id"
+    >
+      <label
+        for="document"
+        translate="profile.fields.qualification.document.label"
+        required
+      ></label>
+      <app-profile-document
+        [readonly]="true"
+        formControlName="document"
+        [buttonText]="'buttons.upload-document' | translate"
+      ></app-profile-document>
+    </div>
+    <div class="col-md-12">
+      <button
+        type="submit"
+        mat-flat-button
+        color="accent"
+        translate="buttons.submit"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="buttons.cancel"
+        (click)="onCancel()"
+      ></button>
+    </div>
+  </div>
+</form>
+<!-- <div class="row bg-info" *ngIf="updateSet !== null && updateSet.id !== null">
+  <form role="form" name="qualification.form" data-ng-fab-form>
+    <fieldset>
+      <div class="col-md-6">
+        <label translate="profile.qualification.title" data-required></label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          data-ng-model="qualification.updateSet.name"
+          translate-placeholder="profile.fields.qualification.title.placeholder"
+        />
+      </div>
+      <div class="col-md-6">
+        <label translate="profile.qualification.date"></label>
+        <input
+          type="text"
+          class="form-control"
+          id="date"
+          data-ng-model="qualification.updateSet.achieved_at"
+          data-dateformat
+          translate-placeholder="profile.fields.qualification.date.placeholder"
+        />
+      </div>
+      <div class="col-md-12">
+        <label translate="profile.qualification.description"></label>
+        <textarea
+          class="form-control"
+          id="description"
+          data-ng-model="qualification.updateSet.description"
+        ></textarea>
+      </div>
+      <div
+        class="col-md-12"
+        *ngIf="qualification.document && qualification.document.id"
+      >
+        <label translate="profile.qualification.document"></label>
+        <div
+          class="full-width"
+          *ngIf="qualification.document && qualification.document.id"
+        >
+          <app-profile-document
+            [readonly]="true"
+            formControlName="document"
+            [documents]="qualification.document ? [qualification.document] : []"
+            [buttonText]="'buttons.upload-document' | translate"
+          ></app-profile-document>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button
+          type="button"
+          class="btn btn-primary"
+          translate="buttons.submit"
+          (click)="onSave()"
+        ></button>
+        <button
+          type="button"
+          class="btn btn-default"
+          translate="buttons.cancel"
+          (click)="onCancel()"
+        ></button>
+      </div>
+    </fieldset>
+  </form>
+</div> -->

@@ -1,0 +1,54 @@
+{
+    "offers": {
+      "offers_made": "Details zum übermittelten Job",
+      "offers_shortlisted": "Job in der engeren Auswahl",
+      "applied_job": "Angewandte Stellendetails",
+      "deadline": "TERMIN::",
+      "expiry_date": "Gültig bis",
+      "shift_time": "Schichtzeit",
+      "client": "Kunde",
+      "fee": "Mögliches Honorar",
+      "job": "Job",
+      "compensation": "Aufgabenbasierte Vergütung",
+      "contract_type": "Vertragstyp",
+      "Bonus": "Prämien",
+      "category": "Kategorie",
+      "address": "Adresse",
+      "freelancer": "Fachberater",
+      "phone": "Telefon (mobil)",
+      "email": "E-Mail",
+      "project": "Projekt",
+      "rate": "Stundensatz",
+      "certificate": "Benötigte Zertifikate",
+      "operational_training": "Benötigte Einsatzschulungen",
+      "description": "Beschreibung/Ziel des Projektes",
+      "briefing": "Allgemeines Briefing",
+      "register": "Bei Anmeldung:",
+      "sales_report": "Umsatzmeldung:",
+      "documentation": "Foto-Dokumentation:",
+      "state": {
+        "pending": "In Progress",
+        "rejected": "Declined"
+      },
+      "confirm-offer": {
+        "check_in": "Mit Umfrage-Link bestätigen",
+        "check_out": "Bestätigen ohne Umfrage-Link",
+        "placeholder": {
+          "check_in": "Link zur Check-in-Umfrage",
+          "check_out": "Link zur Check-out-Umfrage"
+        }
+      },
+      "buttons": {
+        "confirmOffer": "Angebot annehmen",
+        "rejectOffer": "Angebot ablehnen",
+        "shortlist": "Auswahlliste",
+        "abort": "Abbrechen",
+        "accept": "einreichen",
+        "details": "Details"
+      },
+      "dialog": {
+        "messageAccept": "Möchtest du das Angebot von wirklich annehmen?",
+        "messageReject": "Möchtest du das Angebot von wirklich ablehnen?"
+      }
+    }
+}

@@ -1,0 +1,12 @@
+<div class="row">
+  <div app-profile-comment part="contract_freelancer"></div>
+  <div
+    class="col-md-12"
+    app-freelancer-contract-type
+    (freelancerContract)="freelancerContract($event)"
+    [profile]="profile"
+    [freelancerAssignment]="freelancerAssignment"
+    type="freelancer"
+    data-profile-view="set"
+  ></div>
+</div>

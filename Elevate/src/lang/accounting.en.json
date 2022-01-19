@@ -1,0 +1,147 @@
+{
+    "accounting": {
+      "taxes": {
+        "true" : "yes",
+        "false" : "no"
+      },
+        "export": {
+            "title": "Export",
+            "selected-total": "Total:",
+            "fields": {
+                "types": {
+                    "accounting": "Accounting",
+                    "sepa": "SEPA"
+                }
+            },
+            "filters": {
+                "dates": "Payment Target",
+                "filter_for_export": "Invoices possible after export"
+            },
+            "table": {
+                "comment": "Comment",
+                "number": "Invoice Number",
+                "issuedAt": "Invoice Date",
+                "paymentTarget": "Payment Date",
+                "no-records": "No invoices",
+                "includesTaxesText": "Taxes",
+                "paymentTotal": "Invoice total (discount)",
+                "freelancer_name": "Staff Member Name"
+            },
+            "buttons": {
+                "export": "Export"
+            },
+            "sepa": {
+                "export": {
+                    "title": "Do you want to create the SEPA file (XML) for the selected invoices?",
+                    "message": "All selected invoices are authorized for payment and cannot be exported again."
+                }
+            },
+            "accounting": {
+                "export": {
+                    "title": "Do you want to create the accounting file (CSV) for the selected invoices?",
+                    "message": "All the selected invoices will be marked as exported and cannot be exported again."
+                }
+            }
+        },
+        "files": {
+            "title": "Files",
+            "fields": {
+                "types": {
+                    "accounting": "Accounting",
+                    "sepa": "SEPA"
+                }
+            },
+            "filters": {
+                "dates": "Dates",
+                "export_type": "Type"
+            },
+            "table": {
+                "actions": {
+                    "download": "Download"
+                },
+                "createdAt": "Date",
+                "creatorName": "Reported by",
+                "invoice_count": "Invoices",
+                "size": "File size",
+                "paymentTotal": "Total Amount",
+                "typeName": "Type"
+            },
+            "type": {
+                "accounting": "Accounting",
+                "sepa": "SEPA"
+            }
+        },
+        "bills": {
+            "search-bills-placeholder": "Search by invoice number",
+            "title": {
+                "details": "Invoice details for Customer {{client}}"
+            },
+            "filters": {
+                "client": "Customer",
+                "project": "Project",
+                "job": "Job Name",
+                "dates": "Date",
+                "order": "Order"
+            },
+            "buttons": {
+                "create": "Generate invoice",
+                "edit": "Edit",
+                "update": "Save",
+                "cancel": "Cancel",
+                "back": "Back to customer invoices overview"
+            },
+            "table": {
+                "appointedAt": "Appointment",
+                "start_time": "Start",
+                "finish_time": "End",
+                "comment": "Comment",
+                "clientName": "Customer",
+                "report": "Mission Reports",
+                "list": "Mission List",
+                "dateRange": "Appointment",
+                "jobTitle": "Job Name",
+                "correction": "Correction",
+                "assignmentBudget": "Budget for Operation",
+                "plannedCosts": "Customer Cost",
+                "hours": "Reported Time",
+                "number": "Invoice Number",
+                "totalSum": "Invoice Amount",
+                "freelancerName": "Staff Member",
+                "billId": "Invoice Number",
+                "search-placeholder": "",
+                "actions": {
+                    "details": "Details",
+                    "remove": "Delete"
+                },
+                "remove": {
+                    "title": "Delete customer invoice",
+                    "message": "Do you really want to delete customer invoice?"
+                }
+            },
+            "fields": {
+                "issuedAt": "Invoice Date",
+                "number": "Invoice Number",
+                "total": "Total: ",
+                "comment": "Comment",
+                "number-of-assignments": "{{count}} {count, select, 1 { Insert}  other{ Stakes}}",
+                "date-range": "From {{min}} - {{max}}",
+                "date": "at from {{date}}",
+                "selected-assignments-number": "{{count}} From {{total}}{count, select, 1 { Insert}  other{ {Deployments} selected",
+                "assignments": "Deployment List"
+
+            },
+            "preparation": {
+                "creation": "Generate invoice for Customer {{client}}",
+                "title": {
+                    "new": "Create Invoice",
+                    "edit": "Edit",
+                    "list": "Overview of Billable Jobs"
+                },
+                "buttons": {
+                    "back": "Back to preparation"
+                },
+                "no-filter-hint": "Please select the Customer, Project or Job first."
+            }
+        }
+    }
+}

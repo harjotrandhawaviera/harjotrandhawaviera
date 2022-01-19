@@ -1,0 +1,26 @@
+<div class="auth confirm-email">
+  <!-- to show only in case of error; redirection will be otherwise -->
+  <div class="form-wrapper" *ngIf="errors">
+    <h3 translate="auth.label.resend-confirmation"></h3>
+    <div class="form-body">
+      <!-- <form role="form" name="auth.form" data-ng-submit="auth.resendConfirmation(auth.data.email)"
+        data-api-validation="auth.data"> -->
+      <form name="register" [formGroup]="resendForm" role="form" (ngSubmit)="resendConfirmation()">
+        <app-form-notification type="danger" [notifications]="errors ? [errors] : []">
+        </app-form-notification>
+        <!-- <div data-form-notifications="auth.form.errors" data-type="warning"></div>
+        <div data-form-notifications="auth.errors" data-type="danger"></div> -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'auth.email.short' | translate }}</mat-label>
+          <input matInput formControlName="email" type="email">
+          <mat-error *ngIf="displayMessage.email">{{displayMessage.email}}</mat-error>
+        </mat-form-field>
+        <button class="full-width" type="submit" mat-raised-button color="primary" translate="auth.label.resend-confirmation">
+        </button>
+      </form>
+    </div>
+    <!-- <span class="login-link">
+      <a [routerLink]="['/forgot-password']" translate="auth.label.forgot-password"></a>
+    </span> -->
+  </div>
+</div>

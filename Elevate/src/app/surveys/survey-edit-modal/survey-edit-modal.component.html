@@ -1,0 +1,184 @@
+<form
+  role="form"
+  name="form"
+  data-ng-submit="survey.submit()"
+  #surveyForm="ngForm"
+>
+  <h1 [translate]="context + '.title'"></h1>
+  <h5 *ngIf="!onbehalf" [translate]="context + '.hint'"></h5>
+  <div *ngFor="let item of data.instance; let i = index" class="row">
+    <h4 class="col-md-8">
+      <span class="counter">{{ i + 1 }}.</span>{{ item.question }}
+    </h4>
+    <div class="col-md-4 answer" *ngIf="item.type === 'boolean'">
+      <mat-radio-group
+        aria-labelledby="Role"
+        class="row"
+        color="primary"
+        name="answer_{{ i }}"
+        [required]="true"
+        [(ngModel)]="data.instance[i].answer"
+        [disabled]="view !== 'set'"
+        #answer="ngModel"
+      >
+        <mat-radio-button class="col-xs-12 col-md-4" value="true">
+          {{ context + ".answer.yes" | translate }}
+        </mat-radio-button>
+        <mat-radio-button class="col-xs-12 col-md-4" value="false">
+          {{ context + ".answer.no" | translate }}
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="answer.invalid && (answer.dirty || answer.touched)">{{ 'form.errors.required' | translate }}</mat-error>
+      <!-- <label class="input-label">
+        <input
+          type="radio"
+          class="rounded"
+          data-ng-disabled="view !== 'set'"
+          data-brand-checkbox
+          name="answer_{{ i }}"
+          data-ng-model="data.instance[i].answer"
+          data-ng-value="'true'"
+        />
+        <span class="description" [translate]="context + '.answer.yes'"></span>
+      </label>
+      <label class="input-label">
+        <input
+          type="radio"
+          class="rounded"
+          data-ng-disabled="view !== 'set'"
+          data-brand-checkbox
+          name="answer_{{ i }}"
+          data-ng-model="data.instance[i].answer"
+          data-ng-value="'false'"
+        />
+        <span class="description" [translate]="context + '.answer.no'"></span>
+      </label> -->
+      <!-- <br />
+      <input
+        class="hide"
+        data-ng-model="hiddenRequiredAnswer"
+        *ngIf="
+          !(
+            data.instance[i].answer === 'true' ||
+            data.instance[i].answer === 'false'
+          )
+        "
+        required
+      /> -->
+    </div>
+    <div class="form-group col-md-12" *ngIf="item.type === 'boolean'">
+      <!-- <label
+      [translate]="context + '.answer.comment'"
+      [translateParams]="{ index: i + 1 }"
+      ></label> -->
+      <mat-form-field class="full-width" *ngIf="view === 'set'">
+        <mat-label [translate]="context + '.answer.comment'"
+        [translateParams]="{ index: i + 1 }"></mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="data.instance[i].comment"
+          name="comment_{{ i }}"
+          [required]="data.instance[i].type !== 'boolean' || (data.type==='questionnaire' && data.instance[i].answer === 'false')"
+          rows="1"
+          #comment="ngModel"
+        ></textarea>
+        <mat-error *ngIf="comment.invalid && (comment.dirty || comment.touched)">{{ 'form.errors.required' | translate }}</mat-error>
+      </mat-form-field>
+      <!-- <textarea
+        class="form-control"
+        type="text"
+        *ngIf="view === 'set'"
+        data-ng-model="data.instance[i].comment"
+        data-ng-required="data.instance[i].type !== 'boolean' || (survey.type==='questionnaire' && data.instance[i].answer === 'false')"
+      ></textarea> -->
+      <p *ngIf="view !== 'set'">
+        {{ data.instance[i].comment || "-" }}
+      </p>
+    </div>
+    <div class="form-group col-md-12" *ngIf="item.type === 'string'">
+      <!-- <label
+
+        data-required
+      ></label> -->
+      <!-- <textarea
+        class="form-control"
+        type="text"
+        *ngIf="view === 'set'"
+        data-ng-model="data.instance[i].answer"
+        required
+      ></textarea> -->
+      <mat-form-field class="full-width" *ngIf="view === 'set'">
+        <mat-label [translate]="context + '.answer.text'"
+        [translateParams]="{ index: i + 1 }"></mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="data.instance[i].answer"
+          name="answer_{{i}}"
+          rows="1"
+          [required]="true"
+          #answer="ngModel"
+        ></textarea>
+        <mat-error *ngIf="answer.invalid && (answer.dirty || answer.touched)">{{ 'form.errors.required' | translate }}</mat-error>
+      </mat-form-field>
+      <p *ngIf="view !== 'set'">
+        {{ data.instance[i].answer || "-" }}
+      </p>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="onbehalf || data.comment">
+    <div class="form-group col-md-12">
+      <label data-ng-required="survey.commentRequired">
+        {{ context + ".review.comment" | translate }}</label
+      >
+      <mat-form-field
+        class="full-width"
+        *ngIf="onbehalf && !isApproved && !isClient"
+      >
+        <mat-label></mat-label>
+        <textarea matInput [(ngModel)]="data.comment" name="comment" rows="1"></textarea>
+      </mat-form-field>
+      <!-- <textarea
+      *ngIf="onbehalf && !isApproved && !isClient"
+        class="form-control"
+        type="text"
+        data-ng-model="data.comment"
+        data-ng-required="survey.commentRequired"
+      ></textarea> -->
+      <p *ngIf="!onbehalf || isApproved || isClient">
+        {{ data.comment || "-" }}
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="view === 'set' || (onbehalf && !isApproved && !isClient)">
+    <button
+      type="button"
+      mat-raised-button
+      color="accent"
+      translate="surveys.buttons.submit"
+      [disabled]="!surveyForm.form.valid"
+      (click)="submit()"
+    ></button>
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      translate="surveys.buttons.cancel"
+      (click)="cancel()"
+    ></button>
+  </div>
+  <div
+    *ngIf="
+      (view === 'readonly' && !onbehalf) || (onbehalf && isApproved) || isClient
+    "
+  >
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      translate="surveys.buttons.close"
+      (click)="cancel()"
+    ></button>
+  </div>
+</form>

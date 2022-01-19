@@ -1,0 +1,161 @@
+<div class="panel panel-default {{ item.state }} preparation-assignment-tile" (click)="goToDetailClick()">
+  <div class="panel-heading">
+    <div>
+      <span class="category">
+        {{
+          "projects.inherited.fields.category." + (item.category || "none")
+            | translate
+        }}
+      </span>
+      <span class="contractType pull-right">
+        {{
+          "contracts.identifier." +
+            ((item.contract_type && item.contract_type.identifier) ||
+              item.contract_type_identifier) | translate
+        }}
+        <button
+          mat-icon-button
+          color="accent"
+          [matMenuTriggerFor]="subMenu"
+          (click)="$event.stopPropagation()"
+        >
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <mat-menu #subMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="goToDetailClick()">
+            {{ "invoices.table.actions.details" | translate }}
+          </button>
+        </mat-menu></span
+      >
+    </div>
+  </div>
+  <div class="panel-body flipper-container">
+    <div class="flipper">
+      <div class="front">
+        <div class="header date-card">
+          <div data-date-card>
+            <span class="date" *ngIf="item.date">
+              <span class="day">{{ item.date.appointed_at | date: "d" }}</span>
+              <span class="month">{{
+                item.date.appointed_at | date: "MMM"
+              }}</span>
+              <span class="year">{{
+                item.date.appointed_at | date: "YYYY"
+              }}</span>
+            </span>
+          </div>
+          <div>
+            <div
+              class="title"
+              data-ng-bind="::item.job.shortTitle"
+              data-ellipsis
+              data-ellipsis-separator=""
+            >
+              {{ item.job && item.job.shortTitle }}
+            </div>
+            <div class="subtitle line-ellipsis">
+              {{ item.clientName }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label translate="assignments.labels.planned-time"></label>
+          <div>
+            <span class="far fa-clock"></span>&nbsp;
+            <span>{{ item.start_time }}</span> -
+            <span>{{ item.finish_time }}</span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label translate="assignments.labels.reported-time"></label>
+          <div class="line-ellipsis">
+            <span class="far fa-file-alt"></span>&nbsp;
+            <span>{{ item.reported.start.time || "-:-" }}</span>
+            <span *ngIf="item.reported.start.doneOnBehalf">
+              ({{
+                item.reported.start.creator?.name ||
+                  ("common.users.system" | translate)
+              }})</span
+            >
+            -
+            <span *ngIf="item.reported?.finish?.time">{{ item.reported.finish.time || "-:-" }}</span>
+            <span *ngIf="item.reported?.finish?.doneOnBehalf">
+              ({{
+                item.reported.finish.updator?.name ||
+                  ("common.users.system" | translate)
+              }})</span
+            >
+          </div>
+        </div>
+        <div
+          class="col-md-12"
+          data-site-info
+          app-site-info
+          [data]="item.site"
+        ></div>
+      </div>
+      <div class="back">
+        <div class="col-md-12 documents">
+          <label translate="assignments.labels.documents.header"></label>
+          <div class="line-ellipsis" *ngFor="let type of types">
+            <span [translate]="'assignments.labels.documents.' + type"></span>:
+            <p
+              [ngClass]="{
+                warn:
+                  item.has_missing_docs &&
+                  !(
+                    item.documents[type] &&
+                    item.documents[type][0] &&
+                    item.documents[type][0].original_filename
+                  )
+              }"
+            >
+              {{
+                (item.documents[type] &&
+                  item.documents[type][0] &&
+                  item.documents[type][0].original_filename) ||
+                  ("assignments.labels.documents.not-attached" | translate)
+              }}
+            </p>
+          </div>
+          <div class="line-ellipsis">
+            <span translate="assignments.labels.documents.revenue"></span>:
+            <p>
+              {{
+                (item.revenue && (item.revenue.total | currency: "€")) ||
+                  ("assignments.labels.documents.not-attached" | translate)
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span
+      data-hover-delegate
+      (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()"
+      class="{{ item.has_missing_docs ? 'text-danger' : 'text-info' }}"
+    >
+      <span
+        class="icon fas {{
+          item.has_missing_docs ? 'fa-exclamation-triangle' : 'fa-info-circle'
+        }}"
+      ></span>
+    </span>
+  </div>
+  <div class="panel-footer clearfix">
+    <span
+      *ngIf="item.invoice && item.invoice.state"
+      class="pull-left invoice-{{ item.invoice.state }}"
+    >
+      <span translate="assignments.labels.documents.invoice"></span>:&nbsp;
+      <span>{{
+        "invoices.fields.states." + item.invoice.state | translate
+      }}</span>
+    </span>
+    <span
+      class="pull-right status"
+      [translate]="'assignments.freelancer.fields.states.' + item.state"
+    ></span>
+  </div>
+</div>

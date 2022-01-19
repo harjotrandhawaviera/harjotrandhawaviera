@@ -1,0 +1,20 @@
+<div class="summary" *ngIf="exam">
+  <div class="intro" translate="exams.summary.hint"></div>
+  <div *ngFor="let question of exam.questions; let index = index">
+    <div
+      class="question-counter"
+      [translate]="'exams.summary.question'"
+      [translateParams]="{
+        index: index + 1,
+        questions: exam.questions && exam.questions.length
+      }"
+    ></div>
+    <div class="question">{{ question.question }}</div>
+    <div
+      app-exam-answers
+      [answers]="question.answers ? question.answers : []"
+      [selection]="selection"
+      (toggleAnswer)="toggleAnswer.emit($event)"
+    ></div>
+  </div>
+</div>

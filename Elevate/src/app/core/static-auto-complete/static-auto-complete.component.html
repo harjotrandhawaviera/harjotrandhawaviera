@@ -1,0 +1,14 @@
+<div class="full-width">
+<input type="text" #filterText class="mat-input-element mat-form-field-autofill-control max-width-94" [formControl]="formControl"
+  [matAutocomplete]="auto" (blur)="checkValueAndRemove()"/>
+  <i matSuffix *ngIf="formControl.value && !disabled" class="fas fa-times" (click)="clearValue()"></i>
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith.bind(this)" (optionSelected)="optionSelected($event)">
+  <mat-option *ngIf="clearSelection">{{'ui.option.deselect' | translate}}</mat-option>
+  <mat-option *ngFor="let option of filteredOptionsObservable | async" class="multi-line" [value]="option">
+    <span [ngClass]="{'line-1': !!option.info}">{{ option.text }}</span>
+    <div [ngClass]="{'line-2': !!option.info}" *ngIf="option.info">
+      <small>{{ option.info }}</small>
+    </div>
+  </mat-option>
+</mat-autocomplete>
+</div>

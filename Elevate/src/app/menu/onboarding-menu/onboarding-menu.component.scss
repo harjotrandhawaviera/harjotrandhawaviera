@@ -1,0 +1,220 @@
+@import "variables";
+@import "mixins";
+
+.menu-wrapper {
+  margin-top: 20px;
+}
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.step > ul {
+  margin: 10px 0;
+}
+
+.step {
+  color: $p4y-color-black;
+  position: relative;
+  &:not(.step-title) {
+    margin-bottom: 20px;
+  }
+  // &:after {
+  //   font-family: 'Font Awesome 5 Free';
+  //   position: absolute;
+  //   right: 40px;
+  //   top: 22px;
+  //   font-size: 16px;
+  // }
+  i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 12px;
+    width: 24px;
+    text-align: center;
+    padding: 5px 0;
+  }
+  &.approved {
+    i {
+      background-color: $body-text-color;
+    }
+  }
+  // &.approved {
+  //   &:after {
+  //     @include circled-background($p4y-icon-step-approved, 23px, 16px);
+  //     background-color: $body-text-color;
+  //     transform: translateY(-10px);
+  //     padding-top: 2.5px;
+  //   }
+  // }
+  &.active {
+    color: $brand-primary;
+    i {
+      background-color: $brand-primary;
+    }
+    // &:not(.certificates) {
+    //   &:after {
+    //     // @include circled-background($p4y-icon-pencil, 23px, 16px);
+    //     top: 22px;
+    //     right: 40px;
+    //     padding-top: 2px;
+    //     padding-left: 5px;
+    //     transform: translateY(-10px);
+    //   }
+    // }
+  }
+  &.inactive {
+    color: $p4y-color-gray-medium;
+    i {
+      background-color: $p4y-color-gray-medium;
+    }
+    // &:after {
+    //   // @include circled-background($p4y-icon-lock, 23px, 16px);
+    //   background-color: $p4y-color-gray-medium;
+    //   padding-left: 6px;
+    //   padding-top: 2.5px;
+    //   top: 22px;
+    //   right: 40px;
+    //   transform: translateY(-10px);
+    // }
+  }
+  &.step-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: inherit;
+    padding: 10px 80px 10px 40px;
+    line-height: 1;
+    text-transform: uppercase;
+    .main,
+    .sub {
+      display: block;
+    }
+    .sub {
+      position: relative;
+      top: 5px;
+      text-transform: none;
+      font-size: 13px;
+      line-height: 15px;
+    }
+  }
+}
+
+.entry {
+  display: block;
+  text-decoration: none;
+  padding: 12px 40px;
+  color: $p4y-color-black;
+  position: relative;
+  &.open {
+    color: $p4y-color-black;
+    background-color: transparent;
+    i {
+      background-color: $body-text-color;
+    }
+    // &:after {
+    //   @include circled-background($p4y-icon-pencil, 23px, 16px);
+    //   top: 12px;
+    //   right: 40px;
+    //   padding-top: 2px;
+    //   padding-left: 5px;
+    //   background-color: $body-text-color;
+    // }
+  }
+
+  &.saved {
+    color: $brand-primary;
+    background-color: transparent;
+    transition: all 0.5s ease-in-out;
+    // &:after {
+    //   @include circled-background($p4y-icon-pencil, 23px, 16px);
+    //   top: 12px;
+    //   right: 40px;
+    // }
+  }
+
+  &.submitted {
+    color: $p4y-color-black;
+    &.current {
+      background-color: $p4y-color-status-active;
+      color: $p4y-color-white;
+    }
+  }
+
+  &.approved {
+    color: $p4y-color-black;
+  }
+
+  &.approval {
+    // &:after {
+    //   top: 10px;
+    //   right: 48px;
+    // }
+    &.submitted {
+      color: $brand-primary;
+      i {
+        background-color: $brand-primary;
+      }
+    }
+    &.saved {
+      color: $brand-primary;
+      i {
+        background-color: $brand-primary;
+      }
+    }
+    &.approved {
+      i {
+        background-color: $brand-success;
+      }
+    }
+    // &.submitted:after,
+    // &.saved:after,
+    // &.approved:after {
+    //   @include circled-background($p4y-icon-check, 23px, 16px);
+    //   color: $p4y-color-white;
+    //   background-color: $brand-primary;
+    //   padding-top: 2px;
+    // }
+    // &.approved:after {
+    //   background-color: $brand-success;
+    // }
+
+    &.rejected {
+      color: $brand-primary;
+      i {
+        background-color: $brand-danger;
+      }
+      // &:after {
+      //   @include circled-background($p4y-icon-exclamation, 23px, 16px);
+      //   background-color: $brand-danger;
+      //   padding-top: 3px;
+      //   padding-left: 8.5px;
+      // }
+    }
+  }
+
+  &.current,
+  &.submitted.current,
+  &.saved.current,
+  &.rejected.current {
+    @include menu-entry-current;
+  }
+
+  &:hover,
+  &.current:hover,
+  &.approval:hover {
+    @include menu-entry-current;
+    background-color: $p4y-color-chalky-light;
+    // &:after {
+    //   color: $p4y-color-chalky-light;
+    // }
+  }
+}
+
+#logout {
+  padding: 0 40px;
+  a {
+    cursor: pointer;
+  }
+}

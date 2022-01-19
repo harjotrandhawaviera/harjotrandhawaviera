@@ -1,0 +1,176 @@
+<fieldset *ngIf="job">
+  <div class="row">
+    <div class="form-group col-xs-12" *ngIf="mode !== 'clientJob'">
+      <label required translate="projects.fields.project.label"></label>
+      <div>{{ job.project?.name }}</div>
+    </div>
+    <!--<div class="form-group col-xs-12">
+      <label required translate="projects.fields.job.label"></label>
+      <div>{{ job.title }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.fields.site.label"></label>
+      <div *ngIf="job.site">
+        <strong class="trim-text" *ngIf="job.site.group">
+          <i class="far fa-building"></i>
+          {{ job.site.group }}
+        </strong>
+        <address>
+          <div class="trim-text">
+            <span>{{ job.site.name }}</span>
+            <span *ngIf="job.site.number"> | {{ job.site.number }}</span>
+          </div>
+          <div class="trim-text">
+            <span>{{ job.site.address }}, {{ job.site.zip }} {{ job.site.city }}</span>
+          </div>
+        </address>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.fields.siteClientContact.label"></label>
+      <div>{{ job.site_client_contact }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.fields.start_time.label"></label>
+      <div>{{ job.start_time }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.fields.finish_time.label"></label>
+      <div>{{ job.finish_time }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.fields.siteClientContact.label"></label>
+      <div>{{ job.site_client_contact }}</div>
+    </div>
+    -->
+
+    <div class="form-group col-sm-12 col-xs-12">
+      <label translate="projects.jobs.job-name.label"></label>
+      <div>{{ job.job_name }}</div>
+    </div>
+    <div class="form-group col-sm-12 col-xs-12">
+      <label translate="projects.jobs.job-code.label"></label>
+      <div>{{ job.job_code }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.fields.start_date.label"></label>
+      <div>{{ job.start_date | date: 'mediumDate' }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.fields.finish_date.label"></label>
+      <div>{{ job.finish_date | date: 'mediumDate' }}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.inherited.fields.account-manager.label"></label>
+      <div>{{ job.agent?.fullname }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.inherited.fields.staffing-manager.label"></label>
+      <div>{{ job.staff?.fullname }}</div>
+    </div>
+    <div class="form-group col-sm-12 col-xs-12">
+      <label translate="projects.jobs.job-overview.label"></label>
+      <div [innerHtml]="job.job_overview | newlines"></div>
+    </div>
+  </div>
+  <!--<div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.inherited.fields.responsible.label"></label>
+      <div>{{ job.agent?.fullname }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.fields.contract_type.label"></label>
+      <div>{{ ('contracts.identifier.'+job.project?.contract_type_identifier) | translate }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.inherited.fields.state.label"></label>
+      <div>{{ ('projects.jobs.fields.state.' +job.state) | translate }}</div>
+    </div>
+  </div>-->
+  <!--<div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.inherited.fields.budget.label"></label>
+      <div *ngIf="budget && budget.data">
+        <div *ngIf="budget.data[0].name">
+          {{budget.data[0].name}}
+          ({{'administration.budgets.label.available' | translate}}: {{budget.data[0].available | currency}})
+        </div>
+        <ng-container *ngIf="budgetContactNames; else elseTemplate">
+          <small>
+            {{budgetContactNames}}
+          </small>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <small>-</small>
+        </ng-template>
+      </div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12">
+      <label required translate="projects.inherited.fields.assignment_budget.label"></label>
+      <div>{{ job.assignment_budget | currency:'EUR' }}</div>
+    </div>
+    <div class="form-group col-sm-3 col-xs-12" *ngIf="mode !== 'clientJob'">
+      <label required translate="projects.inherited.fields.wage.label"></label>
+      <div>{{ job.wage | currency:'EUR' }}</div>
+    </div>
+  </div>
+  <div class="row" *ngIf="mode !== 'clientJob'">
+    <div class="form-group col-xs-12 additional_costs">
+      <label translate="projects.additional-costs.label"></label>
+      <app-additional-cost [additionalCosts]="job.additional_costs"></app-additional-cost>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.inherited.fields.category.label"></label>
+      <div>{{ 'projects.inherited.fields.category.' +job.category | translate }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.inherited.fields.certificates.label"></label>
+      <div class="certificate" *ngFor="let cert of job.certificates">
+        <span [ngClass]="{'exclusive': cert.is_exclusive}">{{ cert.name }}</span>
+      </div>
+    </div>
+  </div>-->
+  <!-- <div class="row">
+    <div class="form-group col-xs-12">
+      <label translate="projects.fields.custom-properties.client.label"></label>
+      <div *ngFor="let customProperty of job.project?.client?.custom_properties">
+        <label>{{customProperty}}</label>
+        <p *ngIf="customProperty !== 'currency'">-</p>
+        <p *ngIf="customProperty === 'currency'">{{customProperty | currency: 'EUR'}}</p>
+      </div>
+      <p *ngIf="!job.project?.client?.custom_properties"
+        translate="projects.inherited.fields.custom-properties.client.empty-list">
+      </p>
+    </div>
+  </div> 
+  <app-custom-properties-value [module]="'client'" [job]="job"></app-custom-properties-value> -->
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="projects.jobs.job-location.label"></label>
+      <div>{{ job.job_location }}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label required translate="projects.fields.contract_type.label"></label>
+      <div>{{ 'contracts.identifier.' + job.contract_type_id | translate }}</div>
+    </div>
+    <div class="form-group col-sm-12 col-xs-12">
+      <label translate="projects.jobs.staff-briefing.label"></label>
+      <div [innerHtml]="job.staff_briefing | newlines"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <label translate="administration.client.section.freelancer-ratings"></label>
+      <app-load-html *ngIf="mode === 'clientJob' && !(job.freelancer_ratings && job.freelancer_ratings.length)"
+        template="administration.client.freelancer-ratings.hint">
+      </app-load-html>
+      <div class="rating" *ngFor="let rating of job.freelancer_ratings">
+        {{rating}}
+      </div>
+    </div>
+  </div>
+</fieldset>

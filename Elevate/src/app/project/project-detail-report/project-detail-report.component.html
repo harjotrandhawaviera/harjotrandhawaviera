@@ -1,0 +1,32 @@
+<div *ngIf="mode === 'edit'">
+  <div data-freelancer-ratings="reports.data.freelancer_ratings" data-view="set"></div>
+  <div data-saleslots="reports.data.saleslots" data-view="set"></div>
+  <!-- <app-sales-slots [salesSlots]="salesSlots$ | async"></app-sales-slots> -->
+</div>
+
+<div *ngIf="mode === 'view'">
+  <div class="row">
+    <div class="col-xs">
+      <label translate="projects.fields.freelancer-ratings.label"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs">
+      <app-load-html *ngIf="!freelancerRatings?.length"
+        template="administration.client.freelancer-ratings.hint"></app-load-html>
+      <p *ngFor="let rating of freelancerRatings">
+        {{rating}}
+      </p>
+    </div>
+  </div>
+  <app-sales-slots [salesSlots]="salesSlots"></app-sales-slots>
+</div>
+<div>
+  <div class="row">
+    <div class="col-xs">
+      <label translate="projects.feedback-questions.label"></label>
+    </div>
+  </div>
+  <app-feedback-questions [feedbackQuestions]="feedbackQuestions"></app-feedback-questions>
+  <!-- <div data-feedback-questions="reports.data.feedback" data-view="{{reports.view === 'set' ? 'set' : 'readonly'}}"></div> -->
+</div>

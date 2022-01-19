@@ -1,0 +1,151 @@
+<div class="col-xs-12">
+  <h4 translate="profile.gtc.table.title"></h4>
+</div>
+<div class="col-xs-12">
+  <table class="search-table" mat-table [dataSource]="dataSource">
+    <!-- Name Column -->
+    <ng-container matColumnDef="identifier">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "profile.gtc.table.identifier" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.identifier }}</td>
+    </ng-container>
+    <ng-container matColumnDef="publishedAt">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "profile.gtc.table.publishedAt" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.published_at | date: 'mediumDate' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="validAt">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "profile.gtc.table.validAt" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.valid_at | date: 'mediumDate' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="acceptedAt">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ "profile.gtc.table.acceptedAt" | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.accepted_at | date: 'mediumDate' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" class="action">
+        <button
+          mat-icon-button
+          color="accent"
+          type="button"
+          [matMenuTriggerFor]="subMenu"
+        >
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <mat-menu #subMenu="matMenu" xPosition="before">
+          <button type="button" mat-menu-item (click)="detailRecord(row)">
+            {{
+              "administration.client.contacts.table.actions.details" | translate
+            }}
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div *ngIf="currentIdentifier" class="col-xs-12">
+  <h4>{{ currentIdentifier }}</h4>
+</div>
+<div class="col-xs-12 padding-none">
+  <div class="row" *ngFor="let template of gtcDocs; let i = index">
+    <div
+      class="col-xs-12 gtc_document {{template.type}}"
+      data-ng-class="template.type"
+      *ngIf="template.confirmation_type !== 'none'"
+    >
+      <h5>
+        <span
+          [translate]="'profile.gtc.documents.type.' + template.type"
+          [translateParams]="{ index: i }"
+        ></span>
+        <span
+          [translate]="'profile.gtc.documents.name'"
+          [translateParams]="template"
+        ></span>
+      </h5>
+
+      <div
+        class="row download-action"
+        *ngIf="template.confirmation_type === 'checked'"
+      >
+        <div class="col-xs-12">
+          <a
+            style="cursor: pointer;"
+            (click)="download(template.document)"
+            translate="profile.gtc.table.actions.download"
+          ></a>
+        </div>
+      </div>
+      <div class="row checked" *ngIf="template.confirmation_type === 'checked'">
+        <div
+          class="form-group col-xs-12 checked-state"
+          *ngIf="template.id && documents[template.id].is_checked === true"
+        >
+          <i class="fa fa-check"></i
+          ><span
+            translate="profile.gtc.documents.checked.state.confirmed"
+          ></span>
+        </div>
+        <div
+          class="form-group col-xs-12 checked-state"
+          *ngIf="template.id && documents[template.id].is_checked === false"
+        >
+          <i class="fa fa-exclamation"></i
+          ><span
+            translate="profile.gtc.documents.checked.state.unconfirmed"
+          ></span>
+        </div>
+      </div>
+      <div
+        class="col-xs-12 padding-none"
+        *ngIf="template.id && template.confirmation_type === 'upload-signed'"
+      >
+        <div
+          class="row"
+          *ngFor="
+            let freelancerDoc of documents[template.id].freelancer_documents
+          "
+        >
+          <div class="col-xs-8 padding-none">
+            <app-profile-document
+              *ngIf="freelancerDoc.document && freelancerDoc.document.is_collection && freelancerDoc.document.documents && freelancerDoc.document.documents.length"
+              [documents]="freelancerDoc.document.documents"
+              [readonly]="true"
+              [multiple]="true"
+              [buttonText]="'buttons.upload-document' | translate"
+            ></app-profile-document>
+            <app-profile-document
+              *ngIf="freelancerDoc.document && !freelancerDoc.document.is_collection"
+              [documents]="[freelancerDoc.document]"
+              [readonly]="true"
+              [multiple]="true"
+              [buttonText]="'buttons.upload-document' | translate"
+            ></app-profile-document>
+            <!-- <div
+            class="profile"
+            data-profile-document="freelancerDoc"
+            data-type="document"
+            data-required="true"
+            data-document-type="freelancerDoc.type"
+            data-profile-view="'readonly'"
+            data-multiple="true"
+          ></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

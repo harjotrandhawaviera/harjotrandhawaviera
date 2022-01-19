@@ -1,0 +1,134 @@
+  <app-search-container>
+  <app-search-panel>
+    <form [formGroup]="searchForm">
+      <div class="row">
+        <div class="col-xs-12 center-xs" style="margin-top: 20px">
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="navigateToNew()">{{'administration.site.buttons.create' | translate}}</button>
+        </div>
+        <div class="col-xs-12">
+          <h4>{{ 'ui.side-option-menu.filter' | translate }}</h4>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.freelancers.filters.postcodes" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ "ui.filter.range.min" | translate }}</mat-label>
+            <input matInput formControlName="from" #from type="text"/>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ "ui.filter.range.max" | translate }}</mat-label>
+            <input matInput formControlName="to" #to type="text"/>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12">
+          <mat-label>{{
+            "administration.sites.search-placeholder" | translate
+            }}</mat-label>
+        </div>
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "administration.sites.search-placeholder" | translate
+              }}</mat-label>
+            <input matInput formControlName="search" type="search"/>
+            <i matSuffix class="fas fa-search"></i>
+            <mat-hint>{{
+              "administration.users.search.hint" | translate
+              }}</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </app-search-panel>
+  <app-search-list>
+    <div class="row">
+      <div class="col-xs">
+        <h1 translate="administration.contacts.vcard.site"></h1>
+      </div>
+    </div>
+    <div class="table-inner-wrapper">
+      <table
+        mat-table
+        class="search-table"
+        [dataSource]="deploymentList"
+      >
+        <ng-container matColumnDef="pos_name">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.sites.table.name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.name}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.sites.table.number" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.num}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "administration.sites.table.fulladdress" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.add}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row" class="action">
+            <button
+              mat-icon-button
+              color="accent"
+              [matMenuTriggerFor]="subMenu"
+              (click)="$event.stopPropagation()"
+            >
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <mat-menu #subMenu="matMenu" xPosition="before">
+              <button mat-menu-item (click)="navigateToDetail(row.id)">
+                {{ "administration.client.contacts.table.actions.details" | translate }}
+              </button>
+              <button mat-menu-item (click)="open(row.id)">
+                {{ "administration.client.contacts.table.actions.remove" | translate }}
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns;"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetail(row.id)"></tr>
+      </table>
+    </div>
+    <app-paginator
+      [disabled]="loading$ | async"
+      hidePageSize="true"
+      showFirstLastButtons="true"
+      [length]="paginator?.total"
+      [pageIndex]="paginator?.current_page - 1"
+      (page)="pageChange($event)"
+    ></app-paginator>
+    <div class="row end-md center-xs">
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        (click)="downloadData()"
+      >
+        {{'ui.list-table.default.download' | translate}}
+      </button>
+    </div>
+  </app-search-list>
+</app-search-container>

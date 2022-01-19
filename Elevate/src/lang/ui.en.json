@@ -1,0 +1,67 @@
+{
+    "ui": {
+        "list-table": {
+            "default": {
+                "length": "Show _MENU_ Results per Page",
+                "no-records": "No matches found.",
+                "info": "Page {{start}} from {{end}} (Total: {{length}} Entries)",
+                "info-short": "Total: {{length}} Entries",
+                "info-empty": "",
+                "info-filtered": "(filtered from {{length}} Entries)",
+                "paginate-next": "Next",
+                "paginate-previous": "Back",
+                "tile": "Tile",
+                "list": "List",
+                "download": "Download",
+                "email": "Email",
+                "sms": "SMS"
+            },
+            "project-jobs": {
+                "length": "Show _MENU_ Results per Page",
+                "no-records": "No matches.",
+                "info": "Page {{start}} from {{end}}",
+                "info-empty": "",
+                "info-filtered": "(filtered from _MAX_ total records)",
+                "paginate-next": "Next",
+                "paginate-previous": "Back"
+            },
+            "filter-required": "Please narrow the search by setting one or more filters."
+        },
+        "labels": {
+            "actions": "Actions",
+            "assignment-ratings": "Mission Assessments"
+        },
+        "logs-table": {
+            "timestamp": "Date",
+            "performer_name": "User",
+            "message": "Message",
+            "no-records": "No logs"
+        },
+        "filter": {
+            "range": {
+                "min": "from",
+                "max": "until"
+            },
+            "dates": {
+                "min": "from",
+                "max": "until"
+            },
+            "remove": {
+                "label": "Clear Filter"
+            }
+        },
+        "option": {
+            "deselect": "No selection"
+        },
+        "side-option-menu": {
+            "filter": "Filter",
+            "search": "Search",
+            "placeholder": "min. 3 characters"
+        },
+        "advance-search": {
+            "label": "Advance Search",
+            "submit": "Submit",
+            "clear": "Clear"
+        }
+    }
+}

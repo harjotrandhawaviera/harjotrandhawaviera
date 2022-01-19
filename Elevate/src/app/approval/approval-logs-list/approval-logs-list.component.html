@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row between-xs">
+    <div class="col-xs">
+      <h1>
+        {{ "approval.logs.data-changed.title" | translate }}
+      </h1>
+    </div>
+  </div>
+  <div class="row center-xs" *ngIf="noRecords$ | async">
+    <div class="col-xs">
+      <div class="alert alert-info text-center">
+        {{ "ui.list-table.default.no-records" | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!(noRecords$ | async)">
+    <div class="col-xs table-wrapper">
+      <div class="table-inner-wrapper">
+        <table
+          mat-table
+          [dataSource]="result$"
+          class="search-table"
+          matSort
+          matSortDisableClear
+          matSortDirection="desc"
+        >
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.logs.data-changed.list.createdAt" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.created_at | date: 'mediumDate'}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="performer_name">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.logs.data-changed.list.performer_name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.performer_name }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "approval.logs.data-changed.list.message" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.message }}
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <app-table-spinner *ngIf="loading$ | async"></app-table-spinner>
+      <app-paginator
+        [disabled]="loading$ | async"
+        hidePageSize="true"
+        showFirstLastButtons="true"
+        [length]="totalRecords$ | async"
+        [pageIndex]="currentPage$ | async"
+        [pageSize]="pageSize$ | async"
+        (page)="pageChange($event)"
+      ></app-paginator>
+      <div class="row end-xs">
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          (click)="download()"
+        >
+          {{ "ui.list-table.default.download" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

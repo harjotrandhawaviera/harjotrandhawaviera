@@ -1,0 +1,23 @@
+<ul class="summary-section">
+  <li *ngFor="let obj of localSummary">
+    <div class="summary-header clearfix">
+      <span class="pull-left" [translate]="'projects.details.label.'+ obj.idKey"></span>
+      <span class="pull-right">{{obj.count}}</span>
+    </div>
+    <ul class="summary-list">
+      <li class="summary-list-item" *ngFor="let child of obj.child">
+        <div class="clearfix">
+          <strong class="pull-left" [translate]="'projects.details.label.'+ child.idKey"></strong>
+          <span class="pull-right " [ngClass]="{
+                'text-success': child.idKey === 'active' || child.idKey === 'valid' || child.idKey === 'invoiced' || child.idKey === 'assigned' || child.idKey === 'done',
+                'text-info': child.idKey === 'enabled' || child.idKey === 'scheduled' || child.idKey === 'booked',
+                'text-danger': child.idKey === 'expired' || child.idKey === 'tendered',
+                'text-primary': child.idKey === 'preparation',
+                'text-muted': child.idKey === 'draft' || child.idKey === 'open'}">
+            {{child.count}}
+          </span>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>

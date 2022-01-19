@@ -1,0 +1,415 @@
+<div *ngIf="data && data.details">
+  <div class="row">
+    <div class="col-xs-9">
+      <h2>
+        {{ data.details.fullname }}
+        <span *ngIf="data.details.age"> ({{ data.details.age }}) </span>
+        <span>
+          <small>{{
+            data.details.avg_assignment_rating | number: "1.1-1"
+          }}</small>
+        </span>
+      </h2>
+    </div>
+    <div class="col-xs-3" style="text-align: right;">
+      <button
+        type="button"
+        mat-stroked-button
+        [disabled]="data.details.status !== 'active'"
+        color="primary"
+        (click)="downloadSedcard()"
+      >
+        <span translate="administration.users.details.sedcard"></span
+        >&nbsp;<i class="fas fa-download"></i>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="summary">
+        <span *ngIf="data.details.count_checkins_last_year === 1">{{
+          "administration.users.details.summary-single"
+            | translate
+              : {
+                  id: data.details.id,
+                  nationality_name: data.details.nationality_name,
+                  birthDate: data.details.birthdate | date,
+                  count_checkins_last_year:
+                    data.details.count_checkins_last_year
+                }
+        }}</span>
+        <span *ngIf="data.details.count_checkins_last_year !== 1">{{
+          "administration.users.details.summary-multiple"
+            | translate
+              : {
+                  id: data.details.id,
+                  nationality_name: data.details.nationality_name,
+                  birthDate: data.details.birthdate | date,
+                  count_checkins_last_year:
+                    data.details.count_checkins_last_year
+                }
+        }}</span>
+        <span>
+          {{ data.details.status }}
+          {{ "users.state." + data.details.status | translate }}
+        </span>
+        <span class="status" [ngClass]="{ online: data.online }"></span>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-xs-12 col-lg-11 master padding-none"
+      app-freelancer-user-master
+      [data]="data.details"
+    ></div>
+  </div>
+
+  <div class="row" *ngIf="data.details.languages">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.languages.title"></h3>
+    </div>
+    <div
+      class="form-group col-xs-12 col-sm-6 col-md-3"
+      *ngIf="data.details.languages.native"
+    >
+      <label translate="profile.fields.languages.native.label"></label>
+      <p>{{ data.details.languages.native | translate }}</p>
+    </div>
+    <div
+      class="form-group col-xs-12 col-sm-6 col-md-3"
+      *ngFor="let language of data.details.languages.additional; let i = index"
+    >
+      <label translate="profile.fields.languages.additional.label"></label>
+      <p>{{ language | translate }}</p>
+    </div>
+  </div>
+
+  <div class="row identity">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.identity.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      app-freelancer-user-identity
+      [data]="data.details"
+    ></div>
+  </div>
+
+  <div class="row contracts">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.contracts.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      app-freelancer-user-contract
+      [data]="data.details"
+    ></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.references.title"></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-xs-12 padding-none"
+      *ngFor="let reference of data.details.references"
+      app-freelancer-user-reference
+      [referenceData]="reference"
+      [isEditAllowed]="data.details.status === 'active'"
+    ></div>
+    <div class="col-xs-12" *ngIf="data.details.references.length === 0">
+      <p translate="administration.users.details.references.none"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.qualifications.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      *ngFor="let qualification of data.details.qualifications"
+      app-freelancer-user-qualification
+      [qualification]="qualification"
+      [isEditAllowed]="data.details.status === 'active'"
+    ></div>
+    <div class="col-xs-12" *ngIf="data.details.qualifications.length === 0">
+      <p translate="administration.users.details.qualifications.none"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.industries.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      *ngFor="let data of data.details.industry_exposure"
+    >
+      <div class=" col-xs-12 col-md-6">
+        <p>{{data}}</p>
+      </div>
+    </div>
+    <div class="col-xs-12" *ngIf="data.details.industry_exposure?.length === 0">
+      <p translate="administration.users.details.industries.none"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.skills.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      *ngFor="let skills of data.details.skills"
+    >
+      <div class=" col-xs-12 col-md-6">
+        <p>{{skills?.title}}</p>
+      </div>
+    </div>
+    <div class="col-xs-12" *ngIf="data.details.skills?.length === 0">
+      <p translate="administration.users.details.skills.none"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.work-preference.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none"
+      *ngFor="let work of data.details.work_preference"
+    >
+      <div class="col-xs-12">
+        <mat-checkbox
+          color="accent"
+          [checked]="work"
+        [disabled]="true">{{work}}</mat-checkbox>
+      </div>
+    </div>
+    <div class="col-xs-12" *ngIf="data.details.work_preference?.length === 0">
+      <p translate="administration.users.details.work-preference.none"></p>
+    </div>
+  </div>
+
+  <div class="row address" *ngIf="data.details.addresses">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.address.title"></h3>
+    </div>
+    <div class="col-xs-12 padding-none" *ngIf="data.details.addresses[0]">
+      <div
+        app-freelancer-user-address
+        [data]="data.details.addresses[0]"
+        [mapLoaded]="!!(mapLoaded | async)"
+      ></div>
+    </div>
+    <div class="col-xs-12" *ngIf="data.details.addresses[1]">
+      <h3 translate="administration.users.details.secondary-address.title"></h3>
+    </div>
+    <div class="col-xs-12 padding-none" *ngIf="data.details.addresses[1]">
+      <div
+        app-freelancer-user-address
+        [data]="data.details.addresses[1]"
+        [mapLoaded]="!!(mapLoaded | async)"
+      ></div>
+    </div>
+  </div>
+
+  <div class="row certificates">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.certificates.title"></h3>
+      <table
+        mat-table
+        class="search-table"
+        [dataSource]="
+          data.details.certificates ? data.details.certificates : []
+        "
+      >
+        <ng-container matColumnDef="certificate">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "administration.users.details.certificates.table.certificate"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="passedAt">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "administration.users.details.certificates.table.passedAt"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.passed_at | date: 'mediumDate' }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['certificate', 'passedAt']"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['certificate', 'passedAt']"
+        ></tr>
+      </table>
+      <div *ngIf="!(data.details.certificates && data.details.certificates.length)">
+        <span
+          class="no-records"
+          translate="administration.users.details.certificates.table.no-records"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row documents">
+    <div class="col-md-12">
+      <h3 translate="administration.users.details.documents.title"></h3>
+      <table
+        mat-table
+        class="search-table"
+        [dataSource]="data.documents ? data.documents : []"
+      >
+        <ng-container matColumnDef="documents">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "administration.users.details.documents.table.documents"
+                | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="document-mime">
+              {{ element.mime | shortMime }}
+            </span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "administration.users.details.documents.table.name" | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.originalFilename }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="size">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "administration.users.details.documents.table.size" | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.size | fileSize }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>
+            {{
+              "administration.users.details.documents.table.type" | translate
+            }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.typeName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              type="button"
+              mat-icon-button
+              color="accent"
+              class="btn-download"
+              (click)="downloadDocument(element)"
+            >
+              <i class="fas fa-file-download"></i>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="documentsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: documentsColumns"></tr>
+      </table>
+      <div *ngIf="!(data.documents && data.documents.length > 0)">
+        <span
+          class="no-records"
+          translate="administration.users.details.documents.table.no-records"
+        ></span>
+      </div>
+      <!-- <table class="table table-hover">
+        <tr class="table-header">
+          <th
+            data-ng-repeat="column in user.documentsColumns"
+            class="{{ column.class }}"
+          >
+            <label
+              data-translate-once="{{
+                'administration.users.details.documents.table.' + column.name
+              }}"
+            ></label>
+          </th>
+        </tr>
+        <tr data-ng-if="!user.data.details.hasDocuments">
+          <td
+            class="no-records"
+            colspan="{{ ::user.documentsColumns.length }}"
+            data-translate-once="administration.users.details.documents.table.no-records"
+          ></td>
+        </tr>
+        <tr data-ng-repeat="item in user.data.documents">
+          <td>
+            <span
+              class="document-mime"
+              data-ng-bind="::item.mime | shortmime"
+            ></span>
+          </td>
+          <td data-ng-bind="::item.originalFilename"></td>
+          <td><label data-ng-bind="::item.size | filesize"></label></td>
+          <td data-ng-bind="::item.typeName"></td>
+          <td>
+            <a data-ng-click="user.downloadDocument(item)" class="download"></a>
+          </td>
+        </tr>
+      </table> -->
+    </div>
+  </div>
+
+  <div class="row gtcs">
+    <div class="col-xs-12">
+      <h3 translate="administration.users.details.gtcs.title"></h3>
+    </div>
+    <div
+      class="col-xs-12 padding-none app-profile-gtc-table"
+      app-profile-gtc-table
+      [items]="data.details.gtcs"
+      [documents]="data.details.gtcsDoc1"
+      data-documents="gtc.freelancerGtcDocs"
+    ></div>
+  </div>
+
+  <div class="row ratings" style="margin-bottom: 70px">
+    <div class="col-xs-12">
+      <h3 translate="administration.freelancers.rating.title"></h3>
+      <p translate="administration.freelancers.rating.description"></p>
+      <!-- <div
+        data-ng-if="data.rating || user.allowed.rating"
+        data-editable="user.allowed.rating"
+        data-freelancer-rate="data.rating"
+        data-on-update="user.updateRating(data)"
+      ></div> -->
+      <div
+        *ngIf="data.rating || allowed.rating"
+        [editable]="allowed.rating"
+        app-freelancer-user-rate
+        [data]="data.rating"
+        (onUpdate)="updateRating($event)"
+      ></div>
+      <div
+        *ngFor="let rating of data.ratings"
+        data-freelancer-rate="rating"
+        app-freelancer-user-rate
+        [data]="rating"
+      ></div>
+    </div>
+  </div>
+</div>

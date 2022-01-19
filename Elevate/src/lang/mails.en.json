@@ -1,0 +1,44 @@
+{
+    "mails": {
+        "title": {
+            "details": "Write E-Mail"
+        },
+        "buttons": {
+            "create": "Send E-Mail",
+            "reset": "Reset"
+        },
+        "subject": {
+            "label": "Subject",
+            "placeholder": "Reason for the Message"
+        },
+        "content": {
+            "label": "Message",
+            "description": "Please enter your message here. The personal salutation ('Hello <first name>'), will be automatically added to your message.",
+            "placeholder": "..."
+        },
+        "document": {
+            "label": "Attachment"
+        },
+        "recipient": {
+            "label": "Recipient",
+            "description": "{count, select, 0{Please select one or more recipients}} other{{count}/{total} recipients selected}}",
+            "description-0": "Please select one or more recipients",
+            "description-1": "{{count}}/{{total}} recipients selected",
+            "freelancer-filter-hint": "Please select one or more filters for the recipient list or change your search query.",
+            "table": {
+                "recipient": "Recipient",
+                "status": "Status",
+                "postcodes": "Residence",
+                "certificates": "Certificate"
+            }
+        },
+        "send-mail": {
+            "title": "Send E-Mail",
+            "message": "Do you really want to send this email to {{count}} recipients?"
+        },
+        "toggle-view": {
+            "show": "Show List",
+            "hide": "Close List"
+        }
+    }
+}

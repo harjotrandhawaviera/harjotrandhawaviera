@@ -1,0 +1,5 @@
+<div class="store-badges">
+  <a *ngFor="let item of stores" [attr.href]="item.url" target="_blank">
+    <img [attr.class]="item.type" [attr.src]="item.img" />
+  </a>
+</div>

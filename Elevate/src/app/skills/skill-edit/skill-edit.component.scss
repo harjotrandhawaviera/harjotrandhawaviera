@@ -1,0 +1,19 @@
+::ng-deep mat-radio-button {
+  margin-left: 25px;
+  .mat-radio-label {
+    display: flex;
+    align-items: center;
+  }
+}
+.with-right-label{
+  display: flex;
+  align-items: center;
+}
+.drop-plus {
+  display: flex;
+  align-items: center;
+  .add-icon {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}

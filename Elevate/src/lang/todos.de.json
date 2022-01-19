@@ -1,0 +1,81 @@
+{
+    "todos": {
+        "title": {
+            "list": "Aufgaben",
+            "new": "Neue Aufgabe",
+            "details": "Aufgabe",
+            "edit": "Aufgabe bearbeiten"
+        },
+        "table": {
+            "actions": {
+                "label": "Aktion",
+                "edit": "Bearbeiten",
+                "details": "Details",
+                "remove": "Löschen"
+            },
+            "filters": {
+                "agent": "Verantwortlicher",
+                "status": "Status",
+                "creator": "Angelegt von"
+            },
+            "remove": {
+                "title": "Aufgabe löschen",
+                "message": "Möchtest du die Aufgabe wirklich löschen?"
+            },
+            "search-placeholder": "Nach Aufgaben (Inhalt) suchen",
+            "buttons": {
+                "create": "Neue Aufgabe"
+            }
+        },
+        "buttons": {
+            "done": "Erledigt",
+            "new-todo": "Neue Aufgabe",
+            "create": "Neue Aufgabe speichern",
+            "edit": "Aufgabe bearbeiten",
+            "update": "Speichern",
+            "cancel": "Abbrechen",
+            "back": "Zurück zur Aufgabenliste",
+            "details": "Details"
+        },
+        "details": {
+            "subject": "Aufgabe: {{subject}}",
+            "target-at": "zu erledigen bis zum {{targetAt}}",
+            "created-by": "Angelegt von {{creatorName}}",
+            "created-info": "Angelegt von {{creatorName}} am {{createdAt}}",
+            "fields": {
+                "owner": "Verantwortlicher",
+                "target-at": "Zu erledigen bis",
+                "subject": "Beschreibung der Aufgabe",
+                "important": "Wichtig",
+                "state": {
+                    "label": "Status",
+                    "open": "Offen",
+                    "done": "Erledigt",
+                    "overdued": "Termin ist abgelaufen"
+                }
+            }
+        },
+        "set-state": {
+            "title": "Erledigt?",
+            "message": "Möchtest du die Aufgabe als erledigt speichern?",
+            "buttons": {
+                "confirm": "Ja, erledigt",
+                "cancel": "Nein"
+            }
+        },
+        "list": {
+            "header": "meine offenen Aufgaben",
+            "table": {
+                "targetAt": "Zu erledigen bis",
+                "subject": "Beschreibung der Aufgabe",
+                "done": "Erledigt"
+            },
+            "buttons": {
+                "overview": "Zeige alle",
+                "done": "Erledigt",
+                "edit": "Details",
+                "create": "Neue Aufgabe"
+            }
+        }
+    }
+}

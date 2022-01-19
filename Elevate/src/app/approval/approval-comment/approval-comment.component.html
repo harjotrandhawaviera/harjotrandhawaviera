@@ -1,0 +1,26 @@
+<div class="comment">
+  <div class="row">
+    <div
+      class="col-xs-12 col-sm-8 alert alert-warning text-left"
+      *ngIf="required"
+      translate="approval.comment-required"
+    ></div>
+    <label class="col-xs-12 col-sm-8">
+      <!-- <div class="col-xs-1" data-profile-avatar="approvalComment.avatar"></div> -->
+      <div class="col-xs-7">{{ fullname }}, {{ date | date : 'mediumDate' }}</div>
+    </label>
+    <div class="col-xs-12 col-sm-8">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>{{ "approval.comment-placeholder" | translate }}</mat-label>
+        <textarea
+          matInput
+          [placeholder]="'approval.comment-placeholder' | translate"
+          [(ngModel)]="comment"
+          (ngModelChange)="commentUpdated(comment)"
+          name="description"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

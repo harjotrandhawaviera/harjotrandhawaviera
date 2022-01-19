@@ -1,0 +1,11 @@
+{
+    "contracts": {
+        "identifier": {
+            "freelancer" : "Gewerbeschein",
+            "tax_card": "Lohnsteuerkarte",
+            "1" : "Gewerbeschein",
+            "2": "Lohnsteuerkarte",
+            "null": ""
+        }
+    }
+}

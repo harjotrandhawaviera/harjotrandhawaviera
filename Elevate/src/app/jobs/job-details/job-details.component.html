@@ -1,0 +1,255 @@
+<div class="container-fluid">
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a *ngIf="Type === 'header-all'" [routerLink]="['/jobs/freelancer/all']"
+      >{{ "administration.site.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row start-xs">
+    <div class="col-xs">
+      <a *ngIf="Type === 'header-recommended'" [routerLink]="['/jobs/freelancer/recommended']"
+      >{{ "administration.site.buttons.back" | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md start-xs">
+      <h1 translate="job.title.details"></h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="freelancerJobOfferList">
+    <div class="form-group col-xs-3">
+      <label translate="projects.fields.job.label"></label>
+      <div>{{freelancerJobOfferList?.job_name}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="projects.fields.client.label"></label>
+      <div>{{freelancerJobOfferList?.client_name}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="tenders.tender.fields.invalid-at.label"></label>
+      <div>{{freelancerJobOfferList?.job_advert_end_date_time | date: 'MMM d, y , HH:mm'}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="tenders.tender.fields.state.label"></label>
+      <div>{{freelancerJobOfferList?.job_status}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="projects.jobs.job-location.label"></label>
+      <div>{{freelancerJobOfferList?.job_location}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="projects.jobs.role.label"></label>
+      <div>{{freelancerJobOfferList?.role_name}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="projects.inherited.fields.account-manager.label"></label>
+      <div>{{freelancerJobOfferList?.job_info.data.agent.firstname + ' ' + freelancerJobOfferList?.job_info.data.agent.lastname}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="projects.inherited.fields.staffing-manager.label"></label>
+      <div>{{freelancerJobOfferList?.job_info.data.staff.firstname + ' ' + freelancerJobOfferList?.job_info.data.staff.lastname}}</div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <h3 class="col-xs-12" translate="tenders.tender.title.info"></h3>
+    <div class="form-group col-xs-3">
+      <label translate="tenders.tender.fields.start.label"></label>
+      <div>{{freelancerJobOfferList?.job_advert_start_date | date: 'mediumDate'}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="tenders.tender.fields.end.label"></label>
+      <div>{{freelancerJobOfferList?.job_advert_end_date | date: 'mediumDate'}}</div>
+    </div>
+    <div class="form-group col-xs-3">
+      <label translate="tenders.tender.fields.days.label"></label>
+      <div>{{freelancerJobOfferList?.days}}</div>
+    </div>
+  </div>
+  <ng-container *ngIf="freelancerJobOfferList && freelancerJobOfferList?.job_info">
+    <app-taskinfo [info]="freelancerJobOfferList.job_info.data && freelancerJobOfferList.job_info.data.taskinfo"></app-taskinfo>
+  </ng-container>
+
+
+  <!--<div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="dates.table.jobtitle"></label>
+      <div>{{freelancerJobOfferList?.title}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="assignments.table.filters.contractType"></label>
+      <div>{{freelancerJobOfferList?.ContractType}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.could"></label>
+      <div>{{freelancerJobOfferList?.Could}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.projectCat"></label>
+      <div>{{freelancerJobOfferList?.category}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.subs_company"></label>
+      <div *ngIf="freelancerJobOfferList?.group && freelancerJobOfferList?.name && freelancerJobOfferList.number && freelancerJobOfferList.address && freelancerJobOfferList.zip && freelancerJobOfferList.city">
+        <mat-icon> business</mat-icon><b>{{freelancerJobOfferList?.group}}</b><br> {{freelancerJobOfferList?.name}} |
+        {{freelancerJobOfferList.number}} <br> {{freelancerJobOfferList.address}} ,
+        {{freelancerJobOfferList.zip}} {{freelancerJobOfferList.city}}</div>
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.required_cert"></label>
+      <div *ngIf="freelancerJobOfferList?.requiredCertificates?.data?.length > 0">{{freelancerJobOfferList?.requiredCertificates?.data}}</div>
+      <div *ngIf="freelancerJobOfferList?.requiredCertificates?.data?.length === 0">No</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+    </div>
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.required_operation_train"></label>
+      <div *ngIf="freelancerJobOfferList?.operationTraining?.data.length == 0">No</div>
+    </div>
+  </div>-->
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.description_goal"></label>
+      <div [innerHTML]="freelancerJobOfferList?.Description | newlines"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-6 col-xs-12">
+      <label translate="job.details.fields.general_brief"></label>
+      <div [innerHTML]="freelancerJobOfferList?.GeneralBriefing | newlines"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <b>{{'job.details.fields.term' | translate}}</b>
+      <div class="row">
+        <div class="freelancer-job-tender-details-tile col-md-6" *ngFor="let tenderData of freelancerJobOfferList?.card; let i=index">
+          <div class="panel panel-default" [ngClass]="{'selected': tenderData?.active}">
+            <div class="panel-heading">
+              <div class="job-title">
+                <div class="row header">
+                  <div><label>Published until {{tenderData.Until | date:'mediumDate'}} </label></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body flipper-container">
+              <div class="flipper">
+                <div class="front" [hidden]="(isChangedBlock === i)">
+                  <div class="row tile-panel-body">
+                    <div class="col-sm-3">
+                      <div class="header date-card">
+                        <span class="date">
+                          <span class="day">{{tenderData.Until | date:"d"}}</span>
+                          <span class="month">{{tenderData.Until | date:"MMM"}}</span>
+                          <span class="year">{{tenderData.Until | date:"yyyy"}}</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div>
+                        <div class="offer_bind">
+                          <span>
+                            {{tenderData.startTime}} - {{tenderData.endTime}}
+                          </span>
+                        </div>
+                        <div class="offer_bind">
+                          <span>
+                            {{tenderData.shift_name}}
+                          </span>
+                        </div>
+                        <div (click)="activateClass(tenderData, i)">
+                          <mat-checkbox>
+                            {{'job.details.fields.offer_binding' | translate}}
+                          </mat-checkbox>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div>
+                        <div>{{'job.details.fields.rate_card' | translate}}</div>
+                        <div><span [appCurrencySymbol]="tenderData?.currency"></span>{{tenderData?.daily_rate_max}}/{{'calls.fields.rate_type.'+ tenderData?.rate_type | translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row tile-panel-body">
+                    <div class="col-sm-3">
+                      <label>{{ 'assignments.table.wage' | translate }}</label>
+                      <div>{{tenderData?.wages | currency}}</div>
+                    </div>
+                    <div class="col-sm-5">
+                      <label>{{ 'tenders.tender.fields.max-additionals' | translate }}</label>
+                      <div></div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>{{ 'tenders.tender.fields.max-incentives' | translate }}</label>
+                        <div>
+
+                        </div>
+                    </div>
+                  </div>
+                  <div class="icon_more_less">
+                    <p class="icon col-lg-offset-12" (click)="isChangedBlock = i; $event.stopPropagation()">
+                      <span class="icon-name">More-information</span>&nbsp;<i class="fas fa-info-circle"></i>
+                    </p>
+                  </div>
+                </div>
+                <div class="back" [hidden]="!(isChangedBlock == i)">
+                  <div class="row">
+                    <div class="form-group col-sm-6 col-xs-12">
+                      <label>Bonuses</label>
+                      <div>
+                        <span>{{'job.details.fields.registering' | translate}}</span>
+                        <span>{{tenderData?.registering}}</span>
+                      </div>
+                      <div>
+                        <span>{{'job.details.fields.salesReport' | translate}}</span>
+                        <span>{{tenderData?.SalesReport}}</span>
+                      </div>
+                      <div>
+                        <span>{{'job.details.fields.photoDocumentation' | translate}}</span>
+                        <span>{{tenderData?.documentation}}</span>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                      <label>{{'job.details.fields.compensation' | translate}}</label>
+                      <div *ngFor="let taskBase of freelancerJobOfferList?.TaskBasedCompensation">
+                        <span> {{taskBase?.name}} :</span>
+                        <span> {{ taskBase?.value }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="icon col-lg-offset-12 back-icon" (click)="isChangedBlock = -1; $event.stopPropagation()">
+                      <span class="icon-name">Return</span>&nbsp;<i class="fas fa-info-circle"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div>
+  <app-paginator
+    [disabled]="loading$ | async"
+    [length]="paginator"
+    (page)="pageChange($event)"
+  ></app-paginator>
+  <div class="buttons_area">
+    <button class="btn btn-primary" *ngIf="freelancerJobOfferList?.is_matched" [disabled]="!buttonsArea" (click)="publishOffer()">{{'jobs.freelancer.details.buttons.submit-offer' | translate}}</button>
+    <button class="btn btn-default" [disabled]="!buttonsArea" (click)="anotherQuestion()">{{'jobs.freelancer.details.buttons.inquery' | translate}}</button>
+    <button class="btn btn-default" *ngIf="freelancerJobOfferList?.is_matched" (click)="rejectedTenders()">{{'jobs.freelancer.details.buttons.reject-offer' | translate}}</button>
+  </div>
+</div>
+</div>

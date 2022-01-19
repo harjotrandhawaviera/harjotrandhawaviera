@@ -1,0 +1,59 @@
+<div class="col-xs-12 table-wrapper" *ngIf="count">
+  <h4 *ngIf="count <= 1">{{ 'invoices.fields.revenues.label' | translate }}</h4>
+  <h4 *ngIf="count > 1">{{ 'invoices.fields.revenues.label-multi' | translate }}</h4>
+  <table cellspacing="0" cellpadding="10">
+    <tr>
+      <th align="left" width="25%">{{'revenues.table.assignment-date' | translate}}</th>
+      <th align="left" width="25%">{{ appointedAt | date: 'mediumDate'}}</th>
+      <th align="right" width="50%" class="revenue-actions">
+        <button mat-stroked-button color="primary" (click)="showRevenueDetail('less')" *ngIf="showDetails">
+          {{'revenues.table.actions.less-details' | translate}}
+        </button>
+        <button mat-stroked-button color="primary" (click)="showRevenueDetail('more')" *ngIf="!showDetails">
+          {{'revenues.table.actions.more-details' | translate}}
+        </button>
+      </th>
+    </tr>
+    <tr *ngFor="let item of revenue.sales_volume">
+      <ng-container *ngIf="showDetails">
+        <td><span class="line-ellipsis">{{ item.saleslot }}</span></td>
+        <td>
+          <span>{{ item.value | currency: '€' }}</span>
+        </td>
+        <td></td>
+      </ng-container>
+    </tr>
+    <tr *ngIf="showDetails">
+      <td translate="revenue.label.comment"></td>
+      <td>
+        <div class="comment">
+          <div>{{ revenue.comment }}</div>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    <tr *ngIf="hasCreator">
+      <td translate="revenue.label.creator"></td>
+      <td>{{creatorName}}</td>
+      <td></td>
+    </tr>
+    <tr *ngIf="hasCreator">
+      <td translate="revenue.label.created-at"></td>
+      <td>{{createdAt}}</td>
+      <td></td>
+    </tr>
+    <tr *ngIf="hasCreator">
+      <td translate="revenue.label.updator"></td>
+      <td>{{updatorName}}</td>
+      <td></td>
+    </tr>
+    <tr class="total">
+      <td translate="revenue.label.total"></td>
+      <td [ngClass]="{'threshold-warning': warning, 'missing-warning': total}">
+        <i class="threshold fass fas-exclamation"></i>
+        <span>{{revenue.total | currency: '€'}}</span>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,245 @@
+<div *ngIf="request" class="container-fluid">
+  <h1
+    [translate]="'approval.profile.headline'"
+    [translateParams]="{ fullname: profile.fullname }"
+  ></h1>
+
+  <div class="row">
+    <div
+      class="alert alert-warning"
+      *ngIf="
+        missingDataWarning &&
+        (missingDataWarning.master || missingDataWarning.legal)
+      "
+    >
+      <div translate="approval.profile.missing.heading"></div>
+      <br />
+      <div *ngIf="missingDataWarning.master">
+        <h4 translate="approval.profile.missing.master.heading"></h4>
+        <ul>
+          <ng-container *ngFor="let field of ['birthplace', 'birthcountry']">
+            <li *ngIf="!data[field]">
+              <span
+                [translate]="'approval.profile.missing.master.' + field"
+              ></span>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div *ngIf="missingDataWarning.legal">
+        <h4 translate="approval.profile.missing.legal.heading"></h4>
+        <ul>
+          <li translate="approval.profile.missing.legal.workpermit"></li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      *ngIf="
+        request &&
+        (request.action === 'replace-freelancer-bodypicture' ||
+          request.action === 'replace-freelancer-portraitpicture')
+      "
+      app-approval-photo
+      [data]="data"
+      class="col-xs-12 padding-none"
+    ></div>
+
+    <div
+      *ngIf="request.action && approval_document_actions[request.action]"
+      app-approval-document
+      [data]="data"
+      class="col-xs-12 padding-none"
+    ></div>
+    <div
+      *ngIf="request.action === 'approve-freelancer-contract'"
+      class="col-xs-12"
+    >
+      <div
+        *ngIf="
+          request.params &&
+          request.params.contract_type_identifier === 'freelancer'
+        "
+        class="approval-change"
+        app-freelancer-contract-type
+        [readonly]="true"
+        [type]="'freelancer'"
+        [profile]="data"
+      ></div>
+      <div
+        *ngIf="
+          request.params &&
+          request.params.contract_type_identifier === 'tax_card'
+        "
+        class="approval-change"
+        app-freelancer-contract-type
+        [readonly]="true"
+        [type]="'tax_card'"
+        [profile]="data"
+      ></div>
+    </div>
+    <div
+      *ngIf="request.action === 'approve-freelancer-data-change'"
+      class="data-change col-xs-12 padding-none"
+    >
+      <div class="row">
+        <div class="col-xs-6 current">
+          <h2 translate="approval.profile.change.current-data"></h2>
+          <div
+            *ngIf="
+              request.params &&
+              request.params.contract_type_identifier === 'freelancer'
+            "
+            app-freelancer-contract-type
+            class="approval-change"
+            [readonly]="true"
+            [type]="'freelancer'"
+            [profile]="data"
+          ></div>
+          <div
+            *ngIf="
+              request.params &&
+              request.params.contract_type_identifier === 'tax_card'
+            "
+            app-freelancer-contract-type
+            class="approval-change"
+            [readonly]="true"
+            [type]="'tax_card'"
+            [profile]="data"
+          ></div>
+        </div>
+        <div
+          *ngIf="request.data && request.data.original"
+          class="col-xs-6 previous"
+        >
+          <h2 translate="approval.profile.change.previous-data"></h2>
+          <div
+            *ngIf="
+              request.params &&
+              request.params.contract_type_identifier === 'freelancer'
+            "
+            app-freelancer-contract-type
+            class="approval-change"
+            [readonly]="true"
+            [type]="'freelancer'"
+            [profile]="request.data.original"
+          ></div>
+          <div
+            *ngIf="
+              request.params &&
+              request.params.contract_type_identifier === 'tax_card'
+            "
+            app-freelancer-contract-type
+            class="approval-change"
+            [readonly]="true"
+            [type]="'tax_card'"
+            [profile]="request.data.original"
+          ></div>
+        </div>
+      </div>
+      <!-- data-profile-contract-type="approval.request.data.original"
+          data-profile-contract-type-tax-card -->
+    </div>
+
+    <div
+      *ngIf="request.action === 'approve-freelancer-gtc'"
+      class="col-xs-12 approve-freelancer-gtc"
+    >
+      <div
+        app-profile-gtc-documents="data"
+        class="app-profile-gtc-documents"
+        [contractType]="contractType"
+        [readonly]="true"
+      ></div>
+    </div>
+
+    <div
+      *ngIf="request.action === 'replace-freelancer-gtc-document'"
+      data-approval-document="approval.data"
+    ></div>
+  </div>
+  <div class="row footer">
+    <!-- <div
+      class="col-xs-8"
+      data-message-form="approval.message"
+      data-type="approval.message"
+      data-required="approval.messageRequired"
+      data-sender="approval.user"
+    ></div> -->
+    <div class="message col-xs-8" *ngIf="message">
+      <div
+        class="alert alert-warning text-left"
+        *ngIf="message.required"
+        translate="{{ (message.type || 'messages') + '.required' }}"
+      ></div>
+      <div *ngIf="!message.hideSubject">
+        <mat-form-field class="full-width">
+          <mat-label>{{
+            (message.type || "messages") + ".subject.label" | translate
+          }}</mat-label>
+          <input
+            matInput
+            [(ngModel)]="message.subject"
+            placeholder="{{ 'messages.subject.placeholder' | translate }}"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <label class="profile-avatar">
+          <div class="pull-left" data-profile-avatar="messages.avatar"></div>
+          <div
+            translate="{{ (message.type || 'messages') + '.sender-info' }}"
+            [translateParams]="{ fullname: fullname, date: (date | date) }"
+          ></div>
+        </label>
+        <!-- <textarea
+          class="form-control"
+          data-translate-once-placeholder="{{
+            (message.type || 'messages') + '.content.placeholder'
+          }}"
+          data-ng-model="message.data.content"
+        >
+        </textarea> -->
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label></mat-label>
+          <textarea
+            matInput
+            [placeholder]="
+              (message.type || 'messages') + '.content.placeholder' | translate
+            "
+            [(ngModel)]="message.content"
+            name="description"
+            rows="3"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 text-left">
+      <!-- <button
+        class="btn btn-primary"
+        translate="approval.profile.change.accept-button"
+        data-ng-click="closeRequest(true)"
+      ></button>
+      <button
+        class="btn btn-default"
+        translate="approval.profile.change.decline-button"
+        data-ng-click="closeRequest(false)"
+      ></button> -->
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="closeRequest(true)"
+        translate="approval.profile.change.accept-button"
+      ></button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        translate="approval.profile.change.decline-button"
+        (click)="closeRequest(false)"
+      ></button>
+    </div>
+  </div>
+</div>

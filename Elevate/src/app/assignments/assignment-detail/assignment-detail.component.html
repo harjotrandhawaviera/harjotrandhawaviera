@@ -1,0 +1,197 @@
+<div class="container-fluid assignment-details">
+  <div class="row">
+    <div class="col-xs-12">
+      <a [routerLink]="['/assignments']">
+        {{ 'assignment.buttons.back' | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 padding-none">
+      <div class="row acion-title-holder">
+        <h1 class="col-md-5 col-xs-12" translate="assignment.title.details"></h1>
+        <div class="col-md-7 col-xs-12 end-md start-xs action-btn-cont">
+          <button mat-stroked-button color="primary" (click)="cancelBooking()"
+            [disabled]="!assignment?.id || assignment?.state !== 'booked'">
+            {{ 'assignment.buttons.cancel-booking' | translate }}
+          </button>
+          <button mat-stroked-button color="primary" (click)="navigateToTender()"
+            [disabled]="!assignment?.id || assignment?.state === 'booked' || assignment?.state === 'invoiced' || assignment?.state === 'preparation'">
+            {{'assignment.buttons.' +(assignment?.state === 'tendered' ? 'update-tender': 'create-tender') | translate}}
+          </button>
+          <a mat-flat-button color="accent" [disabled]="assignment?.state !== 'open'"
+            [routerLink]="['/assignments/edit', id]" [skipLocationChange]="true">
+            {{ 'assignment.buttons.edit' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="assignment && assignment.state !== 'open'">
+    <div class="col-xs-12">
+      <div class="alert alert-info">
+        {{ 'assignment.hint.' +(assignment.state) | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 padding-none">
+      <ng-container *ngIf="(assignment$ | async) as assignment">
+        <fieldset *ngIf="assignment.state !== 'tendered' && assignment.state !== 'open'">
+          <div class="row" *ngIf="assignment.freelancers">
+            <div class="form-group col-sm-6 col-xs-12">
+              <label translate="assignment.booked.name"></label>
+              <div>{{ assignment.freelancers[0].fullname }}</div>
+            </div>
+            <div class="form-group col-sm-6 col-xs-12">
+              <label translate="assignment.booked.mobile"></label>
+              <div class="phone">
+                <a href="{{'tel:' +(assignment.freelancers[0].mobile)}}">{{ assignment.freelancers[0].mobile }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12" *ngIf="assignment.freelancers && assignment.freelancers[0].user.data.email">
+              <label translate="assignment.booked.email"></label>
+              <div>
+                <a href="{{'mailto:' +(assignment.freelancers[0].user.data.email)}}">
+                  {{ assignment.freelancers[0].user.data.email }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 end-xs" *ngIf="assignment.freelancers && !assignment.sedcardLink">
+              <a mat-flat-button color="accent"
+                [routerLink]="['/administration/freelancers', assignment.freelancers[0].user.data.id]">
+                {{ 'assignment.buttons.booked-details' | translate }}
+              </a>
+            </div>
+            <div class="col-xs-12 end-xs" *ngIf="assignment.sedcardLink" (click)="downloadSedcard()">
+              <span translate="administration.users.details.sedcard"></span>
+              <i class="fas fa-download"></i>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 end-xs" *ngIf="assignment && !assignment.sedcardLink">
+              <button mat-flat-button color="accent" (click)="updateLink(assignment.id, assignment.freelancer_id)">
+                {{ 'assignment.buttons.survey-link' | translate }}
+              </button>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="row">
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.date' | translate}}</label>
+            <div>{{assignment?.date.data.appointed_at | date:'mediumDate'}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.shift' | translate}}</label>
+            <div>{{assignment?.start_time}} - {{assignment?.finish_time}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.role' | translate}}</label>
+            <div>{{assignment?.role_name}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.job_number' | translate}}</label>
+            <div>{{assignment?.date?.data?.job?.data?.job_code}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6 col-xs-12">
+            <label >{{'calls.fields.job' | translate}}</label>
+            <div>{{assignment?.date?.data?.job?.data?.title}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.job_location' | translate}}</label>
+            <div>{{assignment?.date?.data?.job?.data?.job_location}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.checkin_location' | translate}}</label>
+            <div>{{assignment?.checkin_location}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.contractType' | translate}}</label>
+            <div>{{ 'contracts.identifier.' + assignment?.contract_type_identifier | translate}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.rate_card' | translate}}</label>
+            <div><span [appCurrencySymbol]="assignment?.currency"></span>{{assignment?.rate}}/{{'calls.fields.rate_type.' + assignment?.rate_type | translate}}</div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label >{{'calls.fields.certificate' | translate}}</label>
+            <div></div>
+          </div>
+          <div class="form-group col-sm-3 col-xs-12">
+            <label>{{'calls.fields.operational_training' | translate}}</label>
+            <div></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6 col-xs-12">
+            <label >{{'calls.fields.client' | translate}}</label>
+            <div>{{assignment?.date?.data?.job?.data?.project?.data?.client?.data?.name}}</div>
+          </div>
+        </div>
+
+        <div class="form-group col-xs-12">
+          <label>{{ 'calls.fields.staff' | translate }}</label>
+          <div *ngIf="assignment.freelancers && assignment.freelancers.length">
+            <div *ngFor="let data of assignment?.freelancers"><a>{{data?.user?.data?.fullname}}</a> <br /> {{data?.user?.data?.email}} <br /> {{data?.mobile}} </div>
+          </div>
+        </div>
+        <div class="form-group col-xs-12" style="margin-bottom: 3px">
+          <label>{{'calls.fields.job_overview' | translate}}</label>
+          <div [innerHTML]="assignment?.date?.data?.job?.data?.job_overview | newlines">
+          </div>
+        </div>
+        <div class="form-group col-xs-12">
+          <label>{{'calls.fields.briefing' | translate}}</label>
+          <div [innerHTML]="assignment?.briefing | newlines"></div>
+        </div>
+        <app-taskinfo [info]="assignment?.date?.data?.job?.data?.taskinfo"></app-taskinfo>
+        <div class="form-group col-xs-12">
+          {{'calls.fields.feedback' | translate}}
+        </div>
+        <div class="form-group col-xs-12">
+          {{'calls.message.brief_message' | translate}}
+        </div>
+
+        <div *ngIf="assignment.feedback && assignment.feedback.length">
+          <div class="form-group col-xs-12" *ngFor="let lists of assignment?.feedback; let i = index">
+            <div>{{lists?.question}}</div>
+          </div>
+        </div>
+
+        <div *ngIf="assignment.documents && assignment.documents.length">
+          <div class="row document-cont" *ngFor="let data of assignment?.documents; let i = index">
+            <div class="col-xs-12 col-sm-8 item">
+              <span class="box" >pdf</span>
+              <span class="document-original-filename" >
+        {{data.name}}
+        </span>
+            </div>
+            <div class="col-xs-12 col-sm-4 end-xs">
+              <button type="button" mat-icon-button color="accent" class="btn-download"
+                      (click)="downloadDocument(data)" >
+                <i class="fas fa-file-download"></i>
+              </button>
+              <span class="document-size" >{{data.size | fileSize}}</span>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </div>
+  </div>
+</div>

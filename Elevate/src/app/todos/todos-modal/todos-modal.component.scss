@@ -1,0 +1,49 @@
+.popup{
+  height: 325px;
+  width : 900px;
+  .row {
+    margin-top: 20px;
+  }
+  .la{
+    margin-left: 13px;
+  }
+  .area{
+     margin-left: 13px;
+     margin-top: 10px;
+     padding-left: 10px;
+     padding-bottom: 10px;
+     padding-top: 5px;
+     margin-right:10px;
+     width:95%;
+     font-family: "Open Sans", sans-serif;
+     font-size: 14px;
+   }
+  .la1{
+    margin-top: 13px;
+    margin-left: 13px;
+  }
+  .tosave{
+    margin-left: 13px;
+    margin-top: 13px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+  }
+  .taskabort{
+    margin-left: 13px;
+    margin-top: 13px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+  }
+  .abort{
+    border-radius: 15px;
+    border-color: deepskyblue !important;
+  }
+  .checkbox{
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+
+

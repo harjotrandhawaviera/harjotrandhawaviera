@@ -1,0 +1,63 @@
+<div class="sweet-alert">
+  <ng-container *ngIf="!needReason">
+    <div class="sa-icon sa-error" *ngIf="type === 'error'">
+      <span class="sa-x-mark">
+        <span class="sa-line sa-left"></span>
+        <span class="sa-line sa-right"></span>
+      </span>
+    </div>
+    <div class="sa-icon sa-warning pulseWarning" *ngIf="type === 'warning'">
+      <span class="sa-body pulseWarningIns"></span>
+      <span class="sa-dot pulseWarningIns"></span>
+    </div>
+    <div class="sa-icon sa-info" *ngIf="type === 'info'"></div>
+    <div class="sa-icon sa-success" *ngIf="type === 'success'">
+      <span class="sa-line sa-tip"></span>
+      <span class="sa-line sa-long"></span>
+      <div class="sa-placeholder"></div>
+      <div class="sa-fix"></div>
+    </div>
+  </ng-container>
+
+  <h2>{{title}}</h2>
+  <p style="display: block;" [innerHtml]="message"></p>
+  <img  src="{{ image }}">
+  <form novalidate [formGroup]="reasonForm" *ngIf="reasonForm && needReason">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ label | translate }}</mat-label>
+      <input matInput required formControlName="reason" name="reason">
+      <mat-hint>{{placeholder | translate}}</mat-hint>
+      <mat-error *ngIf="displayMessage.reason">{{displayMessage.reason}}</mat-error>
+    </mat-form-field>
+  </form>
+  <form novalidate [formGroup]="editForm" *ngIf="editForm">
+    <mat-form-field appearance="outline" class="full-width" *ngIf="inputFieldType === 'timeRange'">
+      <mat-label>{{ label }}</mat-label>
+      <input matInput formControlName="timeRange" name="timeRange">
+      <mat-hint>{{placeholder}}</mat-hint>
+      <mat-error *ngIf="displayMessage.timeRange">{{displayMessage.timeRange}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width" *ngIf="inputFieldType === 'number'">
+      <mat-label>{{ label }}</mat-label>
+      <input matInput formControlName="freelancerCostsNet" name="freelancerCostsNet">
+      <mat-hint>{{placeholder}}</mat-hint>
+      <mat-error *ngIf="displayMessage.freelancerCostsNet">{{displayMessage.freelancerCostsNet}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width" *ngIf="inputFieldType === 'assignmentBudget'">
+      <mat-label>{{ label }}</mat-label>
+      <input matInput formControlName="assignmentBudgetCorrection" name="assignmentBudgetCorrection">
+      <mat-hint>{{placeholder}}</mat-hint>
+      <mat-error *ngIf="displayMessage.assignmentBudgetCorrection">
+        {{displayMessage.assignmentBudgetCorrection}}
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <div class="sa-button-container">
+    <button type="button" mat-stroked-button color="primary" (click)="cancel()">
+      {{cancelText ? cancelText : (cancelCode | translate)}}
+    </button>
+    <button type="button" mat-flat-button color="accent" (click)="confirm()">
+      {{confirmText ? confirmText : (confirmCode | translate)}}
+    </button>
+  </div>
+</div>

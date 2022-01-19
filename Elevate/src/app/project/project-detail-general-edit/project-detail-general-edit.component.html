@@ -1,0 +1,1049 @@
+<div class="row" *ngIf="group">
+  <div class="col-xs padding-none" [formGroup]="group">
+    <fieldset>
+      <div class="row">
+        <div class="col-xs-6 client-container">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.client.label" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              [options]=" clientLK1"
+
+              [options]=" clientLK1"
+              formControlName="client_id"
+              [disabled]="!!id"
+              [options]="clientLK"
+              [error]="displayMessage.client_id"
+            >
+            </app-static-auto-complete>
+            <mat-error *ngIf="displayMessage.client_id">{{
+              displayMessage.client_id
+            }}</mat-error>
+            <mat-hint *ngIf="noContactExist">{{
+              "form.errors.list.general.contacts" | translate
+            }}</mat-hint>
+          </mat-form-field>
+          <button class="add-tasks" (click)="addClient()"><mat-icon>add_circle_outline</mat-icon></button>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.contact.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="contact_id" name="contact_id">
+              <mat-option
+                *ngFor="let option of contactLK"
+                [value]="option.value"
+              >
+                {{ option.text }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.contact_id">{{
+              displayMessage.contact_id
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.name.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="name" name="name" />
+            <mat-error *ngIf="displayMessage.name">{{
+              displayMessage.name
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.contract_type.label" | translate
+            }}</mat-label>
+            <mat-select
+              formControlName="contract_type_id"
+              name="contract_type_id"
+            >
+              <mat-option
+                *ngFor="let option of contractTypeLK"
+                [value]="option.value"
+              >
+                {{
+                  (option.value == 1
+                    ? "contracts.identifier.freelancer"
+                    : "contracts.identifier.tax_card"
+                  ) | translate
+                }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.contract_type_id">{{
+              displayMessage.contract_type_id
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.category.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="category" name="category">
+              <mat-option
+                *ngFor="let option of categoryLK"
+                [value]="option.value"
+              >
+                {{ "projects.fields.category." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.category">{{
+              displayMessage.category
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.state.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="state" name="state">
+              <mat-option *ngFor="let option of stateLK" [value]="option.value">
+                {{ "projects.fields.state." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.state">{{
+              displayMessage.state
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.start.label" | translate
+            }}</mat-label>
+            <input
+              matInput
+              [matDatepicker]="startAtPicker"
+              formControlName="started_at"
+              name="started_at"
+              (dateChange)="onDateChange(startAtPicker)"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startAtPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startAtPicker></mat-datepicker>
+            <mat-error *ngIf="displayMessage.started_at">{{
+              displayMessage.started_at
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.finish.label" | translate
+            }}</mat-label>
+            <input
+              matInput
+              [matDatepicker]="finishAtPicker"
+              formControlName="finished_at"
+              name="finished_at"
+              [min]="startDate"
+              (dateChange)="onDateChange(finishAtPicker)"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="finishAtPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #finishAtPicker></mat-datepicker>
+            <mat-error *ngIf="displayMessage.finished_at">{{
+              displayMessage.finished_at
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.duration.label" | translate
+            }}</mat-label>
+            <input matInput [value]="durationValue" disabled />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.account-manager.label" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              formControlName="agent_id"
+              [clearSelection]="true"
+              #agent_id
+              [options]="agentLK"
+              [error]="displayMessage.agent_id"
+            >
+            </app-static-auto-complete>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!agent_id.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="agent_id.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+            <mat-error *ngIf="displayMessage.agent_id">{{
+              displayMessage.agent_id
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.staffing-manager.label" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              formControlName="staff_id"
+              [clearSelection]="true"
+              #staff_id
+              [options]="agentLK"
+              [error]="displayMessage.staff_id"
+            >
+            </app-static-auto-complete>
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!agent_id.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="agent_id.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+            <mat-error *ngIf="displayMessage.staff_id">{{
+              displayMessage.staff_id
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.order.label" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              #order_id
+              [clearSelection]="true"
+              formControlName="order_id"
+              [options]="orderLK"
+              [error]="displayMessage.order_id"
+            >
+            </app-static-auto-complete> -->
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!order_id.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="order_id.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+            <!-- <mat-error *ngIf="displayMessage.order_id">{{
+              displayMessage.order_id
+            }}</mat-error>
+          </mat-form-field>
+        </div> -->
+        <!-- <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.budget.label" | translate
+            }}</mat-label>
+            <app-static-auto-complete
+              #budget_id
+              [clearSelection]="true"
+              formControlName="budget_id"
+              [options]="budgetLK"
+              [error]="displayMessage.budget_id"
+            >
+            </app-static-auto-complete> -->
+            <!-- <button
+              type="button"
+              mat-button
+              *ngIf="!budget_id.empty"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="budget_id.clearValue()"
+            >
+              <i class="fas fa-times"></i>
+            </button> -->
+           <!-- <mat-error *ngIf="displayMessage.budget_id">{{
+              displayMessage.budget_id
+            }}</mat-error>
+          </mat-form-field>
+        </div> -->
+      </div>
+       <!-- <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.assignment_budget.label" | translate
+            }}</mat-label>
+            <span matPrefix appCurrencySymbol></span>
+            <input
+              matInput
+              formControlName="assignment_budget"
+              name="assignment_budget"
+            />
+            <mat-error *ngIf="displayMessage.assignment_budget">{{
+              displayMessage.assignment_budget
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6 wage">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.wage.label" | translate
+            }}</mat-label>
+            <span matPrefix appCurrencySymbol></span>
+            <input matInput formControlName="wage" name="wage" />
+            <mat-error *ngIf="displayMessage.wage">{{
+              displayMessage.wage
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div> -->
+      <!-- <div>
+        <label data-translate-once="projects.additional-costs.label"
+          data-ng-required="!general.data.wage || general.data.wage == 0"></label>
+        <div data-additional-costs="general.data.additional_costs" data-view="set"
+          data-required="!general.data.wage || general.data.wage == 0"></div>
+      </div> -->
+    </fieldset>
+    <!-- <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <label translate="projects.additional-costs.label"></label>
+        </div>
+      </div>
+      <div class="row" *ngIf="!(additional_costs && additional_costs.length)">
+        <div class="col-xs-12">
+          <app-load-html template="additional-costs.hint"></app-load-html>
+        </div>
+      </div>
+      <div class="row" *ngIf="additional_costs">
+        <div class="col-xs padding-none" formArrayName="additional_costs">
+          <div
+            *ngFor="let sale of additional_costs.controls; let i = index"
+            class="col-xs padding-none"
+          >
+            <div [formGroupName]="i" class="row top-xs middle-md">
+              <div class="col-sm-11 col-xs-11 padding-none">
+                <div class="row">
+                  <div class="col-sm-4 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label required>{{
+                        "projects.additional-costs.fields.name.label"
+                          | translate
+                      }}</mat-label>
+                      <input matInput formControlName="name" />
+                      <mat-error
+                        *ngIf="
+                          displayMessage &&
+                          displayMessage.additional_costs &&
+                          displayMessage.additional_costs[i].name
+                        "
+                      >
+                        {{ displayMessage.additional_costs[i].name }}</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label>
+                        {{
+                          "projects.additional-costs.fields.value.label"
+                            | translate
+                        }}
+                      </mat-label>
+                      <input required matInput formControlName="value" />
+                      <mat-error
+                        *ngIf="
+                          displayMessage &&
+                          displayMessage.additional_costs &&
+                          displayMessage.additional_costs[i].value
+                        "
+                      >
+                        {{ displayMessage.additional_costs[i].value }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label
+                        >{{
+                          "projects.additional-costs.fields.description.label"
+                            | translate
+                        }}
+                      </mat-label>
+                      <input matInput formControlName="description" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-1 col-xs-1 padding-none">
+                <button
+                  type="button"
+                  mat-icon-button
+                  color="accent"
+                  (click)="removeAdditionalCostClick(i)"
+                >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs">
+              <button
+                type="button"
+                mat-stroked-button
+                color="primary"
+                (click)="addAdditionalCostClick()"
+                translate="projects.additional-costs.buttons.add"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset> -->
+    <fieldset>
+      <div class="row editors-container">
+        <div class="col-xs-12 col-md-12">
+          <mat-label required>{{
+              "projects.fields.description.label" | translate
+            }}</mat-label>
+            <angular-editor formControlName="description"
+            placeholder="{{
+              'projects.fields.description.placeholder' | translate
+            }}"
+            id="description"
+            [config]="editorConfig"></angular-editor>
+            <!-- <textarea
+              matInput
+              formControlName="description"
+              placeholder="{{
+                'projects.fields.description.placeholder' | translate
+              }}"
+              name="description"
+              rows="5"
+            ></textarea> -->
+            <mat-error *ngIf="displayMessage.description">{{
+              displayMessage.description
+            }}</mat-error>
+        </div>
+        <!-- <div class="col-xs-12 col-md-12 information">
+          <label translate="projects.fields.information.label"></label>
+            <mat-label></mat-label>
+            <angular-editor formControlName="information"
+            placeholder="{{
+              'projects.fields.information.placeholder' | translate
+            }}"
+            id="information"
+            [config]="editorConfig"></angular-editor> -->
+            <!-- <textarea
+              matInput
+              formControlName="information"
+              placeholder="{{
+                'projects.fields.information.placeholder' | translate
+              }}"
+              name="information"
+              rows="5"
+            ></textarea> -->
+            <!-- <mat-error *ngIf="displayMessage.information">{{
+              displayMessage.information
+            }}</mat-error>
+        </div>
+        <div class="col-xs-12 col-md-12">
+          <label translate="projects.fields.briefing.label"></label>
+            <mat-label></mat-label>
+            <angular-editor formControlName="briefing"
+            placeholder="{{
+              'projects.fields.briefing.placeholder' | translate
+            }}"
+            id="briefing"
+            [config]="editorConfig"></angular-editor> -->
+            <!-- <textarea
+              matInput
+              formControlName="briefing"
+              placeholder="{{
+                'projects.fields.briefing.placeholder' | translate
+              }}"
+              name="briefing"
+              rows="10"
+            ></textarea> -->
+            <!-- <mat-error *ngIf="displayMessage.briefing">{{
+              displayMessage.briefing
+            }}</mat-error>
+        </div> -->
+      </div>
+      <!-- <div class="row">
+        <div class="col-xs-12 col-md-6"> -->
+          <!-- <label data-translate-once="projects.fields.certificates.label"></label>
+          <div data-selectize data-options="general.certificates"
+            data-config="{maxOptions: 10000, valueField: 'id', labelField: 'name', sortField: 'name', searchField: 'name'}"
+            data-select-description="name|[descriptionShort]" data-select-classes="classes"
+            data-ng-model="general.data.certificate_ids">
+          </div> -->
+          <!-- <app-multi-select-auto-complete
+            class="form-field"
+            label="{{ 'projects.fields.certificates.label' | translate }}"
+            [filteredOptions]="certificateLK"
+            [static]="true"
+            formControlName="certificate_ids"
+          >
+          </app-multi-select-auto-complete>
+        </div>
+        <div class="col-xs-12 col-md-6" *ngIf="id">
+          <mat-checkbox color="primary" formControlName="update_associated">
+            {{
+              "projects.fields.certificates.update_associated.label" | translate
+            }}</mat-checkbox
+          >
+          <p
+            translate="projects.fields.certificates.update_associated.description"
+          ></p>
+        </div>
+      </div> -->
+    </fieldset>
+    <!--<fieldset formGroupName="custom_properties" *ngIf="custom_properties">
+      <div class="row">
+        <div class="col-xs">
+          <label>
+            {{ "projects.fields.custom-properties.client.label" | translate }}
+          </label>
+        </div>
+      </div>
+      <div class="row" *ngFor="let prop of custom_propertiesKey; let i = index">
+        <div class="col-xs-12 col-sm-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{ prop }} </mat-label>
+            <input matInput [formControlName]="prop" />
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <label
+            required
+            translate="projects.inherited.fields.document.report.label"
+          ></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs padding-none">
+          <app-project-documents
+            mode="edit"
+            *ngIf="templateDocuments && templateDocuments.length"
+            (documentDeleted)="documentDeletedCallback($event)"
+            [projectDocuments]="templateDocuments"
+          ></app-project-documents>
+          <div *ngIf="!(templateDocuments && templateDocuments.length)">
+            <app-file-upload
+              (documentUploaded)="documentUploadedCallback($event)"
+              text="Upload Document"
+              type="document"
+            >
+            </app-file-upload>
+          </div>
+          <mat-error *ngIf="displayMessage.templateDocuments">{{
+            displayMessage.templateDocuments
+          }}</mat-error>
+        </div>
+      </div>
+    </fieldset> -->
+    <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <legend translate="projects.target-budget.label"></legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.currency.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="currency" name="currency" (selectionChange)="onCurrencyChange($event)">
+              <mat-option
+                *ngFor="let option of currencyOpt"
+                [value]="option.value"
+              >
+              {{option.value}} - {{ "currency." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.currency">{{
+              displayMessage.currency
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="target_budget">
+        <div class="col-xs padding-none" formArrayName="target_budget">
+          <div
+            *ngFor="let sale of target_budget.controls; let i = index"
+            class="col-xs padding-none"
+          >
+            <div [formGroupName]="i" class="row top-xs middle-md">
+              <div class="col-sm-11 col-xs-11 padding-none">
+                <div class="row">
+                  <div class="col-sm-3 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label>{{
+                        "projects.target-budget.fields.role.label"
+                          | translate
+                      }}</mat-label>
+                      <mat-select formControlName="role" name="role">
+                        <mat-option
+                          *ngFor="let option of roleLK"
+                          [value]="option.value"
+                        >
+                        {{option.text}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="
+                          displayMessage &&
+                          displayMessage.target_budget &&
+                          displayMessage.target_budget[i].role
+                        "
+                      >
+                        {{ displayMessage.target_budget[i].role }}</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-3 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label>
+                        {{
+                          "projects.target-budget.fields.total.label"
+                            | translate
+                        }}
+                      </mat-label>
+                      <span matPrefix [appCurrencySymbol]='currencySymbol'></span>
+                      <input matInput formControlName="total" />
+                      <mat-error
+                        *ngIf="
+                          displayMessage &&
+                          displayMessage.target_budget &&
+                          displayMessage.target_budget[i].total
+                        "
+                      >
+                        {{ displayMessage.target_budget[i].total }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-3 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label>
+                        {{
+                          "projects.target-budget.fields.per-shift.label"
+                            | translate
+                        }}
+                      </mat-label>
+                      <span matPrefix [appCurrencySymbol]='currencySymbol'></span>
+                      <input matInput formControlName="per_shift" />
+                      <mat-error
+                        *ngIf="
+                          displayMessage &&
+                          displayMessage.target_budget &&
+                          displayMessage.target_budget[i].per_shift
+                        "
+                      >
+                        {{ displayMessage.target_budget[i].per_shift }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-3 col-xs-12">
+                    <mat-form-field class="full-width">
+                      <mat-label>
+                        {{
+                          "projects.target-budget.fields.per-hour.label"
+                            | translate
+                        }}
+                      </mat-label>
+                      <span matPrefix [appCurrencySymbol]='currencySymbol'></span>
+                      <input matInput formControlName="per_hour" />
+                      <mat-error
+                        *ngIf="
+                          displayMessage &&
+                          displayMessage.target_budget &&
+                          displayMessage.target_budget[i].per_hour
+                        "
+                      >
+                        {{ displayMessage.target_budget[i].per_hour }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-1 col-xs-1 padding-none btn-cls">
+                <button
+                  type="button"
+                  mat-icon-button
+                  color="primary"
+                  (click)="addAdditionalTargetBudgetClick()"
+                >
+                  <i class="fa fa-plus"></i>
+                </button>
+                <button
+                *ngIf="target_budget.controls.length > 1"
+                  type="button"
+                  mat-icon-button
+                  color="warn"
+                  (click)="removeTargetBudgetClick(i)"
+                >
+                  <i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <legend translate="projects.details.label.po_details"></legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12 currency-container">
+          <mat-form-field>
+            <mat-label required>{{
+              "projects.fields.currency.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="po_currency" name="po_currency" (selectionChange)="onCurrencyChange($event, true)">
+              <mat-option
+                *ngFor="let option of currencyOpt"
+                [value]="option.value"
+              >
+              {{option.value}} - {{ "currency." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.po_currency">{{
+              displayMessage.po_currency
+            }}</mat-error>
+          </mat-form-field>
+          <mat-checkbox class="copy" color="primary" (change)="copyTargetBudget($event.checked)">
+            {{"projects.details.label.target_budget" | translate}}
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.po_no.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="po_no" name="po_no" />
+            <mat-error *ngIf="displayMessage.po_no">{{
+              displayMessage.po_no
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.po_amount.label" | translate
+            }}</mat-label>
+            <span matPrefix [appCurrencySymbol]='poCurrencySymbol'></span>
+            <input matInput formControlName="po_amount" name="po_amount" />
+            <mat-error *ngIf="displayMessage.po_amount">{{
+              displayMessage.po_amount
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.po_date.label" | translate
+            }}</mat-label>
+            <input
+              matInput
+              [matDatepicker]="PODatePicker"
+              [max]="today"
+              formControlName="po_date"
+              name="po_date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="PODatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #PODatePicker></mat-datepicker>
+            <mat-error *ngIf="displayMessage.po_date">{{
+              displayMessage.po_date | date: 'mediumDate'
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.po_comment.label" | translate
+            }}</mat-label>
+            <textarea
+              matInput
+              formControlName="po_comment"
+              placeholder="{{
+                'projects.fields.po_comment.placeholder' | translate
+              }}"
+              name="po_comment"
+              rows="3"
+            ></textarea>
+            <mat-error *ngIf="displayMessage.po_comment">{{
+              displayMessage.po_comment
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+    <!-- <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <legend translate="projects.details.label.primary_address"></legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.primary_address.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="primary_address" name="primary_address" />
+            <mat-error *ngIf="displayMessage.primary_address">{{
+              displayMessage.primary_address
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.primary_country.label" | translate
+            }}</mat-label>
+            <mat-select #primaryCountry formControlName="primary_country" name="primary_country">
+              <mat-option
+                *ngFor="let option of countryMaster"
+                [value]="option.id"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.primary_country">{{
+              displayMessage.primary_country
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label >{{
+              "projects.fields.primary_state.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="primary_state" name="primary_state">
+              <mat-option
+                *ngFor="let option of primaryStates"
+                [value]="option.id"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.primary_state">{{
+              displayMessage.primary_state
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.primary_city.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="primary_city" name="primary_city">
+              <mat-option
+                *ngFor="let option of primaryCities"
+                [value]="option.id"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.primary_city">{{
+              displayMessage.primary_city
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label required>{{
+              "projects.fields.primary_zip.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="primary_zip" name="primary_zip" />
+            <mat-error *ngIf="displayMessage.primary_zip">{{
+              displayMessage.primary_zip
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs flex">
+          <legend translate="projects.details.label.site_address"></legend>
+          <mat-checkbox color="primary" (change)="copyPrimaryAddress($event.checked)">
+            Copy from Primary Address
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.site_address.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="site_address" name="site_address" />
+            <mat-error *ngIf="displayMessage.site_address">{{
+              displayMessage.site_address
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.site_country.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="site_country" name="site_country">
+              <mat-option
+                *ngFor="let option of countryMaster"
+                [value]="option.id"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.site_country">{{
+              displayMessage.site_country
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.site_state.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="site_state" name="site_state">
+              <mat-option
+                *ngFor="let option of siteStates"
+                [value]="option.id"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.site_state">{{
+              displayMessage.site_state
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.site_city.label" | translate
+            }}</mat-label>
+            <mat-select formControlName="site_city" name="site_city">
+              <mat-option
+                *ngFor="let option of siteCities"
+                [value]="option.id"
+              >
+                {{ option.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.site_city">{{
+              displayMessage.site_city
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.site_zip.label" | translate
+            }}</mat-label>
+            <input matInput formControlName="site_zip" name="site_zip" />
+            <mat-error *ngIf="displayMessage.site_zip">{{
+              displayMessage.site_zip
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset> -->
+    <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <legend translate="projects.details.label.skills_required"></legend>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-xs-12">
+          <ng-container *ngIf="skills">
+            <app-checkbox-tree [keys]="skills" [selectedKeys]="skillsRequired" (output)="checkboxTreeOutput($event)"></app-checkbox-tree>
+          </ng-container>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="row">
+        <div class="col-xs">
+          <legend translate="projects.details.label.global_brand"></legend>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>{{
+              "projects.fields.global_brand_id.label" | translate
+            }}</mat-label>
+            <mat-select multiple formControlName="global_brand_id" name="global_brand_id">
+              <mat-option
+                *ngFor="let option of brandOpt"
+                [value]="option.value"
+              >
+                {{ "projects.brands." + option.value | translate }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="displayMessage.global_brand_id">{{
+              displayMessage.global_brand_id
+            }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+    </fieldset>
+  </div>
+</div>

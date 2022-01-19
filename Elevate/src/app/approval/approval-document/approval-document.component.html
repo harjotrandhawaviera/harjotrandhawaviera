@@ -1,0 +1,15 @@
+<div class="row">
+  <ng-container *ngFor="let key of dataKeys">
+    <div class="col-xs-8">
+      <label>{{
+        "approval.profile.change." + key + "-document" | translate
+      }}</label>
+      <app-profile-document
+        [readonly]="true"
+        [documents]="
+          data[key] && data[key].documents ? data[key].documents : []
+        "
+      ></app-profile-document>
+    </div>
+  </ng-container>
+</div>

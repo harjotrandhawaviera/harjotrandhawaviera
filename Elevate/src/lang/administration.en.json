@@ -1,0 +1,1328 @@
+{
+  "administration": {
+    "users": {
+      "title": {
+        "group": "User Administration",
+        "new": "New User",
+        "details": "User Details",
+        "edit": "Edit User",
+        "sepa": "SEPA & CSV Export",
+        "rating": "Rating",
+        "bill": "Bills",
+        "audit": "Audits",
+        "contact": "Contact",
+        "setting": "Settings",
+        "mission": "Mission Types",
+        "budget": "Budgets & Orders",
+        "category": "Categories"
+      },
+      "table": {
+        "user": "User",
+        "createdBy": "Created By",
+        "roleName": "Role",
+        "lastAction": "Last Active",
+        "stateName": "Status",
+        "fullname": "Name",
+        "email": "E-mail",
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "remove": {
+          "title": "Delete User",
+          "message": "Are you sure you want to delete the user?"
+        }
+      },
+      "state": {
+        "active": "Active",
+        "unconfirmed": "Not confirmed",
+        "pending": "Pending Approval",
+        "onboarding": "Onboarding",
+        "deactivated": "Inactive",
+        "disabled": "Inactive",
+        "locked": "Locked",
+        "deleted": "Deleted",
+        "requested-password": "New Password Requested",
+        "requested-account-delete": "Account deletion requested"
+      },
+      "actions": {
+        "details": "Show Details"
+      },
+      "fields": {
+        "firstname": {
+          "label": "First Name",
+          "placeholder": "First Name"
+        },
+        "lastname": {
+          "label": "Last Name",
+          "placeholder": "Last Name"
+        },
+        "role": {
+          "label": "Role",
+          "": "Choose",
+          "freelancer": "Staff Member",
+          "admin": "Admin",
+          "agent": "Agent",
+          "client": "Client",
+          "field": "Field Service"
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": "E-Mail"
+        },
+        "birthdate": {
+          "label": "Date of Birth",
+          "placeholder": "dd.MM.yyyy",
+          "": "Choose"
+        },
+        "salutation": {
+          "label": "Salutation",
+          "": "Choose",
+          "F": "Mrs.",
+          "M": "Mr."
+        }
+      },
+      "buttons": {
+        "edit": "Edit User",
+        "create": "Create User",
+        "update": "Update User",
+        "cancel": "Cancel",
+        "save": "Save",
+        "back": "Back"
+      },
+      "filters": {
+        "role": "Role",
+        "required": "Please narrow the search by setting one or more filters."
+      },
+      "search-placeholder": "Name or E-Mail",
+      "search": {
+        "placeholder": "Name or E-Mail",
+        "hint": "min. 3 characters"
+      },
+      "details": {
+        "title": "User Details",
+        "summary": "ID {{id}} – {{nationality_name}} – {{birthDate}} – {{count_checkins_last_year}}{count_checkins_last_year, select, 1 { Insert}  other{ Deployments}} in the last year – ",
+        "summary-single": "ID {{id}} – {{nationality_name}} – {{birthDate}} – {{count_checkins_last_year}} Insert in the last year – ",
+        "summary-multiple": "ID {{id}} – {{nationality_name}} – {{birthDate}} – {{count_checkins_last_year}} Deployments in the last year – ",
+        "freelancer": "Staff Member Profile",
+        "sedcard": "SedCard",
+        "languages": {
+          "title": "Languages"
+        },
+        "work-condition": {
+          "title": "Work Condition",
+          "none": "No Data."
+        },
+        "identity": {
+          "title": "Legal Data"
+        },
+        "contracts": {
+          "title": "Types of Contracts"
+        },
+        "references": {
+          "title": "References",
+          "none": "No Data."
+        },
+        "qualifications": {
+          "title": "Qualifications",
+          "none": "No Data."
+        },
+        "industries": {
+          "title": "Industry Exposure",
+          "none": "No Data.",
+          "label": "Industry"
+        },
+        "skills": {
+          "title": "Skills",
+          "none": "No Data.",
+          "skill_name": "Skill Name"
+        },
+        "work-preference": {
+          "title": "Work Preference",
+          "none": "No Data."
+        },
+        "address": {
+          "title": "Address",
+          "area": "(+ {{areaRadius}} km)"
+        },
+        "secondary-address": {
+          "title": "Second Residence"
+        },
+        "documents": {
+          "title": "Documents",
+          "table": {
+            "documents": "File Type",
+            "name": "Name",
+            "size": "Size",
+            "type": "Document Type",
+            "empty": "",
+            "no-records": "No documents available.",
+            "view": "View"
+          },
+          "type": {
+            "signed-terms-and-conditions": "Signed General Terms and Conditions",
+            "trade-licence": "Trade License",
+            "questionnaire": "Questionnaire",
+            "work-permit": "Work Permit",
+            "upload-bank-photo": "upload bank photo",
+            "evidence": "Proof",
+            "picture-documentation": "Photo Documentation",
+            "signed-attachment": "Signed Attachment"
+          }
+        },
+        "certificates": {
+          "title": "Certificates",
+          "table": {
+            "certificate": "Certificates",
+            "passedAt": "Received On",
+            "no-records": "No Certificates"
+          }
+        },
+        "gtcs": {
+          "title": "General Terms and Conditions"
+        }
+      },
+      "create": {
+        "title": "Create New User"
+      },
+      "disable": {
+        "button": "Lock",
+        "title": "Lock User",
+        "message": "Are you sure you want to lock the user <b>{{fullname}}</b>?",
+        "fieldLabel": "Reason",
+        "placeholder": "This comment is visible to the user!",
+        "info": "User Locked."
+      },
+      "enable": {
+        "button": "Unlock",
+        "title": "Unlock User",
+        "message": "Are you sure you want to unlock the user <b>{{fullname}}</b>?"
+      },
+      "deactivate": {
+        "button": "Deactivate",
+        "title": "Deactivate User",
+        "message": "Are you sure you want to deactivate the user <b>{{fullname}}</b>?",
+        "fieldLabel": "Reason",
+        "placeholder": "This comment is visible to the user!"
+      },
+      "reactivate": {
+        "button": "Reactivate",
+        "title": "Reactivate user",
+        "message": "Are you sure you want to reactivate the user <b>{{fullname}}</b>?"
+      },
+      "disabled-info": "User Locked.",
+      "deactivated-info": "User Deactivated."
+    },
+    "clients": {
+      "title": "Client",
+      "table": {
+        "name": "Client",
+        "id": "Client Number",
+        "phone": "Phone Number",
+        "email": "E-Mail",
+        "partner": "Contact Person",
+        "position": "Position",
+        "search-placeholder": "Search for client name (min. 3 characters)",
+        "filter": {
+          "parent": "Assigned to"
+        },
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "partnerName": "Partner",
+        "partnerEmail": "E-Mail",
+        "client": "Client",
+        "remove": {
+          "title": "Delete Client?",
+          "message": "The client <b>{{name}}</b> cannot be restored."
+        }
+      }
+    },
+    "client": {
+      "title": {
+        "details": "Client Details",
+        "new": "New Client",
+        "edit": "Edit Client"
+      },
+      "section": {
+        "contact": "Contact",
+        "contacts": "Contact Person",
+        "custom-properties": "Client specific properties",
+        "freelancer-ratings": "Evaluation Criteria",
+        "saleslots": "Products",
+        "teaminfo": "Team & Shift Information",
+        "taskinfo": "ROLES & RESPONSIBILITIES",
+        "basicinfo": "Basic Information",
+        "otherinfo": "Other Information",
+        "additionalinfo": "Additional Information"
+      },
+      "buttons": {
+        "create": "Create new Client",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "back": "Back to Overview",
+        "save": "Save",
+        "update": "Save changes",
+        "add-contact": "Add new contact person",
+        "save-contact": "Save contact person",
+        "delete-contact": "Delete contact person",
+        "add-property": "Add new property",
+        "delete-property": "Delete property",
+        "add-criteria": "Add new evaluation criteria",
+        "delete-criteria": "Delete evaluation criteria",
+        "add-slot": "Add new Product",
+        "delete-slot": "Delete Product",
+        "save-slot": "Save Product",
+        "cancel-slot": "Discard",
+        "back-to-project": "Back to Project"
+      },
+      "fields": {
+        "name": {
+          "label": "Client Name",
+          "placeholder": ""
+        },
+        "clientid": {
+          "label": "Client Number"
+        },
+        "debitorid": {
+          "label": "Debitor-Id",
+          "placeholder": ""
+        },
+        "address": {
+          "label": "Street and House Number",
+          "placeholder": ""
+        },
+        "addressaddition": {
+          "label": "Address addition",
+          "placeholder": ""
+        },
+        "zip": {
+          "label": "Postal Code",
+          "placeholder": ""
+        },
+        "city": {
+          "label": "City",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": ""
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": ""
+        },
+        "client-user": {
+          "label": "With client access"
+        },
+        "field-user": {
+          "label": "With field service access"
+        },
+        "no-user": {
+          "label": "No Access"
+        },
+        "custom-properties": {
+          "placeholder": "e.g. counter, FUP",
+          "empty-list": "No properties specified."
+        },
+        "parent": {
+          "label": "Assigned To"
+        },
+        "children": {
+          "label": "Assigned To",
+          "hint": "This client is {{count}} client superior."
+        },
+        "freelancer-ratings": {
+          "placeholder": "e.g. punctuality",
+          "empty-list": "No evaluation criteria specified."
+        },
+        "saleslots": {
+          "table": {
+            "name": "Product Name",
+            "price": "Price",
+            "formattedPrice": "Price",
+            "description": "Comment",
+            "actions": {
+              "edit": "Edit",
+              "remove": "Delete"
+            },
+            "remove": {
+              "title": "Delete Product",
+              "message": "Do you really want to Delete this Product?"
+            }
+          },
+          "name": {
+            "placeholder": "",
+            "label": "Product Name"
+          },
+          "price": {
+            "label": "Price"
+          },
+          "description": {
+            "placeholder": "...",
+            "label": "Comment"
+          },
+          "update-hint": "The product list has been updated. Please do not forget to save the changes!"
+        },
+        "teaminfo": {
+          "table": {
+            "name": "Name",
+            "checkin_location": "Checkin Location",
+            "role": "Role",
+            "staff_count": "Staff Count",
+            "rate": "Rate",
+            "rate_type": "Rate Type",
+            "shift_name": "Shift Name",
+            "shift_start_time": "Shift Start Time",
+            "shift_end_time": "Shift End Time",
+            "break_durtion": "Break Time (Min.)",
+            "actions": {
+              "edit": "Edit",
+              "remove": "Delete"
+            },
+            "remove": {
+              "title": "Delete Team",
+              "message": "Do you really want to Delete this Team?"
+            }
+          },
+          "name": {
+            "placeholder": "",
+            "label": "Name"
+          },
+          "checkin_location": {
+            "placeholder": "",
+            "label": "CheckIn Location"
+          },
+          "role": {
+            "placeholder": "",
+            "label": "Role"
+          },
+          "staff_count": {
+            "placeholder": "",
+            "label": "Staff Count"
+          },
+          "rate": {
+            "placeholder": "",
+            "label": "Rate"
+          },
+          "rate-type": {
+            "placeholder": "",
+            "label": "Rate Type"
+          },
+          "shift_name": {
+            "placeholder": "",
+            "label": "Shift Name"
+          },
+          "shift_start_time": {
+            "placeholder": "",
+            "label": "Start Time"
+          },
+          "shift_end_time": {
+            "placeholder": "",
+            "label": "End Time"
+          },
+          "break_durtion": {
+            "placeholder": "",
+            "label": "Break Time (Min.)"
+          },
+          "shift_durtion": {
+            "placeholder": "",
+            "label": "Shift Duration"
+          },
+          "update-hint": "The product list has been updated. Please do not forget to save the changes!"
+        },
+        "taskinfo": {
+          "table": {
+            "task_name": "Task Name",
+            "role": "Role",
+            "shift": "Shift",
+            "type": "Type",
+            "remarks": "Remarks",
+            "files": "Files",
+            "actions": {
+              "edit": "Edit",
+              "remove": "Delete"
+            },
+            "remove": {
+              "title": "Delete Team",
+              "message": "Do you really want to Delete this Team?"
+            }
+          },
+          "task_name": {
+            "placeholder": "",
+            "label": "Task Name"
+          },
+          "role": {
+            "placeholder": "",
+            "label": "Role"
+          },
+          "shift": {
+            "placeholder": "",
+            "label": "Shift"
+          },
+          "type": {
+            "placeholder": "",
+            "label": "Type"
+          },
+          "remarks": {
+            "placeholder": "",
+            "label": "Remarks"
+          },
+          "files": {
+            "placeholder": "",
+            "label": "Files"
+          },
+          "update-hint": "The product list has been updated. Please do not forget to save the changes!"
+        }
+      },
+      "contacts": {
+        "table": {
+          "displayName": "Name",
+          "parent": "Assigned To",
+          "phone": "Phone Number",
+          "email": "E-Mail",
+          "position": "Position",
+          "department": "Department",
+          "role": "Access",
+          "actions": {
+            "edit": "Edit",
+            "details": "Details",
+            "remove": "Delete"
+          },
+          "remove": {
+            "title": "Delete Contact?",
+            "message": "Do you really want to delete the contact?"
+          }
+        }
+      }
+    },
+    "contacts": {
+      "title": "Contacts",
+      "vcard": {
+        "email": "E-Mail:",
+        "phone": "Phone:",
+        "fax": "Fax:",
+        "site": "Location (POS)",
+        "client": "Client"
+      },
+      "filters": {
+        "sites": "Location (POS)",
+        "clients": "Client Name"
+      },
+      "fields": {
+        "search": {
+          "placeholder": "Name or Phone Number",
+          "hint": "min. 3 characters"
+        },
+        "categories": {
+          "clients": "Clients",
+          "site": "POS"
+        }
+      },
+      "fullname": "Name",
+      "position": "Position",
+      "department": "Department",
+      "email": "E-Mail",
+      "phone": "Phone"
+    },
+    "contact": {
+      "buttons": {
+        "add-contact": "Add new contact person",
+        "delete-contact": "Delete contact person"
+      },
+      "fields": {
+        "salutation": {
+          "label": "Salutation",
+          "": "Choose",
+          "F": "Ms.",
+          "M": "Mr."
+        },
+        "parent": {
+          "label": "Assigned To",
+          "placeholder": ""
+        },
+        "firstname": {
+          "label": "First Name",
+          "placeholder": ""
+        },
+        "lastname": {
+          "label": "Last Name",
+          "placeholder": ""
+        },
+        "address": {
+          "label": "Street and House Number",
+          "placeholder": ""
+        },
+        "addressaddition": {
+          "label": "Address addition",
+          "placeholder": ""
+        },
+        "zip": {
+          "label": "Postal Code",
+          "placeholder": ""
+        },
+        "city": {
+          "label": "City",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": ""
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": ""
+        },
+        "position": {
+          "label": "Position",
+          "placeholder": ""
+        },
+        "department": {
+          "label": "Department",
+          "placeholder": ""
+        },
+        "data": {
+          "label": "More Information",
+          "placeholder": ""
+        }
+      }
+    },
+    "sites": {
+      "title": {
+        "list": "Places of work (POS)"
+      },
+      "table": {
+        "name": "POS Name",
+        "number": "POS Number",
+        "fulladdress": "Address",
+        "email": "E-Mail",
+        "phone": "Telefonnummer",
+        "fax": "Fax Number",
+        "group": "Group",
+        "categoryName": "Category",
+        "id": "ID",
+        "contactSalutation": "Contact person: Salutation",
+        "contactFullname": "Contact person: Name",
+        "contactPosition": "Contact person: Position",
+        "contactDepartment": "Contact person: Department",
+        "contactEmail": "Contact person: E-Mail",
+        "contactPhone": "Contact person: Phone Number",
+        "contactData": "Contact person: More Information",
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "remove": {
+          "title": "Delete POS",
+          "message": "Do you really want to delete the POS?"
+        }
+      },
+      "buttons": {
+        "create": "Create point of operation (POS)"
+      },
+      "filters": {
+        "postcodes": "ZIP code of the operation location"
+      },
+      "search-placeholder": "Name, Number or Address"
+    },
+    "site": {
+      "title": {
+        "new": "New point of operation (POS)",
+        "details": "Place of Operation (POS)",
+        "edit": "edit point of operation (POS)"
+      },
+      "section": {
+        "contact": "Contact",
+        "client-contact": "Field Services",
+        "tender-preset": "Default settings for Tenders"
+      },
+      "buttons": {
+        "create": "Create new POS",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "back": "Back to Overview",
+        "update": "Save changes",
+        "add-contact": "Add contact person",
+        "delete-contact": "Delete contact person"
+      },
+      "fields": {
+        "name": {
+          "label": "POS Name",
+          "placeholder": ""
+        },
+        "number": {
+          "label": "POS Number",
+          "placeholder": ""
+        },
+        "group": {
+          "label": "Group",
+          "placeholder": ""
+        },
+        "category": {
+          "label": "Category",
+          "none": "None",
+          "head-quarter": "Central",
+          "office": "Branch Office"
+        },
+        "address": {
+          "label": "Street and House Number",
+          "placeholder": ""
+        },
+        "addressaddition": {
+          "label": "Address addition",
+          "placeholder": ""
+        },
+        "zip": {
+          "label": "Postal Code",
+          "placeholder": ""
+        },
+        "city": {
+          "label": "City",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": ""
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": ""
+        },
+        "fax": {
+          "label": "Fax",
+          "placeholder": ""
+        }
+      }
+    },
+    "site-clients": {
+      "table": {
+        "name": "Client",
+        "contactName": "Field Service",
+        "client_site_remarks": "Information",
+        "client_site_data": "JSON Data",
+        "contactSalutation": "Salutation",
+        "contactPosition": "Position",
+        "contactDepartment": "Department",
+        "contactEmail": "E-Mail",
+        "contactPhone": "Phone Number",
+        "remove": {
+          "title": "Delete field service",
+          "message": "Do you really want to delete this sales force?"
+        },
+        "actions": {
+          "edit": "Edit",
+          "remove": "Remove"
+        }
+      },
+      "buttons": {
+        "add": "Add field service"
+      }
+    },
+    "site-client": {
+      "fields": {
+        "client": {
+          "label": "Client",
+          "placeholder": "Select Client"
+        },
+        "contact": {
+          "label": "Field service contact",
+          "placeholder": "Select field service"
+        },
+        "description": {
+          "label": "More Information",
+          "placeholder": ""
+        },
+        "data": {
+          "label": "Data in JSON format",
+          "placeholder": ""
+        }
+      },
+      "buttons": {
+        "update": "Save Changes",
+        "save": "Save",
+        "abort": "Cancel"
+      }
+    },
+    "orders": {
+      "title": "Orders",
+      "state": {
+        "active": "Active",
+        "draft": "Draft",
+        "closed": "Closed",
+        "undefined": "Not Defined"
+      },
+      "budget-default-name": "Default",
+      "budgets": {
+        "list": "Budgets that belong to this order"
+      },
+      "details": {
+        "title": {
+          "new": "New Order",
+          "details": "Order Details",
+          "edit": "Edit Order"
+        },
+        "budget": "Budget Details",
+        "buttons": {
+          "create": "Create Order",
+          "update": "Save Changes",
+          "cancel": "Cancel",
+          "edit": "Edit",
+          "back": "Back to Overview"
+        }
+      },
+      "create": {
+        "title": "New Order"
+      },
+      "fields": {
+        "name": {
+          "label": "Order Name",
+          "placeholder": "Order Name"
+        },
+        "number": {
+          "label": "PO-Number",
+          "placeholder": "PO-Number"
+        },
+        "client": {
+          "label": "Client",
+          "placeholder": "Client Name"
+        },
+        "state": {
+          "label": "Status",
+          "active": "Active",
+          "draft": "Draft",
+          "closed": "Closed",
+          "": "Please Select"
+        },
+        "date": {
+          "label": "Order Date"
+        },
+        "budget": {
+          "label": "Basis-Budget",
+          "select-label": "{{name}} - Total: {{formattedValue}}",
+          "no-budget": "No Budget",
+          "create-budget": "Create New Budget",
+          "remarks": {
+            "label": "Budget Note",
+            "placeholder": ""
+          },
+          "value": {
+            "label": "Total Budget",
+            "placeholder": ""
+          }
+        },
+        "assignments": {
+          "label": "Quantity of Deployments",
+          "placeholder": ""
+        },
+        "assignment-budget": {
+          "label": "Budget per Deployment",
+          "placeholder": "Budget per Deployment"
+        },
+        "remarks": {
+          "label": "Other Client Requests",
+          "placeholder": "Other Client Requests"
+        },
+        "custom-properties": {
+          "label": "Client specific Features"
+        }
+      },
+      "table": {
+        "name": "Order Name",
+        "stateName": "Status",
+        "clientName": "Client",
+        "orderedAt": "Order Date",
+        "search-placeholder": "Search for order name (min. 3 characters)",
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "remove": {
+          "title": "Delete Order?",
+          "message": "The order <b>{{name}}</b> cannot be restored."
+        }
+      },
+      "buttons": {
+        "create": "Create new Order",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "save": "Save",
+        "update": "Save Changes"
+      }
+    },
+    "freelancers": {
+      "title": {
+        "list": "Overview of all Staff Members"
+      },
+      "search-placeholder": "Name, City or E-Mail Address",
+      "entrance": "Date of Receipt {{createdAt}}",
+      "created_at": " {{createdAt}}",
+      "last-action": "Last Active: {{lastAction}}",
+      "assignments": "Number of Operations",
+      "address-unavailable": "Unknown",
+      "filters": {
+        "postcodes": "Postal Code Area",
+        "status": "Status",
+        "certificates": "Certificates",
+        "freelancer_rating": "Internal Rating",
+        "assignment_rating": "Deployment Rating",
+        "project": "Project",
+        "contractType": "Contract Type"
+      },
+      "table": {
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "remove": {
+          "title": "Delete Staff Member",
+          "message": "Are you sure you want to delete the Staff Member?"
+        },
+        "id": "ID",
+        "e-mail": "E-mail",
+        "mobilenum": "Mobile",
+        "postcode": "Post Code",
+        "receiptdate": "Receipt Date",
+        "status": "Status",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "fullname": "Name",
+        "gender": "Gender",
+        "age": "Age",
+        "created_at": "Created At",
+        "nationality": "Nationality",
+        "birthdate": "Date of Birth",
+        "profession": "Profession",
+        "mobile": "Phone (mobile)",
+        "alternative_phone": "Phone",
+        "email": "E-Mail-Address",
+        "address": "Street and House Number",
+        "zip": "Postal Code",
+        "city": "City",
+        "height": "Size",
+        "chest": "Chest",
+        "waist": "Waist",
+        "hip": "Hip",
+        "shirtsize": "T-Shirt",
+        "stateName": "Status",
+        "haircolor": "Hair Color"
+      },
+      "fields": {
+        "statuses": {
+          "active": "Active",
+          "onboarding": "Onboarding",
+          "inactive": "Deactivated",
+          "pending": "On-Boarding",
+          "not_registered": "Not Confirmed",
+          "unconfirmed": "Pending Approval",
+          "locked": "Locked"
+        },
+        "assignmentStates": {
+          "only_upcoming": "with pending operations"
+        }
+      },
+      "rating": {
+        "title": "Reviews",
+        "description": "These ratings are for internal use only!",
+        "buttons": {
+          "add": "Submit Rating",
+          "edit": "Edit",
+          "cancel": "Cancel",
+          "save": "Save",
+          "update": "Save"
+        }
+      },
+      "onboarding-profile": {
+        "title": "{fullname, select, 0{Unknown Profile}  other{{fullname}'s Profile}}",
+        "title-unknown": "Unknown Profile",
+        "title-fullname": "{{fullname}}'s Profile",
+        "comment": "Note/Comment",
+        "buttons": {
+          "back": "Back to the Overview",
+          "approval": "To the On-Boarding Application"
+        }
+      }
+    },
+    "rights": {
+      "title": "Rights"
+    },
+    "incentives": {
+      "title": "Flat Rates & Discounts",
+      "table": {
+        "name": "Name",
+        "checkin": "Onboarding",
+        "sales_report": "Sales Report",
+        "picture_documentation": "Photo Documentation",
+        "search-placeholder": "Search for flat rates and discounts (min. 3 characters)",
+        "actions": {
+          "details": "Details"
+        }
+      },
+      "details": {
+        "buttons": {
+          "edit": "Edit Flat Rates",
+          "update": "Update Flat Rates",
+          "cancel": "Cancel",
+          "back": "Back to the Overview"
+        },
+        "title": {
+          "details": "Packages & Discounts Details",
+          "edit": "Edit flat Rates & Discounts"
+        }
+      },
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": ""
+        },
+        "checkin": {
+          "label": "For Registration",
+          "placeholder": ""
+        },
+        "sales_report": {
+          "label": "Sales Report",
+          "placeholder": ""
+        },
+        "picture_documentation": {
+          "label": "Photo Documentation",
+          "placeholder": ""
+        }
+      }
+    },
+    "budgets": {
+      "delete-success": "Budget deleted successfully",
+      "title": {
+        "list": "Budgets",
+        "details": "Budget Details",
+        "new": "New Budget",
+        "edit": "Edit Budget"
+      },
+      "table": {
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "remove": {
+          "title": "Delete Budget?",
+          "message": "The budget <b>{{name}}</b> cannot be restored."
+        },
+        "clientName": "Client",
+        "name": "Name",
+        "available": "Available",
+        "consumed": "Consumed",
+        "planned": "Planned",
+        "value": "Total",
+        "count_assignments": "Deployments",
+        "count_orders": "Orders",
+        "creatorName": "Created By",
+        "orderName": "Order",
+        "orderedAt": "Order Date",
+        "filters": {
+          "client": "Client"
+        },
+        "buttons": {
+          "create": "New Budget"
+        }
+      },
+      "label": {
+        "available": "Available",
+        "value": "Total",
+        "planned": "Planned",
+        "consumed": "Consumed",
+        "count-assignments": "{count_assignments}{count_assignments, select, 1 { Use}  other{ Deployments}}",
+        "count-assignments-single": "{{count_assignments}} Use",
+        "count-assignments-multiple": "{{count_assignments}} Deployments",
+        "count-orders": "{count_orders}{count_orders, select, 1 { Order}  other{ Orders}}",
+        "name": "Budget Name",
+        "client": "Client",
+        "contacts": "Field Service",
+        "remarks": "Note",
+        "assignments": "Operations on this Budget",
+        "record-value": "+/- Amount",
+        "order": "Order on this Budget",
+        "creatorName": "Created By {{creatorName}}",
+        "budget": {
+          "create": "Budget from which this budget is to be created.",
+          "edit": "Budget from which this budget was created."
+        },
+        "record-comment": "Comment"
+      },
+      "name-available": "{name} ({available})",
+      "states": {
+        "ok": "",
+        "warn": "",
+        "error": ""
+      },
+      "fields": {
+        "placeholder": {
+          "name": "",
+          "value": "",
+          "remarks": "",
+          "record-value": "+/- 100€",
+          "record-comment": ""
+        }
+      },
+      "description": {
+        "record-value": "Please enter here the difference amount by which the budget should be increased or decreased."
+      },
+      "buttons": {
+        "create": "Add Budget",
+        "create-record": "Post new Amount",
+        "edit": "Edit",
+        "update": "Save Changes",
+        "cancel": "Cancel",
+        "cancel-edit": "Cancel",
+        "back": "To the Budget Overview",
+        "details": "Details"
+      },
+      "records": {
+        "title": "Entries",
+        "table": {
+          "type": "Type",
+          "identifier": "Action",
+          "formattedValue": "Value",
+          "comment": "Comment",
+          "creatorName": "Created By",
+          "sourceTitle": "Source",
+          "referenceTitle": "Reference"
+        },
+        "recordReferenceTitle": "{{id}} ({{type}})"
+      },
+      "create-record": {
+        "title": "Post Amount?",
+        "message": "Do you want to charge or debit the amount of <b>{{recordValue}}</b> € to the budget?"
+      },
+      "search-placeholder": "Search by Name"
+    },
+    "budget-record": {
+      "title": {
+        "edit": "Update budget Amount"
+      },
+      "buttons": {
+        "back": "To the budget Overview"
+      }
+    },
+    "certificates": {
+      "title": {
+        "list": "Certificates"
+      }
+    },
+    "gtcs": {
+      "title": "Terms and Conditions List",
+      "table": {
+        "search-placeholder": "Search for AGB (min. 3 characters)",
+        "identifier": "Identifier",
+        "publishedAt": "Published on",
+        "validAt": "Valid From",
+        "invalidAt": "Valid Until",
+        "contractType": "Contract Type",
+        "actions": {
+          "edit": "Edit",
+          "download": "Download"
+        }
+      },
+      "fields": {
+        "identifier": {
+          "label": "Identifier",
+          "placeholder": "Identifier"
+        },
+        "publishedAt": {
+          "label": "Published on",
+          "placeholder": ""
+        },
+        "validAt": {
+          "label": "Valid From",
+          "placeholder": ""
+        },
+        "invalidAt": {
+          "label": "Valid Until",
+          "placeholder": ""
+        },
+        "document": {
+          "label": "Document"
+        }
+      },
+      "edit": {
+        "title": {
+          "new": "Create GTC",
+          "edit": "Edit GTC"
+        },
+        "buttons": {
+          "new": "Create GTC",
+          "create": "Create GTC",
+          "update": "Update GTC",
+          "cancel": "Cancel"
+        }
+      },
+      "documents": {
+        "buttons": {
+          "add-attachment": "Add new Attachment",
+          "remove-attachment": "Remove Attachment"
+        },
+        "fields": {
+          "docTypes": {
+            "label": "Document Type",
+            "terms-and-conditions": "Framework Agreement",
+            "attachment": "Attachment to Framework Agreement"
+          },
+          "name": {
+            "label": "Name of the Document",
+            "placeholder": ""
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Short Description or Explanation"
+          },
+          "confirmationTypes": {
+            "label": "Confirmation",
+            "none": "No confirmation necessary",
+            "upload-signed": "Upload Signed",
+            "checked": "Read"
+          },
+          "reconfirmationTypes": {
+            "label": "Reconfirmation"
+          },
+          "reconfirmationIndexes": {
+            "label": "Reconfirmation period",
+            "periodically": "periodic",
+            "checkins-count": "After number of x operations"
+          },
+          "reconfirmationInterval": {
+            "label": "Reconfirmation Interval",
+            "hint": {
+              "checkins-count": "After how many operations (freelancer has checked in) should the document be reconfirmed?\nThe number must be greater than the warning period of currently 5 operations.",
+              "periodically": "Please enter a date interval (e.g. xD = xdays or xM = xmonths).\nThe interval must be greater than the warning period of 14 days (14D) at present."
+            }
+          }
+        }
+      }
+    },
+    "logs": {
+      "title": "Logs",
+      "filters": {
+        "type": "Type",
+        "agent": "Agent"
+      },
+      "search-placeholder": "Search for Reference ID",
+      "table": {
+        "message": "Details",
+        "performer_name": "User",
+        "createdAt": "Date",
+        "referenceName": "Reference"
+      },
+      "fields": {
+        "type": {
+          "BudgetCreatedEvent": "Budget created",
+          "OfferPlacedEvent": "Quote created",
+          "OfferDeclinedEvent": "Offer rejected",
+          "TenderDeclinedEvent": "Tender rejected",
+          "FreelancerBookedEvent": "Staff Member Booked",
+          "FreelancerUnbookedEvent": "Deployment Cancelled",
+          "DataChangedEvent": "Data change",
+          "TenderCreatedEvent": "RFP generated",
+          "TenderClosedEvent": "Announcement closed",
+          "UserRequestProcessedEvent": "User request accepted",
+          "UserRequestDeclinedEvent": "User request rejected",
+          "CheckinUpdatedEvent": "Checkin updated",
+          "CheckinCreatedEvent": "Checkin created",
+          "InvoiceAcceptedEvent": "Checkin accepted",
+          "InvoiceRejectedEvent": "Invoice rejected",
+          "JobMessageCreatedEvent": "Job generated question",
+          "TenderExpiredEvent": "Tender expired",
+          "UserDeletedEvent": "User deleted",
+          "FreelancerDeletedEvent": "Staff Member deleted"
+        }
+      }
+    },
+    "maillogs": {
+      "title": "Maillogs",
+      "filters": {
+        "freelancer": "Recipient (freelancer)",
+        "dates": "Entries (from - to)"
+      },
+      "table": {
+        "sentAt": "Date",
+        "fromEmail": "Sender",
+        "toEmail": "Recipient",
+        "subject": "Subject",
+        "content": "Content",
+        "downloadableContent": "Content",
+        "is_sent": "Sent",
+        "reference": "Reference"
+      },
+      "search-placeholder": "Subject or content"
+    },
+    "health-insurances": {
+      "title": {
+        "list": "Health Insurance",
+        "new": "New Health Insurance",
+        "edit": "Edit Health Insurance",
+        "details": "Health Insurance Details"
+      },
+      "buttons": {
+        "create": "Save new Health Insurance",
+        "create-insurance": "New Insurance",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "back": "Back to Overview",
+        "update": "Save",
+        "remove": "Delete"
+      },
+      "filters": {
+        "type": "Type"
+      },
+      "search-placeholder": "Search by Name, External ID or Description",
+      "table": {
+        "id": "ID",
+        "name": "Name",
+        "external_identifier": "External ID",
+        "type": "Type",
+        "description": "Additional Information",
+        "actions": {
+          "details": "Details",
+          "remove": "Delete"
+        },
+        "remove": {
+          "title": "Delete Insurance?",
+          "message": "Are you sure you want to delete this health insurance policy?"
+        }
+      },
+      "fields": {
+        "types": {
+          "": "Select",
+          "statutory": "statutory",
+          "private": "private"
+        },
+        "name": {
+          "label": "Name of the health insurance company",
+          "placeholder": ""
+        },
+        "type": {
+          "label": "Type"
+        },
+        "external-identifier": {
+          "label": "External ID",
+          "placeholder": "Unique ID of an external system, e.g. ADAG"
+        },
+        "description": {
+          "label": "Additional Information",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}
