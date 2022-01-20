@@ -1,96 +1,22 @@
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './guard/auth.guard';
-import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
-import { ConfirmComponent } from './auth/confirm/confirm.component';
-import { ConfirmEmailComponent } from './auth/confirm-email/confirm-email.component';
-import { ContactComponent } from './auth/contact/contact.component';
-import { DataPrivacyComponent } from './auth/data-privacy/data-privacy.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ImprintComponent } from './auth/imprint/imprint.component';
-import { LogInComponent } from './auth/log-in/log-in.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { NgModule } from '@angular/core';
-import { RegisterComponent } from './auth/register/register.component';
 import { StorageGuard } from './guard/storage.guard';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: LogInComponent,
-      },
-    ],
-  },
-  {
-    path: 'register',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: RegisterComponent,
-      },
-    ],
-  },
-  {
-    path: 'confirm',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: ConfirmComponent,
-      },
-      {
-        path: ':type/:confirmToken',
-        component: ConfirmEmailComponent,
-      },
-    ],
-  },
-  {
-    path: 'forgot-password',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: ForgotPasswordComponent,
-      },
-    ],
-  },
-  {
-    path: 'dataprivacy',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: DataPrivacyComponent,
-      },
-    ],
-  },
-  {
-    path: 'imprint',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: ImprintComponent,
-      },
-    ],
-  },
-  {
-    path: 'contact',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: ContactComponent,
-      },
-    ],
-  },
-  {
     path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+  },
+  {
+    path: 'home',
     component: MainLayoutComponent,
     children: [
       {

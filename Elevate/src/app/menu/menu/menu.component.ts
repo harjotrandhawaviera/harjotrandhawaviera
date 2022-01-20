@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import * as fromCurrentUser from '../../root-state/user-state';
 import * as fromUser from './../../root-state/user-state';
 
@@ -20,7 +24,7 @@ import { TranslateService } from './../../services/translate.service';
 })
 export class MenuComponent implements OnInit {
   menu: any[] = [];
-  expanded: string = '';
+  expanded = '';
   @Input()
   folded = false;
   @Output() foldingPanel: EventEmitter<boolean> = new EventEmitter();
@@ -50,13 +54,11 @@ export class MenuComponent implements OnInit {
           this.todoFacade.getAgentList$.subscribe((lists: any) => {
             this.agentList =  this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     value: a.id,
                     text: a.lastname + ' ' + a.firstname,
                     owner_id: a.user?.data?.id
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -70,23 +72,23 @@ export class MenuComponent implements OnInit {
     location.reload();
   }
   /**
+   *
+   *
    * Processes menu options from config by filtering per rights
    *
-   * @returns {promise} Then menu options
+   *
+   *
+   * @returns Then menu options
    */
   getMenu() {
     this.rightsSub = this.userStore
       .pipe(select(fromUser.getUserRight))
       .subscribe((res) => {
         if (res) {
-          const menuConfig = MenuConfig.map((a) => {
-            return {
+          const menuConfig = MenuConfig.map((a) => ({
               ...a,
-              items: a.items?.map((x) => {
-                return { ...x };
-              }),
-            };
-          });
+              items: a.items?.map((x) => ({ ...x })),
+            }));
           this.userStore
             .pipe(select(fromUser.getMenu, { menu: menuConfig }))
             .subscribe((res) => {
@@ -100,10 +102,10 @@ export class MenuComponent implements OnInit {
   }
 
   setLabel(menu: any[], approvals: any[]) {
-    return menu.map((entry: any) => {
+    return menu.map((entry: any) =>
       // add translated label
-      return this.mapMenu({ ...entry }, approvals);
-    });
+       this.mapMenu({ ...entry }, approvals)
+    );
   }
 
   private mapMenu(entry: any, approvals: any[]) {
@@ -115,14 +117,14 @@ export class MenuComponent implements OnInit {
     entry.class = entry.class || [];
     // subentries
     if (entry.items) {
-      entry.items.map((e: any) => {
+      entry.items.map((e: any) =>
         // add translated label
-        return this.mapMenu(e, approvals);
-      });
+         this.mapMenu(e, approvals)
+      );
     }
     // approval states added as classes
     if (approvals && entry.name.substring(0, 12) === 'app.profile.') {
-      var part = entry.name.match(/app\.profile\.([a-z_]+)/)[1];
+      const part = entry.name.match(/app\.profile\.([a-z_]+)/)[1];
       entry.class.push('approval', approvals[part] && approvals[part].state);
     }
 
@@ -169,6 +171,6 @@ export class MenuComponent implements OnInit {
   }
 
   onClickMenu(){
-    localStorage.removeItem("viewing")
+    localStorage.removeItem('viewing');
   }
 }

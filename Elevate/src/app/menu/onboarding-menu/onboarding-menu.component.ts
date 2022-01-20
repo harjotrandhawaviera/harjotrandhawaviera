@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import * as fromUser from './../../root-state/user-state';
 import * as userActions from './../../root-state/user-state/user.actions';
 

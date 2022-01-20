@@ -24,47 +24,22 @@ export class MainLayoutComponent implements OnInit {
   userInfo$: Observable<UserVM | null> = of(null);
   userInfo: UserVM | null = null;
   isOnboarding$: Observable<boolean | undefined> = of(undefined);
-  menuFolded: boolean = false;
-  smallDevice: boolean = false;
+  menuFolded = false;
+  smallDevice = false;
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private userStore: Store<fromUser.State>,
-    breakpointObserver: BreakpointObserver,
     private router: Router
   ) {
-    breakpointObserver.observe([
-      Breakpoints.Small,
-      Breakpoints.Medium,
-      Breakpoints.XSmall
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.menuFolded = true;
-      } else {
-        this.menuFolded = false;
-      }
-    });
-    breakpointObserver.observe([
-      Breakpoints.Small,
-      Breakpoints.XSmall
-    ]).subscribe(result => {
-      if (result.matches) {
-        this.smallDevice = true;
-        this.menuFolded = true;
-      } else {
-        this.smallDevice = false;
-        this.menuFolded = false;
-      }
-    });
     this.year = new Date().getFullYear();
   }
 
   ngOnInit(): void {
-   var mainContent = document.getElementById("main-content");
-   mainContent?.scrollIntoView()
+   const mainContent = document.getElementById('main-content');
+   mainContent?.scrollIntoView();
 
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res) => {
         if (this.smallDevice && !this.menuFolded) {
           this.menuFolded = true;
@@ -91,28 +66,8 @@ export class MainLayoutComponent implements OnInit {
   }
 
   foldingPanel(folded: boolean) {
+    console.log(folded);
     this.menuFolded = folded;
-    // const menu = document.getElementsByClassName('wrapper')[0];
-    // const transition = 300;
-    // if (folded) {
-    //   // this.renderer.addClass(document.getElementById('sidebar'), 'active');
-    //   // this.renderer.addClass(document.getElementById('content'), 'active');
-    //   if (menu) {
-    //     this.renderer.addClass(menu, 'menu-folding');
-    //   }
-    //   setTimeout(() => {
-    //     this.renderer.addClass(menu, 'menu-folded');
-    //     this.renderer.removeClass(menu, 'menu-folding');
-    //   }, transition);
-    // } else {
-    //   // this.renderer.removeClass(document.getElementById('sidebar'), 'active');
-    //   // this.renderer.removeClass(document.getElementById('content'), 'active');
-    //   this.renderer.addClass(menu, 'menu-unfolding');
-    //   setTimeout(() => {
-    //     this.renderer.removeClass(menu, 'menu-unfolding');
-    //     this.renderer.removeClass(menu, 'menu-folded');
-    //   }, transition);
-    // }
   }
 
   openOnboardingMenu() {

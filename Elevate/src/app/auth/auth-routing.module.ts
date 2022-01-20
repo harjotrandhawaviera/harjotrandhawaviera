@@ -1,42 +1,54 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { ContactComponent } from './contact/contact.component';
 import { DataPrivacyComponent } from './data-privacy/data-privacy.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ImprintComponent } from './imprint/imprint.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: LogInComponent,
-      },
-    ],
+    component: LogInComponent,
   },
   {
     path: 'register',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: RegisterComponent,
-      },
-    ],
+    component: RegisterComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
   },
   {
     path: 'dataprivacy',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: DataPrivacyComponent,
-      },
-    ],
-  }
+    component: DataPrivacyComponent,
+  },
+  {
+    path: 'imprint',
+    component: ImprintComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
+  {
+    path: 'confirm',
+    component: ConfirmComponent,
+  },
+  {
+    path: 'confirm/:type/:confirmToken',
+    component: ConfirmEmailComponent,
+  },
+
 ];
 
 @NgModule({

@@ -1,9 +1,7 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthFooterComponent } from './auth-footer/auth-footer.component';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
@@ -12,10 +10,12 @@ import { CoreModule } from './../core/core.module';
 import { DataPrivacyComponent } from './data-privacy/data-privacy.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ImprintComponent } from './imprint/imprint.component';
+import { IonicModule } from '@ionic/angular';
 import { LogInComponent } from './log-in/log-in.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { PermissionDeniedComponent } from './permission-denied/permission-denied.component';
 import { PreambleComponent } from './preamble/preamble.component';
@@ -33,6 +33,9 @@ import { StoreBadgesComponent } from './store-badges/store-badges.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    IonicModule,
+    AuthRoutingModule,
+    MatSelectModule
   ],
 
   declarations: [
@@ -46,7 +49,6 @@ import { StoreBadgesComponent } from './store-badges/store-badges.component';
     ConfirmComponent,
     PreambleComponent,
     RegisterComponent,
-    AuthLayoutComponent,
     AuthFooterComponent,
     StoreBadgesComponent,
   ],
@@ -60,7 +62,6 @@ import { StoreBadgesComponent } from './store-badges/store-badges.component';
     ConfirmComponent,
     PreambleComponent,
     RegisterComponent,
-    AuthLayoutComponent,
     AuthFooterComponent,
     StoreBadgesComponent]
 })

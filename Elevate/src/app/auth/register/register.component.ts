@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import {
   AbstractControl,
   FormControl,
@@ -45,7 +47,7 @@ export class RegisterComponent implements OnInit {
   formValidate: any = {};
   validationMessages: any;
   displayMessage: { [key: string]: string } = {};
-  showPreamble: boolean = false;
+  showPreamble = false;
 
   constructor(
     private genericValidatorService: GenericValidatorService,
@@ -90,7 +92,7 @@ export class RegisterComponent implements OnInit {
           required: this.translateService.instant('form.errors.required'),
           pattern: this.translateService.instant(
             'form.errors.pattern.password',
-            { minlength: "8" }
+            { minlength: '8' }
           ),
           minlength: this.translateService.instant(
             'form.errors.minLengthPassword',
@@ -216,14 +218,18 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
+   *
+   *
    * Processes errors returned by backend
    *
-   * @param {object} resp Response with data.errors
-   * @returns {object} key-value object of returned errors
+   *
+   *
+   * @param resp Response with data.errors
+   * @returns key-value object of returned errors
    */
   errors(resp: any): any {
-    var errs: string[] = [];
-    var errObj: any = {};
+    const errs: string[] = [];
+    const errObj: any = {};
     if (resp.error && resp.error.errors) {
       for (const key in resp.error.errors) {
         if (Object.prototype.hasOwnProperty.call(resp.error.errors, key)) {
@@ -260,10 +266,14 @@ export class RegisterComponent implements OnInit {
     this.formValidate.warning = warning;
   }
   /**
+   *
+   *
    * get rid of indexed keys of an array
    *
-   * @param {object} indexedItems object with an indexed array of items
-   * @returns {Array} Array of messages without indexes
+   *
+   *
+   * @param indexedItems object with an indexed array of items
+   * @returns Array of messages without indexes
    */
   getItems(indexedItems: any): any[] {
     const items: any[] = [];

@@ -1,34 +1,39 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import * as fromCurrentUser from './../../root-state/user-state';
 import * as fromJob from './../state';
 import * as fromJobAction from './../state/job.actions';
+import * as moment from 'moment';
 
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {JobAdvertiseSearchVM, JobFeedbackQuestionVM, JobSearchVM, JobVM} from '../../model/job.model';
 import { Observable, of } from 'rxjs';
+import { SalesSlotVM, TaskInfoVM, TeamInfoVM } from '../../model/client.model';
 import { Store, select } from '@ngrx/store';
 import { take, takeWhile } from 'rxjs/operators';
 
+import {AgentService} from '../../services/agent.service';
+import { AppService } from 'src/controller/app.service';
 import { BudgetVM } from '../../model/budget.model';
 import { CertificateService } from '../../services/certificate.service';
+import {ClientService} from '../../services/client.service';
 import { ContractTypesService } from '../../services/contract-types.service';
 import {DatePipe} from '@angular/common';
+import {FilterService} from '../../services/filter.service';
+import {FormConfig} from '../../constant/forms.constant';
+import {JobService} from '../../services/job.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OptionVM } from '../../model/option.model';
-import { SalesSlotVM, TaskInfoVM, TeamInfoVM } from '../../model/client.model';
+import {ProjectService} from '../../services/project.service';
+import {SelectionModel} from '@angular/cdk/collections';
+import {SkillService} from '../../services/skill.service';
 import { StorageService } from '../../services/storage.service';
+import {TenderService} from '../../services/tender.service';
 import { TranslateService } from '../../services/translate.service';
-import {JobService} from "../../services/job.service";
-import {ProjectService} from "../../services/project.service";
-import {TenderService} from "../../services/tender.service";
-import {ClientService} from "../../services/client.service";
-import {FormConfig} from "../../constant/forms.constant";
-import * as moment from "moment";
-import {AgentService} from "../../services/agent.service";
-import {FilterService} from "../../services/filter.service";
-import {SkillService} from "../../services/skill.service";
-import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
   selector: 'app-job-detail',
@@ -74,7 +79,7 @@ export class JobDetailComponent implements OnInit {
     inviteZip_to: new FormControl(''),
     inviteCertificate: new FormControl('')
   });
-  emitFilter = new EventEmitter()
+  emitFilter = new EventEmitter();
   pageSize = new FormControl();
   componentActive = true;
   id?: string | null;
@@ -116,7 +121,7 @@ export class JobDetailComponent implements OnInit {
   noRecords$: Observable<boolean> = of(false);
   stateLK: OptionVM[] = [];
   totalRecord: any; currentPage: any; totalPage: any;
-  viewing: string = 'Tile';
+  viewing = 'Tile';
   setPageTitle = 'header-all';
   show = false;
   pagination: any;
@@ -142,7 +147,7 @@ export class JobDetailComponent implements OnInit {
     'Street and House Number',
     'Postal Code',
     'action'
-  ]
+  ];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -160,7 +165,8 @@ export class JobDetailComponent implements OnInit {
     private tenderService: TenderService,
     private clientService: ClientService,
     private userStore: Store<fromCurrentUser.State>,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public app: AppService
   ) {}
 
   ngOnInit(): void {
@@ -172,19 +178,19 @@ export class JobDetailComponent implements OnInit {
         if (this.loggedRole === 'freelancer') {
           this.getSelectedFilters();
           this.searchModel = { ...this.searchModel, freelancer_id: freelancerId, pageIndex: 1 };
-          this.searchModel['is_invited'] = false;
-          this.searchModel['only_recommended'] = false;
+          this.searchModel.is_invited = false;
+          this.searchModel.only_recommended = false;
           if(this.route.snapshot.url[0].path === 'freelancer' && this.route.snapshot.url[1].path === 'recommended') {
-            this.searchModel['only_recommended'] = true;
+            this.searchModel.only_recommended = true;
             this.setPageTitle = 'header-recommended';
             this.searchModel.is_match = true;
             this.show =true;
           } else if(this.route.snapshot.url[0].path === 'freelancer' && this.route.snapshot.url[1].path === 'invite') {
-            this.searchModel['is_invited'] = true;
+            this.searchModel.is_invited = true;
             this.setPageTitle = 'header-invited';
             this.show = false;
           } else {
-            this.searchModel['only_recommended'] = false;
+            this.searchModel.only_recommended = false;
             this.setPageTitle = 'header-all';
             this.show = true;
           }
@@ -193,8 +199,7 @@ export class JobDetailComponent implements OnInit {
             this.store.select(fromJob.getJobInvite).subscribe((res: any) => {
               this.inviteList = this.sortOption(
                 res?.data
-                ? res?.data.map((a: any) => {
-                    return {
+                ? res?.data.map((a: any) => ({
                       id: a?.id,
                       role_name: a?.role_name,
                       job_advert_start_date: a?.job_advert_start_date,
@@ -206,8 +211,7 @@ export class JobDetailComponent implements OnInit {
                       job_name: a?.job_name,
                       job_advert_end_date: a?.job_advert_start_date,
                       job_advert_end_date_time: a?.job_advert_end_date_time
-                    };
-                  })
+                    }))
                   : []
               );
               this.pagination = res?.meta?.pagination;
@@ -236,14 +240,12 @@ export class JobDetailComponent implements OnInit {
             this.contractTypesService.getContractTypes({}).subscribe((c) => {
               this.contractTypeLK = this.sortOption(
                 c.data
-                  ? c.data.map((a) => {
-                    return {
+                  ? c.data.map((a) => ({
                       value: a.id,
                       text: this.translateService.instant(
                         'contracts.identifier.' + a.identifier
                       ),
-                    };
-                  })
+                    }))
                   : []
               );
             });
@@ -251,12 +253,10 @@ export class JobDetailComponent implements OnInit {
           this.certificateService.getCertificate({}).subscribe((results) => {
             this.certificateLK = this.sortOption(
               results.data
-                ? results.data.map((a) => {
-                  return {
+                ? results.data.map((a) => ({
                     value: a.id,
                     text: [a.identifier, a.teaser].join(' ')
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -438,12 +438,12 @@ export class JobDetailComponent implements OnInit {
   }
 
   navigateToCreateClientTender() {
-    this.router.navigate([`/jobs/client/${this.id}/tenders/create`]);
+    this.router.navigate([`/home/jobs/client/${this.id}/tenders/create`]);
   }
 
   NavigateTojobDetails(freelanceData: any) {
     const data = this.setPageTitle;
-    this.router.navigate([`/jobs/adv/${freelanceData.job_advertisement_id}/role/${freelanceData.staff_role_id}`]);
+    this.router.navigate([`/home/jobs/adv/${freelanceData.job_advertisement_id}/role/${freelanceData.staff_role_id}`]);
     this.storageService.set('freelancerToDetail', data);
     this.storageService.set('freelancerIsMatched', freelanceData.is_matched);
   }
@@ -457,12 +457,10 @@ export class JobDetailComponent implements OnInit {
       })
       .subscribe((res) => {
         this.clientList = res.data
-          ? res.data.map((a) => {
-            return {
+          ? res.data.map((a) => ({
               value: a.id,
               text: a.name,
-            };
-          })
+            }))
           : [];
       });
   }
@@ -497,12 +495,10 @@ export class JobDetailComponent implements OnInit {
       }, id)
       .subscribe((res) => {
         this.jobLK = res.data
-          ? res.data.map((a) => {
-            return {
+          ? res.data.map((a) => ({
               value: a.id,
               text: a.title,
-            };
-          })
+            }))
           : [];
       });
   }
@@ -512,14 +508,12 @@ export class JobDetailComponent implements OnInit {
     this.jobService
       .getJobAdvertisementById({}, id).subscribe((res: any) => {
       this.jobAdvertise = res.data
-        ? res.data.map((a: any) => {
-          return {
+        ? res.data.map((a: any) => ({
             value: a?.job_advertisement_id,
             text: a?.role_name + ' | ' + a?.job_advert_start_date + ' to ' + a?.job_advert_end_date,
             staff_role_id: a?.staff_role_id,
             job_id: a?.job_id
-          };
-        })
+          }))
         : [];
     });
   }
@@ -544,14 +538,14 @@ export class JobDetailComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.userList.forEach((row: { id: any; }) => this.selection.select(row.id));
+      this.userList.forEach((row: { id: any }) => this.selection.select(row.id));
   }
 
-  submit () {
+  submit() {
     this.store.dispatch(new fromJobAction.LoadUserList(this.searchModel));
   }
 
-  sendInvite () {
+  sendInvite() {
     const values = {
       staff_role_id: this.selectedValue.staff_role_id,
       freelancer_ids: this.selection.selected.map((d) => d.id),
@@ -573,7 +567,7 @@ export class JobDetailComponent implements OnInit {
     this.searchModel = {...this.searchModel,  page: pageIndex};
     this.store.dispatch(new fromJobAction.LoadFreelancerJobOffer( {search: this.searchModel} ));
   }
-  inviteJobpageChange (event: any) {
+  inviteJobpageChange(event: any) {
     const pageIndex = event.pageIndex + 1;
     this.searchModel = {...this.searchModel, page: pageIndex};
     // this.store.dispatch(new fromJobAction.LoadFreelancerJobOffer({ search: this.searchModel }));

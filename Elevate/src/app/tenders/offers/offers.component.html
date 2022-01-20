@@ -1,200 +1,76 @@
-<div *ngIf="loggedRole !== 'freelancer'">
-  <app-search-container>
-    <app-search-panel>
-      <form class="search-form" [formGroup]="offers">
-        <div class="row">
-          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.agent" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="agent" #agent [options]="agentLK" [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.client" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="client" #client [options]="clientLK" [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.contractType" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
-              [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.project" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="project" #project [options]="projectLK" [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.site" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="site" #site [options]="siteLK" [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.job" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="job" #job [options]="jobLK" [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.freelancer" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="freelancer" #freelancer [options]="freelancerLK"
-              [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start" style="font-size: 30px;"></ion-menu-button>
+    <ion-title translate="tenders.offers.title"></ion-title>
 
-        </div>
-        <div class="row">
-          <label>{{"tenders.offers.table.filters.dates" | translate}}</label>
-          <mat-form-field class="full-width">
-            <input matInput [matDatepicker]="start" formControlName="start" autocomplete="off">
-            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-            <mat-datepicker #start></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput [matDatepicker]="end" formControlName="end" autocomplete="off">
-            <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-            <mat-datepicker #end></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-label>{{
-            "ui.side-option-menu.search" | translate
-            }}</mat-label>
-        </div>
-        <div>
-          <mat-form-field class="full-width">
-            <mat-label>{{
-              "tenders.offers.table.filters.freelancer" | translate
-              }}</mat-label>
-            <input matInput formControlName="search" type="search" />
-            <i matSuffix class="fas fa-search"></i>
-            <mat-hint>{{
-              "tenders.offers.table.search-placeholder" | translate
-              }}</mat-hint>
-          </mat-form-field>
-        </div>
-      </form>
-    </app-search-panel>
-    <app-search-list>
-      <div class="col-sm-8 col-xs-12">
-        <h1 translate="tenders.offers.submitJob"></h1>
-      </div>
-      <div class="row">
-        <div [ngClass]="{ 'col-xs': true, 'table-wrapper': true }" *ngIf="!(noRecords$ | async)">
-          <div class="table-inner-wrapper col-xs">
-            <table mat-table class="search-table" [dataSource]="offerList">
-              <ng-container matColumnDef="jobTitle">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.jobTitle" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.job}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="sitePlace">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.sitePlace" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.job_location}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="roleName">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.roleName" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.role_name}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="shiftName">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.shiftName" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.shift_name}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="appointedAt">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.appointedAt" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.appointed_at | date: 'MMM d, y , HH:mm:ss'}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="freelancerName">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.freelancerName" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.freelancer_name}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="expiredAt">
-                <th mat-header-cell *matHeaderCellDef>
-                  {{ "tenders.offers.table.expiredAt" | translate }}
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.expired_at | date: 'MMM d, y , HH:mm:ss'}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let row" class="action">
-                  <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu"
-                    (click)="$event.stopPropagation()">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <mat-menu #subMenu="matMenu" xPosition="before">
-                    <button mat-menu-item [routerLink]="'../offers/' + row?.id">
-                      {{ "administration.health-insurances.table.actions.details" | translate }}
-                    </button>
-                  </mat-menu>
-                </td>
-              </ng-container>
-              <tr mat-header-row *matHeaderRowDef="displayedAdminColumns;"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedAdminColumns" (click)="navigateToDetail(row)"></tr>
-            </table>
+    <div slot="end" style="padding: 0 10px;">
+      <button  mat-mini-fab class="filter-button" (click)="app.searchContainer.opened = true">
+        <i class="fas fa-filter"></i>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="loggedRole !== 'freelancer'">
+    <app-search-container>
+      <app-search-panel>
+        <form class="search-form" [formGroup]="offers">
+          <div class="row">
+            <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.agent" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="agent" #agent [options]="agentLK" [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.client" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="client" #client [options]="clientLK" [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.contractType" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
+                [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.project" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="project" #project [options]="projectLK" [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.site" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="site" #site [options]="siteLK" [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.job" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="job" #job [options]="jobLK" [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.freelancer" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="freelancer" #freelancer [options]="freelancerLK"
+                [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+
           </div>
-          <app-paginator
-            [length]="paginator?.total"
-            [pageIndex]="paginator?.current_page - 1"
-            (page)="pageChangeSubmittedOffer($event)"></app-paginator>
-          <div class="row end-md center-xs">
-            <button type="button" mat-stroked-button color="primary">
-              {{'ui.list-table.default.download' | translate}}
-            </button>
+          <div class="row">
+            <label>{{"tenders.offers.table.filters.dates" | translate}}</label>
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="start" formControlName="start" autocomplete="off">
+              <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+              <mat-datepicker #start></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="end" formControlName="end" autocomplete="off">
+              <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+              <mat-datepicker #end></mat-datepicker>
+            </mat-form-field>
           </div>
-        </div>
-      </div>
-    </app-search-list>
-  </app-search-container>
-
-</div>
-
-<div *ngIf="loggedRole === 'freelancer'">
-  <app-search-container>
-    <app-search-panel>
-      <form class="search-form" [formGroup]="offers">
-        <div class="row">
-          <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
-          <mat-form-field class="full-width">
-            <mat-label>{{"tenders.offers.table.filters.contractType" | translate}}</mat-label>
-            <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
-              [clearSelection]="true">
-            </app-static-auto-complete>
-          </mat-form-field>
-          <mat-label>{{
-            "tenders.offers.table.filters.state" | translate
-            }}</mat-label>
-          <mat-form-field class="full-width">
-            <mat-select formControlName="status" multiple>
-              <mat-option *ngFor="let option of stateLK" [value]="option.value">
-                {{ option.text }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
           <div>
             <mat-label>{{
               "ui.side-option-menu.search" | translate
@@ -203,7 +79,7 @@
           <div>
             <mat-form-field class="full-width">
               <mat-label>{{
-                "tenders.offers.freelancer.table.search-placeholder" | translate
+                "tenders.offers.table.filters.freelancer" | translate
                 }}</mat-label>
               <input matInput formControlName="search" type="search" />
               <i matSuffix class="fas fa-search"></i>
@@ -212,193 +88,331 @@
                 }}</mat-hint>
             </mat-form-field>
           </div>
+        </form>
+      </app-search-panel>
+      <app-search-list>
+        <div class="col-sm-8 col-xs-12">
+          <h1 translate="tenders.offers.submitJob"></h1>
         </div>
-      </form>
-    </app-search-panel>
-    <app-search-list>
-      <h1 translate="tenders.offers.title"></h1>
-
-      <div class="row center-xs" *ngIf="freelancerOfferList.length == 0">
-        <div class="col-xs">
-          <div class="alert alert-info text-center">
-            {{ "ui.list-table.default.no-records" | translate }}
-          </div>
-        </div>
-      </div>
-      <ng-container *ngIf="viewing == 'Tile'">
-        <div class="row table-wrapper">
-          <div class="freelancer-offer-tile col-md-6" *ngFor="let freelance of freelancerOfferList">
-            <div class="panel" (click)="navigateToDetail(freelance)"
-              [class]="freelance?.state">
-              <div class="row panel-heading">
-                <span>{{freelance?.category}}</span>
-                <div class="col-xs-12 end-xs middle-xs padding-none" (click)="$event.stopPropagation()">
-                  <span>{{freelance?.contractType}}</span>
-                  <a color="accent" [matMenuTriggerFor]="subMenu">
-                    <i class="fas fa-ellipsis-h"></i>
-                  </a>
-                  <mat-menu #subMenu="matMenu" xPosition="before">
-                    <button (click)="navigateToDetail(freelance)"  mat-menu-item>
-                      {{'tenders.tenders.table.actions.details' | translate}}
+        <div class="row">
+          <div [ngClass]="{ 'col-xs': true, 'table-wrapper': true }" *ngIf="!(noRecords$ | async)">
+            <div class="table-inner-wrapper col-xs">
+              <table mat-table class="search-table" [dataSource]="offerList">
+                <ng-container matColumnDef="jobTitle">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.jobTitle" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.job}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="sitePlace">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.sitePlace" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.job_location}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="roleName">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.roleName" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.role_name}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="shiftName">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.shiftName" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.shift_name}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="appointedAt">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.appointedAt" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.appointed_at | date: 'MMM d, y , HH:mm:ss'}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="freelancerName">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.freelancerName" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.freelancer_name}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="expiredAt">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "tenders.offers.table.expiredAt" | translate }}
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.expired_at | date: 'MMM d, y , HH:mm:ss'}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let row" class="action">
+                    <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu"
+                      (click)="$event.stopPropagation()">
+                      <i class="fas fa-ellipsis-v"></i>
                     </button>
-                  </mat-menu>
-                </div>
-              </div>
-
-              <div class="panel-body">
-                <div class="header date-card">
-                  <div>
-                    <span class="date">
-                      <span class="day">{{freelance?.siteDate | date:'d'}}</span>
-                      <span class="month">{{freelance?.siteDate | date: 'MMM'}}</span>
-                      <span class="year">{{freelance?.siteDate | date: 'YYYY'}}</span>
-                    </span>
-                  </div>
-                  <div>
-                    <div class="title"> {{ freelance?.name }} </div>
-                    <span class="subtitle">{{freelance.subName}}</span>
-                    <p class="staffP"><strong>Staff Manager:</strong> {{freelance?.staff}}</p>
-                  </div>
-                </div>
-                <div class="panel-body1">
-                  <div class="panelBodyDetil">
-                    <div class="row">
-                      <div class="col-md-6 padding-none">
-                        <p class="addressB">
-                          <i class="fas fa-building"></i>
-                          <span >{{freelance.job_location}}</span>
-                        </p>
-                        <p class="addressB">
-                          <i class="fas fa-map-marker-alt"></i>
-                          <span >{{freelance.checkin_location}}</span>
-                        </p>
-                      </div>
-                      <div class="col-md-6 padding-none">
-                        <div class="rate-card">
-                          <span class="title">{{'calls.fields.rate_card' | translate}}</span>
-                          <span class="rate"><span [appCurrencySymbol]="freelance?.currency"></span>{{freelance?.rate}}/{{'calls.fields.rate_type.'+freelance?.rate_type | translate}}</span>
-                        </div>
-                        <ul class="detilList">
-                          <li><strong>Shift time</strong>: {{freelance?.shiftStartTime + ' - ' + freelance?.shiftEndTime}}</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="col-md-12">
-                  <strong>
-                    <span class="fa fa-building-o"></span>
-                    <span>{{freelance?.siteGroup}}</span>
-                  </strong>
-                  <address>
-                    <div class="line-ellipsis"><span>{{freelance?.job_location}}</span></div>
-                    <div class="line-ellipsis"><span>{{freelance?.shiftStartTime}}</span> - <span>{{freelance?.shiftEndTime}}</span></div>
-                  </address>
-                </div> -->
-              </div>
-              <div class="row panel-footer between-xs">
-                <span class="date"></span>
-                <span class="offer-state" [ngClass]="{ 'pending': freelance?.state === 'pending' }"
-                      *ngIf="freelance?.state === 'pending'"> {{ 'offers.state.pending' | translate }}
-                </span>
-                <span class="offer-state" [ngClass]="{ 'submitted': freelance?.state === 'submitted' }"
-                      *ngIf="freelance?.state === 'submitted'"> {{ 'offers.state.submitted' | translate }}
-                </span>
-                <span class="offer-state" [ngClass]="{ 'shortlisted': freelance?.state === 'shortlisted' }"
-                      *ngIf="freelance?.state === 'shortlisted'"> {{ 'offers.state.shortlisted' | translate }}
-                </span>
-                <span class="offer-state" [ngClass]="{ 'rejected': freelance?.state === 'rejected' }"
-                      *ngIf="freelance?.state === 'rejected'"> {{ 'offers.state.rejected' | translate }}
-                </span>
-              </div>
+                    <mat-menu #subMenu="matMenu" xPosition="before">
+                      <button mat-menu-item [routerLink]="'../offers/' + row?.id">
+                        {{ "administration.health-insurances.table.actions.details" | translate }}
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedAdminColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedAdminColumns" (click)="navigateToDetail(row)"></tr>
+              </table>
+            </div>
+            <app-paginator
+              [length]="paginator?.total"
+              [pageIndex]="paginator?.current_page - 1"
+              (page)="pageChangeSubmittedOffer($event)"></app-paginator>
+            <div class="row end-md center-xs">
+              <button type="button" mat-stroked-button color="primary">
+                {{'ui.list-table.default.download' | translate}}
+              </button>
             </div>
           </div>
         </div>
-      </ng-container>
-      <ng-container *ngIf="viewing == 'List'">
-        <div [ngClass]="{ 'col-xs': true, 'table-wrapper': true }" *ngIf="!(noRecords$ | async)">
-          <div class="table-inner-wrapper">
-            <table mat-table class="search-table" [dataSource]="freelancerOfferList">
-              <ng-container matColumnDef="Client">
-                <th mat-header-cell *matHeaderCellDef>
-                  Client
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.subName}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="Job Name">
-                <th mat-header-cell *matHeaderCellDef>
-                  Job Name
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.name}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="Category">
-                <th mat-header-cell *matHeaderCellDef>
-                  Category
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.category}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="City">
-                <th mat-header-cell *matHeaderCellDef>
-                  City
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.siteCity}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="Post Code">
-                <th mat-header-cell *matHeaderCellDef>
-                  Post Code
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.siteZip}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="Site Address">
-                <th mat-header-cell *matHeaderCellDef>
-                  Site Address
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.siteAddress}}
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="Date">
-                <th mat-header-cell *matHeaderCellDef>
-                  Date
-                </th>
-                <td mat-cell *matCellDef="let row">
-                  {{row?.siteDate}}
-                </td>
-              </ng-container>
+      </app-search-list>
+    </app-search-container>
 
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let row" class="action">
-                  <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu"
-                    (click)="$event.stopPropagation()">
-                    <i class="fas fa-ellipsis-v"></i>
-                  </button>
-                  <mat-menu #subMenu="matMenu" xPosition="before">
-                    <button mat-menu-item (click)="navigateToDetail(row)">
-                      {{ "administration.health-insurances.table.actions.details" | translate }}
-                    </button>
-                  </mat-menu>
-                </td>
-              </ng-container>
-              <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetail(row)"></tr>
-            </table>
+  </div>
+
+  <div *ngIf="loggedRole === 'freelancer'">
+    <app-search-container>
+      <app-search-panel>
+        <form class="search-form" [formGroup]="offers">
+          <div class="row">
+            <h4>{{ "ui.side-option-menu.filter" | translate }}</h4>
+            <mat-form-field class="full-width">
+              <mat-label>{{"tenders.offers.table.filters.contractType" | translate}}</mat-label>
+              <app-static-auto-complete formControlName="contractType" #contractType [options]="contractTypeLK"
+                [clearSelection]="true">
+              </app-static-auto-complete>
+            </mat-form-field>
+            <mat-label>{{
+              "tenders.offers.table.filters.state" | translate
+              }}</mat-label>
+            <mat-form-field class="full-width">
+              <mat-select formControlName="status" multiple>
+                <mat-option *ngFor="let option of stateLK" [value]="option.value">
+                  {{ option.text }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <mat-label>{{
+                "ui.side-option-menu.search" | translate
+                }}</mat-label>
+            </div>
+            <div>
+              <mat-form-field class="full-width">
+                <mat-label>{{
+                  "tenders.offers.freelancer.table.search-placeholder" | translate
+                  }}</mat-label>
+                <input matInput formControlName="search" type="search" />
+                <i matSuffix class="fas fa-search"></i>
+                <mat-hint>{{
+                  "tenders.offers.table.search-placeholder" | translate
+                  }}</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </app-search-panel>
+      <app-search-list>
+        <div class="row center-xs" *ngIf="freelancerOfferList.length === 0">
+          <div class="col-xs">
+            <div class="alert alert-info text-center">
+              {{ "ui.list-table.default.no-records" | translate }}
+            </div>
           </div>
         </div>
-      </ng-container>
-      <app-paginator *ngIf="freelancerOfferList.length !== 0" [length]="totalRecord" [pageIndex]="currentPage - 1"
-        [pageSize]="totalPage" (page)="pageChange($event)">
-      </app-paginator>
-    </app-search-list>
-  </app-search-container>
-</div>
+        <ng-container *ngIf="viewing === 'Tile'">
+          <div class="row table-wrapper">
+            <div class="freelancer-offer-tile col-md-6" *ngFor="let freelance of freelancerOfferList">
+              <div class="panel" (click)="navigateToDetail(freelance)"
+                [class]="freelance?.state">
+                <div class="row panel-heading">
+                  <span>{{freelance?.category}}</span>
+                  <div class="col-xs-12 end-xs middle-xs padding-none" (click)="$event.stopPropagation()">
+                    <span>{{freelance?.contractType}}</span>
+                    <a color="accent" [matMenuTriggerFor]="subMenu">
+                      <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <mat-menu #subMenu="matMenu" xPosition="before">
+                      <button (click)="navigateToDetail(freelance)"  mat-menu-item>
+                        {{'tenders.tenders.table.actions.details' | translate}}
+                      </button>
+                    </mat-menu>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <div class="header date-card">
+                    <div>
+                      <span class="date">
+                        <span class="day">{{freelance?.siteDate | date:'d'}}</span>
+                        <span class="month">{{freelance?.siteDate | date: 'MMM'}}</span>
+                        <span class="year">{{freelance?.siteDate | date: 'YYYY'}}</span>
+                      </span>
+                    </div>
+                    <div>
+                      <div class="title"> {{ freelance?.name }} </div>
+                      <span class="subtitle">{{freelance.subName}}</span>
+                      <p class="staffP"><strong>Staff Manager:</strong> {{freelance?.staff}}</p>
+                    </div>
+                  </div>
+                  <div class="panel-body1">
+                    <div class="panelBodyDetil">
+                      <div class="row">
+                        <div class="col-md-6 padding-none">
+                          <p class="addressB">
+                            <i class="fas fa-building"></i>
+                            <span >{{freelance.job_location}}</span>
+                          </p>
+                          <p class="addressB">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span >{{freelance.checkin_location}}</span>
+                          </p>
+                        </div>
+                        <div class="col-md-6 padding-none">
+                          <div class="rate-card">
+                            <span class="title">{{'calls.fields.rate_card' | translate}}</span>
+                            <span class="rate"><span [appCurrencySymbol]="freelance?.currency"></span>{{freelance?.rate}}/{{'calls.fields.rate_type.'+freelance?.rate_type | translate}}</span>
+                          </div>
+                          <ul class="detilList">
+                            <li><strong>Shift time</strong>: {{freelance?.shiftStartTime + ' - ' + freelance?.shiftEndTime}}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-12">
+                    <strong>
+                      <span class="fa fa-building-o"></span>
+                      <span>{{freelance?.siteGroup}}</span>
+                    </strong>
+                    <address>
+                      <div class="line-ellipsis"><span>{{freelance?.job_location}}</span></div>
+                      <div class="line-ellipsis"><span>{{freelance?.shiftStartTime}}</span> - <span>{{freelance?.shiftEndTime}}</span></div>
+                    </address>
+                  </div> -->
+                </div>
+                <div class="row panel-footer between-xs">
+                  <span class="date"></span>
+                  <span class="offer-state" [ngClass]="{ 'pending': freelance?.state === 'pending' }"
+                        *ngIf="freelance?.state === 'pending'"> {{ 'offers.state.pending' | translate }}
+                  </span>
+                  <span class="offer-state" [ngClass]="{ 'submitted': freelance?.state === 'submitted' }"
+                        *ngIf="freelance?.state === 'submitted'"> {{ 'offers.state.submitted' | translate }}
+                  </span>
+                  <span class="offer-state" [ngClass]="{ 'shortlisted': freelance?.state === 'shortlisted' }"
+                        *ngIf="freelance?.state === 'shortlisted'"> {{ 'offers.state.shortlisted' | translate }}
+                  </span>
+                  <span class="offer-state" [ngClass]="{ 'rejected': freelance?.state === 'rejected' }"
+                        *ngIf="freelance?.state === 'rejected'"> {{ 'offers.state.rejected' | translate }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="viewing === 'List'">
+          <div [ngClass]="{ 'col-xs': true, 'table-wrapper': true }" *ngIf="!(noRecords$ | async)">
+            <div class="table-inner-wrapper">
+              <table mat-table class="search-table" [dataSource]="freelancerOfferList">
+                <ng-container matColumnDef="Client">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Client
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.subName}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Job Name">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Job Name
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.name}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Category">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Category
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.category}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="City">
+                  <th mat-header-cell *matHeaderCellDef>
+                    City
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.siteCity}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Post Code">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Post Code
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.siteZip}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Site Address">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Site Address
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.siteAddress}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Date">
+                  <th mat-header-cell *matHeaderCellDef>
+                    Date
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    {{row?.siteDate}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let row" class="action">
+                    <button mat-icon-button color="accent" [matMenuTriggerFor]="subMenu"
+                      (click)="$event.stopPropagation()">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <mat-menu #subMenu="matMenu" xPosition="before">
+                      <button mat-menu-item (click)="navigateToDetail(row)">
+                        {{ "administration.health-insurances.table.actions.details" | translate }}
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToDetail(row)"></tr>
+              </table>
+            </div>
+          </div>
+        </ng-container>
+        <app-paginator *ngIf="freelancerOfferList.length !== 0" [length]="totalRecord" [pageIndex]="currentPage - 1"
+          [pageSize]="totalPage" (page)="pageChange($event)">
+        </app-paginator>
+      </app-search-list>
+    </app-search-container>
+  </div>
+</ion-content>

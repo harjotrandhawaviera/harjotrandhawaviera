@@ -28,6 +28,8 @@ export class LogInComponent implements OnInit {
   warning: any;
   template: string;
   email: any;
+  isLangSelected = false;
+  selectedLanguage;
 
   constructor(
     private genericValidatorService: GenericValidatorService,
@@ -82,6 +84,13 @@ export class LogInComponent implements OnInit {
       });
     });
   }
+
+  languageSelected(e) {
+    console.log(e);
+    this.isLangSelected = true;
+  }
+
+
   login() {
     this.genericValidatorService.setTouchedAllFormFields(this.loginForm);
     this.clear();
@@ -108,7 +117,7 @@ export class LogInComponent implements OnInit {
               });
             } else {
               this.router.navigate([
-                onBoarding ? 'profile/start' : 'dashboard',
+                onBoarding ? 'home/profile/start' : 'home/dashboard',
               ]);
             }
           });
@@ -137,7 +146,7 @@ export class LogInComponent implements OnInit {
     }
   }
   handleWarning(message: any) {
-    var warnings = ['not_confirmed_registration', 'invalid_credentials'];
+    const warnings = ['not_confirmed_registration', 'invalid_credentials'];
     if (warnings.includes(message)) {
       // set special messages as warning handled in template
       this.setWarning(message);
@@ -168,13 +177,17 @@ export class LogInComponent implements OnInit {
   }
 
   /**
+   *
+   *
    * Processes errors returned by backend
    *
-   * @param {object} resp Response with data.errors
-   * @returns {object} key-value object of returned errors
+   *
+   *
+   * @param resp Response with data.errors
+   * @returns key-value object of returned errors
    */
   errors(resp: any): any {
-    let errs: string[] = [];
+    const errs: string[] = [];
     if (resp.error && resp.error.errors) {
       for (const key in resp.error.errors) {
         if (Object.prototype.hasOwnProperty.call(resp.error.errors, key)) {
@@ -215,10 +228,14 @@ export class LogInComponent implements OnInit {
     this.setWarning(false);
   }
   /**
+   *
+   *
    * get rid of indexed keys of an array
    *
-   * @param {object} indexedItems object with an indexed array of items
-   * @returns {Array} Array of messages without indexes
+   *
+   *
+   * @param indexedItems object with an indexed array of items
+   * @returns Array of messages without indexes
    */
   getItems(indexedItems: any): any[] {
     const items: any[] = [];
@@ -245,7 +262,7 @@ export class LogInComponent implements OnInit {
         );
       },
       (response) => {
-        var msg =
+        const msg =
           response.status === 404 ? 'user-not-found' : response.data.message;
         this.setErrors(this.translateService.instant('auth.errors.' + msg));
       }

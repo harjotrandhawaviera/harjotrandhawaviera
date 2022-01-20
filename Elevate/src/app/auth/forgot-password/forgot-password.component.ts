@@ -49,9 +49,9 @@ export class ForgotPasswordComponent implements OnInit {
 
     if (this.forgotPasswordForm.valid) {
 
-      var userEmail = this.forgotPasswordForm.getRawValue().email;
+      const userEmail = this.forgotPasswordForm.getRawValue().email;
       this.authService.resetPassword({ email: userEmail }).subscribe(res => {
-        this.router.navigate(['/login', { special: 'reset-sent', email: userEmail }])
+        this.router.navigate(['/login', { special: 'reset-sent', email: userEmail }]);
       }, errors => {
         this.handleError(errors);
       });
@@ -100,13 +100,17 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   /**
+   *
+   *
    * Processes errors returned by backend
    *
-   * @param {object} resp Response with data.errors
-   * @returns {object} key-value object of returned errors
+   *
+   *
+   * @param resp Response with data.errors
+   * @returns key-value object of returned errors
    */
   errors(resp: any): any {
-    var errs: string[] = [];
+    const errs: string[] = [];
     if (resp.error && resp.error.errors) {
       for (const key in resp.error.errors) {
         if (Object.prototype.hasOwnProperty.call(resp.error.errors, key)) {
@@ -141,10 +145,14 @@ export class ForgotPasswordComponent implements OnInit {
     this.formValidate.warning = warning;
   }
   /**
+   *
+   *
    * get rid of indexed keys of an array
    *
-   * @param {object} indexedItems object with an indexed array of items
-   * @returns {Array} Array of messages without indexes
+   *
+   *
+   * @param indexedItems object with an indexed array of items
+   * @returns Array of messages without indexes
    */
   getItems(indexedItems: any): any[] {
     const items: any[] = [];

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /*
  * Default homescreen after login
  */
@@ -136,52 +137,52 @@ export const MenuConfig: IMenuConfig[] = [
       {
         name: 'app.tenders',
         label: 'menu.tenders.list',
-        path: '/tenders/all',
+        path: '/home/tenders/all',
         permission: ['MANAGE_PROJECTS',],
         allow: ['details', 'edit', 'list'],
       },
       {
         name: 'app.tenders.offers',
-        path: '/tenders/offers',
+        path: '/home/tenders/offers',
         permission: ['ROLE_FREELANCER'],
         allow: ['details', 'list'],
       },
       {
         name: 'app.jobs.freelancer.recommended',
         label: 'menu.freelancer_jobs.recommended',
-        path: '/jobs/freelancer/recommended',
+        path: '/home/jobs/freelancer/recommended',
         permission: ['ROLE_FREELANCER'],
         allow: ['list', 'details'],
       },
       {
         name: 'app.jobs.freelancer.all',
         label: 'menu.freelancer_jobs.all',
-        path: '/jobs/freelancer/all',
+        path: '/home/jobs/freelancer/all',
         permission: ['ROLE_FREELANCER'],
         allow: ['list', 'details'],
       },
       {
         name: 'app.tenders.offer',
-        path: '/tenders/offers',
+        path: '/home/tenders/offers',
         permission: [ 'MANAGE_PROJECTS'],
         allow: ['details', 'list'],
       },
       {
         name: 'app.tenders.shortlist',
         permission: ['MANAGE_PROJECTS'],
-        path: 'jobs/shortlist',
+        path: '/home/jobs/shortlist',
         allow: ['details', 'edit', 'list'],
       },
       {
         name: 'app.tenders.invite',
         permission: ['MANAGE_PROJECTS'],
-        path: '/jobs/freelancer/invite',
+        path: '/home/jobs/freelancer/invite',
         allow: ['details', 'edit', 'list'],
       },
       {
         name: 'app.jobs.freelancer.invited_jobs',
         label: 'menu.tenders.invited_jobs',
-        path: '/jobs/freelancer/invite',
+        path: '/home/jobs/freelancer/invite',
         permission: ['ROLE_FREELANCER'],
         allow: ['list', 'details'],
       },

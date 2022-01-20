@@ -84,6 +84,7 @@ import { environment } from 'src/environments/environment';
   declarations: [AppComponent, MainLayoutComponent],
   entryComponents: [],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

@@ -2,6 +2,7 @@ import {CommonModule, CurrencyPipe, DatePipe} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdditionalCostComponent } from './additional-cost/additional-cost.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ClientJobCreateComponent } from './client-job-create/client-job-create.component';
 import { ClientJobListComponent } from './client-job-list/client-job-list.component';
 import { ClientJobTileComponent } from './client-job-tile/client-job-tile.component';
@@ -9,6 +10,7 @@ import { CoreModule } from '../core/core.module';
 import { CustomPropertiesValueComponent } from './custom-properties-value/custom-properties-value.component';
 import { EffectsModule } from '@ngrx/effects';
 import { FileUploadModule } from '../file-upload/file-upload.module';
+import { IonicModule } from '@ionic/angular';
 import { JobDetailAllComponent } from './job-detail-all/job-detail-all.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { JobDetailFeedbackComponent } from './job-detail-feedback/job-detail-feedback.component';
@@ -20,10 +22,12 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { JobDocumentsComponent } from './job-documents/job-documents.component';
 import { JobEditComponent } from './job-edit/job-edit.component';
 import { JobEffect } from './state/job.effect';
+import { JobInviteComponent } from './job-invite/job-invite.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { JobOffersComponent } from './job-offers/job-offers.component';
 import { JobTendersCreateComponent } from './job-tenders-create/job-tenders-create.component';
 import { JobUpdateComponent } from './job-update/job-update.component';
+import { JobsInviteDetailComponent } from './jobs-invite-detail/jobs-invite-detail.component';
 import { JobsRoutingModule } from './jobs-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -36,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -45,16 +50,12 @@ import { NgModule } from '@angular/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { RouterModule } from '@angular/router';
 import { SearchPanelModule } from '../search-panel/search-panel.module';
-import { StoreModule } from '@ngrx/store';
-import { reducer } from './state/job.reducer';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TeamInfoComponent} from './teaminfo/teaminfo.component';
-import { TaskInfoComponent } from './taskinfo/taskinfo.component';
-import { ShortlistofferListComponent } from './shortlistoffer-list/shortlistoffer-list.component';
 import { ShortlistofferDetailsComponent } from './shortlistoffer-details/shortlistoffer-details.component';
-import { JobInviteComponent } from './job-invite/job-invite.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { JobsInviteDetailComponent } from './jobs-invite-detail/jobs-invite-detail.component';
+import { ShortlistofferListComponent } from './shortlistoffer-list/shortlistoffer-list.component';
+import { StoreModule } from '@ngrx/store';
+import { TaskInfoComponent } from './taskinfo/taskinfo.component';
+import { TeamInfoComponent } from './teaminfo/teaminfo.component';
+import { reducer } from './state/job.reducer';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { JobsInviteDetailComponent } from './jobs-invite-detail/jobs-invite-deta
     imports: [
         CoreModule,
         CommonModule,
+        IonicModule,
         StoreModule.forFeature('jobs', reducer),
         EffectsModule.forFeature([JobEffect]),
         JobsRoutingModule,

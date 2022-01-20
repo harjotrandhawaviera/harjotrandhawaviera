@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import * as fromCurrentUser from './../../root-state/user-state';
 import * as fromUser from '../../admin-user/state/index';
 import * as moment from 'moment';
@@ -8,6 +11,7 @@ import { DashboardFacade } from '../+state/dashboard.facade';
 import { MatDialog } from '@angular/material/dialog';
 import { OptionVM } from '../../model/option.model';
 import { ReasonBoxComponent } from '../../core/reason-box/reason-box.component';
+import {Router} from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TodosFacade } from '../../todos/+state/todos.facade';
 import { TodosModalComponent } from '../../todos/todos-modal/todos-modal.component';
@@ -15,7 +19,6 @@ import { TodosSearchVM } from '../../model/todos.model';
 import { TranslateService } from '../../services/translate.service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../../environments/environment';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -159,13 +162,11 @@ export class DashboardComponent implements OnInit {
           this.todoFacade.getAgentList$.subscribe((lists: any) => {
             this.agentList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     value: a.id,
                     text: a.lastname + ' ' + a.firstname,
                     owner_id: a.user?.data?.id,
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -174,9 +175,7 @@ export class DashboardComponent implements OnInit {
           this.dashboardFacade.gatDashboardCons$.subscribe((lists: any) => {
             this.consList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {};
-                })
+                ? lists.data.map((a: any) => ({}))
                 : []
             );
           });
@@ -185,8 +184,7 @@ export class DashboardComponent implements OnInit {
             this.onBoardCount = res?.meta?.pagination?.total ? res?.meta?.pagination?.total : 0;
             this.onBoard = this.sortOption(
               res.data
-                ? res.data.map((a: any) => {
-                  return {
+                ? res.data.map((a: any) => ({
                     value: a.id,
                     name: a.user.data.freelancer?.data?.fullname,
                     modification: a.action,
@@ -197,8 +195,7 @@ export class DashboardComponent implements OnInit {
                       a.user.data?.freelancer?.data?.face_picture_id +
                       '/icon/squared',
                     postcode: a.user.data?.freelancer?.data?.zip,
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -209,8 +206,7 @@ export class DashboardComponent implements OnInit {
               if (list.data) {
                 this.unconfirmedAttendance = this.sortOption(
                   list.data
-                    ? list.data.map((a: any) => {
-                      return {
+                    ? list.data.map((a: any) => ({
                         id: a?.id,
                         title: a?.date?.data?.job?.data?.title,
                         city: a?.date?.data?.job?.data?.site?.data?.city,
@@ -220,8 +216,7 @@ export class DashboardComponent implements OnInit {
                           .fromNow(),
                         firstName: a?.freelancers?.data[0]?.firstname,
                         lastName: a?.freelancers?.data[0]?.lastname,
-                      };
-                    })
+                      }))
                     : []
                 );
               }
@@ -232,8 +227,7 @@ export class DashboardComponent implements OnInit {
           this.dashboardFacade.gatDashboardChange$.subscribe((lists: any) => {
             this.changeList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     value: a.id,
                     name: a.user.data.freelancer?.data?.fullname,
                     modification: a.action,
@@ -243,8 +237,7 @@ export class DashboardComponent implements OnInit {
                       '/pictures/' +
                       a.user.data?.freelancer?.data?.face_picture_id +
                       '/icon/squared',
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -253,8 +246,7 @@ export class DashboardComponent implements OnInit {
           this.dashboardFacade.gatDashboardTask$.subscribe((lists: any) => {
             this.taskList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     id: a.id,
                     task: a.subject,
                     date: a.target_at,
@@ -271,8 +263,7 @@ export class DashboardComponent implements OnInit {
                     owner: a?.owner,
                     important: a?.important,
                     // isCreator: userRole === 'admin' || (!a.id) || (a.creator && a.creator.data.id === userId)
-                  };
-                })
+                  }))
                 : []
             );
             this.totalTask = lists?.meta?.pagination?.total;
@@ -283,8 +274,7 @@ export class DashboardComponent implements OnInit {
               this.offerListCount = lists?.meta?.pagination?.total ? lists?.meta?.pagination?.total : 0;
               this.offerList = this.sortOption(
                 lists.data
-                  ? lists.data.map((a: any) => {
-                    return {
+                  ? lists.data.map((a: any) => ({
                       id: a?.id,
                       title: a?.tender?.data?.snapshots?.job?.title,
                       name: a?.freelancer?.data?.fullname,
@@ -293,8 +283,7 @@ export class DashboardComponent implements OnInit {
                         .utc(a?.expired_at)
                         .startOf('day')
                         .fromNow(),
-                    };
-                  })
+                    }))
                   : []
               );
             }
@@ -306,15 +295,13 @@ export class DashboardComponent implements OnInit {
             (lists: any) => {
               this.certificateList = this.sortOption(
                 lists.data
-                  ? lists.data.map((a: any) => {
-                    return {
+                  ? lists.data.map((a: any) => ({
                       value: a.id,
                       type: a.identifier,
                       linkId: a?.id,
                       name: a?.name,
                       jobCount: a?.job_count
-                    };
-                  })
+                    }))
                   : []
               );
             }
@@ -326,26 +313,22 @@ export class DashboardComponent implements OnInit {
                 if (lists) {
                   this.unsuitableJob = this.sortOption(
                     lists.data
-                      ? lists.data.map((a: any) => {
-                        return {
+                      ? lists.data.map((a: any) => ({
                           value: a.id,
                           offer: a?.project?.data?.name,
                           category: a?.category,
                           city: a?.site?.data?.city,
                           certificate:
                             a?.tenders?.data[0]?.certificates?.data.map(
-                              (k: any) => {
-                                return {
+                              (k: any) => ({
                                   name: k?.name,
-                                };
-                              }
+                                })
                             ),
                           identifier: this.translateService.instant(
                             'contracts.identifier.' +
                             a?.contract_type?.data?.identifier
                           ),
-                        };
-                      })
+                        }))
                       : []
                   );
                   this.totalUnsuitableJob = lists?.meta?.pagination?.total;
@@ -361,16 +344,14 @@ export class DashboardComponent implements OnInit {
                 this.inviteJobsTotal = lists?.meta?.pagination?.total;
                 this.invitedJob = this.sortOption(
                   lists.data
-                    ? lists.data.map((a: any) => {
-                      return {
+                    ? lists.data.map((a: any) => ({
                         jobName: a?.job_name,
                         category: a?.job_info?.data?.category,
                         location: a?.job_info?.data?.job_location,
                         contractType: a?.contract_type,
                         dates: a?.job_info?.data?.start_date + ' to ' +  a?.job_info?.data?.finish_date,
                         link: '/jobs/adv/' + a?.job_advertisement_id + '/role/' + a?.staff_role_id
-                      };
-                    })
+                      }))
                     : []
                 );
               }
@@ -384,8 +365,7 @@ export class DashboardComponent implements OnInit {
                 this.recommendJobsTotal = lists?.meta?.pagination?.total;
                 this.suitableJob = this.sortOption(
                   lists.data
-                    ? lists.data.map((a: any) => {
-                      return {
+                    ? lists.data.map((a: any) => ({
                         jobName: a?.job_info?.data?.job_name,
                         category: a?.job_info?.data?.category,
                         location: a?.job_info?.data?.job_location,
@@ -394,8 +374,7 @@ export class DashboardComponent implements OnInit {
                         startdate: a?.job_advert_start_date,
                         finishdate:  a?.job_advert_end_date,
                         link: '/jobs/adv/' + a?.job_advertisement_id + '/role/' + a?.staff_role_id
-                      };
-                    })
+                      }))
                     : []
                 );
               }
@@ -407,8 +386,7 @@ export class DashboardComponent implements OnInit {
             (lists: any) => {
               this.assignmentList = this.sortOption(
                 lists.data
-                  ? lists.data.map((a: any) => {
-                    return {
+                  ? lists.data.map((a: any) => ({
                       value: a.id,
                       job: a?.date?.data?.job?.data?.project?.data?.name,
                       city: a?.date?.data?.job?.data?.site?.data?.city,
@@ -417,8 +395,7 @@ export class DashboardComponent implements OnInit {
                         .utc(a?.date?.data?.appointed_at)
                         .startOf('day')
                         .fromNow(),
-                    };
-                  })
+                    }))
                   : []
               );
               this.totalAssignment = lists?.meta?.pagination?.total;
@@ -430,14 +407,12 @@ export class DashboardComponent implements OnInit {
               (lists: any) => {
                 this.contractList = this.sortOption(
                   lists.data
-                    ? lists.data.map((a: any) => {
-                      return {
+                    ? lists.data.map((a: any) => ({
                         value: a.id,
                         type: this.translateService.instant(
                           'contracts.identifier.' + a.identifier
                         ),
-                      };
-                    })
+                      }))
                     : []
                 );
                 this.totalContracts = lists?.meta?.pagination?.total;
@@ -449,8 +424,7 @@ export class DashboardComponent implements OnInit {
           this.dashboardFacade.gatDashboardJobs$.subscribe((lists: any) => {
             this.jobsList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     value: a.id,
                     name: a.title,
                     pos: a.site.data.name,
@@ -459,8 +433,7 @@ export class DashboardComponent implements OnInit {
                     call: a.summary.dates.states.assigned,
                     open: a.summary.assignments.states.open,
                     booked: a.summary.assignments.states.booked,
-                  };
-                })
+                  }))
                 : []
             );
             this.total = lists?.meta?.pagination.total;
@@ -470,14 +443,12 @@ export class DashboardComponent implements OnInit {
           this.dashboardFacade.gatDashboardProject$.subscribe((lists: any) => {
             this.projectList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     value: a.id,
                     name: a.name,
                     job: a.summary.jobs.count,
                     call: a.summary.tenders.count,
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -486,8 +457,7 @@ export class DashboardComponent implements OnInit {
           this.dashboardFacade.gatDashboardJobs$.subscribe((lists: any) => {
             this.jobsList = this.sortOption(
               lists.data
-                ? lists.data.map((a: any) => {
-                  return {
+                ? lists.data.map((a: any) => ({
                     value: a.id,
                     name: a.title,
                     pos: a.site.data.name,
@@ -496,8 +466,7 @@ export class DashboardComponent implements OnInit {
                     call: a.summary.dates.states.assigned,
                     open: a.summary.assignments.states.open,
                     booked: a.summary.assignments.states.booked,
-                  };
-                })
+                  }))
                 : []
             );
           });
@@ -593,8 +562,7 @@ export class DashboardComponent implements OnInit {
       if (res.data) {
         this.message = this.sortOption(
           res.data
-            ? res.data.map((a: any) => {
-              return {
+            ? res.data.map((a: any) => ({
                 q_id: a.id,
                 subject: a?.question?.data?.subject,
                 name: a?.sender?.data?.fullname,
@@ -607,8 +575,7 @@ export class DashboardComponent implements OnInit {
                 tender_date: a?.tenders,
                 jobId: a?.reference_id,
                 tenders: a?.tenders.map((res1: any) => res1.id)
-              };
-            })
+              }))
             : []
         );
       }
@@ -636,8 +603,7 @@ export class DashboardComponent implements OnInit {
           if (res.data) {
             this.message = this.sortOption(
               res.data
-                ? res.data.map((a: any) => {
-                  return {
+                ? res.data.map((a: any) => ({
                     q_id: a.id,
                     subject: a?.question?.data?.subject,
                     name: a?.sender?.data?.fullname,
@@ -650,8 +616,7 @@ export class DashboardComponent implements OnInit {
                     tender_date: a?.tenders,
                     jobId: a?.reference_id,
                     tenders: a?.tenders.map((res1: any) => res1.id)
-                  };
-                })
+                  }))
                 : []
             );
           }
@@ -704,7 +669,7 @@ export class DashboardComponent implements OnInit {
   }
 
   navigateToJobApplication(row: any) {
-    this.router.navigate(['/tenders/offers/', row.id]);
+    this.router.navigate(['/home/tenders/offers/', row.id]);
   }
 
   navigateToProject(row: any) {

@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import { Observable, concat, defer, forkJoin, isObservable, of } from 'rxjs';
 import { TranslateDefaultParser, TranslateParser } from './translate.parser';
 import { concatMap, map, shareReplay, switchMap, take } from 'rxjs/operators';
@@ -10,7 +15,7 @@ import { isDefined } from '../utility/util';
 @Injectable()
 export class TranslateService {
   private loadingTranslations: { [key: string]: Observable<any> } = {};
-  private pending: boolean = false;
+  private pending = false;
   private pendingModules: string[] = [];
   language: string = environment.defaultLanguage;
   private _translations: any = {};
@@ -184,7 +189,7 @@ export class TranslateService {
         })
       );
     } else {
-      let res = this.getParsedResult(
+      const res = this.getParsedResult(
         this.translations[this.language],
         key,
         interpolateParams
@@ -202,7 +207,7 @@ export class TranslateService {
       throw new Error(`Parameter "key" required`);
     }
 
-    let res = this.getParsedResult(
+    const res = this.getParsedResult(
       this.translations[this.language],
       key,
       interpolateParams

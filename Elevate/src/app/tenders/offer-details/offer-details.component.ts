@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { StorageService } from '../../services/storage.service';
-import { Store } from '@ngrx/store';
-import { TenderService } from '../../services/tender.service';
-import * as fromTenderAction from '../state/tender.actions';
-import { OptionVM } from '../../model/option.model';
-import * as fromTender from '../state';
-import * as moment from 'moment';
-import {TranslateService} from '../../services/translate.service';
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import * as fromCurrentUser from '../../root-state/user-state';
+import * as fromTender from '../state';
+import * as fromTenderAction from '../state/tender.actions';
+import * as moment from 'moment';
+
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
 import { ConfirmBoxComponent } from '../../core/confirm-box/confirm-box.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
+import { OptionVM } from '../../model/option.model';
+import { StorageService } from '../../services/storage.service';
+import { Store } from '@ngrx/store';
 import { SurveyLinkConfirmationComponent } from '../../core/survey-link-confirmation/survey-link-confirmation.component';
+import { TenderService } from '../../services/tender.service';
+import { ToastrService } from 'ngx-toastr';
+import {TranslateService} from '../../services/translate.service';
 
 @Component({
   selector: 'app-offer-details',
@@ -52,8 +57,8 @@ export class OfferDetailsComponent implements OnInit {
               if (res?.data?.data) {
                 this.freelancerOfferDetails = {
                   id: res?.data?.data?.id,
-                  deleted_at: moment(res?.data?.data?.deleted_at).format("MMM DD, YYYY"),
-                  expired_at: moment(res?.data?.data?.expired_at).format("MMM DD, YYYY"),
+                  deleted_at: moment(res?.data?.data?.deleted_at).format('MMM DD, YYYY'),
+                  expired_at: moment(res?.data?.data?.expired_at).format('MMM DD, YYYY'),
                   fee: res?.data?.data?.tender?.data?.daily_rate_max,
                   title: res?.data?.data?.tender?.data?.snapshots?.job?.title,
                   subName: res?.data?.data?.tender?.data?.snapshots?.client?.name,
@@ -116,12 +121,10 @@ export class OfferDetailsComponent implements OnInit {
                 id: detailing?.id,
                 assignment_id: detailing?.tender?.data?.assignment_id,
                 expired_at: detailing?.expired_at,
-                compensation: detailing?.tender?.data?.snapshots?.assignment?.additional_costs.map((a: any) => {
-                  return {
+                compensation: detailing?.tender?.data?.snapshots?.assignment?.additional_costs.map((a: any) => ({
                     name: a?.name,
                     value: a?.value
-                  };
-                }),
+                  })),
                 checkin: detailing?.tender?.data?.snapshots?.incentive_model?.checkin,
                 sales_report: detailing?.tender?.data?.snapshots?.incentive_model?.sales_report,
                 picture_documentation: detailing?.tender?.data?.snapshots?.incentive_model?.picture_documentation,
@@ -219,7 +222,7 @@ export class OfferDetailsComponent implements OnInit {
         }
         this.store.select(fromTender.getAdminOfferDetail).subscribe((success: any) => {
           if (success) {
-            this.router.navigate(['tenders/offers']);
+            this.router.navigate(['/home/tenders/offers']);
             this.toastrService.success(this.translateService.instant('notification.post.survey-message.success'));
           }
         });
@@ -244,7 +247,7 @@ export class OfferDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.store.dispatch(new fromTenderAction.LoadAdminOfferRejectDetail({id}));
-        this.router.navigate(['tenders/offers']);
+        this.router.navigate(['/home/tenders/offers']);
       }
     });
   }

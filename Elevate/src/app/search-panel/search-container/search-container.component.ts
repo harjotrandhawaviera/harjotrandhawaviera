@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
+import { AppService } from 'src/controller/app.service';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { environment } from 'src/environments/environment';
 
@@ -14,11 +15,11 @@ export class SearchContainerComponent implements OnInit, OnDestroy {
   showSearchPanel = true;
   mode: MatDrawerMode = 'side';
   hasBackdrop = false;
-  opened = true;
   smallDevice = false;
   appVersion = environment.appVersion;
   year: number;
-  constructor(breakpointObserver: BreakpointObserver) {
+
+  constructor(breakpointObserver: BreakpointObserver, public app: AppService) {
     breakpointObserver.observe([
       Breakpoints.Small,
       Breakpoints.XSmall
@@ -26,12 +27,12 @@ export class SearchContainerComponent implements OnInit, OnDestroy {
       if (result.matches) {
         this.mode = 'over';
         this.hasBackdrop = true;
-        this.opened = false;
+        this.app.searchContainer.opened = false;
         this.smallDevice = true;
       } else {
         this.mode = 'side';
         this.hasBackdrop = false;
-        this.opened = true;
+        this.app.searchContainer.opened = true;
         this.smallDevice = false;
       }
     });
@@ -45,10 +46,10 @@ export class SearchContainerComponent implements OnInit, OnDestroy {
     }
   }
   openFilter() {
-    this.opened = true;
+    this.app.searchContainer.opened = true;
   }
   closeFilter() {
-    this.opened = false;
+    this.app.searchContainer.opened = false;
   }
   ngOnDestroy(): void {
     document.querySelector('.main-content')?.classList.remove('has-searchpanel');

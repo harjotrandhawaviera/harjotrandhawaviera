@@ -17,9 +17,7 @@
     <i *ngIf="!requestOpen" class="fas fa-pencil-alt"></i>
     <i *ngIf="requestOpen" class="fas fa-lock"></i>
     <ul class="list-unstyled">
-      <li
-        class=""
-        *ngFor="
+      <li class="" *ngFor="
           let step of [
             'master',
             'appearance',
@@ -27,15 +25,10 @@
             'employment',
             'legal',
           ]
-        "
-      >
-        <a
-          class="entry approval {{
+        ">
+        <a class="entry approval {{
             approvals[step] ? approvals[step].state : ''
-          }}"
-          [routerLink]="['/profile/' + step]"
-          routerLinkActive="current"
-        >
+          }}" [routerLink]="['/profile/' + step]" routerLinkActive="current">
           {{ "menu.profile." + step | translate }}
           <container-element [ngSwitch]="approvals[step] ? approvals[step].state : ''">
             <!-- the same view can be shown in more than one case -->
@@ -68,28 +61,17 @@
   <li class="step certificates active" *ngIf="enableCertificates">
     <div class="step step-title">
       <span class="main" translate="menu.onboarding.certificates.step"></span>
-      <span
-        class="sub"
-        translate="menu.onboarding.certificates.description"
-      ></span>
+      <span class="sub" translate="menu.onboarding.certificates.description"></span>
     </div>
     <ul class="list-unstyled">
       <li>
-        <a
-          class="entry"
-          data-ui-sref-active="current"
-          data-ui-sref="app.certificates.all"
-          translate="menu.certificates.all"
-        >
+        <a class="entry" data-ui-sref-active="current" data-ui-sref="app.certificates.all"
+          translate="menu.certificates.all">
         </a>
       </li>
       <li>
-        <a
-          class="entry"
-          data-ui-sref-active="current"
-          data-ui-sref="app.certificates.my"
-          translate="menu.certificates.my"
-        >
+        <a class="entry" data-ui-sref-active="current" data-ui-sref="app.certificates.my"
+          translate="menu.certificates.my">
         </a>
       </li>
     </ul>
@@ -103,11 +85,5 @@
     translate="menu.auth.logout"
     (click)="logOut()"
   ></a> -->
-  <button
-    type="button"
-    mat-stroked-button
-    color="primary"
-    (click)="logOut()"
-    translate="menu.auth.logout"
-  ></button>
+  <button type="button" mat-stroked-button color="primary" (click)="logOut()" translate="menu.auth.logout"></button>
 </div>

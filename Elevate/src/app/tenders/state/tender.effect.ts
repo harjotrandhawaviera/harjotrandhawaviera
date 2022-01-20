@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/member-ordering */
+
 import * as fromTender from './index';
 import * as fromTenderAction from './tender.actions';
 
@@ -52,11 +55,9 @@ export class TenderEffect {
       this.tenderService
         .getTenders(this.tenderMappingService.searchRequest(payload.search))
         .pipe(
-          map((res: MultipleResponse<TenderResponse>) => {
-            return new fromTenderAction.LoadTenderListSuccess(
+          map((res: MultipleResponse<TenderResponse>) => new fromTenderAction.LoadTenderListSuccess(
               this.tenderMappingService.tenderSearchResponseToVM(res)
-            );
-          }),
+            )),
           catchError((err) => of(new fromTenderAction.LoadTenderListFailed(err)))
         )
     )
@@ -67,13 +68,11 @@ export class TenderEffect {
     ofType(fromTenderAction.TenderActionTypes.DeleteTender),
     withLatestFrom(
       this.store.select(fromTender.getSearchModel),
-      (action: fromTenderAction.DeleteTender, model: TenderSearchVM) => {
-        return {
+      (action: fromTenderAction.DeleteTender, model: TenderSearchVM) => ({
           id: action.payload.id,
           role_id: action.payload.role_id,
           searchModel: model,
-        };
-      }
+        })
     ),
     switchMap((payload: any) =>
       forkJoin([
@@ -252,40 +251,32 @@ export class TenderEffect {
   @Effect()
   loadAdminOfferDetail$: Observable<Action> = this.actions$.pipe(
     ofType(fromTenderAction.TenderActionTypes.LoadAdminOfferDetail),
-    mergeMap((action: any ) => {
-      return this.tenderService.confirmOffer(action?.payload).pipe
+    mergeMap((action: any ) => this.tenderService.confirmOffer(action?.payload).pipe
       (map(FreelancerOfferDetail => (new fromTenderAction.LoadAdminOfferDetailSuccess({data: FreelancerOfferDetail}))))
-    }
     )
   );
 
   @Effect()
   loadAdminOfferRejectDetail$: Observable<Action> = this.actions$.pipe(
     ofType(fromTenderAction.TenderActionTypes.LoadAdminOfferRejectDetail),
-    mergeMap((action: any ) => {
-        return this.tenderService.rejectOffer(action?.payload).pipe
+    mergeMap((action: any ) => this.tenderService.rejectOffer(action?.payload).pipe
         (map(FreelancerOfferRejectDetail => (new fromTenderAction.LoadAdminOfferRejectDetailSuccess({data: FreelancerOfferRejectDetail}))))
-      }
     )
   );
 
   @Effect()
   loadAdminFreelancer$: Observable<Action> = this.actions$.pipe(
     ofType(fromTenderAction.TenderActionTypes.LoadAdminFreelancer),
-    mergeMap((action: any ) => {
-        return this.tenderService.adminFreelancerData(action?.payload).pipe
+    mergeMap((action: any ) => this.tenderService.adminFreelancerData(action?.payload).pipe
         (map(AdminFreelancer => (new fromTenderAction.LoadAdminFreelancerSuccess({data: AdminFreelancer}))))
-      }
     )
   );
 
   @Effect()
   CreateShortlist$: Observable<Action> = this.actions$.pipe(
     ofType(fromTenderAction.TenderActionTypes.CreateShortlist),
-    mergeMap((action: any ) => {
-        return this.tenderService.createShortlist(action?.payload).pipe
+    mergeMap((action: any ) => this.tenderService.createShortlist(action?.payload).pipe
         (map(CreateShortlist => (new fromTenderAction.CreateShortlistSuccess({data: CreateShortlist}))))
-      }
     )
   );
 
@@ -294,7 +285,7 @@ export class TenderEffect {
     ofType(fromTenderAction.TenderActionTypes.CreateShortlistSuccess),
     map((action: fromTenderAction.CreateShortlistSuccess) => action.data),
     tap((payload) => {
-      this.router.navigate(['/tenders/offers']);
+      this.router.navigate(['/home/tenders/offers']);
     })
   );
 }

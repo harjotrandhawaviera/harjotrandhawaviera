@@ -1,48 +1,82 @@
-<div class="auth login">
-  <div class="form-wrapper">
-    <h3 translate="auth.login.title"></h3>
-    <div class="form-body">
-      <form name="login" [formGroup]="loginForm" (ngSubmit)="login()" role="form">
-
-        <app-form-notification type="warning" [notifications]="formValidate.warning ? [formValidate.warning] : []">
-        </app-form-notification>
-        <app-form-notification type="info" [notifications]="formValidate.info ? [formValidate.info] : []">
-        </app-form-notification>
-        <app-form-notification type="danger" [notifications]="formValidate.errors ? formValidate.errors : []">
-        </app-form-notification>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ 'auth.email.short' | translate }}</mat-label>
-          <input matInput formControlName="email" type="email" autocomplete="off">
-          <mat-error *ngIf="displayMessage.email">{{displayMessage.email}}</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>{{ 'auth.password.label' | translate }}</mat-label>
-          <input matInput formControlName="password" type="password">
-          <mat-error *ngIf="displayMessage.password">{{displayMessage.password}}</mat-error>
-          <mat-hint class="error" translate="auth.label.invalid_credentials" *ngIf="warning === 'invalid_credentials'">
-          </mat-hint>
-        </mat-form-field>
-
-        <button class="full-width" type="submit" mat-raised-button color="primary" translate="auth.button.login">
-        </button>
-
-        <div class="form-group bg-warning text-dark" *ngIf="warning === 'not_confirmed_registration'">
-          <span translate="auth.label.not_confirmed_registration"></span>
-          <a class="btn btn-link" (click)="resendConfirmation()" translate="auth.label.resend-confirmation"></a>
+<ion-content>
+  <div style="padding-top: 50px;"></div>
+  <ion-row>
+    <ion-col col-12>
+      <ion-item lines="none">
+        <div style="display: flex; justify-content: center; width: 100%;">
+          <img src="assets/img/Elevate_Logo.png" class="log_img" alt="logo" />
         </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
 
-        <div [ngClass]="{'warning-link-cont': true, 'text-error': warning === 'invalid_credentials'}">
-          <a [routerLink]="['/forgot-password']" translate="auth.label.forgot-password"></a>
+  <ion-row *ngIf="!isLangSelected">
+    <ion-col class="flex-center">
+      <img src="assets/img/Elevate_Global_Map.png" alt="logo" class="map_img" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top: 2rem;">
+    <ion-col>
+      <ion-item class="select_language" lines="none">
+        <div  style="display: flex; justify-content: center; width: 100%;">
+          <mat-form-field>
+            <mat-select placeholder="Select Language" [(ngModel)]="selectedLanguage" (selectionChange)="languageSelected($event)">
+              <mat-option [value]="'en'">English</mat-option>
+              <mat-option [value]="'de'">German</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-      </form>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <div class="auth login" *ngIf="isLangSelected">
+    <div class="form-wrapper">
+      <h3 translate="auth.login.title"></h3>
+      <div class="form-body">
+        <form name="login" [formGroup]="loginForm" (ngSubmit)="login()" role="form">
+
+          <app-form-notification type="warning" [notifications]="formValidate.warning ? [formValidate.warning] : []">
+          </app-form-notification>
+          <app-form-notification type="info" [notifications]="formValidate.info ? [formValidate.info] : []">
+          </app-form-notification>
+          <app-form-notification type="danger" [notifications]="formValidate.errors ? formValidate.errors : []">
+          </app-form-notification>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'auth.email.short' | translate }}</mat-label>
+            <input matInput formControlName="email" type="email" autocomplete="off">
+            <mat-error *ngIf="displayMessage.email">{{displayMessage.email}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'auth.password.label' | translate }}</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="displayMessage.password">{{displayMessage.password}}</mat-error>
+            <mat-hint class="error" translate="auth.label.invalid_credentials"
+              *ngIf="warning === 'invalid_credentials'">
+            </mat-hint>
+          </mat-form-field>
+
+          <button class="full-width" type="submit" mat-raised-button color="primary" translate="auth.button.login">
+          </button>
+
+          <div class="form-group bg-warning text-dark" *ngIf="warning === 'not_confirmed_registration'">
+            <span translate="auth.label.not_confirmed_registration"></span>
+            <a class="btn btn-link" (click)="resendConfirmation()" translate="auth.label.resend-confirmation"></a>
+          </div>
+
+          <div [ngClass]="{'warning-link-cont': true, 'text-error': warning === 'invalid_credentials'}">
+            <a [routerLink]="['/auth/forgot-password']" translate="auth.label.forgot-password"></a>
+          </div>
+        </form>
+      </div>
+
+      <span class="register-link">
+        <a [routerLink]="['/auth/register']" translate="auth.label.not-registered"></a>
+      </span>
     </div>
 
-    <span class="register-link" >
-      <a [routerLink]="['/register']" translate="auth.label.not-registered"></a>
-    </span>
-    <app-store-badges></app-store-badges>
   </div>
-
-</div>
+</ion-content>

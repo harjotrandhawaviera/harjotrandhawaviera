@@ -1,330 +1,327 @@
-<ng-container *ngIf="loggedRole === 'freelancer'">
-  <div class="container-fluid">
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start" default-href="/home/tenders/offers" style="font-size: 30px;"></ion-back-button>
+    <ion-title translate="offers.applied_job"></ion-title>
+  </ion-toolbar>
+</ion-header>
 
-    <div class="row start-xs">
-      <div class="col-xs">
-        <a [routerLink]="['/tenders/offers']"
-        >{{ "administration.site.buttons.back" | translate }}
-        </a>
+<ion-content>
+  <ng-container *ngIf="loggedRole === 'freelancer'">
+    <div class="container-fluid">
+
+      <!-- <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <div class="row">
+            <h3 >{{'offers.deadline' | translate}}{{freelancerOfferDetails?.expired_at}}</h3>
+          </div>
+          <div></div>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.date' | translate}}</label>
+          <div>{{freelancerOfferDetails?.expired_at | date: 'mediumDate'}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.shift' | translate}}</label>
+          <div>{{freelancerOfferDetails?.start_time}} - {{freelancerOfferDetails?.finish_time}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.role' | translate}}</label>
+          <div>{{freelancerOfferDetails?.role_name}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.job_number' | translate}}</label>
+          <div>{{freelancerOfferDetails?.job_code}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.job' | translate}}</label>
+          <div>{{freelancerOfferDetails?.title}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.client' | translate}}</label>
+          <div>{{freelancerOfferDetails?.subName}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.contract_type' | translate}}</label>
+          <div>{{freelancerOfferDetails?.contractType}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.job_location' | translate}}</label>
+          <div>{{freelancerOfferDetails?.job_location}}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.checkin_location' | translate}}</label>
+          <div>{{freelancerOfferDetails?.checkin_location}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.rate_card' | translate}}</label>
+          <div><span [appCurrencySymbol]="freelancerOfferDetails?.currency"></span>{{freelancerOfferDetails?.rate}}/{{'calls.fields.rate_type.'+freelancerOfferDetails?.rate_type | translate}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.Bonus' | translate}}</label>
+          <div>{{'offers.register' | translate}} {{freelancerOfferDetails?.checkin | currency}}</div>
+          <div>{{'offers.sales_report' | translate}} {{freelancerOfferDetails?.sales_report | currency}}</div>
+          <div>{{'offers.documentation' | translate}} {{freelancerOfferDetails?.picture_documentation | currency}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.fee' | translate}}</label>
+          <div>{{freelancerOfferDetails?.fee | currency}}</div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.job' | translate}}</label>
+          <div>{{freelancerOfferDetails?.name}}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.shift_time' | translate}} </label>
+          <div>{{freelancerOfferDetails?.start_time}} - {{freelancerOfferDetails?.finish_time}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.compensation' | translate}} </label>
+          <div *ngFor="let data of freelancerOfferDetails?.sales">
+            {{data?.name}}: {{data?.value | currency}}
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.category' | translate}}</label>
+          <div>{{freelancerOfferDetails?.category}}</div>
+        </div>
+      </div> -->
+      <!-- <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.address' | translate}}</label>
+          <div>{{freelancerOfferDetails?.siteGroup}}</div>
+          <div>{{freelancerOfferDetails?.siteName}} | {{freelancerOfferDetails?.siteNumber}}</div>
+          <div>{{freelancerOfferDetails?.siteAddress}} {{freelancerOfferDetails?.siteZip}} {{freelancerOfferDetails?.siteCity}}</div>
+        </div>
+
+      </div> -->
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.certificate' | translate}}</label>
+          <div></div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label>{{'offers.operational_training' | translate}}</label>
+          <div></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-12" style="margin-bottom: 3px">
+          <label>{{'offers.description' | translate}}</label>
+          <div [innerHTML]="freelancerOfferDetails?.description | newlines"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label>{{'offers.briefing' | translate}}</label>
+        <div [innerHTML]="freelancerOfferDetails?.briefing | newlines"></div>
+        </div>
       </div>
     </div>
-    <div class="row">
+  </ng-container>
+  <ng-container *ngIf="loggedRole !== 'freelancer'">
+
+    <div class="container-fluid">
+      <div class="row start-xs">
+        <div class="col-xs">
+          <a [routerLink]="['/home/tenders/offers']"
+          >{{ "administration.site.buttons.back" | translate }}
+          </a>
+        </div>
+      </div>
       <div class="col-xs-12 col-md start-xs">
-        <h1 translate="offers.applied_job"></h1>
+        <h1 translate="offers.offers_made"></h1>
       </div>
-    </div>
-    <!-- <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <div class="row">
-          <h3 >{{'offers.deadline' | translate}}{{freelancerOfferDetails?.expired_at}}</h3>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.freelancer' | translate}} </label>
+          <div>{{adminFreelancerDetails?.name}}</div>
         </div>
-        <div></div>
-      </div>
-    </div> -->
-    <div class="row">
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.date' | translate}}</label>
-        <div>{{freelancerOfferDetails?.expired_at | date: 'mediumDate'}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.shift' | translate}}</label>
-        <div>{{freelancerOfferDetails?.start_time}} - {{freelancerOfferDetails?.finish_time}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.role' | translate}}</label>
-        <div>{{freelancerOfferDetails?.role_name}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.job_number' | translate}}</label>
-        <div>{{freelancerOfferDetails?.job_code}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.job' | translate}}</label>
-        <div>{{freelancerOfferDetails?.title}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.client' | translate}}</label>
-        <div>{{freelancerOfferDetails?.subName}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.contract_type' | translate}}</label>
-        <div>{{freelancerOfferDetails?.contractType}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.job_location' | translate}}</label>
-        <div>{{freelancerOfferDetails?.job_location}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.checkin_location' | translate}}</label>
-        <div>{{freelancerOfferDetails?.checkin_location}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.rate_card' | translate}}</label>
-        <div><span [appCurrencySymbol]="freelancerOfferDetails?.currency"></span>{{freelancerOfferDetails?.rate}}/{{'calls.fields.rate_type.'+freelancerOfferDetails?.rate_type | translate}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.Bonus' | translate}}</label>
-        <div>{{'offers.register' | translate}} {{freelancerOfferDetails?.checkin | currency}}</div>
-        <div>{{'offers.sales_report' | translate}} {{freelancerOfferDetails?.sales_report | currency}}</div>
-        <div>{{'offers.documentation' | translate}} {{freelancerOfferDetails?.picture_documentation | currency}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.fee' | translate}}</label>
-        <div>{{freelancerOfferDetails?.fee | currency}}</div>
-      </div>
-    </div>
-    <!-- <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.job' | translate}}</label>
-        <div>{{freelancerOfferDetails?.name}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.shift_time' | translate}} </label>
-        <div>{{freelancerOfferDetails?.start_time}} - {{freelancerOfferDetails?.finish_time}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.compensation' | translate}} </label>
-        <div *ngFor="let data of freelancerOfferDetails?.sales">
-          {{data?.name}}: {{data?.value | currency}}
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.phone' | translate}} </label>
+          <div><a>{{adminFreelancerDetails?.mobile}}</a></div>
         </div>
       </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.email' | translate}} </label>
+          <div><a>{{adminFreelancerDetails?.email}}</a></div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.expiry_date' | translate}} </label>
+          <div>{{adminOfferDetails?.expired_at | date: 'MMM d, y HH:mm'}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ">
+          <a class="pull-right"
+          mat-flat-button
+            color="accent"
+            translate="offers.buttons.details"
+            [routerLink]="['/administration/freelancers/', adminFreelancerDetails?.id]"
+          ></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.date' | translate}}</label>
+          <div>{{adminOfferDetails?.invalid_at | date: 'mediumDate'}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.shift' | translate}}</label>
+          <div>{{adminOfferDetails?.shift_start_time}} - {{adminOfferDetails?.shift_end_time}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.role' | translate}}</label>
+          <div>{{adminOfferDetails?.role_name}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'calls.fields.job_number' | translate}}</label>
+          <div>{{adminOfferDetails?.job_code}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.job' | translate}}</label>
+          <div>{{adminOfferDetails?.title}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.client' | translate}}</label>
+          <div>{{adminOfferDetails?.could}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.contract_type' | translate}}</label>
+          <div>{{adminOfferDetails?.contractType}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.job_location' | translate}}</label>
+          <div>{{adminOfferDetails?.job_location}}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.checkin_location' | translate}}</label>
+          <div>{{adminOfferDetails?.checkin_location}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'calls.fields.rate_card' | translate}}</label>
+          <div><span [appCurrencySymbol]="adminOfferDetails?.currency"></span>{{adminOfferDetails?.rate}}/{{'calls.fields.rate_type.'+adminOfferDetails?.rate_type | translate}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.Bonus' | translate}}</label>
+          <div>{{'offers.register' | translate}} {{adminOfferDetails?.checkin | currency}}</div>
+          <div>{{'offers.sales_report' | translate}} {{adminOfferDetails?.sales_report | currency}}</div>
+          <div>{{'offers.documentation' | translate}} {{adminOfferDetails?.picture_documentation | currency}}</div>
+        </div>
+        <div class="form-group col-sm-3 col-xs-12">
+          <label >{{'offers.fee' | translate}}</label>
+          <div>{{adminOfferDetails?.possible_fee | currency}}</div>
+        </div>
+      </div>
 
-    </div>
-    <div class="row">
-
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.category' | translate}}</label>
-        <div>{{freelancerOfferDetails?.category}}</div>
+      <!--<div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.client' | translate}}</label>
+          <div>{{adminOfferDetails?.could}}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.fee' | translate}}</label>
+          <div>{{adminOfferDetails?.possible_fee | currency}}</div>
+        </div>
       </div>
-    </div> -->
-    <!-- <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.address' | translate}}</label>
-        <div>{{freelancerOfferDetails?.siteGroup}}</div>
-        <div>{{freelancerOfferDetails?.siteName}} | {{freelancerOfferDetails?.siteNumber}}</div>
-        <div>{{freelancerOfferDetails?.siteAddress}} {{freelancerOfferDetails?.siteZip}} {{freelancerOfferDetails?.siteCity}}</div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.project' | translate}}</label>
+          <div>{{adminOfferDetails?.projectName}}</div>
+        </div>
       </div>
-
-    </div> -->
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.certificate' | translate}}</label>
-        <div></div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.job' | translate}}</label>
+          <div>{{adminOfferDetails?.jobName}}</div>
+          <div></div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.compensation' | translate}} </label>
+          <div *ngFor="let data of adminOfferDetails?.compensation">
+            {{data?.name}}: {{data?.value | currency}}
+          </div>
+        </div>
       </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label>{{'offers.operational_training' | translate}}</label>
-        <div></div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.roleName' | translate}}</label>
+          <div>{{adminOfferDetails?.role_name}}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.shiftName' | translate}}</label>
+          <div>{{adminOfferDetails?.shift_name}} | {{adminOfferDetails?.appointed_at}} |  {{adminOfferDetails?.shift_start_time}} - {{adminOfferDetails?.shift_end_time}}</div>
+        </div>
       </div>
-    </div>
-    <div class="row">
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.contract_type' | translate}}</label>
+          <div>{{'contracts.identifier.' + adminOfferDetails?.catType  | translate}}</div>
+        </div>
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.Bonus' | translate}}</label>
+          <div>{{'offers.register' | translate}} {{adminOfferDetails?.checkin | currency}} </div>
+          <div>{{'offers.sales_report' | translate}} {{adminOfferDetails?.sales_report |currency}}</div>
+          <div>{{'offers.documentation' | translate}} {{adminOfferDetails?.picture_documentation | currency}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.category' | translate}}</label>
+          <div>{{adminOfferDetails?.category}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6 col-xs-12">
+          <label >{{'offers.address' | translate}}</label>
+          <div>{{adminOfferDetails?.siteAddress}} </div>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="form-group col-xs-6">
+          <label >{{'offers.certificate' | translate}}</label>
+        </div>
+        <div class="form-group col-xs-6">
+          <label>{{'offers.operational_training' | translate}}</label>
+        </div>
+      </div>
       <div class="form-group col-xs-12" style="margin-bottom: 3px">
         <label>{{'offers.description' | translate}}</label>
-        <div [innerHTML]="freelancerOfferDetails?.description | newlines"></div>
+        <div [innerHTML]="adminOfferDetails?.description | newlines"></div>
       </div>
-    </div>
-
-    <div class="row">
       <div class="form-group col-xs-12">
         <label>{{'offers.briefing' | translate}}</label>
-      <div [innerHTML]="freelancerOfferDetails?.briefing | newlines"></div>
+        <div [innerHTML]="adminOfferDetails?.breifing | newlines"></div>
       </div>
-    </div>
-  </div>
-</ng-container>
-<ng-container *ngIf="loggedRole !== 'freelancer'">
 
-  <div class="container-fluid">
-    <div class="row start-xs">
-      <div class="col-xs">
-        <a [routerLink]="['/tenders/offers']"
-        >{{ "administration.site.buttons.back" | translate }}
-        </a>
+      <div class="buttons_area">
+        <button class="btn btn-default" (click)="shortlistOffer(adminOfferDetails?.freelancerId, adminOfferDetails?.id, adminOfferDetails?.tender_id)">{{'offers.buttons.shortlist' | translate}}</button>
+        <button class="btn btn-primary" (click)="confirmOffer(adminOfferDetails?.freelancerId, adminOfferDetails?.assignment_id, adminOfferDetails?.id)">{{'offers.buttons.confirmOffer' | translate}}</button>
+        <button class="btn btn-default" (click)="rejectedOffers(adminOfferDetails?.id)">{{'offers.buttons.rejectOffer' | translate}}</button>
       </div>
     </div>
-    <div class="col-xs-12 col-md start-xs">
-      <h1 translate="offers.offers_made"></h1>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.freelancer' | translate}} </label>
-        <div>{{adminFreelancerDetails?.name}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.phone' | translate}} </label>
-        <div><a>{{adminFreelancerDetails?.mobile}}</a></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.email' | translate}} </label>
-        <div><a>{{adminFreelancerDetails?.email}}</a></div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.expiry_date' | translate}} </label>
-        <div>{{adminOfferDetails?.expired_at | date: 'MMM d, y HH:mm'}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 ">
-        <a class="pull-right"
-        mat-flat-button
-           color="accent"
-           translate="offers.buttons.details"
-           [routerLink]="['/administration/freelancers/', adminFreelancerDetails?.id]"
-        ></a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.date' | translate}}</label>
-        <div>{{adminOfferDetails?.invalid_at | date: 'mediumDate'}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.shift' | translate}}</label>
-        <div>{{adminOfferDetails?.shift_start_time}} - {{adminOfferDetails?.shift_end_time}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.role' | translate}}</label>
-        <div>{{adminOfferDetails?.role_name}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'calls.fields.job_number' | translate}}</label>
-        <div>{{adminOfferDetails?.job_code}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.job' | translate}}</label>
-        <div>{{adminOfferDetails?.title}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.client' | translate}}</label>
-        <div>{{adminOfferDetails?.could}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.contract_type' | translate}}</label>
-        <div>{{adminOfferDetails?.contractType}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.job_location' | translate}}</label>
-        <div>{{adminOfferDetails?.job_location}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.checkin_location' | translate}}</label>
-        <div>{{adminOfferDetails?.checkin_location}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'calls.fields.rate_card' | translate}}</label>
-        <div><span [appCurrencySymbol]="adminOfferDetails?.currency"></span>{{adminOfferDetails?.rate}}/{{'calls.fields.rate_type.'+adminOfferDetails?.rate_type | translate}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.Bonus' | translate}}</label>
-        <div>{{'offers.register' | translate}} {{adminOfferDetails?.checkin | currency}}</div>
-        <div>{{'offers.sales_report' | translate}} {{adminOfferDetails?.sales_report | currency}}</div>
-        <div>{{'offers.documentation' | translate}} {{adminOfferDetails?.picture_documentation | currency}}</div>
-      </div>
-      <div class="form-group col-sm-3 col-xs-12">
-        <label >{{'offers.fee' | translate}}</label>
-        <div>{{adminOfferDetails?.possible_fee | currency}}</div>
-      </div>
-    </div>
-
-    <!--<div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.client' | translate}}</label>
-        <div>{{adminOfferDetails?.could}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.fee' | translate}}</label>
-        <div>{{adminOfferDetails?.possible_fee | currency}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.project' | translate}}</label>
-        <div>{{adminOfferDetails?.projectName}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.job' | translate}}</label>
-        <div>{{adminOfferDetails?.jobName}}</div>
-        <div></div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.compensation' | translate}} </label>
-        <div *ngFor="let data of adminOfferDetails?.compensation">
-          {{data?.name}}: {{data?.value | currency}}
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.roleName' | translate}}</label>
-        <div>{{adminOfferDetails?.role_name}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.shiftName' | translate}}</label>
-        <div>{{adminOfferDetails?.shift_name}} | {{adminOfferDetails?.appointed_at}} |  {{adminOfferDetails?.shift_start_time}} - {{adminOfferDetails?.shift_end_time}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.contract_type' | translate}}</label>
-        <div>{{'contracts.identifier.' + adminOfferDetails?.catType  | translate}}</div>
-      </div>
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.Bonus' | translate}}</label>
-        <div>{{'offers.register' | translate}} {{adminOfferDetails?.checkin | currency}} </div>
-        <div>{{'offers.sales_report' | translate}} {{adminOfferDetails?.sales_report |currency}}</div>
-        <div>{{'offers.documentation' | translate}} {{adminOfferDetails?.picture_documentation | currency}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.category' | translate}}</label>
-        <div>{{adminOfferDetails?.category}}</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-sm-6 col-xs-12">
-        <label >{{'offers.address' | translate}}</label>
-        <div>{{adminOfferDetails?.siteAddress}} </div>
-      </div>
-    </div> -->
-    <div class="row">
-      <div class="form-group col-xs-6">
-        <label >{{'offers.certificate' | translate}}</label>
-      </div>
-      <div class="form-group col-xs-6">
-        <label>{{'offers.operational_training' | translate}}</label>
-      </div>
-    </div>
-    <div class="form-group col-xs-12" style="margin-bottom: 3px">
-      <label>{{'offers.description' | translate}}</label>
-      <div [innerHTML]="adminOfferDetails?.description | newlines"></div>
-    </div>
-    <div class="form-group col-xs-12">
-      <label>{{'offers.briefing' | translate}}</label>
-      <div [innerHTML]="adminOfferDetails?.breifing | newlines"></div>
-    </div>
-
-    <div class="buttons_area">
-      <button class="btn btn-default" (click)="shortlistOffer(adminOfferDetails?.freelancerId, adminOfferDetails?.id, adminOfferDetails?.tender_id)">{{'offers.buttons.shortlist' | translate}}</button>
-      <button class="btn btn-primary" (click)="confirmOffer(adminOfferDetails?.freelancerId, adminOfferDetails?.assignment_id, adminOfferDetails?.id)">{{'offers.buttons.confirmOffer' | translate}}</button>
-      <button class="btn btn-default" (click)="rejectedOffers(adminOfferDetails?.id)">{{'offers.buttons.rejectOffer' | translate}}</button>
-    </div>
-  </div>
-</ng-container>
+  </ng-container>
+</ion-content>

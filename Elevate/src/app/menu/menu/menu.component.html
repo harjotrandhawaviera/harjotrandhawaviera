@@ -1,13 +1,5 @@
-<div class="row between-xs">
-  <div>
-    <button id="menu-collapse" mat-button color="primary" aria-label="Collapse menu" (click)="toggleFold()">
-      <i [ngClass]="{
-        'fas': true,
-        'fa-bars': folded,
-        'fa-window-close': !folded
-      }"></i>
-    </button>
-  </div>
+<div class="add-icon row between-xs" *ngIf="!folded && loggedRole === 'freelancer'" >
+  <app-logo-brand maxHeight="54px"></app-logo-brand>
   <div>
     <span *ngIf="!folded" class="lang-text">{{'user.fields.languages.label' | translate}}:</span>
     <button mat-button color="primary" aria-label="Change language" [matMenuTriggerFor]="languageMenu" class="language-btn">
@@ -19,9 +11,7 @@
     </mat-menu>
   </div>
 </div>
-<div class="add-icon" *ngIf="!folded && loggedRole === 'freelancer'" >
-  <app-logo-brand maxHeight="54px"></app-logo-brand>
-</div>
+
 <div class="add-icon" *ngIf="!folded && loggedRole === 'field'" >
   <app-logo-brand maxHeight="54px"></app-logo-brand>
 </div>

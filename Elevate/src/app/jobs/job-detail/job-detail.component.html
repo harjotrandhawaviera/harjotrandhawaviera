@@ -1,3 +1,17 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start" style="font-size: 30px;"></ion-menu-button>
+    <ion-title [translate]="'tenders.tender.' + setPageTitle"></ion-title>
+
+    <div slot="end" style="padding: 0 10px;">
+      <button  mat-mini-fab class="filter-button" (click)="app.searchContainer.opened = true">
+        <i class="fas fa-filter"></i>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
 <div *ngIf="loggedRole !== 'freelancer'">
   <div class="container-fluid">
     <div class="row">
@@ -165,7 +179,7 @@
           <h1 [translate]="'tenders.tender.' + setPageTitle"></h1>
         </div>
       </div>
-      <div class="row center-xs" *ngIf="freelancerJobOfferList.length == 0">
+      <div class="row center-xs" *ngIf="freelancerJobOfferList.length === 0">
         <div class="col-xs">
           <div class="alert alert-info text-center">
             {{ "ui.list-table.default.no-records" | translate }}
@@ -197,13 +211,13 @@
           </button>
         </div>
       </div>-->
-      <ng-container *ngIf="viewing == 'Tile' && show">
+      <ng-container *ngIf="viewing === 'Tile' && show">
         <div class="table-wrapper">
           <div class="row">
             <div class="freelancer-offer-tile col-md-6" *ngFor="let freelanceData of freelancerJobOfferList" (click)="setid(freelanceData)"
              [ngClass]="{ 'matched': freelanceData?.is_matched }">
               <div class="panel panel-default tender CustomePanel" *ngIf="!(noRecords$ | async)">
-                <span [ngClass]="{'tag': freelanceData?.is_matched && setPageTitle == 'header-all' }"></span>
+                <span [ngClass]="{'tag': freelanceData?.is_matched && setPageTitle === 'header-all' }"></span>
                   <!-- <div class="panel-header">
                     <div class="row panel-heading">
                       <div class="job-title">
@@ -316,7 +330,7 @@
           </div>
         </div>
       </ng-container>
-      <ng-container *ngIf="viewing == 'List'">
+      <ng-container *ngIf="viewing === 'List'">
         <div
             [ngClass]="{ 'col-xs': true, 'table-wrapper': true }"
             *ngIf="!(noRecords$ | async)"
@@ -532,3 +546,4 @@
     </app-search-list>
   </app-search-container>
 </div>
+</ion-content>

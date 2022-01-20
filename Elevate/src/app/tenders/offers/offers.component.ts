@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable max-len */
+
 import * as fromCurrentUser from '../../root-state/user-state';
 import * as fromJobAction from '../../jobs/state/job.actions';
 import * as fromTender from '../state';
@@ -13,9 +17,10 @@ import { Store, select } from '@ngrx/store';
 
 import { Accounting } from '../../model/accounting.model';
 import { AgentService } from '../../services/agent.service';
+import { AppService } from 'src/controller/app.service';
 import { ApprovalRequestVM } from '../../model/approval-request.model';
 import { ClientService } from '../../services/client.service';
-import {ConfirmBoxComponent} from "../../core/confirm-box/confirm-box.component";
+import {ConfirmBoxComponent} from '../../core/confirm-box/confirm-box.component';
 import { ContractTypesService } from '../../services/contract-types.service';
 import { FileExportService } from '../../services/file-export.service';
 import { FormConfig } from '../../constant/forms.constant';
@@ -23,7 +28,7 @@ import { FreelancerService } from '../../services/freelancer.service';
 import { JobService } from '../../services/job.service';
 import { LoadFreelancerOfferTM } from '../state/tender.actions';
 import { MY_FORMATS } from '../../model/date-format.model';
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog} from '@angular/material/dialog';
 import { OptionVM } from '../../model/option.model';
 import { ProjectService } from '../../services/project.service';
 import { Router } from '@angular/router';
@@ -84,7 +89,7 @@ export class OffersComponent implements OnInit {
   currentPage: any;
   totalPage: any;
   paginator: any;
-  viewing: string = 'Tile';
+  viewing = 'Tile';
   displayedColumns = [
     'Client',
     'Job Name',
@@ -122,6 +127,7 @@ export class OffersComponent implements OnInit {
     private tenderService: TenderService,
     private fileExportService: FileExportService,
     private dialog: MatDialog,
+    public app: AppService
   ) {}
 
   ngOnInit(): void {
@@ -208,7 +214,6 @@ export class OffersComponent implements OnInit {
           })
         );
         this.store.select(fromTender.getFreelancerOffersList).subscribe(
-          // tslint:disable-next-line:no-shadowed-variable
           (res: any) => {
             if (res) {
               this.totalRecord = res?.data?.meta?.pagination?.total;
@@ -216,8 +221,7 @@ export class OffersComponent implements OnInit {
               this.totalPage = res?.data?.meta?.count;
               this.freelancerOfferList = this.sortOption(
                 res?.data?.data
-                  ? res?.data?.data.map((a: any) => {
-                      return {
+                  ? res?.data?.data.map((a: any) => ({
                         id: a?.id,
                         category:
                           a?.tender?.data?.snapshots?.assignment?.category,
@@ -246,8 +250,7 @@ export class OffersComponent implements OnInit {
                         checkin_location: a?.tender?.data?.snapshots?.assignment?.checkin_location,
                         currency: a?.tender?.data?.snapshots?.project?.currency,
                         staff: a?.staff?.fullname
-                      };
-                    })
+                      }))
                   : []
               );
             }
@@ -385,14 +388,12 @@ export class OffersComponent implements OnInit {
       this.contractTypesService.getContractTypes({}).subscribe((res) => {
         this.contractTypeLK = this.sortOption(
           res.data
-            ? res.data.map((a) => {
-                return {
+            ? res.data.map((a) => ({
                   value: a.id,
                   text: this.translateService.instant(
                     'contracts.identifier.' + a.identifier
                   ),
-                };
-              })
+                }))
             : []
         );
       });
@@ -420,16 +421,16 @@ export class OffersComponent implements OnInit {
         search,
       } = JSON.parse(previous) as TenderSearchVM;
       this.offers.patchValue({
-        agent: agent,
-        client: client,
-        contractType: contractType,
-        job: job,
-        project: project,
-        site: site,
-        freelancer: freelancer,
-        start: start,
-        end: end,
-        search: search,
+        agent,
+        client,
+        contractType,
+        job,
+        project,
+        site,
+        freelancer,
+        start,
+        end,
+        search,
       });
     } else {
       const searchModel: TenderSearchVM = {
@@ -467,12 +468,10 @@ export class OffersComponent implements OnInit {
     this.agentService.getAgentsLK().subscribe((res) => {
       this.agentLK = this.sortOption(
         res?.data
-          ? res?.data.map((a) => {
-              return {
+          ? res?.data.map((a) => ({
                 value: a.id,
                 text: [a.lastname, a.firstname].join(' '),
-              };
-            })
+              }))
           : []
       );
     });
@@ -480,12 +479,10 @@ export class OffersComponent implements OnInit {
     this.clientService.getClientLK().subscribe((res) => {
       this.clientLK = this.sortOption(
         res.data
-          ? res.data.map((a) => {
-              return {
+          ? res.data.map((a) => ({
                 value: a.id,
                 text: a.name,
-              };
-            })
+              }))
           : []
       );
     });
@@ -493,12 +490,10 @@ export class OffersComponent implements OnInit {
     this.projectService.getProjectsLK().subscribe((res) => {
       this.projectLK = this.sortOption(
         res.data
-          ? res.data.map((a) => {
-              return {
+          ? res.data.map((a) => ({
                 value: a.id,
                 text: [a.name, a.category].join(' '),
-              };
-            })
+              }))
           : []
       );
     });
@@ -506,12 +501,10 @@ export class OffersComponent implements OnInit {
     this.siteService.getSiteLK().subscribe((res) => {
       this.siteLK = this.sortOption(
         res.data
-          ? res.data.map((a) => {
-              return {
+          ? res.data.map((a) => ({
                 value: a.id,
                 text: [a.name, a.zip, a.city, a.address].join(' '),
-              };
-            })
+              }))
           : []
       );
     });
@@ -519,12 +512,10 @@ export class OffersComponent implements OnInit {
     this.freelancerService.getFreelancerLK().subscribe((res) => {
       this.freelancerLK = this.sortOption(
         res.data
-          ? res.data.map((a) => {
-              return {
+          ? res.data.map((a) => ({
                 value: a.id,
                 text: [a.lastname, a.firstname, a.zip, a.city].join(' '),
-              };
-            })
+              }))
           : []
       );
     });
@@ -532,12 +523,10 @@ export class OffersComponent implements OnInit {
     this.jobService.getJobsLK().subscribe((res) => {
       this.jobLK = this.sortOption(
         res.data
-          ? res.data.map((a) => {
-              return {
+          ? res.data.map((a) => ({
                 value: a.id,
                 text: a.title,
-              };
-            })
+              }))
           : []
       );
     });
@@ -549,8 +538,7 @@ export class OffersComponent implements OnInit {
       if (res) {
         this.offerList = this.sortOption(
           res?.data?.data
-            ? res?.data?.data?.map((a: any) => {
-                return {
+            ? res?.data?.data?.map((a: any) => ({
                   id: a?.id,
                   freelancer_id: a?.freelancer_id,
                   job: a?.job_title,
@@ -561,8 +549,7 @@ export class OffersComponent implements OnInit {
                   role_name: a?.role_name,
                   shift_name: a?.shift_name,
                   job_location: a?.job_location
-                };
-              })
+                }))
             : []
         );
         this.paginator = res?.data?.meta?.pagination;
@@ -607,16 +594,14 @@ export class OffersComponent implements OnInit {
 
   loadLookUpsFreelancer() {
     this.translateService.get('tenders.offers.state').subscribe((a) => {
-      this.stateLK = FormConfig.offers.state.map((a) => {
-        return {
+      this.stateLK = FormConfig.offers.state.map((a) => ({
           value: a,
           text: this.translateService.instant('tenders.offers.state.' + a),
-        };
-      });
+        }));
     });
   }
 
   navigateToDetail(row: any) {
-    this.router.navigate(['tenders', 'offers', row.id]);
+    this.router.navigate(['home', 'tenders', 'offers', row.id]);
   }
 }

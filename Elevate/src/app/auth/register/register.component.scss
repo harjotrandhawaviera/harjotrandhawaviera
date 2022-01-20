@@ -2,6 +2,9 @@
 
 .register {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
   .slogan-container {
     padding-right: 104px;
     @media (max-width: 1180px) {
@@ -24,6 +27,7 @@
       text-transform: none;
       font-weight: 600;
       margin-bottom: 50px;
+      text-align: center;
     }
     .form-body {
       form {
