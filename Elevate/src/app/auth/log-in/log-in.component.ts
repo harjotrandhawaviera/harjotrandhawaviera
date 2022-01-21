@@ -88,6 +88,9 @@ export class LogInComponent implements OnInit {
   languageSelected(e) {
     console.log(e);
     this.isLangSelected = true;
+    this.storageService.set('language', this.selectedLanguage);
+    this.translateService.language = this.selectedLanguage;
+    // location.reload();
   }
 
 

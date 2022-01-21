@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { StorageService } from './../../services/storage.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 

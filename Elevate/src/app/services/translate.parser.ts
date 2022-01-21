@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
 import { Injectable } from '@angular/core';
 import { isDefined } from './../utility/util';
 
@@ -5,6 +7,7 @@ export abstract class TranslateParser {
   /**
    * Interpolates a string to replace parameters
    * "This is a {{ key }}" ==> "This is a value", with params = { key: "value" }
+   *
    * @param expr
    * @param params
    */
@@ -13,6 +16,7 @@ export abstract class TranslateParser {
   /**
    * Gets a value from an object by composed key
    * parser.getValue({ key1: { keyA: 'valueI' }}, 'key1.keyA') ==> 'valueI'
+   *
    * @param target
    * @param key
    */
@@ -21,7 +25,7 @@ export abstract class TranslateParser {
 
 @Injectable()
 export class TranslateDefaultParser extends TranslateParser {
-  templateMatcher: RegExp = /{{\s?([^{}\s]*)\s?}}/g;
+  templateMatcher = /{{\s?([^{}\s]*)\s?}}/g;
 
   public interpolate(expr: string | Function, params?: any): string {
     let result: string;
@@ -39,7 +43,7 @@ export class TranslateDefaultParser extends TranslateParser {
   }
 
   getValue(target: any, key: string): any {
-    let keys = typeof key === 'string' ? key.split('.') : [key];
+    const keys = typeof key === 'string' ? key.split('.') : [key];
     key = '';
     do {
       key += keys.shift();
@@ -72,7 +76,7 @@ export class TranslateDefaultParser extends TranslateParser {
     return expr.replace(
       this.templateMatcher,
       (substring: string, b: string) => {
-        let r = this.getValue(params, b);
+        const r = this.getValue(params, b);
         return isDefined(r) ? r : substring;
       }
     );
